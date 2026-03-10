@@ -50,24 +50,12 @@ body {
   text-align: center;
 }
 
-.logo-slot {
+.logo-mark {
+  display: block;
   width: 72px;
   height: 72px;
   margin: 0 auto 18px;
-  border: 1px solid var(--soft);
-  border-radius: 22px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
-    rgba(255, 255, 255, 0.02);
-  position: relative;
-}
-
-.logo-slot::after {
-  content: "";
-  position: absolute;
-  inset: 16px;
-  border: 1px solid rgba(210, 240, 96, 0.45);
-  border-radius: 14px;
+  object-fit: contain;
 }
 
 h1 {
