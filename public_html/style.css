@@ -40,15 +40,8 @@ a {
   padding: 20px;
 }
 
-.stack {
-  width: min(100%, 420px);
-  display: grid;
-  gap: 18px;
-  justify-items: center;
-}
-
 .card {
-  width: 100%;
+  width: min(100%, 420px);
   padding: 28px 22px 20px;
   border: 1px solid var(--panel-border);
   border-radius: 24px;
@@ -67,13 +60,6 @@ a {
   height: 72px;
   margin: 0 auto 18px;
   object-fit: contain;
-}
-
-.secondary-mark {
-  display: block;
-  width: min(48vw, 148px);
-  height: auto;
-  opacity: 0.9;
 }
 
 h1 {
