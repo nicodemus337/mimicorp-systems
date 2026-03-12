@@ -8,6 +8,7 @@
     name="description"
     content="Mimicorp.systems by Amelia Cronan. Creative tech for land, story, and signal."
   >
+  <link rel="icon" type="image/png" href="assets/logo.png">
   <style>
     :root {
       color-scheme: light;
@@ -186,37 +187,14 @@
     }
 
     .brand-lockup {
-      position: relative;
       display: grid;
-      gap: 16px;
-      margin-bottom: 26px;
-      padding: 14px 16px 18px;
+      gap: 0;
+      margin-bottom: 20px;
       width: fit-content;
-      border: 1px solid rgba(15, 15, 18, 0.08);
-      background: #fff;
-      box-shadow:
-        5px 5px 0 rgba(255, 79, 216, 0.14),
-        -5px -5px 0 rgba(57, 199, 255, 0.1);
-    }
-
-    .brand-lockup::after {
-      content: "MIMICORP SYSTEMS MAP";
-      position: absolute;
-      right: 12px;
-      bottom: 8px;
-      font-family: var(--font-mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.16em;
-      color: var(--muted);
-    }
-
-    .brand-mark {
-      width: clamp(68px, 10vw, 94px);
-      filter: drop-shadow(2px 0 0 rgba(255, 79, 216, 0.3)) drop-shadow(-2px 0 0 rgba(57, 199, 255, 0.28));
     }
 
     .brand-wordmark {
-      width: min(100%, 430px);
+      width: min(100%, 320px);
       height: auto;
       mix-blend-mode: multiply;
     }
@@ -632,7 +610,7 @@
       }
 
       .brand-wordmark {
-        width: 100%;
+        width: min(100%, 280px);
       }
 
       .stems-panel {
@@ -657,7 +635,6 @@
         <div class="hero-grid">
           <div>
             <div class="brand-lockup" aria-label="Mimicorp brand">
-              <img class="brand-mark" src="assets/logo.png" alt="Mimicorp logo mark">
               <img class="brand-wordmark" src="assets/mimicorp.png" alt="Mimicorp wordmark">
             </div>
             <p class="eyebrow">Mimicorp.systems</p>
