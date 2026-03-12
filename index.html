@@ -3,41 +3,710 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mimicorp Systems</title>
+  <title>Mimicorp.systems</title>
   <meta
     name="description"
-    content="Mimicorp Systems: Systems Engineering, Infrastructure, and Field Technology."
+    content="Mimicorp.systems by Amelia Cronan. Creative tech for land, story, and signal."
   >
-  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f4f6ef;
+      --bg-deep: #e7eddc;
+      --surface: rgba(255, 255, 255, 0.82);
+      --surface-strong: rgba(255, 255, 255, 0.94);
+      --line: rgba(44, 83, 58, 0.16);
+      --line-strong: rgba(44, 83, 58, 0.28);
+      --text: #1f2d24;
+      --muted: #5f7063;
+      --accent: #41744c;
+      --accent-soft: #d9e7d7;
+      --shadow: 0 24px 64px rgba(31, 45, 36, 0.09);
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --radius-sm: 14px;
+      --max: 1180px;
+      --font-sans: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      --font-serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-sans);
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(164, 195, 150, 0.28), transparent 28%),
+        radial-gradient(circle at 85% 12%, rgba(184, 210, 168, 0.22), transparent 24%),
+        linear-gradient(180deg, #f7f8f1 0%, var(--bg) 42%, var(--bg-deep) 100%);
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before {
+      background:
+        linear-gradient(90deg, transparent 0 12%, rgba(65, 116, 76, 0.04) 12% 12.2%, transparent 12.2% 100%),
+        linear-gradient(180deg, transparent 0 19%, rgba(65, 116, 76, 0.04) 19% 19.2%, transparent 19.2% 100%),
+        linear-gradient(122deg, transparent 0 58%, rgba(65, 116, 76, 0.05) 58% 58.15%, transparent 58.15% 100%);
+      opacity: 0.75;
+    }
+
+    body::after {
+      background-image:
+        radial-gradient(circle at 12% 18%, rgba(65, 116, 76, 0.11) 0 2px, transparent 3px),
+        radial-gradient(circle at 78% 20%, rgba(65, 116, 76, 0.1) 0 2px, transparent 3px),
+        radial-gradient(circle at 26% 68%, rgba(65, 116, 76, 0.1) 0 2px, transparent 3px),
+        radial-gradient(circle at 82% 72%, rgba(65, 116, 76, 0.1) 0 2px, transparent 3px);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+      padding: 32px 0 56px;
+    }
+
+    .network-shell {
+      position: relative;
+      overflow: clip;
+      border: 1px solid rgba(65, 116, 76, 0.1);
+      border-radius: 36px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.56));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .network-shell::before,
+    .network-shell::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .network-shell::before {
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent 0 13%, var(--line) 13% 13.12%, transparent 13.12% 100%),
+        linear-gradient(180deg, transparent 0 24%, var(--line) 24% 24.12%, transparent 24.12% 100%),
+        linear-gradient(146deg, transparent 0 63%, var(--line) 63% 63.12%, transparent 63.12% 100%),
+        linear-gradient(32deg, transparent 0 71%, var(--line) 71% 71.12%, transparent 71.12% 100%);
+    }
+
+    .network-shell::after {
+      width: 340px;
+      height: 340px;
+      top: -140px;
+      right: -120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(144, 182, 131, 0.2) 0%, rgba(144, 182, 131, 0) 72%);
+    }
+
+    .section {
+      position: relative;
+      padding: 40px 28px;
+    }
+
+    .section + .section {
+      border-top: 1px solid rgba(65, 116, 76, 0.08);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 18px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .section-heading::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: var(--line-strong);
+    }
+
+    .hero {
+      display: grid;
+      gap: 28px;
+      align-items: end;
+      min-height: min(84svh, 760px);
+      padding-top: 52px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.8fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 9ch;
+      font-family: var(--font-serif);
+      font-size: clamp(3.2rem, 9vw, 7rem);
+      line-height: 0.95;
+      font-weight: 600;
+      letter-spacing: -0.05em;
+    }
+
+    .subtitle {
+      margin: 14px 0 0;
+      font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+      color: var(--muted);
+    }
+
+    .support-line {
+      margin: 22px 0 0;
+      max-width: 32ch;
+      font-size: clamp(1.1rem, 2.1vw, 1.35rem);
+      line-height: 1.5;
+    }
+
+    .hero-aside,
+    .intro-card,
+    .branch-card,
+    .fruit-card,
+    .stem-link {
+      position: relative;
+      border: 1px solid rgba(65, 116, 76, 0.12);
+      background: var(--surface);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-aside,
+    .intro-card,
+    .fruit-card {
+      border-radius: var(--radius-lg);
+    }
+
+    .hero-aside {
+      display: grid;
+      gap: 18px;
+      align-content: space-between;
+      padding: 24px;
+    }
+
+    .hero-aside::before,
+    .intro-card::before,
+    .branch-card::before,
+    .fruit-card::before,
+    .stem-link::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(65, 116, 76, 0.08);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .aside-label,
+    .meta-label {
+      margin: 0;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .aside-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .aside-item {
+      display: grid;
+      gap: 6px;
+      padding-left: 18px;
+      border-left: 1px solid var(--line-strong);
+    }
+
+    .aside-item strong {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .aside-item span {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .intro-card {
+      max-width: 760px;
+      padding: 28px;
+    }
+
+    .intro-card p {
+      margin: 0;
+      font-size: 1.06rem;
+      line-height: 1.75;
+      color: #324238;
+    }
+
+    .branch-grid,
+    .fruit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .branch-card,
+    .fruit-card {
+      display: grid;
+      gap: 18px;
+      padding: 22px;
+      transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease,
+        background-color 180ms ease;
+    }
+
+    .branch-card {
+      border-radius: 24px;
+    }
+
+    .branch-card:hover,
+    .branch-card:focus-within,
+    .fruit-card:hover,
+    .fruit-card:focus-within,
+    .stem-link:hover,
+    .stem-link:focus-visible {
+      transform: translateY(-3px);
+      border-color: rgba(65, 116, 76, 0.24);
+      box-shadow: 0 18px 36px rgba(31, 45, 36, 0.08);
+      background: var(--surface-strong);
+      outline: none;
+    }
+
+    .branch-card h3,
+    .fruit-card h3 {
+      margin: 0;
+      font-size: 1.28rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .branch-card p,
+    .fruit-card p {
+      margin: 0;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .branch-link,
+    .footer-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      padding: 11px 15px;
+      border-radius: 999px;
+      border: 1px solid rgba(65, 116, 76, 0.16);
+      background: rgba(217, 231, 215, 0.62);
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+    }
+
+    .branch-link::after,
+    .footer-contact::after {
+      content: "->";
+      font-size: 0.86rem;
+    }
+
+    .branch-link:hover,
+    .branch-link:focus-visible,
+    .footer-contact:hover,
+    .footer-contact:focus-visible {
+      transform: translateX(2px);
+      border-color: rgba(65, 116, 76, 0.28);
+      background: rgba(217, 231, 215, 0.92);
+      outline: none;
+    }
+
+    .stems-panel {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .stem-link {
+      min-height: 118px;
+      padding: 18px;
+      border-radius: var(--radius-md);
+      transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        background-color 180ms ease,
+        box-shadow 180ms ease;
+    }
+
+    .stem-link strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .stem-link span {
+      display: block;
+      max-width: 18ch;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 0.95rem;
+    }
+
+    .fruit-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .fruit-card li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .fruit-card li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(65, 116, 76, 0.7);
+      box-shadow: 0 0 0 5px rgba(65, 116, 76, 0.09);
+      flex: 0 0 auto;
+    }
+
+    .site-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      display: grid;
+      gap: 6px;
+    }
+
+    .footer-copy strong {
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-copy span {
+      color: var(--muted);
+    }
+
+    .network-dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 7px rgba(65, 116, 76, 0.12);
+    }
+
+    .dot-a {
+      top: 112px;
+      right: 26%;
+    }
+
+    .dot-b {
+      top: 42%;
+      left: 12%;
+    }
+
+    .dot-c {
+      bottom: 168px;
+      right: 15%;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .branch-grid,
+      .fruit-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stems-panel {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      h1 {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(calc(100% - 1rem), var(--max));
+        padding-top: 16px;
+        padding-bottom: 28px;
+      }
+
+      .network-shell {
+        border-radius: 26px;
+      }
+
+      .section {
+        padding: 28px 18px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 24px;
+      }
+
+      .intro-card,
+      .hero-aside,
+      .branch-card,
+      .fruit-card,
+      .stem-link {
+        border-radius: 22px;
+      }
+
+      .stems-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .network-dot {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
-  <main class="shell">
-    <section class="card" aria-label="Mimicorp Systems landing page">
-      <div class="brand-block">
-        <img class="logo-mark" src="assets/logo.png" alt="Mimicorp logo">
-        <h1>mimicorp</h1>
-        <p class="tagline">systems engineering</p>
-      </div>
+  <main class="page">
+    <div class="network-shell">
+      <span class="network-dot dot-a" aria-hidden="true"></span>
+      <span class="network-dot dot-b" aria-hidden="true"></span>
+      <span class="network-dot dot-c" aria-hidden="true"></span>
 
-      <section class="links" aria-label="Contact information">
-        <a class="link-row" href="mailto:amelia@mimicorp.systems">
-          <span class="link-label">Email</span>
-          <span class="link-value">amelia@mimicorp.systems</span>
-        </a>
-        <a class="link-row" href="https://github.com/nicodemus337" target="_blank" rel="noreferrer">
-          <span class="link-label">GitHub</span>
-          <span class="link-value">@nicodemus337</span>
-        </a>
-        <a class="link-row" href="https://www.linkedin.com/in/amelia-cronan/" target="_blank" rel="noreferrer">
-          <span class="link-label">LinkedIn</span>
-          <span class="link-value">amelia-cronan</span>
-        </a>
-        <a class="link-row" href="https://www.instagram.com/cajunleprochaun/" target="_blank" rel="noreferrer">
-          <span class="link-label">Instagram</span>
-          <span class="link-value">@cajunleprochaun</span>
-        </a>
+      <!-- HERO CONTENT: edit name, subtitle, and supporting line here -->
+      <section class="section hero" aria-labelledby="hero-title">
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">Mimicorp.systems</p>
+            <h1 id="hero-title">Amelia Cronan</h1>
+            <p class="subtitle">Creative tech</p>
+            <p class="support-line">Systems for land, story, and signal.</p>
+          </div>
+
+          <aside class="hero-aside" aria-label="System map summary">
+            <p class="aside-label">System map</p>
+            <div class="aside-list">
+              <div class="aside-item">
+                <strong>Land</strong>
+                <span>Agriculture, ecology, and field-scale thinking.</span>
+              </div>
+              <div class="aside-item">
+                <strong>Story</strong>
+                <span>Media systems, campaigns, and cultural infrastructure.</span>
+              </div>
+              <div class="aside-item">
+                <strong>Signal</strong>
+                <span>Digital tools, networks, and operational structure.</span>
+              </div>
+            </div>
+          </aside>
+        </div>
       </section>
-    </section>
+
+      <!-- INTRO COPY: edit this paragraph to refine the overall positioning -->
+      <section class="section" aria-labelledby="intro-title">
+        <h2 class="section-heading" id="intro-title">Intro</h2>
+        <div class="intro-card">
+          <p>
+            Mimicorp.systems connects agriculture, media, ecology, and digital infrastructure into one
+            living system. It is a practice for building tools, narratives, and working structures that
+            move across farms, studios, networks, and experimental civic spaces without splitting them
+            into separate worlds.
+          </p>
+        </div>
+      </section>
+
+      <!-- BRANCHES: edit titles, descriptions, and href values for primary projects -->
+      <section class="section" aria-labelledby="branches-title">
+        <h2 class="section-heading" id="branches-title">Branches</h2>
+        <div class="branch-grid">
+          <article class="branch-card">
+            <div>
+              <p class="meta-label">Primary branch</p>
+              <h3>Second Cutting + VAPG</h3>
+            </div>
+            <p>
+              Applied agricultural systems work linking production, value-added strategy, and field-facing
+              infrastructure.
+            </p>
+            <a class="branch-link" href="#footer">Open branch</a>
+          </article>
+
+          <article class="branch-card">
+            <div>
+              <p class="meta-label">Primary branch</p>
+              <h3>Ag Lab + Tea</h3>
+            </div>
+            <p>
+              A space for experimental cultivation, product development, and slower forms of research and
+              hospitality.
+            </p>
+            <a class="branch-link" href="#footer">Open branch</a>
+          </article>
+
+          <article class="branch-card">
+            <div>
+              <p class="meta-label">Primary branch</p>
+              <h3>joynet.church</h3>
+            </div>
+            <p>
+              Broadcast, community signal, and digital gathering infrastructure shaped as a living media
+              node.
+            </p>
+            <a class="branch-link" href="#footer">Open branch</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- STEMS: edit labels and href values for active supporting nodes -->
+      <section class="section" aria-labelledby="stems-title">
+        <h2 class="section-heading" id="stems-title">Stems</h2>
+        <nav class="stems-panel" aria-label="Active project nodes">
+          <a class="stem-link" href="#footer">
+            <strong>GLC</strong>
+            <span>Active project node for coordination, structure, and growth.</span>
+          </a>
+          <a class="stem-link" href="#footer">
+            <strong>TLO</strong>
+            <span>Linked initiative carrying adjacent signal through the network.</span>
+          </a>
+          <a class="stem-link" href="#footer">
+            <strong>GP</strong>
+            <span>Compact node for practical experimentation and deployment.</span>
+          </a>
+          <a class="stem-link" href="#footer">
+            <strong>Shady Pines</strong>
+            <span>Grounded site of activity, memory, and ecological relationship.</span>
+          </a>
+        </nav>
+      </section>
+
+      <!-- FRUIT: edit capability group copy here -->
+      <section class="section" aria-labelledby="fruit-title">
+        <h2 class="section-heading" id="fruit-title">Fruit</h2>
+        <div class="fruit-grid">
+          <article class="fruit-card">
+            <div>
+              <p class="meta-label">Capability</p>
+              <h3>Design</h3>
+            </div>
+            <ul>
+              <li>Websites</li>
+              <li>Campaign</li>
+              <li>Software</li>
+            </ul>
+          </article>
+
+          <article class="fruit-card">
+            <div>
+              <p class="meta-label">Capability</p>
+              <h3>Media</h3>
+            </div>
+            <ul>
+              <li>Production</li>
+              <li>Broadcasting</li>
+              <li>Aerial / 3D</li>
+            </ul>
+          </article>
+
+          <article class="fruit-card">
+            <div>
+              <p class="meta-label">Capability</p>
+              <h3>Data</h3>
+            </div>
+            <ul>
+              <li>Ecological</li>
+              <li>Agricultural</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- FOOTER: edit site label, owner name, and contact placeholder here -->
+      <footer class="section site-footer" id="footer">
+        <div class="footer-copy">
+          <strong>Mimicorp.systems</strong>
+          <span>Amelia Cronan</span>
+          <span>Simple contact placeholder</span>
+        </div>
+        <a class="footer-contact" href="mailto:hello@mimicorp.systems">Contact</a>
+      </footer>
+    </div>
   </main>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener("click", function (event) {
+        var targetId = this.getAttribute("href");
+        if (!targetId || targetId === "#") {
+          return;
+        }
+        var target = document.querySelector(targetId);
+        if (!target) {
+          return;
+        }
+        event.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  </script>
 </body>
 </html>
