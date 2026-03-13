@@ -6,27 +6,27 @@
   <title>Mimicorp.systems</title>
   <meta
     name="description"
-    content="Mimicorp.systems by Amelia Cronan. Creative tech for land, story, and signal."
+    content="Mimicorp.systems, the umbrella site for Amelia Cronan: creative tech across agriculture, media, ecology, and digital infrastructure."
   >
   <link rel="icon" type="image/png" href="assets/logo.png">
   <style>
     :root {
       color-scheme: light;
-      --bg: #ffffff;
-      --bg-deep: #f5f7fb;
-      --surface: rgba(255, 255, 255, 0.96);
-      --surface-strong: #ffffff;
-      --line: rgba(20, 20, 20, 0.08);
-      --line-strong: rgba(20, 20, 20, 0.22);
-      --text: #0f0f12;
-      --muted: #5f6270;
-      --accent: #ff4fd8;
-      --accent-alt: #39c7ff;
-      --accent-soft: rgba(255, 79, 216, 0.08);
-      --shadow: 0 20px 60px rgba(15, 15, 18, 0.06);
-      --radius-lg: 12px;
-      --radius-md: 10px;
-      --radius-sm: 8px;
+      --bg: #f3f5ef;
+      --bg-alt: #edf1e6;
+      --surface: rgba(255, 255, 255, 0.88);
+      --surface-strong: rgba(255, 255, 255, 0.96);
+      --text: #1d271f;
+      --muted: #5f6e61;
+      --line: rgba(44, 69, 48, 0.12);
+      --line-strong: rgba(44, 69, 48, 0.24);
+      --accent: #517255;
+      --accent-soft: rgba(81, 114, 85, 0.12);
+      --accent-softer: rgba(81, 114, 85, 0.06);
+      --shadow: 0 22px 50px rgba(29, 39, 31, 0.08);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
       --max: 1180px;
       --font-sans: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
       --font-serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
@@ -47,9 +47,9 @@
       font-family: var(--font-sans);
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(255, 79, 216, 0.07), transparent 24%),
-        radial-gradient(circle at 85% 12%, rgba(57, 199, 255, 0.08), transparent 22%),
-        linear-gradient(180deg, var(--bg) 0%, #fcfcff 48%, var(--bg-deep) 100%);
+        radial-gradient(circle at top left, rgba(128, 155, 122, 0.18), transparent 28%),
+        radial-gradient(circle at 86% 10%, rgba(155, 175, 141, 0.16), transparent 24%),
+        linear-gradient(180deg, #f8faf5 0%, var(--bg) 48%, var(--bg-alt) 100%);
     }
 
     body::before,
@@ -63,18 +63,18 @@
 
     body::before {
       background:
-        linear-gradient(90deg, transparent 0 12%, rgba(15, 15, 18, 0.024) 12% 12.2%, transparent 12.2% 100%),
-        linear-gradient(180deg, transparent 0 19%, rgba(15, 15, 18, 0.024) 19% 19.2%, transparent 19.2% 100%),
-        linear-gradient(122deg, transparent 0 58%, rgba(255, 79, 216, 0.05) 58% 58.15%, transparent 58.15% 100%);
-      opacity: 0.75;
+        linear-gradient(90deg, transparent 0 11%, rgba(29, 39, 31, 0.025) 11% 11.12%, transparent 11.12% 100%),
+        linear-gradient(180deg, transparent 0 18%, rgba(29, 39, 31, 0.025) 18% 18.12%, transparent 18.12% 100%),
+        linear-gradient(138deg, transparent 0 64%, rgba(81, 114, 85, 0.06) 64% 64.12%, transparent 64.12% 100%);
+      opacity: 0.9;
     }
 
     body::after {
       background-image:
-        radial-gradient(circle at 12% 18%, rgba(255, 79, 216, 0.16) 0 2px, transparent 3px),
-        radial-gradient(circle at 78% 20%, rgba(57, 199, 255, 0.16) 0 2px, transparent 3px),
-        radial-gradient(circle at 26% 68%, rgba(255, 79, 216, 0.14) 0 2px, transparent 3px),
-        radial-gradient(circle at 82% 72%, rgba(57, 199, 255, 0.14) 0 2px, transparent 3px);
+        radial-gradient(circle at 14% 20%, rgba(81, 114, 85, 0.12) 0 2px, transparent 3px),
+        radial-gradient(circle at 78% 18%, rgba(81, 114, 85, 0.11) 0 2px, transparent 3px),
+        radial-gradient(circle at 24% 72%, rgba(81, 114, 85, 0.11) 0 2px, transparent 3px),
+        radial-gradient(circle at 84% 74%, rgba(81, 114, 85, 0.11) 0 2px, transparent 3px);
     }
 
     a {
@@ -83,8 +83,8 @@
     }
 
     img {
-      max-width: 100%;
       display: block;
+      max-width: 100%;
     }
 
     .page {
@@ -92,279 +92,380 @@
       z-index: 1;
       width: min(calc(100% - 2rem), var(--max));
       margin: 0 auto;
-      padding: 32px 0 56px;
+      padding: 28px 0 56px;
     }
 
-    .network-shell {
+    .framework {
       position: relative;
       overflow: clip;
-      border: 1px solid rgba(15, 15, 18, 0.08);
-      border-radius: 20px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.9)),
-        linear-gradient(135deg, rgba(255, 79, 216, 0.02), rgba(57, 199, 255, 0.02));
+      border: 1px solid rgba(29, 39, 31, 0.08);
+      border-radius: 32px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.58));
       box-shadow: var(--shadow);
       backdrop-filter: blur(18px);
     }
 
-    .network-shell::before,
-    .network-shell::after {
+    .media-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .media-slot,
+    .transition-slot,
+    .masked-media {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(29, 39, 31, 0.08);
+      background:
+        linear-gradient(180deg, rgba(81, 114, 85, 0.12), rgba(81, 114, 85, 0.03)),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.12));
+    }
+
+    .media-slot img,
+    .media-slot video,
+    .transition-slot img,
+    .transition-slot video,
+    .masked-media img,
+    .masked-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.38;
+      filter: saturate(0.85) contrast(0.92) brightness(0.92);
+    }
+
+    .media-slot::after,
+    .transition-slot::after,
+    .masked-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(243, 245, 239, 0.16), rgba(243, 245, 239, 0.72)),
+        linear-gradient(90deg, rgba(81, 114, 85, 0.08), transparent 34%, transparent 66%, rgba(81, 114, 85, 0.06));
+      pointer-events: none;
+    }
+
+    .hero-atmosphere {
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 360px;
+      border: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(81, 114, 85, 0.12), transparent 22%),
+        linear-gradient(180deg, rgba(81, 114, 85, 0.14), rgba(81, 114, 85, 0));
+    }
+
+    .hero-atmosphere::after {
+      background:
+        linear-gradient(180deg, rgba(243, 245, 239, 0.1), rgba(243, 245, 239, 0.86)),
+        linear-gradient(90deg, rgba(81, 114, 85, 0.06), transparent 38%, transparent 62%, rgba(81, 114, 85, 0.04));
+    }
+
+    .hero-atmosphere video,
+    .hero-atmosphere img {
+      opacity: 0.28;
+      transform: scale(1.03);
+    }
+
+    .texture-overlay {
+      position: absolute;
+      inset: 12% 8% auto auto;
+      width: min(28vw, 320px);
+      aspect-ratio: 4 / 5;
+      border-radius: 24px;
+      opacity: 0.72;
+      mix-blend-mode: multiply;
+      transform: rotate(-5deg);
+    }
+
+    .texture-overlay::after {
+      background:
+        linear-gradient(180deg, rgba(243, 245, 239, 0.26), rgba(243, 245, 239, 0.7)),
+        linear-gradient(135deg, rgba(81, 114, 85, 0.08), transparent 60%);
+    }
+
+    .framework::before,
+    .framework::after {
       content: "";
       position: absolute;
       pointer-events: none;
     }
 
-    .network-shell::before {
+    .framework::before {
       inset: 0;
       background:
-        linear-gradient(90deg, transparent 0 13%, var(--line) 13% 13.12%, transparent 13.12% 100%),
-        linear-gradient(180deg, transparent 0 24%, var(--line) 24% 24.12%, transparent 24.12% 100%),
-        linear-gradient(146deg, transparent 0 63%, rgba(255, 79, 216, 0.11) 63% 63.12%, transparent 63.12% 100%),
-        linear-gradient(32deg, transparent 0 71%, rgba(57, 199, 255, 0.11) 71% 71.12%, transparent 71.12% 100%);
+        linear-gradient(90deg, transparent 0 14%, var(--line) 14% 14.12%, transparent 14.12% 100%),
+        linear-gradient(180deg, transparent 0 22%, var(--line) 22% 22.12%, transparent 22.12% 100%),
+        linear-gradient(145deg, transparent 0 62%, var(--line) 62% 62.12%, transparent 62.12% 100%),
+        linear-gradient(28deg, transparent 0 74%, var(--line) 74% 74.12%, transparent 74.12% 100%);
     }
 
-    .network-shell::after {
-      inset: 0 auto auto 0;
-      width: 100%;
-      height: 72px;
+    .framework::after {
+      inset: auto 0 0 0;
+      height: 140px;
       background:
-        linear-gradient(90deg, rgba(255, 79, 216, 0.12), transparent 28%, transparent 72%, rgba(57, 199, 255, 0.12)),
-        linear-gradient(180deg, rgba(15, 15, 18, 0.05), rgba(15, 15, 18, 0));
+        linear-gradient(180deg, rgba(81, 114, 85, 0), rgba(81, 114, 85, 0.06)),
+        linear-gradient(90deg, transparent 0 22%, rgba(81, 114, 85, 0.1) 22% 22.12%, transparent 22.12% 100%);
+      opacity: 0.8;
+    }
+
+    .system-node {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(81, 114, 85, 0.1);
+    }
+
+    .node-left {
+      top: 44%;
+      left: 10%;
+    }
+
+    .node-lower {
+      bottom: 180px;
+      right: 14%;
     }
 
     .section {
       position: relative;
       padding: 40px 28px;
+      z-index: 1;
     }
 
     .section + .section {
-      border-top: 1px solid rgba(15, 15, 18, 0.06);
+      border-top: 1px solid rgba(29, 39, 31, 0.06);
     }
 
-    .section-heading {
+    .section-kicker {
       display: flex;
       align-items: center;
       gap: 12px;
       margin: 0 0 18px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
       color: var(--muted);
       font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
     }
 
-    .section-heading::before {
+    .section-kicker::before {
       content: "";
       width: 34px;
       height: 1px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-alt));
+      background: var(--line-strong);
     }
 
     .hero {
-      display: grid;
-      gap: 28px;
-      align-items: end;
       min-height: min(84svh, 760px);
+      display: grid;
+      align-items: end;
       padding-top: 52px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.8fr);
+      grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.8fr);
       gap: 28px;
       align-items: stretch;
     }
 
+    .wordmark {
+      width: min(100%, 320px);
+      margin-bottom: 22px;
+      mix-blend-mode: multiply;
+    }
+
     .eyebrow {
-      margin: 0 0 18px;
+      margin: 0 0 14px;
+      color: var(--accent);
+      font-family: var(--font-mono);
       font-size: 0.78rem;
       font-weight: 700;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--text);
-      font-family: var(--font-mono);
-    }
-
-    .brand-lockup {
-      display: grid;
-      gap: 0;
-      margin-bottom: 20px;
-      width: fit-content;
-    }
-
-    .brand-wordmark {
-      width: min(100%, 320px);
-      height: auto;
-      mix-blend-mode: multiply;
     }
 
     h1 {
       margin: 0;
-      max-width: 9ch;
-      font-family: var(--font-sans);
-      font-size: clamp(3.3rem, 9vw, 7rem);
-      line-height: 0.9;
-      font-weight: 800;
-      letter-spacing: -0.07em;
-      text-transform: uppercase;
+      max-width: 8ch;
+      font-family: var(--font-serif);
+      font-size: clamp(3.3rem, 9vw, 6.7rem);
+      line-height: 0.94;
+      font-weight: 600;
+      letter-spacing: -0.05em;
     }
 
     .subtitle {
       margin: 14px 0 0;
-      font-size: clamp(1rem, 2.3vw, 1.2rem);
       color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-family: var(--font-mono);
+      font-size: clamp(1.04rem, 2.4vw, 1.35rem);
     }
 
     .support-line {
-      margin: 22px 0 0;
-      max-width: 32ch;
-      font-size: clamp(1.05rem, 2vw, 1.28rem);
-      line-height: 1.55;
+      margin: 20px 0 0;
+      max-width: 30ch;
+      font-size: clamp(1.08rem, 2.1vw, 1.34rem);
+      line-height: 1.5;
     }
 
-    .hero-aside,
-    .intro-card,
+    .intro-line {
+      margin: 24px 0 0;
+      max-width: 58ch;
+      color: #344238;
+      font-size: 1.03rem;
+      line-height: 1.78;
+    }
+
+    .hero-panel,
     .branch-card,
+    .stem-card,
     .fruit-card,
-    .stem-link {
+    .roots-card {
       position: relative;
-      border: 1px solid rgba(15, 15, 18, 0.08);
+      border: 1px solid rgba(29, 39, 31, 0.09);
       background: var(--surface);
-      backdrop-filter: blur(12px);
-      isolation: isolate;
+      backdrop-filter: blur(14px);
     }
 
-    .hero-aside,
-    .intro-card,
-    .fruit-card {
-      border-radius: var(--radius-lg);
+    .hero-panel,
+    .roots-card {
+      border-radius: var(--radius-xl);
     }
 
-    .hero-aside {
+    .hero-panel {
       display: grid;
       gap: 18px;
-      align-content: space-between;
+      align-content: start;
       padding: 24px;
     }
 
-    .hero-aside::before,
-    .intro-card::before,
+    .hero-panel::before,
     .branch-card::before,
+    .stem-card::before,
     .fruit-card::before,
-    .stem-link::before {
+    .roots-card::before {
       content: "";
       position: absolute;
       inset: 14px;
-      border: 1px solid rgba(15, 15, 18, 0.06);
+      border: 1px solid rgba(29, 39, 31, 0.06);
       border-radius: inherit;
       pointer-events: none;
     }
 
-    .hero-aside::after,
-    .intro-card::after,
-    .branch-card::after,
-    .fruit-card::after,
-    .stem-link::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      pointer-events: none;
-      z-index: -1;
-      transform: translate(4px, 4px);
-      border: 1px solid rgba(57, 199, 255, 0.16);
-      box-shadow: -4px -4px 0 rgba(255, 79, 216, 0.12);
-    }
-
-    .aside-label,
-    .meta-label {
-      margin: 0;
-      font-size: 0.74rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-family: var(--font-mono);
-    }
-
-    .aside-list {
-      display: grid;
-      gap: 14px;
-    }
-
-    .aside-brand {
+    .panel-brand {
       display: flex;
       align-items: center;
       gap: 14px;
-      padding-bottom: 10px;
+      padding-bottom: 12px;
       border-bottom: 1px solid var(--line);
     }
 
-    .aside-brand img {
-      width: 54px;
-      height: 54px;
+    .panel-brand img {
+      width: 50px;
+      height: 50px;
       object-fit: contain;
-      filter: drop-shadow(1px 0 0 rgba(255, 79, 216, 0.28)) drop-shadow(-1px 0 0 rgba(57, 199, 255, 0.26));
     }
 
-    .aside-brand strong {
+    .panel-brand strong {
       display: block;
-      font-size: 0.98rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
       font-family: var(--font-mono);
-    }
-
-    .aside-brand span {
-      color: var(--muted);
       font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
-    .aside-item {
-      display: grid;
-      gap: 6px;
-      padding-left: 18px;
-      border-left: 1px solid var(--line-strong);
-    }
-
-    .aside-item strong {
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .aside-item span {
+    .panel-brand span {
+      display: block;
+      margin-top: 4px;
       color: var(--muted);
       line-height: 1.5;
     }
 
-    .intro-card {
-      max-width: 760px;
-      padding: 30px;
+    .panel-list {
+      display: grid;
+      gap: 14px;
     }
 
-    .intro-card p {
+    .panel-item {
+      display: grid;
+      gap: 6px;
+      padding-left: 16px;
+      border-left: 1px solid var(--line-strong);
+    }
+
+    .panel-item strong {
+      font-size: 0.98rem;
+    }
+
+    .panel-item span {
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .roots-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.3fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .roots-card {
+      padding: 24px;
+    }
+
+    .roots-card p {
       margin: 0;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #24242b;
+      line-height: 1.76;
+      color: #334236;
+      font-size: 1.02rem;
     }
 
-    .branch-grid,
-    .fruit-grid {
+    .roots-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .roots-tags span {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(81, 114, 85, 0.14);
+      background: rgba(81, 114, 85, 0.06);
+      color: #314135;
+      font-size: 0.92rem;
+    }
+
+    .branch-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
+      position: relative;
+    }
+
+    .branch-grid::before {
+      content: "";
+      position: absolute;
+      top: 32px;
+      left: 8%;
+      right: 8%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line-strong), transparent);
+      pointer-events: none;
     }
 
     .branch-card,
     .fruit-card {
-      display: grid;
-      gap: 18px;
+      border-radius: 24px;
       padding: 22px;
+      display: grid;
+      gap: 16px;
       transition:
         transform 180ms ease,
         border-color 180ms ease,
@@ -372,118 +473,165 @@
         background-color 180ms ease;
     }
 
-    .branch-card {
-      border-radius: 12px;
-    }
-
     .branch-card:hover,
     .branch-card:focus-within,
+    .stem-card:hover,
+    .stem-card:focus-within,
     .fruit-card:hover,
-    .fruit-card:focus-within,
-    .stem-link:hover,
-    .stem-link:focus-visible {
-      transform: translateY(-3px);
-      border-color: rgba(255, 79, 216, 0.22);
-      box-shadow:
-        0 18px 36px rgba(15, 15, 18, 0.06),
-        0 0 0 1px rgba(57, 199, 255, 0.08);
+    .fruit-card:focus-within {
+      transform: translateY(-4px);
+      border-color: rgba(81, 114, 85, 0.22);
       background: var(--surface-strong);
-      outline: none;
+      box-shadow: 0 18px 36px rgba(29, 39, 31, 0.08);
+    }
+
+    .meta {
+      margin: 0;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
     }
 
     .branch-card h3,
     .fruit-card h3 {
       margin: 0;
       font-size: 1.28rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
+      line-height: 1.15;
+      font-weight: 600;
+      letter-spacing: -0.02em;
     }
 
     .branch-card p,
+    .stem-card p,
     .fruit-card p {
       margin: 0;
-      line-height: 1.65;
       color: var(--muted);
+      line-height: 1.62;
     }
 
     .branch-link,
-    .footer-contact {
+    .stem-link,
+    .footer-link {
       display: inline-flex;
       align-items: center;
       gap: 10px;
       width: fit-content;
       padding: 11px 15px;
       border-radius: 999px;
-      border: 1px solid rgba(15, 15, 18, 0.16);
-      background: #fff;
-      color: var(--text);
-      font-size: 0.92rem;
-      font-weight: 600;
+      border: 1px solid rgba(81, 114, 85, 0.16);
+      background: rgba(81, 114, 85, 0.08);
       font-family: var(--font-mono);
-      letter-spacing: 0.06em;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
-      box-shadow:
-        3px 3px 0 rgba(255, 79, 216, 0.12),
-        -3px -3px 0 rgba(57, 199, 255, 0.08);
+      transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        background-color 180ms ease;
     }
 
     .branch-link::after,
-    .footer-contact::after {
+    .stem-link::after,
+    .footer-link::after {
       content: "->";
-      font-size: 0.86rem;
     }
 
     .branch-link:hover,
     .branch-link:focus-visible,
-    .footer-contact:hover,
-    .footer-contact:focus-visible {
+    .stem-link:hover,
+    .stem-link:focus-visible,
+    .footer-link:hover,
+    .footer-link:focus-visible {
       transform: translateX(2px);
-      border-color: rgba(57, 199, 255, 0.26);
-      background: rgba(255, 255, 255, 0.98);
+      border-color: rgba(81, 114, 85, 0.26);
+      background: rgba(81, 114, 85, 0.13);
       outline: none;
     }
 
-    .stems-panel {
-      display: grid;
-      gap: 16px;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+    .stems-wrap {
+      position: relative;
+      padding-top: 16px;
     }
 
-    .stem-link {
-      min-height: 118px;
+    .stems-wrap::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 14%;
+      right: 14%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line-strong), transparent);
+    }
+
+    .stems-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .stem-card {
+      min-height: 150px;
+      border-radius: 18px;
       padding: 18px;
-      border-radius: var(--radius-md);
+      display: grid;
+      gap: 12px;
       transition:
         transform 180ms ease,
         border-color 180ms ease,
-        background-color 180ms ease,
-        box-shadow 180ms ease;
+        box-shadow 180ms ease,
+        background-color 180ms ease;
     }
 
-    .stem-link strong {
+    .stem-card strong {
       display: block;
-      margin-bottom: 8px;
-      font-size: 1rem;
-      font-weight: 700;
+      font-family: var(--font-mono);
+      font-size: 0.98rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      font-family: var(--font-mono);
     }
 
-    .stem-link span {
-      display: block;
-      max-width: 18ch;
-      color: var(--muted);
-      line-height: 1.55;
-      font-size: 0.95rem;
+    .fruit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .transition-band {
+      padding-top: 22px;
+      padding-bottom: 0;
+      border-top: 0;
+    }
+
+    .transition-slot {
+      height: 132px;
+      border-radius: 24px;
+    }
+
+    .transition-slot img,
+    .transition-slot video {
+      opacity: 0.26;
+    }
+
+    .masked-media {
+      margin-top: 8px;
+      height: 140px;
+      border-radius: 20px;
+      clip-path: polygon(0 0, 100% 0, 100% 82%, 82% 100%, 0 100%);
+    }
+
+    .masked-media img,
+    .masked-media video {
+      opacity: 0.34;
     }
 
     .fruit-card ul {
-      margin: 0;
-      padding: 0;
       list-style: none;
+      padding: 0;
+      margin: 0;
       display: grid;
       gap: 10px;
       color: var(--muted);
@@ -500,16 +648,16 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: linear-gradient(180deg, var(--accent), var(--accent-alt));
-      box-shadow: 0 0 0 5px rgba(255, 79, 216, 0.08);
+      background: var(--accent);
+      box-shadow: 0 0 0 5px rgba(81, 114, 85, 0.08);
       flex: 0 0 auto;
     }
 
-    .site-footer {
+    .footer {
       display: flex;
       justify-content: space-between;
-      gap: 24px;
       align-items: center;
+      gap: 20px;
       flex-wrap: wrap;
     }
 
@@ -519,57 +667,30 @@
     }
 
     .footer-copy strong {
-      font-size: 1rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
       font-family: var(--font-mono);
+      font-size: 0.96rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
     .footer-copy span {
       color: var(--muted);
     }
 
-    .network-dot {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: linear-gradient(180deg, var(--accent), var(--accent-alt));
-      box-shadow: 0 0 0 7px rgba(57, 199, 255, 0.1);
-    }
-
-    .hero h1,
-    .branch-card h3,
-    .fruit-card h3 {
-      text-shadow:
-        0.02em 0 rgba(255, 79, 216, 0.22),
-        -0.02em 0 rgba(57, 199, 255, 0.22);
-    }
-
-    .dot-a {
-      top: 112px;
-      right: 26%;
-    }
-
-    .dot-b {
-      top: 42%;
-      left: 12%;
-    }
-
-    .dot-c {
-      bottom: 168px;
-      right: 15%;
-    }
-
     @media (max-width: 1024px) {
       .hero-grid,
+      .roots-grid,
       .branch-grid,
       .fruit-grid {
         grid-template-columns: 1fr;
       }
 
-      .stems-panel {
+      .stems-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .branch-grid::before {
+        display: none;
       }
 
       h1 {
@@ -581,11 +702,11 @@
       .page {
         width: min(calc(100% - 1rem), var(--max));
         padding-top: 16px;
-        padding-bottom: 28px;
+        padding-bottom: 24px;
       }
 
-      .network-shell {
-        border-radius: 16px;
+      .framework {
+        border-radius: 24px;
       }
 
       .section {
@@ -597,162 +718,220 @@
         padding-top: 24px;
       }
 
-      .intro-card,
-      .hero-aside,
+      .hero-panel,
+      .roots-card,
       .branch-card,
-      .fruit-card,
-      .stem-link {
-        border-radius: 12px;
+      .stem-card,
+      .fruit-card {
+        border-radius: 18px;
       }
 
-      .brand-lockup {
-        width: 100%;
-      }
-
-      .brand-wordmark {
-        width: min(100%, 280px);
-      }
-
-      .stems-panel {
+      .stems-grid {
         grid-template-columns: 1fr;
       }
 
-      .network-dot {
+      .system-node {
         display: none;
+      }
+
+      .wordmark {
+        width: min(100%, 260px);
+      }
+
+      .texture-overlay {
+        display: none;
+      }
+
+      .transition-slot {
+        height: 96px;
       }
     }
   </style>
 </head>
 <body>
   <main class="page">
-    <div class="network-shell">
-      <span class="network-dot dot-b" aria-hidden="true"></span>
-      <span class="network-dot dot-c" aria-hidden="true"></span>
+    <div class="framework">
+      <div class="media-layer" aria-hidden="true">
+        <!-- ECOLOGICAL ARCHIVE HERO ATMOSPHERE:
+             Replace src with a local still or muted loop from the Ecological Archive.
+             Example future asset: assets/ecological-archive/hero-canopy.mp4 -->
+        <div class="media-slot hero-atmosphere">
+          <!-- <video autoplay muted loop playsinline src="assets/ecological-archive/hero-canopy.mp4"></video> -->
+          <!-- <img src="assets/ecological-archive/hero-canopy.jpg" alt=""> -->
+        </div>
 
-      <!-- HERO CONTENT: edit name, subtitle, and supporting line here -->
+        <!-- ECOLOGICAL ARCHIVE TEXTURE OVERLAY:
+             Use a close crop, scan, or field texture here for a restrained documentary layer. -->
+        <div class="masked-media texture-overlay">
+          <!-- <img src="assets/ecological-archive/texture-soil-scan.jpg" alt=""> -->
+        </div>
+      </div>
+
+      <span class="system-node node-left" aria-hidden="true"></span>
+      <span class="system-node node-lower" aria-hidden="true"></span>
+
+      <!-- HERO / LANDING IDENTITY: edit name, descriptor, support line, and intro copy here -->
       <section class="section hero" aria-labelledby="hero-title">
         <div class="hero-grid">
           <div>
-            <div class="brand-lockup" aria-label="Mimicorp brand">
-              <img class="brand-wordmark" src="assets/mimicorp.png" alt="Mimicorp wordmark">
-            </div>
+            <img class="wordmark" src="assets/mimicorp.png" alt="Mimicorp wordmark">
             <p class="eyebrow">Mimicorp.systems</p>
             <h1 id="hero-title">Amelia Cronan</h1>
             <p class="subtitle">Creative tech</p>
-            <p class="support-line">Infrastructure for land, narrative, and transmission.</p>
+            <p class="support-line">Systems for land, story, and signal.</p>
+            <p class="intro-line">
+              Mimicorp.systems is a home for work across agriculture, media, ecology, and digital
+              infrastructure. It presents creative technology as an ecosystem: rooted in fieldwork,
+              extended through programs and sites, and made visible through design, media, and data.
+            </p>
           </div>
 
-          <aside class="hero-aside" aria-label="System map summary">
-            <p class="aside-label">System map</p>
-            <div class="aside-brand">
+          <aside class="hero-panel" aria-label="System overview">
+            <div class="panel-brand">
               <img src="assets/logo.png" alt="" aria-hidden="true">
               <div>
-                <strong>Mimicorp</strong>
-                <span>Experimental research channel for weaving tools, narratives, and engines.</span>
+                <strong>Living system</strong>
+                <span>An operating structure for land, media, infrastructure, story, and data.</span>
               </div>
             </div>
-            <div class="aside-list">
-              <div class="aside-item">
-                <strong>Land</strong>
-                <span>Agriculture, ecology, and field-scale thinking.</span>
+            <div class="panel-list">
+              <div class="panel-item">
+                <strong>Roots</strong>
+                <span>Ecological attention, practical work, and conceptual inquiry.</span>
               </div>
-              <div class="aside-item">
-                <strong>Story</strong>
-                <span>Media systems, campaigns, and cultural infrastructure.</span>
+              <div class="panel-item">
+                <strong>Branches</strong>
+                <span>Major worlds of thought and applied programs.</span>
               </div>
-              <div class="aside-item">
-                <strong>Signal</strong>
-                <span>Digital tools, networks, and operational structure.</span>
+              <div class="panel-item">
+                <strong>Stems</strong>
+                <span>Operating nodes, field sites, and ongoing environments.</span>
+              </div>
+              <div class="panel-item">
+                <strong>Fruit</strong>
+                <span>Visible outputs in design, media, and data.</span>
               </div>
             </div>
           </aside>
         </div>
       </section>
 
-      <!-- INTRO COPY: edit this paragraph to refine the overall positioning -->
-      <section class="section" aria-labelledby="intro-title">
-        <h2 class="section-heading" id="intro-title">Intro</h2>
-        <div class="intro-card">
-          <p>
-            Mimicorp Labs is an experimental research channel for weaving tools, narratives, and engines
-            that move across farms, networks, and virtual spaces.
-          </p>
+      <!-- ROOTS: conceptual grounding / worldview layer -->
+      <section class="section" aria-labelledby="roots-title">
+        <h2 class="section-kicker" id="roots-title">Roots</h2>
+        <div class="roots-grid">
+          <div class="roots-card">
+            <p>
+              Mimicorp is a living system joining land, media, infrastructure, story, and data. It
+              operates at the intersection of agricultural work, creative production, ecological
+              sensing, digital systems, and symbolic inquiry.
+            </p>
+          </div>
+          <div class="roots-tags" aria-label="Root domains">
+            <span>Agricultural work</span>
+            <span>Creative production</span>
+            <span>Ecological sensing</span>
+            <span>Digital systems</span>
+            <span>Infrastructure thinking</span>
+            <span>Symbolic inquiry</span>
+          </div>
         </div>
       </section>
 
-      <!-- BRANCHES: edit titles, descriptions, and href values for primary projects -->
+      <!-- SECTION TRANSITION:
+           Insert an Ecological Archive still or looping field scan to bridge roots into branches. -->
+      <section class="section transition-band" aria-hidden="true">
+        <div class="transition-slot">
+          <!-- <img src="assets/ecological-archive/transition-watershed.jpg" alt=""> -->
+          <!-- <video autoplay muted loop playsinline src="assets/ecological-archive/transition-watershed.mp4"></video> -->
+        </div>
+      </section>
+
+      <!-- BRANCHES: future branch pages can replace placeholder hrefs or deepen into internal routes -->
       <section class="section" aria-labelledby="branches-title">
-        <h2 class="section-heading" id="branches-title">Branches</h2>
+        <h2 class="section-kicker" id="branches-title">Branches</h2>
         <div class="branch-grid">
           <article class="branch-card">
             <div>
-              <p class="meta-label">Primary branch</p>
+              <p class="meta">Major domain</p>
               <h3>Second Cutting + VAPG</h3>
             </div>
             <p>
-              Applied agricultural systems work linking production, value-added strategy, and field-facing
+              Agricultural systems work connecting production, value-added development, and field-scale
               infrastructure.
             </p>
+            <!-- BRANCH MEDIA SLOT:
+                 Add a representative Ecological Archive crop for this branch if desired. -->
+            <div class="masked-media" aria-hidden="true">
+              <!-- <img src="assets/ecological-archive/branch-second-cutting.jpg" alt=""> -->
+            </div>
             <a class="branch-link" href="https://www.glcranch.com/pages/second-cutting" target="_blank" rel="noreferrer">Open branch</a>
           </article>
 
           <article class="branch-card">
             <div>
-              <p class="meta-label">Primary branch</p>
+              <p class="meta">Major domain</p>
               <h3>Ag Lab + Tea</h3>
             </div>
             <p>
-              A space for experimental cultivation, product development, and slower forms of research and
-              hospitality.
+              Experimental cultivation, product development, and slower forms of research, hospitality,
+              and applied study.
             </p>
+            <div class="masked-media" aria-hidden="true">
+              <!-- <img src="assets/ecological-archive/branch-ag-lab.jpg" alt=""> -->
+            </div>
             <a class="branch-link" href="https://ecologicalarchive.org" target="_blank" rel="noreferrer">Open branch</a>
           </article>
 
           <article class="branch-card">
             <div>
-              <p class="meta-label">Primary branch</p>
-              <h3>The Church of Joy</h3>
+              <p class="meta">Major domain</p>
+              <h3>joynet.church</h3>
             </div>
             <p>
-              Broadcast, community signal, and digital gathering infrastructure shaped as a living media
-              node.
+              Community signal, broadcasting, and digital gathering infrastructure organized as a living
+              media node.
             </p>
+            <div class="masked-media" aria-hidden="true">
+              <!-- <img src="assets/ecological-archive/branch-joynet.jpg" alt=""> -->
+            </div>
             <a class="branch-link" href="https://joynet.church" target="_blank" rel="noreferrer">Open branch</a>
           </article>
         </div>
       </section>
 
-      <!-- LEGACY BRANDS: edit labels and href values for exclusive partner brands -->
-      <section class="section" aria-labelledby="stems-title">
-        <h2 class="section-heading" id="stems-title">Legacy Brands</h2>
-        <nav class="stems-panel" aria-label="Exclusive partner brands">
-          <a class="stem-link" href="#footer">
-            <strong>GLC</strong>
-            <span>Exclusive partner brand connected through shared infrastructure and long-term alignment.</span>
-          </a>
-          <a class="stem-link" href="#footer">
-            <strong>TLO</strong>
-            <span>Exclusive partner brand extending the network into adjacent editorial and operational terrain.</span>
-          </a>
-          <a class="stem-link" href="#footer">
-            <strong>GP</strong>
-            <span>Exclusive partner brand for applied experimentation, deployment, and practical support.</span>
-          </a>
-          <a class="stem-link" href="#footer">
-            <strong>Shady Pines</strong>
-            <span>Exclusive partner brand rooted in place, memory, and ecological relationship.</span>
-          </a>
-        </nav>
+      <!-- SECTION TRANSITION:
+           Use a lower-contrast environmental scan or aerial pass between branches and stems. -->
+      <section class="section transition-band" aria-hidden="true">
+        <div class="transition-slot">
+          <!-- <img src="assets/ecological-archive/transition-field-grid.jpg" alt=""> -->
+        </div>
       </section>
 
-      <!-- FRUIT: edit capability group copy here -->
+      <!-- STEMS: future stem pages or operating site links can connect here -->
+      <section class="section" aria-labelledby="stems-title">
+        <h2 class="section-kicker" id="stems-title">Stems</h2>
+        <div class="stems-wrap">
+          <div class="stems-grid">
+            <article class="stem-card">
+              <div>
+                <p class="meta">Operating node</p>
+                <strong>Shady Pines</strong>
+              </div>
+              <p>Situated environment rooted in place, ecology, memory, and lived relationship.</p>
+              <a class="stem-link" href="#footer">Node link</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- FRUIT: visible outputs / capability clusters; easy to split into future service or portfolio pages -->
       <section class="section" aria-labelledby="fruit-title">
-        <h2 class="section-heading" id="fruit-title">Fruit</h2>
+        <h2 class="section-kicker" id="fruit-title">Fruit</h2>
         <div class="fruit-grid">
           <article class="fruit-card">
-            <div>
-              <h3>Design</h3>
-            </div>
+            <h3>Design</h3>
+            <p>Structured interfaces and communication systems shaped for real-world use.</p>
             <ul>
               <li>Websites</li>
               <li>Campaign</li>
@@ -761,9 +940,8 @@
           </article>
 
           <article class="fruit-card">
-            <div>
-              <h3>Media</h3>
-            </div>
+            <h3>Media</h3>
+            <p>Production environments for image, transmission, documentation, and broadcast.</p>
             <ul>
               <li>Production</li>
               <li>Broadcasting</li>
@@ -772,9 +950,8 @@
           </article>
 
           <article class="fruit-card">
-            <div>
-              <h3>Data</h3>
-            </div>
+            <h3>Data</h3>
+            <p>Field-aware information systems for ecological and agricultural observation.</p>
             <ul>
               <li>Ecological</li>
               <li>Agricultural</li>
@@ -783,14 +960,14 @@
         </div>
       </section>
 
-      <!-- FOOTER: edit site label, owner name, and contact placeholder here -->
-      <footer class="section site-footer" id="footer">
+      <!-- FOOTER: editable contact placeholder / future sitewide navigation can live here -->
+      <footer class="section footer" id="footer">
         <div class="footer-copy">
           <strong>Mimicorp.systems</strong>
           <span>Amelia Cronan</span>
-          <span>Copyright Mimicorp Labs LLC 2026</span>
+          <span>Contact placeholder</span>
         </div>
-        <a class="footer-contact" href="mailto:amelia@mimicorp.systems">Contact</a>
+        <a class="footer-link" href="mailto:amelia@mimicorp.systems">Contact</a>
       </footer>
     </div>
   </main>
