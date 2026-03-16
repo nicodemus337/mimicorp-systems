@@ -249,10 +249,8 @@ function getConnectedSet(nodeId) {
 function renderPlaceholder(node) {
   placeholderTitle.textContent = node.kind === "episode" ? node.episode_title : node.label;
   placeholderDescription.textContent = node.kind === "episode"
-    ? "Episode route ready. Use Listen, Watch, or Transcript to move through the archive."
-    : node.internal
-      ? "This project has an internal page ready. Open it to move deeper into the Mimicorp system."
-      : "This node routes to an external destination. Open it to visit the real world counterpart.";
+    ? node.description + " Open the episode to listen, watch, or move through the archive."
+    : node.description;
   placeholderPath.textContent = node.url;
   placeholderPanel.hidden = false;
 }
@@ -280,7 +278,13 @@ function renderEpisodeMeta(node) {
 
 function renderDrawer(node) {
   drawerTitle.textContent = node.kind === "episode" ? node.episode_title : node.label;
-  drawerDescription.textContent = node.description;
+  if (node.id === "second_cutting") {
+    drawerDescription.textContent = "Enter Second Cutting to listen to conversations about land, animals, food, and the systems that connect them.";
+  } else if (node.kind === "episode") {
+    drawerDescription.textContent = "Listen to Episode " + String(node.episode_number).padStart(2, "0") + ": " + node.episode_title + ".";
+  } else {
+    drawerDescription.textContent = node.description;
+  }
   drawerType.textContent = node.kind === "episode" ? "episode" : node.type;
   drawerType.dataset.type = node.kind === "episode" ? "episode" : node.type;
   drawerRoute.textContent = node.internal ? "internal" : "external";
