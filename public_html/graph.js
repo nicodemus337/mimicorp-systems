@@ -6,7 +6,7 @@ const coreNodes = [
     description: "Creative technology for land, media, and living systems.",
     internal: true,
     url: "/",
-    connections: ["second_cutting", "ag_lab", "joynet", "design", "media", "data", "software"]
+    connections: ["second_cutting", "ag_lab", "joynet"]
   },
   {
     id: "second_cutting",
@@ -21,7 +21,7 @@ const coreNodes = [
     id: "ag_lab",
     label: "Ag Lab",
     type: "branch",
-    description: "Ag Lab is an experimental space for observing and testing agricultural systems.",
+    description: "An experimental agricultural lab linking ranch operations, USDA VAPG funding, and ecological research.",
     internal: true,
     url: "/nodes/ag-lab/",
     connections: ["mimicorp", "data", "software", "gp_supply", "shady_pines"]
@@ -33,7 +33,7 @@ const coreNodes = [
     description: "An online sanctuary exploring faith, doubt, and meaning for people who never quite fit the mold.",
     internal: true,
     url: "/nodes/joynet/",
-    connections: ["mimicorp", "design", "media", "software", "teche_lake_outfitters"]
+    connections: ["mimicorp", "media", "instagram_joynet_church"]
   },
   {
     id: "glc",
@@ -41,7 +41,7 @@ const coreNodes = [
     type: "stem",
     description: "Gonsoulin Land and Cattle is a grass fed cattle ranch in South Louisiana and a real world environment where many Mimicorp ideas begin.",
     internal: false,
-    url: "https://example.com/glc",
+    url: "https://glcranch.com",
     connections: ["second_cutting", "media", "design"]
   },
   {
@@ -50,8 +50,8 @@ const coreNodes = [
     type: "stem",
     description: "Teche Lake Outfitters connects people to the landscape through guided outdoor experiences and a deeper sense of place.",
     internal: false,
-    url: "https://example.com/teche-lake-outfitters",
-    connections: ["joynet", "design"]
+    url: "https://www.techelakeoutfitters.com",
+    connections: ["design"]
   },
   {
     id: "gp_supply",
@@ -59,7 +59,7 @@ const coreNodes = [
     type: "stem",
     description: "GP Supply and Lumber is a rural hardware and building supply store representing the practical layer of rural infrastructure.",
     internal: false,
-    url: "https://example.com/gp-supply",
+    url: "http://www.gpsupplyandlumber.com",
     connections: ["ag_lab", "software"]
   },
   {
@@ -78,7 +78,7 @@ const coreNodes = [
     description: "Design is where ideas become visible and complex systems communicate clearly.",
     internal: true,
     url: "/nodes/design/",
-    connections: ["mimicorp", "joynet", "glc", "teche_lake_outfitters"]
+    connections: ["mimicorp", "glc", "teche_lake_outfitters"]
   },
   {
     id: "media",
@@ -87,7 +87,7 @@ const coreNodes = [
     description: "Media production is one of the primary ways Mimicorp documents the systems it studies.",
     internal: true,
     url: "/nodes/media/",
-    connections: ["mimicorp", "second_cutting", "joynet", "glc"]
+    connections: ["mimicorp", "second_cutting", "joynet", "glc", "instagram_cajunleprochaun", "tiktok_auntie_christ", "instagram_joynet_church"]
   },
   {
     id: "data",
@@ -105,7 +105,34 @@ const coreNodes = [
     description: "Software tools support the infrastructure behind Mimicorp projects through dashboards, data pipelines, media systems, and custom applications.",
     internal: true,
     url: "/nodes/software/",
-    connections: ["mimicorp", "ag_lab", "joynet", "gp_supply"]
+    connections: ["mimicorp", "ag_lab", "gp_supply"]
+  },
+  {
+    id: "instagram_cajunleprochaun",
+    label: "@cajunleprochaun",
+    type: "stem",
+    description: "Instagram presence for Mimicorp media and field storytelling.",
+    internal: false,
+    url: "https://instagram.com/cajunleprochaun",
+    connections: ["media"]
+  },
+  {
+    id: "tiktok_auntie_christ",
+    label: "@the_auntie_christ",
+    type: "stem",
+    description: "TikTok presence for short-form Mimicorp media.",
+    internal: false,
+    url: "https://tiktok.com/@the_auntie_christ",
+    connections: ["media"]
+  },
+  {
+    id: "instagram_joynet_church",
+    label: "@joynet.church",
+    type: "stem",
+    description: "Instagram presence connected to the JoyNet / Church of Joy branch.",
+    internal: false,
+    url: "https://instagram.com/joynet.church",
+    connections: ["joynet", "media"]
   }
 ];
 
@@ -134,6 +161,10 @@ function buildEpisodeNodes(registry) {
       guest: episode.guest,
       themes: episode.themes,
       date: episode.date,
+      listen_url: episode.listen_url,
+      spotify_url: episode.spotify_url,
+      watch_url: episode.watch_url,
+      transcript_url: episode.transcript_url,
       kind: "episode"
     };
   });
@@ -265,7 +296,13 @@ function renderSidebar(node) {
 
   const { nodeLookup } = getGraphState();
   connectionList.innerHTML = "";
-  node.connections
+  let visibleConnectionIds = node.connections;
+
+  if (node.id === "mimicorp") {
+    visibleConnectionIds = ["second_cutting", "ag_lab", "joynet"];
+  }
+
+  visibleConnectionIds
     .map((id) => nodeLookup.get(id))
     .filter(Boolean)
     .forEach((connectedNode) => {
