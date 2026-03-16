@@ -108,6 +108,15 @@ const coreNodes = [
     connections: ["mimicorp", "ag_lab", "gp_supply"]
   },
   {
+    id: "book_time",
+    label: "Book Time",
+    type: "fruit",
+    description: "Reserve focused studio time for creative direction, strategy, editorial thinking, technical problem solving, or project triage.",
+    internal: true,
+    url: "/nodes/book-time/",
+    connections: ["mimicorp"]
+  },
+  {
     id: "instagram_cajunleprochaun",
     label: "@cajunleprochaun",
     type: "stem",
