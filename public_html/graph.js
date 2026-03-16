@@ -6,7 +6,7 @@ const nodes = [
     description: "Root kernel for the Mimicorp ecosystem, connecting projects across land, agriculture, media, and ecological systems.",
     internal: true,
     url: "/",
-    connections: ["second_cutting", "ag_lab", "joynet", "design", "media", "data", "software"]
+    connections: ["second_cutting", "ag_lab", "joynet"]
   },
   {
     id: "second_cutting",
@@ -14,8 +14,8 @@ const nodes = [
     type: "branch",
     description: "Podcast and documentary work focused on land, animals, and ecological systems.",
     internal: true,
-    url: "/nodes/second-cutting/",
-    connections: ["mimicorp", "glc", "media", "data"]
+    url: "/nodes/second-cutting",
+    connections: ["glc", "media", "data"]
   },
   {
     id: "ag_lab",
@@ -23,8 +23,8 @@ const nodes = [
     type: "branch",
     description: "Experimental agriculture lab for field systems, applied research, and practical prototyping.",
     internal: true,
-    url: "/nodes/ag-lab/",
-    connections: ["mimicorp", "data", "software", "gp_supply", "shady_pines"]
+    url: "/nodes/ag-lab",
+    connections: ["data", "software"]
   },
   {
     id: "joynet",
@@ -32,8 +32,8 @@ const nodes = [
     type: "branch",
     description: "Creative network layer for distributed storytelling, publishing, and cultural collaboration.",
     internal: true,
-    url: "/nodes/joynet/",
-    connections: ["mimicorp", "design", "media", "software", "teche_lake_outfitters"]
+    url: "/nodes/joynet",
+    connections: ["design", "media", "software"]
   },
   {
     id: "glc",
@@ -42,7 +42,7 @@ const nodes = [
     description: "Ground logistics and connective infrastructure for field operations and partner systems.",
     internal: false,
     url: "https://example.com/glc",
-    connections: ["second_cutting", "media", "design"]
+    connections: ["media", "design"]
   },
   {
     id: "teche_lake_outfitters",
@@ -77,8 +77,8 @@ const nodes = [
     type: "fruit",
     description: "Visual systems, interfaces, and creative direction across the Mimicorp network.",
     internal: true,
-    url: "/nodes/design/",
-    connections: ["mimicorp", "joynet", "glc", "teche_lake_outfitters"]
+    url: "/nodes/design",
+    connections: ["mimicorp"]
   },
   {
     id: "media",
@@ -86,8 +86,8 @@ const nodes = [
     type: "fruit",
     description: "Publishing, audio, film, and documentary output distributed through the ecosystem.",
     internal: true,
-    url: "/nodes/media/",
-    connections: ["mimicorp", "second_cutting", "joynet", "glc"]
+    url: "/nodes/media",
+    connections: ["mimicorp"]
   },
   {
     id: "data",
@@ -95,8 +95,8 @@ const nodes = [
     type: "fruit",
     description: "Research, archives, mapping, and information systems supporting adaptive work.",
     internal: true,
-    url: "/nodes/data/",
-    connections: ["mimicorp", "second_cutting", "ag_lab", "shady_pines"]
+    url: "/nodes/data",
+    connections: ["mimicorp"]
   },
   {
     id: "software",
@@ -104,8 +104,8 @@ const nodes = [
     type: "fruit",
     description: "Tools, automations, and custom lightweight systems that hold the network together.",
     internal: true,
-    url: "/nodes/software/",
-    connections: ["mimicorp", "ag_lab", "joynet", "gp_supply"]
+    url: "/nodes/software",
+    connections: ["mimicorp"]
   }
 ];
 
@@ -141,7 +141,6 @@ const sidebarTitle = document.getElementById("node-title");
 const sidebarType = document.getElementById("node-type");
 const sidebarRoute = document.getElementById("node-route");
 const sidebarDescription = document.getElementById("node-description");
-const nodeUrl = document.getElementById("node-url");
 const connectionList = document.getElementById("connection-list");
 const openProjectButton = document.getElementById("open-project");
 const viewConnectionsButton = document.getElementById("view-connections");
@@ -165,16 +164,14 @@ let nodeSelection;
 let linkSelection;
 let labelSelection;
 
-function getConnectedSet(nodeId) {
-  const node = nodeLookup.get(nodeId);
-  return new Set([nodeId, ...(node ? node.connections : [])]);
-}
-
 function renderPlaceholder(node) {
+  if (!node.internal) {
+    placeholderPanel.hidden = true;
+    return;
+  }
+
   placeholderTitle.textContent = node.label;
-  placeholderDescription.textContent = node.internal
-    ? "This project has an internal page ready. Use Open Project or double-click the node to enter it."
-    : "This node routes to an external destination. Use Open Project to launch it in a new tab.";
+  placeholderDescription.textContent = "Internal page placeholder loaded for " + node.label + ".";
   placeholderPath.textContent = node.url;
   placeholderPanel.hidden = false;
 }
@@ -185,7 +182,6 @@ function renderSidebar(node) {
   sidebarType.dataset.type = node.type;
   sidebarRoute.textContent = node.internal ? "internal" : "external";
   sidebarDescription.textContent = node.description;
-  nodeUrl.textContent = node.url;
 
   connectionList.innerHTML = "";
   node.connections
@@ -208,11 +204,7 @@ function updateGraphState() {
     return;
   }
 
-  const connectedSet = getConnectedSet(selectedNodeId);
-
-  nodeSelection
-    .classed("is-selected", (d) => d.id === selectedNodeId)
-    .classed("is-dimmed", (d) => !connectedSet.has(d.id));
+  nodeSelection.classed("is-selected", (d) => d.id === selectedNodeId);
 
   linkSelection.classed("is-highlighted", (d) => {
     const sourceId = typeof d.source === "object" ? d.source.id : d.source;
@@ -220,7 +212,13 @@ function updateGraphState() {
     return sourceId === selectedNodeId || targetId === selectedNodeId;
   });
 
-  labelSelection.style("opacity", (d) => (connectedSet.has(d.id) ? 1 : 0.28));
+  labelSelection.style("opacity", (d) => {
+    if (d.id === selectedNodeId) {
+      return 1;
+    }
+
+    return nodeLookup.get(selectedNodeId).connections.includes(d.id) ? 0.95 : 0.55;
+  });
 }
 
 function selectNode(nodeId) {
@@ -233,12 +231,13 @@ function selectNode(nodeId) {
   selectedNodeId = nodeId;
   renderSidebar(node);
   updateGraphState();
-  terminalResponse.textContent = "Selected " + node.label + ". Use Open Project to enter it.";
+  terminalResponse.textContent = "Selected " + node.label + ".";
 }
 
 function activateNode(node) {
   if (node.internal) {
-    window.location.href = node.url;
+    renderPlaceholder(node);
+    terminalResponse.textContent = "Loaded internal placeholder for " + node.label + ".";
     return;
   }
 
@@ -256,7 +255,7 @@ function focusConnections() {
     .join(", ");
 
   terminalResponse.textContent = names
-    ? "Connected to: " + names + "."
+    ? "Connections: " + names + "."
     : "No connections available for this node.";
 }
 
@@ -266,12 +265,9 @@ function centerOnNode(nodeId) {
     return;
   }
 
-  const width = graphCanvas.viewBox.baseVal.width || graphCanvas.clientWidth;
-  const height = graphCanvas.viewBox.baseVal.height || graphCanvas.clientHeight;
-
   simulation.alphaTarget(0.15).restart();
-  node.fx = width * 0.5;
-  node.fy = height * 0.48;
+  node.fx = window.innerWidth * 0.38;
+  node.fy = window.innerHeight * 0.42;
 
   window.setTimeout(() => {
     node.fx = null;
@@ -280,27 +276,10 @@ function centerOnNode(nodeId) {
   }, 800);
 }
 
-function normalizeNodeQuery(value) {
-  return value.trim().toLowerCase().replace(/-/g, "_").replace(/\s+/g, "_");
-}
-
-function findNodeByQuery(query) {
-  const normalized = normalizeNodeQuery(query);
-  return nodes.find((node) => {
-    const normalizedLabel = normalizeNodeQuery(node.label);
-    return node.id === normalized || normalizedLabel === normalized;
-  });
-}
-
 function parseCommand(command) {
   const normalized = command.trim().toLowerCase();
   if (!normalized) {
     terminalResponse.textContent = "Enter a command.";
-    return;
-  }
-
-  if (normalized === "help") {
-    terminalResponse.textContent = "Commands: help, map, list, inspect [node], open [node].";
     return;
   }
 
@@ -313,34 +292,22 @@ function parseCommand(command) {
   }
 
   if (normalized === "list") {
-    terminalResponse.textContent = nodes.map((node) => node.label).join(" | ");
-    return;
-  }
-
-  if (normalized.startsWith("inspect ")) {
-    const node = findNodeByQuery(normalized.slice(8));
-    if (!node) {
-      terminalResponse.textContent = 'Node "' + normalized.slice(8) + '" not found.';
-      return;
-    }
-    selectNode(node.id);
-    centerOnNode(node.id);
+    terminalResponse.textContent = nodes.map((node) => node.id).join(" | ");
     return;
   }
 
   if (normalized.startsWith("open ")) {
-    const node = findNodeByQuery(normalized.slice(5));
-    if (!node) {
-      terminalResponse.textContent = 'Node "' + normalized.slice(5) + '" not found.';
-      return;
+    const requested = normalized.slice(5).trim().replace(/-/g, "_");
+    selectNode(requested);
+    centerOnNode(requested);
+    const node = nodeLookup.get(requested);
+    if (node) {
+      activateNode(node);
     }
-    selectNode(node.id);
-    centerOnNode(node.id);
-    activateNode(node);
     return;
   }
 
-  terminalResponse.textContent = 'Unknown command "' + command + '". Use help for available commands.';
+  terminalResponse.textContent = 'Unknown command "' + command + '". Use map, list, or open [node_id].';
 }
 
 function buildGraph() {
@@ -385,9 +352,6 @@ function buildGraph() {
     .on("click", (_, d) => {
       selectNode(d.id);
       centerOnNode(d.id);
-    })
-    .on("dblclick", (_, d) => {
-      activateNode(d);
     })
     .call(
       d3.drag()
@@ -454,8 +418,8 @@ function buildGraph() {
 
   // Combine link attraction, repulsion, centering, and collision to keep the map readable.
   simulation = d3.forceSimulation(nodes)
-    .force("link", d3.forceLink(links).id((d) => d.id).distance(130).strength(0.45))
-    .force("charge", d3.forceManyBody().strength(-340))
+    .force("link", d3.forceLink(links).id((d) => d.id).distance(130).strength(0.5))
+    .force("charge", d3.forceManyBody().strength(-320))
     .force("center", d3.forceCenter(width / 2, height / 2))
     .force("collide", d3.forceCollide().radius((d) => {
       if (d.type === "kernel") {
@@ -494,12 +458,6 @@ terminalForm.addEventListener("submit", (event) => {
   event.preventDefault();
   parseCommand(terminalInput.value);
   terminalInput.value = "";
-});
-
-document.querySelectorAll("[data-command]").forEach((button) => {
-  button.addEventListener("click", () => {
-    parseCommand(button.getAttribute("data-command"));
-  });
 });
 
 window.addEventListener("resize", buildGraph);
