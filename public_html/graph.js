@@ -358,6 +358,23 @@ function selectNode(nodeId) {
 }
 
 function activateNode(node, section = "") {
+  if (node.kind === "episode") {
+    if (section === "watch" && node.watch_url) {
+      window.open(node.watch_url, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    if (section === "transcript" && node.transcript_url) {
+      window.open(node.transcript_url, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    if ((section === "" || section === "listen") && node.listen_url) {
+      window.open(node.listen_url, "_blank", "noopener,noreferrer");
+      return;
+    }
+  }
+
   if (!node.internal) {
     window.open(node.url, "_blank", "noopener,noreferrer");
     terminalResponse.textContent = "Opened external project for " + node.label + ".";
