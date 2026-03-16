@@ -3,50 +3,53 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mimicorp.systems</title>
+  <title>Mimicorp Systems</title>
   <meta
     name="description"
-    content="Mimicorp.systems, the umbrella site for Amelia Cronan: creative tech across agriculture, media, ecology, and digital infrastructure."
+    content="Mimicorp Systems is a creative technology operating system dashboard exploring land, agriculture, media, and ecological systems."
   >
   <link rel="icon" type="image/png" href="assets/logo.png">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
   <style>
     :root {
-      color-scheme: light;
-      --bg: #ffffff;
-      --bg-alt: #fbfbf9;
-      --surface: rgba(255, 255, 255, 0.94);
-      --surface-strong: rgba(255, 255, 255, 0.985);
-      --text: #1d271f;
-      --muted: #5f6e61;
-      --line: rgba(44, 69, 48, 0.12);
-      --line-strong: rgba(44, 69, 48, 0.24);
-      --accent: #517255;
-      --accent-soft: rgba(81, 114, 85, 0.12);
-      --accent-softer: rgba(81, 114, 85, 0.06);
-      --shadow: 0 22px 50px rgba(29, 39, 31, 0.08);
-      --radius-xl: 30px;
-      --radius-lg: 22px;
-      --radius-md: 16px;
-      --max: 1180px;
-      --font-sans: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-      --font-serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
-      --font-mono: "SFMono-Regular", "SF Mono", "IBM Plex Mono", "Roboto Mono", Consolas, monospace;
+      color-scheme: dark;
+      --bg: #05070b;
+      --bg-deep: #020409;
+      --panel: rgba(8, 12, 18, 0.76);
+      --panel-strong: rgba(10, 14, 22, 0.92);
+      --panel-border: rgba(255, 255, 255, 0.1);
+      --grid: rgba(255, 255, 255, 0.06);
+      --text: #f4f1eb;
+      --muted: rgba(244, 241, 235, 0.68);
+      --white: #f8f7f2;
+      --green: #6fbf73;
+      --brown: #8b5e3c;
+      --gold: #d7b45f;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+      --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+      --sans: "Avenir Next", "Segoe UI", Arial, sans-serif;
     }
 
     * {
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--bg-deep);
     }
 
     body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: var(--font-sans);
+      overflow: hidden;
+      font-family: var(--sans);
       color: var(--text);
-      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(111, 191, 115, 0.08), transparent 28%),
+        radial-gradient(circle at 80% 25%, rgba(215, 180, 95, 0.08), transparent 22%),
+        radial-gradient(circle at 50% 70%, rgba(255, 255, 255, 0.05), transparent 34%),
+        linear-gradient(180deg, #08101a 0%, var(--bg) 55%, var(--bg-deep) 100%);
     }
 
     body::before,
@@ -55,907 +58,1019 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 0;
     }
 
     body::before {
-      background:
-        linear-gradient(90deg, transparent 0 11%, rgba(29, 39, 31, 0.018) 11% 11.12%, transparent 11.12% 100%),
-        linear-gradient(180deg, transparent 0 18%, rgba(29, 39, 31, 0.018) 18% 18.12%, transparent 18.12% 100%);
-      opacity: 0.45;
-    }
-
-    body::after {
       background-image:
-        radial-gradient(circle at 14% 20%, rgba(29, 39, 31, 0.05) 0 1px, transparent 2px),
-        radial-gradient(circle at 78% 18%, rgba(29, 39, 31, 0.045) 0 1px, transparent 2px),
-        radial-gradient(circle at 24% 72%, rgba(29, 39, 31, 0.045) 0 1px, transparent 2px),
-        radial-gradient(circle at 84% 74%, rgba(29, 39, 31, 0.045) 0 1px, transparent 2px);
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at center, black 35%, transparent 100%);
       opacity: 0.4;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    body::after {
+      background:
+        radial-gradient(circle at 25% 30%, rgba(255, 255, 255, 0.09) 0 1px, transparent 2px),
+        radial-gradient(circle at 75% 55%, rgba(255, 255, 255, 0.08) 0 1px, transparent 2px),
+        radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.08) 0 1px, transparent 2px);
+      opacity: 0.55;
     }
 
-    img {
-      display: block;
-      max-width: 100%;
+    button,
+    input {
+      font: inherit;
     }
 
-    .page {
+    .app-shell {
       position: relative;
-      z-index: 1;
-      width: min(calc(100% - 2rem), var(--max));
-      margin: 0 auto;
-      padding: 28px 0 56px;
+      min-height: 100svh;
+      overflow: hidden;
     }
 
-    .framework {
-      position: relative;
-      overflow: clip;
-      border: 1px solid rgba(29, 39, 31, 0.08);
-      border-radius: 32px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.92));
+    .hud {
+      position: absolute;
+      inset: 20px 20px auto 20px;
+      z-index: 3;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      pointer-events: none;
+    }
+
+    .brand,
+    .status-bar,
+    .panel,
+    .command-bar,
+    .placeholder {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
       box-shadow: var(--shadow);
       backdrop-filter: blur(18px);
     }
 
-    .media-layer {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
+    .brand,
+    .status-bar,
+    .panel,
+    .command-bar {
+      pointer-events: auto;
     }
 
-    .media-slot,
-    .transition-slot,
-    .masked-media {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(29, 39, 31, 0.08);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.58)),
-        linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.08));
+    .brand {
+      width: min(100%, 360px);
+      padding: 18px 18px 16px;
+      border-radius: 22px;
     }
 
-    .media-slot img,
-    .media-slot video,
-    .transition-slot img,
-    .transition-slot video,
-    .masked-media img,
-    .masked-media video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.22;
-      filter: saturate(0.72) contrast(0.94) brightness(1);
-    }
-
-    .media-slot::after,
-    .transition-slot::after,
-    .masked-media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.82)),
-        linear-gradient(90deg, rgba(29, 39, 31, 0.025), transparent 34%, transparent 66%, rgba(29, 39, 31, 0.02));
-      pointer-events: none;
-    }
-
-    .hero-atmosphere {
-      position: absolute;
-      inset: 0 0 auto 0;
-      height: 360px;
-      border: 0;
-      background:
-        radial-gradient(circle at 20% 30%, rgba(29, 39, 31, 0.04), transparent 22%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
-    }
-
-    .hero-atmosphere::after {
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.9)),
-        linear-gradient(90deg, rgba(29, 39, 31, 0.02), transparent 38%, transparent 62%, rgba(29, 39, 31, 0.015));
-    }
-
-    .hero-atmosphere video,
-    .hero-atmosphere img {
-      opacity: 0.16;
-      transform: scale(1.03);
-    }
-
-    .texture-overlay {
-      position: absolute;
-      inset: 12% 8% auto auto;
-      width: min(28vw, 320px);
-      aspect-ratio: 4 / 5;
-      border-radius: 24px;
-      opacity: 0.72;
-      mix-blend-mode: multiply;
-      transform: rotate(-5deg);
-    }
-
-    .texture-overlay::after {
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.72)),
-        linear-gradient(135deg, rgba(29, 39, 31, 0.03), transparent 60%);
-    }
-
-    .framework::before,
-    .framework::after {
-      content: "";
-      position: absolute;
-      pointer-events: none;
-    }
-
-    .framework::before {
-      inset: 0;
-      background:
-        linear-gradient(90deg, transparent 0 14%, var(--line) 14% 14.12%, transparent 14.12% 100%),
-        linear-gradient(180deg, transparent 0 22%, var(--line) 22% 22.12%, transparent 22.12% 100%),
-        linear-gradient(145deg, transparent 0 62%, var(--line) 62% 62.12%, transparent 62.12% 100%),
-        linear-gradient(28deg, transparent 0 74%, var(--line) 74% 74.12%, transparent 74.12% 100%);
-    }
-
-    .framework::after {
-      inset: auto 0 0 0;
-      height: 140px;
-      background:
-        linear-gradient(180deg, rgba(81, 114, 85, 0), rgba(81, 114, 85, 0.06)),
-        linear-gradient(90deg, transparent 0 22%, rgba(81, 114, 85, 0.1) 22% 22.12%, transparent 22.12% 100%);
-      opacity: 0.8;
-    }
-
-    .system-node {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 6px rgba(81, 114, 85, 0.1);
-    }
-
-    .node-left {
-      top: 44%;
-      left: 10%;
-    }
-
-    .node-lower {
-      bottom: 180px;
-      right: 14%;
-    }
-
-    .section {
-      position: relative;
-      padding: 40px 28px;
-      z-index: 1;
-    }
-
-    .section + .section {
-      border-top: 1px solid rgba(29, 39, 31, 0.06);
-    }
-
-    .section-kicker {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 0 0 18px;
-      color: var(--muted);
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-      font-weight: 700;
+    .eyebrow,
+    .status-label,
+    .command-prefix,
+    .panel-kicker,
+    .placeholder-kicker {
+      margin: 0 0 10px;
+      font-family: var(--mono);
+      font-size: 0.72rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
+      color: var(--muted);
     }
 
-    .section-kicker::before {
-      content: "";
-      width: 34px;
-      height: 1px;
-      background: var(--line-strong);
-    }
-
-    .hero {
-      min-height: min(84svh, 760px);
-      display: grid;
-      align-items: end;
-      padding-top: 52px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.8fr);
-      gap: 28px;
-      align-items: stretch;
-    }
-
-    .wordmark {
-      width: min(100%, 320px);
-      margin-bottom: 22px;
-      mix-blend-mode: multiply;
-    }
-
-    .eyebrow {
-      margin: 0 0 14px;
-      color: var(--accent);
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    h1 {
+    .brand h1 {
       margin: 0;
-      max-width: 8ch;
-      font-family: var(--font-serif);
-      font-size: clamp(3.3rem, 9vw, 6.7rem);
+      font-size: clamp(2rem, 5vw, 3.3rem);
+      font-weight: 500;
       line-height: 0.94;
-      font-weight: 600;
-      letter-spacing: -0.05em;
+      letter-spacing: 0.02em;
     }
 
-    .subtitle {
-      margin: 14px 0 0;
-      color: var(--muted);
-      font-size: clamp(1.04rem, 2.4vw, 1.35rem);
-    }
-
-    .support-line {
-      margin: 20px 0 0;
-      max-width: 30ch;
-      font-size: clamp(1.08rem, 2.1vw, 1.34rem);
-      line-height: 1.5;
-    }
-
-    .intro-line {
-      margin: 24px 0 0;
-      max-width: 58ch;
-      color: #344238;
-      font-size: 1.03rem;
-      line-height: 1.78;
-    }
-
-    .hero-panel,
-    .branch-card,
-    .stem-card,
-    .fruit-card,
-    .roots-card {
-      position: relative;
-      border: 1px solid rgba(29, 39, 31, 0.09);
-      background: var(--surface);
-      backdrop-filter: blur(14px);
-    }
-
-    .hero-panel,
-    .roots-card {
-      border-radius: var(--radius-xl);
-    }
-
-    .hero-panel {
-      display: grid;
-      gap: 18px;
-      align-content: start;
-      padding: 24px;
-    }
-
-    .hero-panel::before,
-    .branch-card::before,
-    .stem-card::before,
-    .fruit-card::before,
-    .roots-card::before {
-      content: "";
-      position: absolute;
-      inset: 14px;
-      border: 1px solid rgba(29, 39, 31, 0.06);
-      border-radius: inherit;
-      pointer-events: none;
-    }
-
-    .panel-brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .panel-brand img {
-      width: 50px;
-      height: 50px;
-      object-fit: contain;
-    }
-
-    .panel-brand strong {
-      display: block;
-      font-family: var(--font-mono);
-      font-size: 0.9rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .panel-brand span {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .panel-list {
-      display: grid;
-      gap: 14px;
-    }
-
-    .panel-item {
-      display: grid;
-      gap: 6px;
-      padding-left: 16px;
-      border-left: 1px solid var(--line-strong);
-    }
-
-    .panel-item strong {
-      font-size: 0.98rem;
-    }
-
-    .panel-item span {
+    .brand p {
+      margin: 12px 0 0;
+      max-width: 34ch;
       color: var(--muted);
       line-height: 1.55;
     }
 
-    .roots-grid {
+    .status-bar {
       display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.3fr);
-      gap: 20px;
-      align-items: start;
-    }
-
-    .roots-card {
-      padding: 24px;
-    }
-
-    .roots-card p {
-      margin: 0;
-      line-height: 1.76;
-      color: #334236;
-      font-size: 1.02rem;
-    }
-
-    .roots-tags {
-      display: flex;
-      flex-wrap: wrap;
       gap: 10px;
+      min-width: 220px;
+      padding: 16px 18px;
+      border-radius: 18px;
     }
 
-    .roots-tags span {
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(81, 114, 85, 0.14);
-      background: rgba(81, 114, 85, 0.06);
-      color: #314135;
-      font-size: 0.92rem;
-    }
-
-    .branch-grid {
+    .status-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      position: relative;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
     }
 
-    .branch-grid::before {
-      content: "";
-      position: absolute;
-      top: 32px;
-      left: 8%;
-      right: 8%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--line-strong), transparent);
+    .status-item strong {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .status-item span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .graph-wrap {
+      position: relative;
+      min-height: 100svh;
+    }
+
+    #graph {
+      width: 100%;
+      height: 100svh;
+      display: block;
+      cursor: grab;
+    }
+
+    #graph:active {
+      cursor: grabbing;
+    }
+
+    .link {
+      stroke: rgba(255, 255, 255, 0.22);
+      stroke-width: 1.3;
+      stroke-linecap: round;
+    }
+
+    .link-active {
+      stroke: rgba(255, 255, 255, 0.52);
+      stroke-width: 1.8;
+    }
+
+    .node-ring {
+      fill: none;
+      stroke-width: 1;
+      opacity: 0.28;
+      animation: pulse 4.8s ease-in-out infinite;
+    }
+
+    .node-core {
+      stroke: rgba(255, 255, 255, 0.18);
+      stroke-width: 1.2;
+      filter: drop-shadow(0 0 10px currentColor);
+      transition: transform 180ms ease;
+    }
+
+    .node-group.is-hovered .node-core,
+    .node-group.is-selected .node-core {
+      transform: scale(1.12);
+    }
+
+    .node-label {
+      fill: rgba(244, 241, 235, 0.94);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       pointer-events: none;
     }
 
-    .branch-card,
-    .fruit-card {
+    .panel {
+      position: absolute;
+      top: 132px;
+      right: 20px;
+      z-index: 3;
+      width: min(360px, calc(100vw - 40px));
+      min-height: 260px;
+      padding: 20px;
       border-radius: 24px;
-      padding: 22px;
+    }
+
+    .panel.is-empty {
       display: grid;
-      gap: 16px;
-      transition:
-        transform 180ms ease,
-        border-color 180ms ease,
-        box-shadow 180ms ease,
-        background-color 180ms ease;
+      place-items: center;
     }
 
-    .branch-card:hover,
-    .branch-card:focus-within,
-    .stem-card:hover,
-    .stem-card:focus-within,
-    .fruit-card:hover,
-    .fruit-card:focus-within {
-      transform: translateY(-4px);
-      border-color: rgba(81, 114, 85, 0.22);
-      background: var(--surface-strong);
-      box-shadow: 0 18px 36px rgba(29, 39, 31, 0.08);
-    }
-
-    .meta {
+    .panel h2 {
       margin: 0;
-      color: var(--muted);
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
+      font-size: 1.7rem;
+      font-weight: 500;
     }
 
-    .branch-card h3,
-    .fruit-card h3 {
-      margin: 0;
-      font-size: 1.28rem;
-      line-height: 1.15;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-
-    .branch-card p,
-    .stem-card p,
-    .fruit-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.62;
-    }
-
-    .branch-link,
-    .stem-link,
-    .footer-link {
+    .type-pill {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      width: fit-content;
-      padding: 11px 15px;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 8px 12px;
       border-radius: 999px;
-      border: 1px solid rgba(81, 114, 85, 0.16);
-      background: rgba(81, 114, 85, 0.08);
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition:
-        transform 180ms ease,
-        border-color 180ms ease,
-        background-color 180ms ease;
-    }
-
-    .branch-link::after,
-    .stem-link::after,
-    .footer-link::after {
-      content: "->";
-    }
-
-    .branch-link:hover,
-    .branch-link:focus-visible,
-    .stem-link:hover,
-    .stem-link:focus-visible,
-    .footer-link:hover,
-    .footer-link:focus-visible {
-      transform: translateX(2px);
-      border-color: rgba(81, 114, 85, 0.26);
-      background: rgba(81, 114, 85, 0.13);
-      outline: none;
-    }
-
-    .stems-wrap {
-      position: relative;
-      padding-top: 16px;
-    }
-
-    .stems-wrap::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 14%;
-      right: 14%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--line-strong), transparent);
-    }
-
-    .stems-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .stem-card {
-      min-height: 150px;
-      border-radius: 18px;
-      padding: 18px;
-      display: grid;
-      gap: 12px;
-      transition:
-        transform 180ms ease,
-        border-color 180ms ease,
-        box-shadow 180ms ease,
-        background-color 180ms ease;
-    }
-
-    .stem-card strong {
-      display: block;
-      font-family: var(--font-mono);
-      font-size: 0.98rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .fruit-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .transition-band {
-      padding-top: 22px;
-      padding-bottom: 0;
-      border-top: 0;
-    }
-
-    .transition-slot {
-      height: 132px;
-      border-radius: 24px;
-    }
-
-    .transition-slot img,
-    .transition-slot video {
-      opacity: 0.26;
-    }
-
-    .masked-media {
-      margin-top: 8px;
-      height: 140px;
-      border-radius: 20px;
-      clip-path: polygon(0 0, 100% 0, 100% 82%, 82% 100%, 0 100%);
-    }
-
-    .masked-media img,
-    .masked-media video {
-      opacity: 0.34;
-    }
-
-    .fruit-card ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 10px;
+      background: rgba(255, 255, 255, 0.05);
       color: var(--muted);
-    }
-
-    .fruit-card li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .fruit-card li::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 5px rgba(81, 114, 85, 0.08);
-      flex: 0 0 auto;
-    }
-
-    .footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .footer-copy {
-      display: grid;
-      gap: 6px;
-    }
-
-    .footer-copy strong {
-      font-family: var(--font-mono);
-      font-size: 0.96rem;
+      font-family: var(--mono);
+      font-size: 0.76rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
-    .footer-copy span {
+    .type-pill::before,
+    .legend-dot {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 14px currentColor;
+    }
+
+    .panel p,
+    .panel-empty {
+      margin: 14px 0 0;
       color: var(--muted);
+      line-height: 1.6;
     }
 
-    @media (max-width: 1024px) {
-      .hero-grid,
-      .roots-grid,
-      .branch-grid,
-      .fruit-grid {
+    .panel-section {
+      margin-top: 18px;
+    }
+
+    .related-list,
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .related-chip,
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+      font-size: 0.82rem;
+    }
+
+    .panel-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .action {
+      appearance: none;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      cursor: pointer;
+      transition: background 150ms ease, border-color 150ms ease, transform 150ms ease;
+    }
+
+    .action:hover,
+    .action:focus-visible {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .command-bar {
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+      z-index: 3;
+      width: min(560px, calc(100vw - 40px));
+      padding: 14px 16px;
+      border-radius: 20px;
+    }
+
+    .command-form {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .command-prefix {
+      margin: 0;
+      color: rgba(111, 191, 115, 0.88);
+    }
+
+    .command-input {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      outline: none;
+    }
+
+    .command-submit {
+      appearance: none;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    .command-help,
+    .command-response {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .placeholder {
+      position: absolute;
+      inset: auto 20px 20px auto;
+      z-index: 4;
+      width: min(400px, calc(100vw - 40px));
+      padding: 20px;
+      border-radius: 24px;
+      background: var(--panel-strong);
+      transform: translateY(16px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+
+    .placeholder.is-open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .placeholder h3 {
+      margin: 0;
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+
+    .placeholder p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .placeholder-path {
+      margin-top: 14px;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: rgba(244, 241, 235, 0.82);
+    }
+
+    .placeholder-close {
+      margin-top: 18px;
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.22;
+      }
+
+      50% {
+        transform: scale(1.28);
+        opacity: 0.42;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hud {
+        inset: 14px 14px auto 14px;
+        flex-direction: column;
+      }
+
+      .status-bar {
+        width: min(100%, 360px);
+      }
+
+      .panel {
+        top: auto;
+        right: 14px;
+        bottom: 110px;
+      }
+
+      .command-bar {
+        left: 14px;
+        right: 14px;
+        width: auto;
+        bottom: 14px;
+      }
+
+      .placeholder {
+        left: 14px;
+        right: 14px;
+        bottom: 112px;
+        width: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        overflow: auto;
+      }
+
+      .graph-wrap,
+      #graph {
+        min-height: 100svh;
+        height: 100svh;
+      }
+
+      .brand {
+        width: 100%;
+      }
+
+      .panel {
+        left: 14px;
+        right: 14px;
+        width: auto;
+      }
+
+      .command-form {
         grid-template-columns: 1fr;
       }
 
-      .stems-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .branch-grid::before {
-        display: none;
-      }
-
-      h1 {
-        max-width: none;
-      }
-    }
-
-    @media (max-width: 720px) {
-      .page {
-        width: min(calc(100% - 1rem), var(--max));
-        padding-top: 16px;
-        padding-bottom: 24px;
-      }
-
-      .framework {
-        border-radius: 24px;
-      }
-
-      .section {
-        padding: 28px 18px;
-      }
-
-      .hero {
-        min-height: auto;
-        padding-top: 24px;
-      }
-
-      .hero-panel,
-      .roots-card,
-      .branch-card,
-      .stem-card,
-      .fruit-card {
-        border-radius: 18px;
-      }
-
-      .stems-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .system-node {
-        display: none;
-      }
-
-      .wordmark {
-        width: min(100%, 260px);
-      }
-
-      .texture-overlay {
-        display: none;
-      }
-
-      .transition-slot {
-        height: 96px;
+      .command-submit {
+        justify-self: start;
       }
     }
   </style>
 </head>
 <body>
-  <main class="page">
-    <div class="framework">
-      <div class="media-layer" aria-hidden="true">
-        <!-- ECOLOGICAL ARCHIVE HERO ATMOSPHERE:
-             Replace src with a local still or muted loop from the Ecological Archive.
-             Example future asset: assets/ecological-archive/hero-canopy.mp4 -->
-        <div class="media-slot hero-atmosphere">
-          <!-- <video autoplay muted loop playsinline src="assets/ecological-archive/hero-canopy.mp4"></video> -->
-          <!-- <img src="assets/ecological-archive/hero-canopy.jpg" alt=""> -->
-        </div>
+  <div class="app-shell">
+    <div class="hud">
+      <section class="brand">
+        <p class="eyebrow">Creative Technology Operating System</p>
+        <h1>Mimicorp Systems</h1>
+        <p>
+          A live network of projects spanning land, agriculture, media, software,
+          and ecological infrastructure. Explore the map to inspect connected systems.
+        </p>
+      </section>
 
-        <!-- ECOLOGICAL ARCHIVE TEXTURE OVERLAY:
-             Use a close crop, scan, or field texture here for a restrained documentary layer. -->
-        <div class="masked-media texture-overlay">
-          <!-- <img src="assets/ecological-archive/texture-soil-scan.jpg" alt=""> -->
+      <aside class="status-bar" aria-label="System summary">
+        <p class="status-label">System State</p>
+        <div class="status-grid">
+          <div class="status-item">
+            <strong id="node-count">12</strong>
+            <span>Networked nodes</span>
+          </div>
+          <div class="status-item">
+            <strong id="link-count">0</strong>
+            <span>Connections</span>
+          </div>
+          <div class="status-item">
+            <strong>4</strong>
+            <span>Node classes</span>
+          </div>
+          <div class="status-item">
+            <strong>Live</strong>
+            <span>Force simulation</span>
+          </div>
+        </div>
+        <div class="legend" aria-label="Node legend"></div>
+      </aside>
+    </div>
+
+    <div class="graph-wrap">
+      <svg id="graph" aria-label="Mimicorp Systems interactive node map"></svg>
+    </div>
+
+    <aside class="panel is-empty" id="info-panel" aria-live="polite">
+      <div>
+        <p class="panel-kicker">Node Inspector</p>
+        <div class="panel-empty">
+          Select a node to inspect its role, relationships, and route.
         </div>
       </div>
+    </aside>
 
-      <span class="system-node node-left" aria-hidden="true"></span>
-      <span class="system-node node-lower" aria-hidden="true"></span>
+    <section class="placeholder" id="placeholder">
+      <p class="placeholder-kicker">Internal Page Placeholder</p>
+      <h3 id="placeholder-title">Mimicorp</h3>
+      <p id="placeholder-description"></p>
+      <div class="placeholder-path" id="placeholder-path"></div>
+      <button class="action placeholder-close" type="button" id="placeholder-close">Close</button>
+    </section>
 
-      <!-- HERO / LANDING IDENTITY: edit name, descriptor, support line, and intro copy here -->
-      <section class="section hero" aria-labelledby="hero-title">
-        <div class="hero-grid">
-          <div>
-            <img class="wordmark" src="assets/mimicorp.png" alt="Mimicorp wordmark">
-            <p class="eyebrow">Mimicorp.systems</p>
-            <h1 id="hero-title">Amelia Cronan</h1>
-            <p class="subtitle">Creative tech</p>
-            <p class="support-line">Systems for land, story, and signal.</p>
-            <p class="intro-line">
-              Mimicorp.systems is a home for work across agriculture, media, ecology, and digital
-              infrastructure. It presents creative technology as an ecosystem: rooted in fieldwork,
-              extended through programs and sites, and made visible through design, media, and data.
-            </p>
-          </div>
-
-          <aside class="hero-panel" aria-label="System overview">
-            <div class="panel-brand">
-              <img src="assets/logo.png" alt="" aria-hidden="true">
-              <div>
-                <strong>Living system</strong>
-                <span>An operating structure for land, media, infrastructure, story, and data.</span>
-              </div>
-            </div>
-            <div class="panel-list">
-              <div class="panel-item">
-                <strong>Roots</strong>
-                <span>Ecological attention, practical work, and conceptual inquiry.</span>
-              </div>
-              <div class="panel-item">
-                <strong>Branches</strong>
-                <span>Major worlds of thought and applied programs.</span>
-              </div>
-              <div class="panel-item">
-                <strong>Stems</strong>
-                <span>Operating nodes, field sites, and ongoing environments.</span>
-              </div>
-              <div class="panel-item">
-                <strong>Fruit</strong>
-                <span>Visible outputs in design, media, and data.</span>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <!-- ROOTS: conceptual grounding / worldview layer -->
-      <section class="section" aria-labelledby="roots-title">
-        <h2 class="section-kicker" id="roots-title">Roots</h2>
-        <div class="roots-grid">
-          <div class="roots-card">
-            <p>
-              Mimicorp is a living system joining land, media, infrastructure, story, and data. It
-              operates at the intersection of agricultural work, creative production, ecological
-              sensing, digital systems, and symbolic inquiry.
-            </p>
-          </div>
-          <div class="roots-tags" aria-label="Root domains">
-            <span>Agricultural work</span>
-            <span>Creative production</span>
-            <span>Ecological sensing</span>
-            <span>Digital systems</span>
-            <span>Infrastructure thinking</span>
-            <span>Symbolic inquiry</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION TRANSITION:
-           Insert an Ecological Archive still or looping field scan to bridge roots into branches. -->
-      <section class="section transition-band" aria-hidden="true">
-        <div class="transition-slot">
-          <!-- <img src="assets/ecological-archive/transition-watershed.jpg" alt=""> -->
-          <!-- <video autoplay muted loop playsinline src="assets/ecological-archive/transition-watershed.mp4"></video> -->
-        </div>
-      </section>
-
-      <!-- BRANCHES: future branch pages can replace placeholder hrefs or deepen into internal routes -->
-      <section class="section" aria-labelledby="branches-title">
-        <h2 class="section-kicker" id="branches-title">Branches</h2>
-        <div class="branch-grid">
-          <article class="branch-card">
-            <div>
-              <h3>Second Cutting + VAPG</h3>
-            </div>
-            <p>
-              Agricultural systems work connecting production, value-added development, and field-scale
-              infrastructure.
-            </p>
-            <!-- BRANCH MEDIA SLOT:
-                 Add a representative Ecological Archive crop for this branch if desired. -->
-            <div class="masked-media" aria-hidden="true">
-              <!-- <img src="assets/ecological-archive/branch-second-cutting.jpg" alt=""> -->
-            </div>
-            <a class="branch-link" href="https://www.glcranch.com/pages/second-cutting" target="_blank" rel="noreferrer">Open branch</a>
-          </article>
-
-          <article class="branch-card">
-            <div>
-              <h3>Ag Lab + Tea</h3>
-            </div>
-            <p>
-              Experimental cultivation, product development, and slower forms of research, hospitality,
-              and applied study.
-            </p>
-            <div class="masked-media" aria-hidden="true">
-              <!-- <img src="assets/ecological-archive/branch-ag-lab.jpg" alt=""> -->
-            </div>
-            <a class="branch-link" href="https://ecologicalarchive.org" target="_blank" rel="noreferrer">Open branch</a>
-          </article>
-
-          <article class="branch-card">
-            <div>
-              <h3>joynet.church</h3>
-            </div>
-            <p>
-              Community signal, broadcasting, and digital gathering infrastructure organized as a living
-              media node.
-            </p>
-            <div class="masked-media" aria-hidden="true">
-              <!-- <img src="assets/ecological-archive/branch-joynet.jpg" alt=""> -->
-            </div>
-            <a class="branch-link" href="https://joynet.church" target="_blank" rel="noreferrer">Open branch</a>
-          </article>
-        </div>
-      </section>
-
-      <!-- FRUIT: visible outputs / capability clusters; easy to split into future service or portfolio pages -->
-      <section class="section" aria-labelledby="fruit-title">
-        <h2 class="section-kicker" id="fruit-title">Fruit</h2>
-        <div class="fruit-grid">
-          <article class="fruit-card">
-            <h3>Design</h3>
-            <p>Structured interfaces and communication systems shaped for real-world use.</p>
-            <ul>
-              <li>Websites</li>
-              <li>Campaign</li>
-              <li>Software</li>
-            </ul>
-          </article>
-
-          <article class="fruit-card">
-            <h3>Media</h3>
-            <p>Production environments for image, transmission, documentation, and broadcast.</p>
-            <ul>
-              <li>Production</li>
-              <li>Broadcasting</li>
-              <li>Aerial / 3D</li>
-            </ul>
-          </article>
-
-          <article class="fruit-card">
-            <h3>Data</h3>
-            <p>Field-aware information systems for ecological and agricultural observation.</p>
-            <ul>
-              <li>Ecological</li>
-              <li>Agricultural</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <!-- FOOTER: contact details / future sitewide navigation can live here -->
-      <footer class="section footer" id="footer">
-        <div class="footer-copy">
-          <strong>Mimicorp.systems</strong>
-          <span>Amelia Cronan</span>
-          <span>New Iberia, Louisiana</span>
-        </div>
-        <a class="footer-link" href="mailto:amelia@mimicorp.systems">Contact</a>
-      </footer>
-    </div>
-  </main>
+    <section class="command-bar" aria-label="System command bar">
+      <form class="command-form" id="command-form">
+        <p class="command-prefix">mimicorp@system:~$</p>
+        <input
+          class="command-input"
+          id="command-input"
+          name="command"
+          type="text"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="open second-cutting, open glc, map, list nodes, help"
+        >
+        <button class="command-submit" type="submit">Run</button>
+      </form>
+      <p class="command-help">Commands: <code>open [node]</code>, <code>map</code>, <code>list nodes</code>, <code>help</code>.</p>
+      <p class="command-response" id="command-response">System ready.</p>
+    </section>
+  </div>
 
   <script>
-    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-      link.addEventListener("click", function (event) {
-        var targetId = this.getAttribute("href");
-        if (!targetId || targetId === "#") {
+    const nodeData = [
+      {
+        id: "mimicorp",
+        label: "Mimicorp",
+        type: "kernel",
+        description: "Root kernel for an interconnected portfolio of land, agriculture, media, and ecological technology projects.",
+        url: "/",
+        internal: true,
+        connections: ["second_cutting", "ag_lab", "joynet", "design", "media", "data", "software"]
+      },
+      {
+        id: "second_cutting",
+        label: "Second Cutting",
+        type: "branch",
+        description: "Podcast and documentary platform focused on land, animals, stewardship, and ecological systems.",
+        url: "/second-cutting",
+        internal: true,
+        connections: ["glc", "media", "data", "design"]
+      },
+      {
+        id: "ag_lab",
+        label: "Ag Lab",
+        type: "branch",
+        description: "Experimental agriculture lab for prototyping resilient systems, field workflows, and production tools.",
+        url: "/ag-lab",
+        internal: true,
+        connections: ["gp_supply", "shady_pines", "data", "software"]
+      },
+      {
+        id: "joynet",
+        label: "JoyNet",
+        type: "branch",
+        description: "A social and technical network for regenerative culture, storytelling, and distributed collaboration.",
+        url: "/joynet",
+        internal: true,
+        connections: ["teche_lake_outfitters", "design", "media", "software"]
+      },
+      {
+        id: "glc",
+        label: "GLC",
+        type: "stem",
+        description: "Ground-level operations node linking field logistics, local infrastructure, and ecological implementation.",
+        url: "https://example.com/glc",
+        internal: false,
+        connections: ["second_cutting", "ag_lab", "data"]
+      },
+      {
+        id: "teche_lake_outfitters",
+        label: "Teche Lake Outfitters",
+        type: "stem",
+        description: "Fieldwork and landscape access node supporting outdoor systems, observation, and place-based operations.",
+        url: "https://example.com/teche-lake-outfitters",
+        internal: false,
+        connections: ["joynet", "media", "design"]
+      },
+      {
+        id: "gp_supply",
+        label: "GP Supply",
+        type: "stem",
+        description: "Supply and logistics node for equipment, materials, and practical infrastructure across the network.",
+        url: "https://example.com/gp-supply",
+        internal: false,
+        connections: ["ag_lab", "software", "data"]
+      },
+      {
+        id: "shady_pines",
+        label: "Shady Pines",
+        type: "stem",
+        description: "Habitat and land-management node tracking stewardship, seasonal rhythms, and long-horizon ecological care.",
+        url: "https://example.com/shady-pines",
+        internal: false,
+        connections: ["ag_lab", "design", "data"]
+      },
+      {
+        id: "design",
+        label: "Design",
+        type: "fruit",
+        description: "Visual systems, product direction, interfaces, and narrative framing across Mimicorp projects.",
+        url: "/design",
+        internal: true,
+        connections: ["mimicorp", "joynet", "second_cutting", "teche_lake_outfitters", "shady_pines"]
+      },
+      {
+        id: "media",
+        label: "Media",
+        type: "fruit",
+        description: "Publishing, audio, film, photography, and editorial output distributed through the network.",
+        url: "/media",
+        internal: true,
+        connections: ["mimicorp", "second_cutting", "joynet", "teche_lake_outfitters"]
+      },
+      {
+        id: "data",
+        label: "Data",
+        type: "fruit",
+        description: "Mapping, measurement, records, and information systems that help projects sense and adapt.",
+        url: "/data",
+        internal: true,
+        connections: ["mimicorp", "second_cutting", "ag_lab", "glc", "gp_supply", "shady_pines"]
+      },
+      {
+        id: "software",
+        label: "Software",
+        type: "fruit",
+        description: "Custom tools, interfaces, automations, and lightweight operating systems for creative work.",
+        url: "/software",
+        internal: true,
+        connections: ["mimicorp", "ag_lab", "joynet", "gp_supply"]
+      }
+    ];
+
+    const typeColors = {
+      kernel: "#f8f7f2",
+      branch: "#6fbf73",
+      stem: "#8b5e3c",
+      fruit: "#d7b45f"
+    };
+
+    const nodeById = new Map(nodeData.map((node) => [node.id, node]));
+    const links = [];
+    const linkSeen = new Set();
+
+    nodeData.forEach((node) => {
+      node.connections.forEach((targetId) => {
+        if (!nodeById.has(targetId)) {
           return;
         }
-        var target = document.querySelector(targetId);
-        if (!target) {
+
+        const key = [node.id, targetId].sort().join("|");
+        if (linkSeen.has(key)) {
           return;
         }
-        event.preventDefault();
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        linkSeen.add(key);
+        links.push({ source: node.id, target: targetId });
       });
     });
+
+    document.getElementById("link-count").textContent = String(links.length);
+
+    const legend = document.querySelector(".legend");
+    Object.entries(typeColors).forEach(([type, color]) => {
+      const item = document.createElement("div");
+      item.className = "legend-item";
+      item.innerHTML = '<span class="legend-dot"></span><span>' + type + "</span>";
+      item.style.color = color;
+      legend.appendChild(item);
+    });
+
+    const panel = document.getElementById("info-panel");
+    const placeholder = document.getElementById("placeholder");
+    const placeholderTitle = document.getElementById("placeholder-title");
+    const placeholderDescription = document.getElementById("placeholder-description");
+    const placeholderPath = document.getElementById("placeholder-path");
+    const commandResponse = document.getElementById("command-response");
+    const graph = document.getElementById("graph");
+
+    let selectedNodeId = null;
+    let nodeSelection = null;
+    let linkSelection = null;
+    let labelSelection = null;
+    let simulation = null;
+
+    function renderPanel(node) {
+      if (!node) {
+        panel.className = "panel is-empty";
+        panel.innerHTML = [
+          '<div>',
+          '<p class="panel-kicker">Node Inspector</p>',
+          '<div class="panel-empty">Select a node to inspect its role, relationships, and route.</div>',
+          "</div>"
+        ].join("");
+        return;
+      }
+
+      const related = node.connections
+        .map((id) => nodeById.get(id))
+        .filter(Boolean)
+        .map((item) => '<button class="related-chip" type="button" data-node-ref="' + item.id + '">' + item.label + "</button>")
+        .join("");
+
+      const actionLabel = node.internal ? "Open internal page" : "Open external link";
+      const routeLabel = node.internal ? "Internal route" : "External route";
+      const typeColor = typeColors[node.type];
+
+      panel.className = "panel";
+      panel.innerHTML = [
+        '<p class="panel-kicker">Node Inspector</p>',
+        "<h2>" + node.label + "</h2>",
+        '<div class="type-pill" style="color:' + typeColor + ';">' + node.type + "</div>",
+        "<p>" + node.description + "</p>",
+        '<div class="panel-section">',
+        '<p class="panel-kicker">' + routeLabel + "</p>",
+        "<p>" + node.url + "</p>",
+        "</div>",
+        '<div class="panel-section">',
+        '<p class="panel-kicker">Connected Nodes</p>',
+        '<div class="related-list">' + related + "</div>",
+        "</div>",
+        '<div class="panel-actions">',
+        '<button class="action" type="button" id="node-action">' + actionLabel + "</button>",
+        '<button class="action" type="button" id="focus-action">Center node</button>',
+        "</div>"
+      ].join("");
+
+      panel.querySelectorAll("[data-node-ref]").forEach((button) => {
+        button.addEventListener("click", () => selectNode(button.getAttribute("data-node-ref")));
+      });
+
+      panel.querySelector("#node-action").addEventListener("click", () => activateNode(node));
+      panel.querySelector("#focus-action").addEventListener("click", () => focusNode(node.id));
+    }
+
+    function openPlaceholder(node) {
+      placeholderTitle.textContent = node.label;
+      placeholderDescription.textContent = node.description + " This is a lightweight internal placeholder view for " + node.url + ".";
+      placeholderPath.textContent = node.url;
+      placeholder.classList.add("is-open");
+    }
+
+    function closePlaceholder() {
+      placeholder.classList.remove("is-open");
+    }
+
+    function activateNode(node) {
+      if (node.internal) {
+        openPlaceholder(node);
+        commandResponse.textContent = "Opened internal placeholder for " + node.label + ".";
+        return;
+      }
+
+      window.open(node.url, "_blank", "noopener,noreferrer");
+      commandResponse.textContent = "Opened external route for " + node.label + ".";
+    }
+
+    function updateSelections() {
+      if (!nodeSelection || !linkSelection || !labelSelection) {
+        return;
+      }
+
+      nodeSelection.classed("is-selected", (d) => d.id === selectedNodeId);
+      linkSelection.classed("link-active", (d) => {
+        const sourceId = typeof d.source === "object" ? d.source.id : d.source;
+        const targetId = typeof d.target === "object" ? d.target.id : d.target;
+        return sourceId === selectedNodeId || targetId === selectedNodeId;
+      });
+      labelSelection.style("opacity", (d) => {
+        if (!selectedNodeId) {
+          return 0.86;
+        }
+
+        return d.id === selectedNodeId || nodeById.get(selectedNodeId).connections.includes(d.id) ? 1 : 0.42;
+      });
+    }
+
+    function selectNode(nodeId) {
+      selectedNodeId = nodeId;
+      closePlaceholder();
+      renderPanel(nodeById.get(nodeId));
+      updateSelections();
+    }
+
+    function focusNode(nodeId) {
+      const node = nodeData.find((item) => item.id === nodeId);
+      if (!node || !simulation) {
+        return;
+      }
+
+      simulation.alphaTarget(0.18).restart();
+      node.fx = window.innerWidth * 0.5;
+      node.fy = window.innerHeight * 0.5;
+      window.setTimeout(() => {
+        node.fx = null;
+        node.fy = null;
+        simulation.alphaTarget(0);
+      }, 900);
+      selectNode(nodeId);
+    }
+
+    function runCommand(rawValue) {
+      const value = rawValue.trim();
+      if (!value) {
+        commandResponse.textContent = "Enter a command.";
+        return;
+      }
+
+      const normalized = value.toLowerCase();
+
+      if (normalized === "help") {
+        commandResponse.textContent = "Commands available: open [node], map, list nodes, help.";
+        return;
+      }
+
+      if (normalized === "map") {
+        selectedNodeId = null;
+        closePlaceholder();
+        renderPanel(null);
+        updateSelections();
+        if (simulation) {
+          simulation.alpha(0.9).restart();
+        }
+        commandResponse.textContent = "Map reset and simulation refreshed.";
+        return;
+      }
+
+      if (normalized === "list nodes") {
+        commandResponse.textContent = nodeData.map((node) => node.label).join(" | ");
+        return;
+      }
+
+      if (normalized.startsWith("open ")) {
+        const query = normalized.slice(5).trim();
+        const match = nodeData.find((node) => {
+          const idToken = node.id.replaceAll("_", "-");
+          const labelToken = node.label.toLowerCase().replaceAll(/\s+/g, "-");
+          return query === idToken || query === labelToken || query === node.label.toLowerCase();
+        });
+
+        if (!match) {
+          commandResponse.textContent = 'Node "' + query + '" not found.';
+          return;
+        }
+
+        focusNode(match.id);
+        activateNode(match);
+        return;
+      }
+
+      commandResponse.textContent = 'Unknown command "' + value + '". Try help.';
+    }
+
+    function buildGraph() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      graph.setAttribute("viewBox", "0 0 " + width + " " + height);
+
+      const svg = d3.select("#graph");
+      svg.selectAll("*").remove();
+
+      const root = svg.append("g");
+      svg.call(
+        d3.zoom()
+          .scaleExtent([0.7, 1.8])
+          .on("zoom", (event) => root.attr("transform", event.transform))
+      );
+
+      linkSelection = root
+        .append("g")
+        .attr("aria-hidden", "true")
+        .selectAll("line")
+        .data(links)
+        .join("line")
+        .attr("class", "link");
+
+      nodeSelection = root
+        .append("g")
+        .selectAll("g")
+        .data(nodeData)
+        .join("g")
+        .attr("class", "node-group")
+        .style("color", (d) => typeColors[d.type])
+        .on("mouseenter", function () {
+          d3.select(this).classed("is-hovered", true);
+        })
+        .on("mouseleave", function () {
+          d3.select(this).classed("is-hovered", false);
+        })
+        .on("click", (_, d) => {
+          selectNode(d.id);
+        })
+        .call(
+          d3.drag()
+            .on("start", (event, d) => {
+              if (!event.active) {
+                simulation.alphaTarget(0.2).restart();
+              }
+              d.fx = d.x;
+              d.fy = d.y;
+            })
+            .on("drag", (event, d) => {
+              d.fx = event.x;
+              d.fy = event.y;
+            })
+            .on("end", (event, d) => {
+              if (!event.active) {
+                simulation.alphaTarget(0);
+              }
+              d.fx = null;
+              d.fy = null;
+            })
+        );
+
+      nodeSelection
+        .append("circle")
+        .attr("class", "node-ring")
+        .attr("r", (d) => {
+          if (d.type === "kernel") {
+            return 34;
+          }
+          if (d.type === "branch") {
+            return 24;
+          }
+          return 18;
+        })
+        .attr("stroke", "currentColor");
+
+      nodeSelection
+        .append("circle")
+        .attr("class", "node-core")
+        .attr("r", (d) => {
+          if (d.type === "kernel") {
+            return 16;
+          }
+          if (d.type === "branch") {
+            return 12;
+          }
+          if (d.type === "stem") {
+            return 10;
+          }
+          return 9;
+        })
+        .attr("fill", "currentColor");
+
+      labelSelection = root
+        .append("g")
+        .selectAll("text")
+        .data(nodeData)
+        .join("text")
+        .attr("class", "node-label")
+        .attr("text-anchor", "middle")
+        .attr("dy", (d) => (d.type === "kernel" ? 34 : 28))
+        .text((d) => d.label);
+
+      simulation = d3.forceSimulation(nodeData)
+        .force("link", d3.forceLink(links).id((d) => d.id).distance((d) => {
+          const sourceType = nodeById.get(typeof d.source === "object" ? d.source.id : d.source).type;
+          const targetType = nodeById.get(typeof d.target === "object" ? d.target.id : d.target).type;
+          if (sourceType === "kernel" || targetType === "kernel") {
+            return 160;
+          }
+          return 120;
+        }).strength(0.52))
+        .force("charge", d3.forceManyBody().strength(-420))
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("collision", d3.forceCollide().radius((d) => {
+          if (d.type === "kernel") {
+            return 70;
+          }
+          if (d.type === "branch") {
+            return 54;
+          }
+          return 42;
+        }))
+        .force("x", d3.forceX(width / 2).strength(0.02))
+        .force("y", d3.forceY(height / 2).strength(0.02))
+        .alpha(1)
+        .on("tick", () => {
+          linkSelection
+            .attr("x1", (d) => d.source.x)
+            .attr("y1", (d) => d.source.y)
+            .attr("x2", (d) => d.target.x)
+            .attr("y2", (d) => d.target.y);
+
+          nodeSelection.attr("transform", (d) => "translate(" + d.x + "," + d.y + ")");
+          labelSelection
+            .attr("x", (d) => d.x)
+            .attr("y", (d) => d.y);
+        });
+
+      updateSelections();
+    }
+
+    document.getElementById("command-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const input = document.getElementById("command-input");
+      runCommand(input.value);
+      input.value = "";
+    });
+
+    document.getElementById("placeholder-close").addEventListener("click", closePlaceholder);
+
+    window.addEventListener("resize", () => {
+      buildGraph();
+      if (selectedNodeId) {
+        selectNode(selectedNodeId);
+      }
+    });
+
+    renderPanel(null);
+    buildGraph();
+    selectNode("mimicorp");
   </script>
 </body>
 </html>
