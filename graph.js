@@ -1,4 +1,4 @@
-const nodes = [
+const coreNodes = [
   {
     id: "mimicorp",
     label: "Mimicorp",
@@ -113,29 +113,39 @@ const typeColors = {
   kernel: "#ffffff",
   branch: "#5ea96a",
   stem: "#7b5b42",
-  fruit: "#d7b45f"
+  fruit: "#d7b45f",
+  episode: "#d7b45f"
 };
 
-const nodeLookup = new Map(nodes.map((node) => [node.id, node]));
-const linkSeen = new Set();
-const links = [];
-
-// Build a unique link list from each node's declared connections.
-nodes.forEach((node) => {
-  node.connections.forEach((targetId) => {
-    if (!nodeLookup.has(targetId)) {
-      return;
-    }
-
-    const key = [node.id, targetId].sort().join("|");
-    if (linkSeen.has(key)) {
-      return;
-    }
-
-    linkSeen.add(key);
-    links.push({ source: node.id, target: targetId });
+function buildEpisodeNodes(registry) {
+  return registry.map((episode) => {
+    const slug = String(episode.episode_number).padStart(2, "0");
+    const extraConnections = (episode.connections || []).filter((id) => id !== "second_cutting" && id !== "media");
+    return {
+      id: episode.id,
+      label: "Ep " + slug,
+      type: "episode",
+      description: episode.description,
+      internal: true,
+      url: "/nodes/second-cutting/episode-" + slug + "/",
+      connections: ["second_cutting", "media", ...extraConnections],
+      episode_number: episode.episode_number,
+      episode_title: episode.title,
+      guest: episode.guest,
+      themes: episode.themes,
+      date: episode.date,
+      kind: "episode"
+    };
   });
-});
+}
+
+const generatedEpisodes = buildEpisodeNodes(typeof episodeRegistry !== "undefined" ? episodeRegistry : []);
+let showEpisodes = true;
+let selectedNodeId = "mimicorp";
+let simulation;
+let nodeSelection;
+let linkSelection;
+let labelSelection;
 
 const sidebarTitle = document.getElementById("node-title");
 const sidebarType = document.getElementById("node-type");
@@ -143,7 +153,14 @@ const sidebarRoute = document.getElementById("node-route");
 const sidebarDescription = document.getElementById("node-description");
 const nodeUrl = document.getElementById("node-url");
 const connectionList = document.getElementById("connection-list");
+const episodeMeta = document.getElementById("episode-meta");
+const episodeNumber = document.getElementById("episode-number");
+const episodeGuest = document.getElementById("episode-guest");
+const episodeDate = document.getElementById("episode-date");
+const episodeThemes = document.getElementById("episode-themes");
 const openProjectButton = document.getElementById("open-project");
+const watchProjectButton = document.getElementById("watch-project");
+const transcriptProjectButton = document.getElementById("transcript-project");
 const viewConnectionsButton = document.getElementById("view-connections");
 const placeholderPanel = document.getElementById("placeholder-panel");
 const placeholderTitle = document.getElementById("placeholder-title");
@@ -161,38 +178,92 @@ const drawerType = document.getElementById("drawer-type");
 const drawerRoute = document.getElementById("drawer-route");
 const drawerOpenProject = document.getElementById("drawer-open-project");
 const drawerInspectConnections = document.getElementById("drawer-inspect-connections");
+const episodeToggle = document.getElementById("episode-toggle");
 
-statusNodeCount.textContent = String(nodes.length);
-statusLinkCount.textContent = String(links.length);
+function getActiveNodes() {
+  return showEpisodes ? [...coreNodes, ...generatedEpisodes] : [...coreNodes];
+}
 
-let selectedNodeId = "mimicorp";
-let simulation;
-let nodeSelection;
-let linkSelection;
-let labelSelection;
+function getGraphState() {
+  const nodes = getActiveNodes();
+  const nodeLookup = new Map(nodes.map((node) => [node.id, node]));
+  const links = [];
+  const linkSeen = new Set();
+
+  nodes.forEach((node) => {
+    node.connections.forEach((targetId) => {
+      if (!nodeLookup.has(targetId)) {
+        return;
+      }
+
+      const key = [node.id, targetId].sort().join("|");
+      if (linkSeen.has(key)) {
+        return;
+      }
+
+      linkSeen.add(key);
+      links.push({ source: node.id, target: targetId });
+    });
+  });
+
+  return { nodes, links, nodeLookup };
+}
 
 function getConnectedSet(nodeId) {
+  const { nodeLookup } = getGraphState();
   const node = nodeLookup.get(nodeId);
   return new Set([nodeId, ...(node ? node.connections : [])]);
 }
 
 function renderPlaceholder(node) {
-  placeholderTitle.textContent = node.label;
-  placeholderDescription.textContent = node.internal
-    ? "This project has an internal page ready. Open it to move deeper into the Mimicorp system."
-    : "This node routes to an external destination. Open it to visit the real world counterpart.";
+  placeholderTitle.textContent = node.kind === "episode" ? node.episode_title : node.label;
+  placeholderDescription.textContent = node.kind === "episode"
+    ? "Episode route ready. Use Listen, Watch, or Transcript to move through the archive."
+    : node.internal
+      ? "This project has an internal page ready. Open it to move deeper into the Mimicorp system."
+      : "This node routes to an external destination. Open it to visit the real world counterpart.";
   placeholderPath.textContent = node.url;
   placeholderPanel.hidden = false;
 }
 
+function renderEpisodeMeta(node) {
+  if (node.kind !== "episode") {
+    episodeMeta.hidden = true;
+    watchProjectButton.hidden = true;
+    transcriptProjectButton.hidden = true;
+    openProjectButton.textContent = "Open project";
+    drawerOpenProject.textContent = "Open project";
+    return;
+  }
+
+  episodeMeta.hidden = false;
+  watchProjectButton.hidden = false;
+  transcriptProjectButton.hidden = false;
+  openProjectButton.textContent = "Listen";
+  drawerOpenProject.textContent = "Listen";
+  episodeNumber.textContent = "Episode " + String(node.episode_number).padStart(2, "0");
+  episodeGuest.textContent = "Guest: " + node.guest;
+  episodeDate.textContent = "Date: " + node.date;
+  episodeThemes.textContent = "Themes: " + node.themes.join(", ");
+}
+
+function renderDrawer(node) {
+  drawerTitle.textContent = node.kind === "episode" ? node.episode_title : node.label;
+  drawerDescription.textContent = node.description;
+  drawerType.textContent = node.kind === "episode" ? "episode" : node.type;
+  drawerType.dataset.type = node.kind === "episode" ? "episode" : node.type;
+  drawerRoute.textContent = node.internal ? "internal" : "external";
+}
+
 function renderSidebar(node) {
-  sidebarTitle.textContent = node.label;
-  sidebarType.textContent = node.type;
-  sidebarType.dataset.type = node.type;
+  sidebarTitle.textContent = node.kind === "episode" ? node.episode_title : node.label;
+  sidebarType.textContent = node.kind === "episode" ? "episode" : node.type;
+  sidebarType.dataset.type = node.kind === "episode" ? "episode" : node.type;
   sidebarRoute.textContent = node.internal ? "internal" : "external";
   sidebarDescription.textContent = node.description;
   nodeUrl.textContent = node.url;
 
+  const { nodeLookup } = getGraphState();
   connectionList.innerHTML = "";
   node.connections
     .map((id) => nodeLookup.get(id))
@@ -201,21 +272,14 @@ function renderSidebar(node) {
       const button = document.createElement("button");
       button.className = "connection-chip";
       button.type = "button";
-      button.textContent = connectedNode.label;
+      button.textContent = connectedNode.kind === "episode" ? connectedNode.episode_title : connectedNode.label;
       button.addEventListener("click", () => selectNode(connectedNode.id));
       connectionList.appendChild(button);
     });
 
+  renderEpisodeMeta(node);
   renderPlaceholder(node);
   renderDrawer(node);
-}
-
-function renderDrawer(node) {
-  drawerTitle.textContent = node.label;
-  drawerDescription.textContent = node.description;
-  drawerType.textContent = node.type;
-  drawerType.dataset.type = node.type;
-  drawerRoute.textContent = node.internal ? "internal" : "external";
 }
 
 function updateGraphState() {
@@ -239,6 +303,7 @@ function updateGraphState() {
 }
 
 function selectNode(nodeId) {
+  const { nodeLookup } = getGraphState();
   const node = nodeLookup.get(nodeId);
   if (!node) {
     terminalResponse.textContent = 'Node "' + nodeId + '" not found.';
@@ -248,34 +313,38 @@ function selectNode(nodeId) {
   selectedNodeId = nodeId;
   renderSidebar(node);
   updateGraphState();
-  terminalResponse.textContent = node.label + " selected. " + node.description;
+  terminalResponse.textContent = (node.kind === "episode" ? node.episode_title : node.label) + " selected. " + node.description;
 }
 
-function activateNode(node) {
-  if (node.internal) {
-    window.location.href = node.url;
+function activateNode(node, section = "") {
+  if (!node.internal) {
+    window.open(node.url, "_blank", "noopener,noreferrer");
+    terminalResponse.textContent = "Opened external project for " + node.label + ".";
     return;
   }
 
-  window.open(node.url, "_blank", "noopener,noreferrer");
-  terminalResponse.textContent = "Opened external project for " + node.label + ".";
+  window.location.href = section ? node.url + "#" + section : node.url;
 }
 
 function focusConnections() {
-  updateGraphState();
+  const { nodeLookup } = getGraphState();
   const node = nodeLookup.get(selectedNodeId);
+  if (!node) {
+    return;
+  }
+
+  updateGraphState();
   const names = node.connections
     .map((id) => nodeLookup.get(id))
     .filter(Boolean)
-    .map((item) => item.label)
+    .map((item) => item.kind === "episode" ? item.episode_title : item.label)
     .join(", ");
 
-  terminalResponse.textContent = names
-    ? "Connected to: " + names + "."
-    : "No connections available for this node.";
+  terminalResponse.textContent = names ? "Connected to: " + names + "." : "No connections available for this node.";
 }
 
 function centerOnNode(nodeId) {
+  const { nodeLookup } = getGraphState();
   const node = nodeLookup.get(nodeId);
   if (!node || !simulation) {
     return;
@@ -301,8 +370,9 @@ function normalizeNodeQuery(value) {
 
 function findNodeByQuery(query) {
   const normalized = normalizeNodeQuery(query);
+  const { nodes } = getGraphState();
   return nodes.find((node) => {
-    const normalizedLabel = normalizeNodeQuery(node.label);
+    const normalizedLabel = normalizeNodeQuery(node.kind === "episode" ? node.episode_title : node.label);
     return node.id === normalized || normalizedLabel === normalized;
   });
 }
@@ -328,7 +398,8 @@ function parseCommand(command) {
   }
 
   if (normalized === "list") {
-    terminalResponse.textContent = nodes.map((node) => node.label).join(" | ");
+    const { nodes } = getGraphState();
+    terminalResponse.textContent = nodes.map((node) => node.kind === "episode" ? node.episode_title : node.label).join(" | ");
     return;
   }
 
@@ -362,8 +433,11 @@ function buildGraph() {
   const graphPanel = graphCanvas.parentElement;
   const width = graphPanel.clientWidth;
   const height = graphPanel.clientHeight;
+  const graphData = getGraphState();
 
   graphCanvas.setAttribute("viewBox", "0 0 " + width + " " + height);
+  statusNodeCount.textContent = String(graphData.nodes.length);
+  statusLinkCount.textContent = String(graphData.links.length);
 
   const svg = d3.select(graphCanvas);
   svg.selectAll("*").remove();
@@ -380,17 +454,17 @@ function buildGraph() {
   linkSelection = zoomLayer
     .append("g")
     .selectAll("line")
-    .data(links)
+    .data(graphData.links)
     .join("line")
     .attr("class", "link-line");
 
   nodeSelection = zoomLayer
     .append("g")
     .selectAll("g")
-    .data(nodes)
+    .data(graphData.nodes)
     .join("g")
     .attr("class", "node-group")
-    .style("color", (d) => typeColors[d.type])
+    .style("color", (d) => typeColors[d.kind === "episode" ? "episode" : d.type])
     .on("mouseenter", function () {
       d3.select(this).classed("is-hovered", true);
     })
@@ -431,6 +505,9 @@ function buildGraph() {
     .attr("class", "node-ring")
     .attr("stroke", "currentColor")
     .attr("r", (d) => {
+      if (d.kind === "episode") {
+        return 14;
+      }
       if (d.type === "kernel") {
         return 34;
       }
@@ -445,6 +522,9 @@ function buildGraph() {
     .attr("class", "node-core")
     .attr("fill", "currentColor")
     .attr("r", (d) => {
+      if (d.kind === "episode") {
+        return 7;
+      }
       if (d.type === "kernel") {
         return 15;
       }
@@ -460,19 +540,32 @@ function buildGraph() {
   labelSelection = zoomLayer
     .append("g")
     .selectAll("text")
-    .data(nodes)
+    .data(graphData.nodes)
     .join("text")
     .attr("class", "node-label")
     .attr("text-anchor", "middle")
-    .attr("dy", (d) => (d.type === "kernel" ? 34 : 28))
-    .text((d) => d.label);
+    .attr("dy", (d) => (d.kind === "episode" ? 22 : d.type === "kernel" ? 34 : 28))
+    .text((d) => d.kind === "episode" ? "EP " + String(d.episode_number).padStart(2, "0") : d.label);
 
-  // Combine link attraction, repulsion, centering, and collision to keep the map readable.
-  simulation = d3.forceSimulation(nodes)
-    .force("link", d3.forceLink(links).id((d) => d.id).distance(130).strength(0.45))
-    .force("charge", d3.forceManyBody().strength(-340))
+  simulation = d3.forceSimulation(graphData.nodes)
+    .force("link", d3.forceLink(graphData.links).id((d) => d.id).distance((d) => {
+      const sourceId = typeof d.source === "object" ? d.source.id : d.source;
+      const targetId = typeof d.target === "object" ? d.target.id : d.target;
+      if (sourceId === "second_cutting" || targetId === "second_cutting") {
+        return 85;
+      }
+      return 130;
+    }).strength((d) => {
+      const sourceId = typeof d.source === "object" ? d.source.id : d.source;
+      const targetId = typeof d.target === "object" ? d.target.id : d.target;
+      return sourceId === "second_cutting" || targetId === "second_cutting" ? 0.7 : 0.45;
+    }))
+    .force("charge", d3.forceManyBody().strength((d) => d.kind === "episode" ? -120 : -340))
     .force("center", d3.forceCenter(width / 2, height / 2))
     .force("collide", d3.forceCollide().radius((d) => {
+      if (d.kind === "episode") {
+        return 24;
+      }
       if (d.type === "kernel") {
         return 66;
       }
@@ -481,6 +574,8 @@ function buildGraph() {
       }
       return 38;
     }))
+    .force("episodeX", d3.forceX((d) => d.kind === "episode" ? width * 0.42 : width * 0.5).strength((d) => d.kind === "episode" ? 0.08 : 0.015))
+    .force("episodeY", d3.forceY((d) => d.kind === "episode" ? height * 0.45 : height * 0.5).strength((d) => d.kind === "episode" ? 0.08 : 0.015))
     .on("tick", () => {
       linkSelection
         .attr("x1", (d) => d.source.x)
@@ -494,14 +589,29 @@ function buildGraph() {
         .attr("y", (d) => d.y);
     });
 
+  if (!graphData.nodeLookup.has(selectedNodeId)) {
+    selectedNodeId = "second_cutting";
+  }
   updateGraphState();
 }
 
 openProjectButton.addEventListener("click", () => {
+  const { nodeLookup } = getGraphState();
   activateNode(nodeLookup.get(selectedNodeId));
 });
 
+watchProjectButton.addEventListener("click", () => {
+  const { nodeLookup } = getGraphState();
+  activateNode(nodeLookup.get(selectedNodeId), "watch");
+});
+
+transcriptProjectButton.addEventListener("click", () => {
+  const { nodeLookup } = getGraphState();
+  activateNode(nodeLookup.get(selectedNodeId), "transcript");
+});
+
 drawerOpenProject.addEventListener("click", () => {
+  const { nodeLookup } = getGraphState();
   activateNode(nodeLookup.get(selectedNodeId));
 });
 
@@ -523,6 +633,12 @@ document.querySelectorAll("[data-command]").forEach((button) => {
   button.addEventListener("click", () => {
     parseCommand(button.getAttribute("data-command"));
   });
+});
+
+episodeToggle.addEventListener("change", () => {
+  showEpisodes = episodeToggle.checked;
+  buildGraph();
+  selectNode(selectedNodeId);
 });
 
 window.addEventListener("resize", buildGraph);
