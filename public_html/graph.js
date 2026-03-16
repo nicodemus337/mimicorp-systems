@@ -202,7 +202,6 @@ const episodeThemes = document.getElementById("episode-themes");
 const openProjectButton = document.getElementById("open-project");
 const watchProjectButton = document.getElementById("watch-project");
 const transcriptProjectButton = document.getElementById("transcript-project");
-const viewConnectionsButton = document.getElementById("view-connections");
 const terminalForm = document.getElementById("terminal-form");
 const terminalInput = document.getElementById("terminal-input");
 const terminalResponse = document.getElementById("terminal-response");
@@ -700,10 +699,6 @@ watchProjectButton.addEventListener("click", () => {
 transcriptProjectButton.addEventListener("click", () => {
   const { nodeLookup } = getGraphState();
   activateNode(nodeLookup.get(selectedNodeId), "transcript");
-});
-
-viewConnectionsButton.addEventListener("click", () => {
-  focusConnections();
 });
 
 terminalForm.addEventListener("submit", (event) => {
