@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book Time | Mimicorp Systems</title>
+  <link rel="stylesheet" href="../node.css">
+</head>
+<body>
+  <div class="node-page">
+    <nav class="node-nav">
+      <a class="nav-link" href="../../index.html">Back to network</a>
+      <p class="path">/nodes/book-time/</p>
+    </nav>
+
+    <header class="node-header">
+      <p class="eyebrow">Studio Time</p>
+      <h1>Book focused time with Amelia.</h1>
+      <p class="intro">
+        Reserve a short working session for creative direction, web strategy, editorial thinking,
+        ecological data planning, grant writing, or a project that needs a clearer next step.
+      </p>
+      <div class="chip-row">
+        <span class="chip">Creative direction</span>
+        <span class="chip">Web strategy</span>
+        <span class="chip">Grant thinking</span>
+        <span class="chip">Ecological systems</span>
+      </div>
+    </header>
+
+    <section class="layout">
+      <div class="stack">
+        <article class="node-card">
+          <p class="section-kicker">Session Options</p>
+          <div class="card-grid" id="booking-options">
+            <article class="price-card price-card--selected" data-session="Quick Signal" data-duration="15 minutes" data-price="$50">
+              <div>
+                <p class="section-kicker">15 Minutes</p>
+                <h3>Quick Signal</h3>
+              </div>
+              <p class="price-card__price">$50</p>
+              <p class="price-card__meta">For one clear question, one decision, or one fast redirect.</p>
+              <button class="node-link" type="button">Select</button>
+            </article>
+
+            <article class="price-card" data-session="Working Session" data-duration="30 minutes" data-price="$95">
+              <div>
+                <p class="section-kicker">30 Minutes</p>
+                <h3>Working Session</h3>
+              </div>
+              <p class="price-card__price">$95</p>
+              <p class="price-card__meta">For strategy, review, editorial shaping, or project structure.</p>
+              <button class="node-link" type="button">Select</button>
+            </article>
+
+            <article class="price-card" data-session="Deep Dive" data-duration="60 minutes" data-price="$175">
+              <div>
+                <p class="section-kicker">60 Minutes</p>
+                <h3>Deep Dive</h3>
+              </div>
+              <p class="price-card__price">$175</p>
+              <p class="price-card__meta">For layered conversations that need room to think, map, and plan.</p>
+              <button class="node-link" type="button">Select</button>
+            </article>
+          </div>
+        </article>
+
+        <article class="node-card">
+          <p class="section-kicker">Booking Request</p>
+          <h2>Send the shape of the conversation.</h2>
+          <form class="form-grid" id="booking-form">
+            <div class="form-field">
+              <label for="booking-name">Name</label>
+              <input id="booking-name" name="name" type="text" required>
+            </div>
+
+            <div class="form-field">
+              <label for="booking-email">Email</label>
+              <input id="booking-email" name="email" type="email" required>
+            </div>
+
+            <div class="form-field">
+              <label for="booking-topic">What are we discussing?</label>
+              <textarea id="booking-topic" name="topic" placeholder="Website work, social media, drone photography, documentary, grant writing, ecological data, regenerative agriculture, or something else." required></textarea>
+            </div>
+
+            <div class="form-field">
+              <label for="booking-outcome">Best outcome</label>
+              <input id="booking-outcome" name="outcome" type="text" placeholder="What do you want to leave with?">
+            </div>
+
+            <div class="form-field">
+              <label for="booking-timing">Preferred timing</label>
+              <input id="booking-timing" name="timing" type="text" placeholder="A few windows that work for you">
+            </div>
+
+            <button class="action-button" type="submit" id="booking-submit">Request 15 minutes · $50</button>
+          </form>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="node-card summary-card">
+          <p class="section-kicker">Selected Session</p>
+          <h2 id="summary-session">Quick Signal</h2>
+          <p class="summary-card__line"><span class="summary-card__strong" id="summary-duration">15 minutes</span> · <span class="summary-card__strong" id="summary-price">$50</span></p>
+          <p class="summary-card__line" id="summary-description">
+            A short focused conversation for one clear question, one decision, or one fast redirect.
+          </p>
+          <p class="summary-card__line">
+            Booking requests route to <a class="node-link" href="mailto:amelia@mimicorp.systems">amelia@mimicorp.systems</a>.
+          </p>
+          <p class="summary-card__line">
+            Payment and calendar confirmation can be sent in the reply. We can connect this to Stripe or a scheduler next.
+          </p>
+        </article>
+
+        <article class="node-card">
+          <p class="section-kicker">Good Uses</p>
+          <ul>
+            <li>Clarify the next step for a website or media project.</li>
+            <li>Talk through a documentary or drone concept.</li>
+            <li>Shape a grant narrative or collaboration angle.</li>
+            <li>Map an ecological archive, precision ag, or regenerative farming question.</li>
+          </ul>
+        </article>
+      </aside>
+    </section>
+  </div>
+
+  <script>
+    const cards = Array.from(document.querySelectorAll(".price-card"));
+    const submitButton = document.getElementById("booking-submit");
+    const summarySession = document.getElementById("summary-session");
+    const summaryDuration = document.getElementById("summary-duration");
+    const summaryPrice = document.getElementById("summary-price");
+    const summaryDescription = document.getElementById("summary-description");
+    const form = document.getElementById("booking-form");
+
+    let activeBooking = {
+      session: "Quick Signal",
+      duration: "15 minutes",
+      price: "$50",
+      description: "A short focused conversation for one clear question, one decision, or one fast redirect."
+    };
+
+    const descriptions = {
+      "Quick Signal": "A short focused conversation for one clear question, one decision, or one fast redirect.",
+      "Working Session": "A half-hour working session for strategy, review, editorial shaping, or project structure.",
+      "Deep Dive": "A longer conversation with enough room to think, map relationships, and plan the next layer."
+    };
+
+    function renderBooking() {
+      summarySession.textContent = activeBooking.session;
+      summaryDuration.textContent = activeBooking.duration;
+      summaryPrice.textContent = activeBooking.price;
+      summaryDescription.textContent = activeBooking.description;
+      submitButton.textContent = "Request " + activeBooking.duration + " · " + activeBooking.price;
+    }
+
+    cards.forEach((card) => {
+      card.querySelector("button").addEventListener("click", () => {
+        cards.forEach((item) => item.classList.remove("price-card--selected"));
+        card.classList.add("price-card--selected");
+
+        activeBooking = {
+          session: card.dataset.session,
+          duration: card.dataset.duration,
+          price: card.dataset.price,
+          description: descriptions[card.dataset.session]
+        };
+
+        renderBooking();
+        form.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const name = document.getElementById("booking-name").value.trim();
+      const email = document.getElementById("booking-email").value.trim();
+      const topic = document.getElementById("booking-topic").value.trim();
+      const outcome = document.getElementById("booking-outcome").value.trim();
+      const timing = document.getElementById("booking-timing").value.trim();
+
+      const subject = encodeURIComponent("Booking request: " + activeBooking.session + " (" + activeBooking.duration + " / " + activeBooking.price + ")");
+      const body = encodeURIComponent(
+        "Name: " + name + "\n" +
+        "Email: " + email + "\n" +
+        "Session: " + activeBooking.session + "\n" +
+        "Duration: " + activeBooking.duration + "\n" +
+        "Price: " + activeBooking.price + "\n\n" +
+        "What we are discussing:\n" + topic + "\n\n" +
+        "Best outcome:\n" + (outcome || "Not specified") + "\n\n" +
+        "Preferred timing:\n" + (timing || "Not specified")
+      );
+
+      window.location.href = "mailto:amelia@mimicorp.systems?subject=" + subject + "&body=" + body;
+    });
+
+    renderBooking();
+  </script>
+</body>
+</html>
