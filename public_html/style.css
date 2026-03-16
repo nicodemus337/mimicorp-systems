@@ -194,6 +194,19 @@ code {
   margin-top: 8px;
 }
 
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--text);
+}
+
+.toggle-row input {
+  width: 18px;
+  height: 18px;
+}
+
 .node-meta {
   display: flex;
   flex-wrap: wrap;
@@ -246,6 +259,10 @@ code {
   color: var(--fruit);
 }
 
+.type-chip[data-type="episode"] {
+  color: var(--fruit);
+}
+
 .route-chip {
   color: var(--muted);
 }
@@ -263,6 +280,17 @@ code {
 
 .panel-section--compact {
   gap: 6px;
+}
+
+.episode-meta-list {
+  display: grid;
+  gap: 6px;
+}
+
+.episode-meta-list p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
 }
 
 .node-route-path {

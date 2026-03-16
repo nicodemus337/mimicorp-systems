@@ -47,6 +47,10 @@
             <li><strong>Stems</strong> represent real world operations.</li>
             <li><strong>Fruit</strong> delivers outputs and tools.</li>
           </ul>
+          <label class="toggle-row" for="episode-toggle">
+            <span>Show episode nodes</span>
+            <input id="episode-toggle" type="checkbox" checked>
+          </label>
         </div>
 
         <div class="panel-card">
@@ -70,12 +74,28 @@
             <div class="connection-list" id="connection-list"></div>
           </div>
 
+          <div class="panel-section panel-section--compact" id="episode-meta" hidden>
+            <p class="panel-kicker">Episode Details</p>
+            <div class="episode-meta-list">
+              <p id="episode-number"></p>
+              <p id="episode-guest"></p>
+              <p id="episode-date"></p>
+              <p id="episode-themes"></p>
+            </div>
+          </div>
+
           <div class="panel-actions">
             <button class="action-button" type="button" id="open-project">
               Open project
             </button>
             <button class="action-button action-button--secondary" type="button" id="view-connections">
               View connections
+            </button>
+            <button class="action-button action-button--secondary" type="button" id="watch-project" hidden>
+              Watch
+            </button>
+            <button class="action-button action-button--secondary" type="button" id="transcript-project" hidden>
+              Transcript
             </button>
           </div>
         </div>
@@ -159,6 +179,7 @@
   </div>
 
   <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="scripts/episodes.js"></script>
   <script src="graph.js"></script>
 </body>
 </html>
