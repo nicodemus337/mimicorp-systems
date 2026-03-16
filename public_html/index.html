@@ -6,7 +6,7 @@
   <title>Mimicorp Systems</title>
   <meta
     name="description"
-    content="Mimicorp Systems is a lightweight operating system dashboard for a creative technology ecosystem."
+    content="Mimicorp Systems is a neural dashboard exploring the networks that connect land, media, and living systems."
   >
   <link rel="icon" type="image/png" href="assets/logo.png">
   <link rel="stylesheet" href="style.css">
@@ -15,16 +15,16 @@
   <div class="app-shell">
     <header class="top-bar">
       <div class="top-bar__title">
-        <p class="eyebrow">Creative Systems Dashboard</p>
-        <h1>Mimicorp Systems</h1>
+        <p class="eyebrow">Mimicorp Systems</p>
+        <h1>Creative technology for land, media, and living systems.</h1>
         <p class="top-bar__summary">
-          Operating at the intersection of land, media, and technology.
+          A creative technology studio exploring how land, people, and technology move through the same living networks.
         </p>
       </div>
 
       <div class="top-bar__status" aria-label="System status">
         <div class="status-pill">
-          <span class="status-pill__label">Mode</span>
+          <span class="status-pill__label">Status</span>
           <strong>Network Live</strong>
         </div>
         <div class="status-pill">
@@ -41,11 +41,15 @@
     <main class="workspace">
       <aside class="sidebar" id="sidebar" aria-live="polite">
         <div class="panel-card panel-card--guide">
-          <p class="panel-kicker">System Logic</p>
+          <p class="panel-kicker">System</p>
+          <h2>Read the network at a glance.</h2>
+          <p class="node-description">
+            Branches hold inquiry. Stems ground the work in real operations. Fruit carries tools, stories, and useful forms back out into the world.
+          </p>
           <ul class="guide-list">
-            <li><strong>Branches</strong> generate ideas and research.</li>
-            <li><strong>Stems</strong> represent real world operations.</li>
-            <li><strong>Fruit</strong> delivers outputs and tools.</li>
+            <li><strong>Branches</strong> = ideas and research</li>
+            <li><strong>Stems</strong> = real world operations</li>
+            <li><strong>Fruit</strong> = services, outputs, and tools</li>
           </ul>
           <label class="toggle-row" for="episode-toggle">
             <span>Show episode nodes</span>
@@ -53,19 +57,22 @@
           </label>
         </div>
 
-        <div class="panel-card">
-          <p class="panel-kicker">Node Info</p>
+        <div class="panel-card panel-card--active">
+          <p class="panel-kicker">Active Selection</p>
           <h2 id="node-title">Mimicorp</h2>
           <div class="node-meta">
             <span class="type-chip" id="node-type">kernel</span>
-            <span class="route-chip" id="node-route">internal</span>
+            <span class="route-chip" id="node-route">internal page</span>
           </div>
           <p class="node-description" id="node-description">
             Creative technology for land, media, and living systems.
           </p>
+          <p class="node-invitation" id="node-invitation">
+            Explore the network to see how the pieces connect.
+          </p>
 
           <div class="panel-section panel-section--compact">
-            <p class="panel-kicker">Route</p>
+            <p class="panel-kicker">Path</p>
             <p class="node-route-path" id="node-url">/</p>
           </div>
 
@@ -75,7 +82,7 @@
           </div>
 
           <div class="panel-section panel-section--compact" id="episode-meta" hidden>
-            <p class="panel-kicker">Episode Details</p>
+            <p class="panel-kicker">Episode</p>
             <div class="episode-meta-list">
               <p id="episode-number"></p>
               <p id="episode-guest"></p>
@@ -86,10 +93,10 @@
 
           <div class="panel-actions">
             <button class="action-button" type="button" id="open-project">
-              Open project
+              Explore node
             </button>
             <button class="action-button action-button--secondary" type="button" id="view-connections">
-              View connections
+              Trace network
             </button>
             <button class="action-button action-button--secondary" type="button" id="watch-project" hidden>
               Watch
@@ -99,17 +106,16 @@
             </button>
           </div>
         </div>
-
-        <div class="panel-card placeholder-card" id="placeholder-panel" hidden>
-          <p class="panel-kicker">Selected Project</p>
-          <h3 id="placeholder-title">Node Page</h3>
-          <p class="node-description" id="placeholder-description"></p>
-          <p class="placeholder-path" id="placeholder-path"></p>
-        </div>
       </aside>
 
       <section class="graph-panel">
         <div class="graph-panel__overlay">
+          <article class="graph-callout">
+            <p class="panel-kicker">Network Map</p>
+            <h2>Start anywhere. Follow the relationships.</h2>
+            <p>Click to inspect. Drag to move. Double-click to open.</p>
+          </article>
+
           <div class="legend" aria-label="Node types">
             <span class="legend-item legend-item--kernel">Kernel</span>
             <span class="legend-item legend-item--branch">Branch</span>
@@ -117,35 +123,6 @@
             <span class="legend-item legend-item--fruit">Fruit</span>
           </div>
         </div>
-
-        <div class="graph-panel__hint">
-          <p class="panel-kicker">Map Controls</p>
-          <p>Click to inspect, drag to reposition, scroll to zoom, double-click to open.</p>
-        </div>
-
-        <div class="boot-log" aria-label="System boot status">
-          <p>Initializing Mimicorp Systems...</p>
-          <p>Loading network map</p>
-          <p>Indexing nodes</p>
-          <p>Connecting branches, stems, and fruit</p>
-          <p class="boot-log__ready">System ready.</p>
-        </div>
-
-        <section class="selection-drawer" id="selection-drawer" aria-live="polite">
-          <p class="panel-kicker">Active Selection</p>
-          <h3 id="drawer-title">Mimicorp</h3>
-          <p class="selection-drawer__description" id="drawer-description">
-            Creative technology for land, media, and living systems.
-          </p>
-          <div class="selection-drawer__meta">
-            <span class="type-chip" id="drawer-type">kernel</span>
-            <span class="route-chip" id="drawer-route">internal</span>
-          </div>
-          <div class="selection-drawer__actions">
-            <button class="action-button" type="button" id="drawer-open-project">Open project</button>
-            <button class="action-button action-button--secondary" type="button" id="drawer-inspect-connections">View connections</button>
-          </div>
-        </section>
 
         <svg id="graph-canvas" aria-label="Mimicorp node network"></svg>
       </section>
@@ -162,95 +139,50 @@
           type="text"
           autocomplete="off"
           spellcheck="false"
-          placeholder="help | map | list | open second_cutting | inspect glc"
+          placeholder="help | list | inspect second_cutting | open ag_lab"
         >
         <button class="terminal__button" type="submit">Run</button>
       </form>
-      <div class="terminal__shortcuts">
-        <button class="shortcut-chip" type="button" data-command="help">help</button>
-        <button class="shortcut-chip" type="button" data-command="list">list</button>
-        <button class="shortcut-chip" type="button" data-command="map">map</button>
-        <button class="shortcut-chip" type="button" data-command="open second_cutting">open second_cutting</button>
-      </div>
       <p class="terminal__response" id="terminal-response">
-        Initializing Mimicorp Systems... System ready. Click a node to inspect it, then open the project when you are ready to enter.
+        System ready. Inspect a node, then open it when you want to go deeper.
       </p>
     </footer>
 
     <section class="funnel">
       <div class="funnel__intro">
-        <p class="eyebrow">Work With Mimicorp</p>
-        <h2>Strategic collaborative partnership opportunities are welcome.</h2>
+        <p class="eyebrow">Work Together</p>
+        <h2>Commission, collaborate, or help fund the next layer.</h2>
         <p>
-          Mimicorp is open to collaborative funding relationships that support storytelling,
-          digital infrastructure, ecological observation, media production, and long-term
-          place-based research.
+          Mimicorp is open to commissions, strategic collaborations, and partnership funding that support storytelling, field documentation, ecological data, and digital infrastructure tied to real places.
         </p>
       </div>
 
       <div class="funnel__grid">
         <article class="funnel-card">
           <p class="panel-kicker">Web + Social</p>
-          <h3>Clarify your public presence</h3>
-          <p>
-            Website design, content systems, and social media storytelling for agricultural,
-            ecological, and place-based projects.
-          </p>
-          <p class="funnel-card__result">Good fit if you need: website work, social content, campaign messaging.</p>
+          <h3>Clarify the public face of the work.</h3>
+          <p>Websites, campaigns, and social storytelling for agricultural, ecological, and place-based projects.</p>
           <a class="action-button funnel-card__button" href="/nodes/contact/">Explore</a>
         </article>
 
         <article class="funnel-card">
-          <p class="panel-kicker">Drone + Documentary</p>
-          <h3>Document the landscape</h3>
-          <p>
-            Drone photography, field cinematography, and living documentary work that helps
-            people see the land, the operation, and the story more clearly.
-          </p>
-          <p class="funnel-card__result">Good fit if you need: aerial media, documentary production, ongoing visual archives.</p>
+          <p class="panel-kicker">Documentary + Drone</p>
+          <h3>Show the landscape as it actually lives.</h3>
+          <p>Aerial media, field cinematography, and living documentary systems for land-based work.</p>
           <a class="action-button funnel-card__button" href="/nodes/contact/">Explore</a>
         </article>
 
         <article class="funnel-card">
-          <p class="panel-kicker">Grant + Strategy</p>
-          <h3>Turn funding into infrastructure</h3>
-          <p>
-            Grant writing support, Value Added Producer Grant strategy, and communication
-            systems that connect funding opportunities to practical outcomes.
-          </p>
-          <p class="funnel-card__result">Good fit if you need: grant narratives, producer-facing strategy, implementation planning.</p>
-          <a class="action-button funnel-card__button" href="/nodes/contact/">Explore</a>
-        </article>
-
-        <article class="funnel-card">
-          <p class="panel-kicker">Ecological Data</p>
-          <h3>Build a long memory for the land</h3>
-          <p>
-            Soil surveys, drone imagery, ecological observation, and data organization for
-            projects that want to understand change over time.
-          </p>
-          <p class="funnel-card__result">Good fit if you need: ecological datasets, monitoring workflows, archive design.</p>
-          <a class="action-button funnel-card__button" href="/nodes/contact/">Explore</a>
-        </article>
-
-        <article class="funnel-card">
-          <p class="panel-kicker">Ag Advisory</p>
-          <h3>Learn through working systems</h3>
-          <p>
-            Guidance for people exploring precision agriculture, regenerative farming
-            practices, and the relationship between production, stewardship, and technology.
-          </p>
-          <p class="funnel-card__result">Good fit if you need: regenerative farming education, precision ag orientation, field-based research support.</p>
+          <p class="panel-kicker">Data + Stewardship</p>
+          <h3>Build a long memory for the land.</h3>
+          <p>Ecological archives, observation workflows, and data structures that reveal change over time.</p>
           <a class="action-button funnel-card__button" href="/nodes/contact/">Explore</a>
         </article>
 
         <article class="funnel-card funnel-card--cta">
-          <p class="panel-kicker">Next Step</p>
-          <h3>Start with one shared opportunity.</h3>
-          <p>
-            The best entry point is simple: what system, landscape, audience, or funding
-            opportunity needs a stronger structure for the work ahead?
-          </p>
+          <p class="panel-kicker">Funding + Partnership</p>
+          <h3>Turn support into working infrastructure.</h3>
+          <p>Grant writing, collaborative strategy, and place-based systems that connect funding to durable outcomes.</p>
           <a class="action-button funnel-card__button" href="/nodes/contact/">Explore</a>
         </article>
       </div>

@@ -182,6 +182,7 @@ const sidebarTitle = document.getElementById("node-title");
 const sidebarType = document.getElementById("node-type");
 const sidebarRoute = document.getElementById("node-route");
 const sidebarDescription = document.getElementById("node-description");
+const nodeInvitation = document.getElementById("node-invitation");
 const nodeUrl = document.getElementById("node-url");
 const connectionList = document.getElementById("connection-list");
 const episodeMeta = document.getElementById("episode-meta");
@@ -193,23 +194,73 @@ const openProjectButton = document.getElementById("open-project");
 const watchProjectButton = document.getElementById("watch-project");
 const transcriptProjectButton = document.getElementById("transcript-project");
 const viewConnectionsButton = document.getElementById("view-connections");
-const placeholderPanel = document.getElementById("placeholder-panel");
-const placeholderTitle = document.getElementById("placeholder-title");
-const placeholderDescription = document.getElementById("placeholder-description");
-const placeholderPath = document.getElementById("placeholder-path");
 const terminalForm = document.getElementById("terminal-form");
 const terminalInput = document.getElementById("terminal-input");
 const terminalResponse = document.getElementById("terminal-response");
 const statusNodeCount = document.getElementById("status-node-count");
 const statusLinkCount = document.getElementById("status-link-count");
 const graphCanvas = document.getElementById("graph-canvas");
-const drawerTitle = document.getElementById("drawer-title");
-const drawerDescription = document.getElementById("drawer-description");
-const drawerType = document.getElementById("drawer-type");
-const drawerRoute = document.getElementById("drawer-route");
-const drawerOpenProject = document.getElementById("drawer-open-project");
-const drawerInspectConnections = document.getElementById("drawer-inspect-connections");
 const episodeToggle = document.getElementById("episode-toggle");
+
+function getDisplayTitle(node) {
+  return node.kind === "episode" ? node.episode_title : node.label;
+}
+
+function getDisplayType(node) {
+  if (node.kind === "episode") {
+    return "episode";
+  }
+
+  if (node.type === "fruit") {
+    return "service";
+  }
+
+  return node.type;
+}
+
+function getRouteLabel(node) {
+  return node.internal ? "internal page" : "external link";
+}
+
+function getInvitation(node) {
+  if (node.id === "mimicorp") {
+    return "Explore the network to see how the pieces connect.";
+  }
+
+  if (node.id === "second_cutting") {
+    return "Enter the archive and start listening from the field.";
+  }
+
+  if (node.kind === "episode") {
+    return "Listen now, then open the episode page for Spotify and transcript details.";
+  }
+
+  if (!node.internal) {
+    return "Open the live site and move from the map into the field.";
+  }
+
+  if (node.type === "fruit") {
+    return "Open this service layer to see how Mimicorp turns observation into usable tools.";
+  }
+
+  return "Open this node to follow the work in more detail.";
+}
+
+function getPrimaryActionLabel(node) {
+  if (node.kind === "episode" || node.id === "second_cutting") {
+    return "Listen";
+  }
+
+  if (!node.internal) {
+    return "Visit site";
+  }
+
+  if (node.type === "fruit") {
+    return "Explore service";
+  }
+
+  return "Explore node";
+}
 
 function getActiveNodes() {
   return showEpisodes ? [...coreNodes, ...generatedEpisodes] : [...coreNodes];
@@ -246,57 +297,33 @@ function getConnectedSet(nodeId) {
   return new Set([nodeId, ...(node ? node.connections : [])]);
 }
 
-function renderPlaceholder(node) {
-  placeholderTitle.textContent = node.kind === "episode" ? node.episode_title : node.label;
-  placeholderDescription.textContent = node.kind === "episode"
-    ? node.description + " Open the episode to listen, watch, or move through the archive."
-    : node.description;
-  placeholderPath.textContent = node.url;
-  placeholderPanel.hidden = false;
-}
-
 function renderEpisodeMeta(node) {
   if (node.kind !== "episode") {
     episodeMeta.hidden = true;
     watchProjectButton.hidden = true;
     transcriptProjectButton.hidden = true;
-    openProjectButton.textContent = "Open project";
-    drawerOpenProject.textContent = "Open project";
     return;
   }
 
   episodeMeta.hidden = false;
-  watchProjectButton.hidden = false;
-  transcriptProjectButton.hidden = false;
-  openProjectButton.textContent = "Listen";
-  drawerOpenProject.textContent = "Listen";
+  watchProjectButton.hidden = !node.watch_url;
+  transcriptProjectButton.hidden = !node.transcript_url;
   episodeNumber.textContent = "Episode " + String(node.episode_number).padStart(2, "0");
   episodeGuest.textContent = "Guest: " + node.guest;
   episodeDate.textContent = "Date: " + node.date;
   episodeThemes.textContent = "Themes: " + node.themes.join(", ");
 }
 
-function renderDrawer(node) {
-  drawerTitle.textContent = node.kind === "episode" ? node.episode_title : node.label;
-  if (node.id === "second_cutting") {
-    drawerDescription.textContent = "Enter Second Cutting to listen to conversations about land, animals, food, and the systems that connect them.";
-  } else if (node.kind === "episode") {
-    drawerDescription.textContent = "Listen to Episode " + String(node.episode_number).padStart(2, "0") + ": " + node.episode_title + ".";
-  } else {
-    drawerDescription.textContent = node.description;
-  }
-  drawerType.textContent = node.kind === "episode" ? "episode" : node.type;
-  drawerType.dataset.type = node.kind === "episode" ? "episode" : node.type;
-  drawerRoute.textContent = node.internal ? "internal" : "external";
-}
-
 function renderSidebar(node) {
-  sidebarTitle.textContent = node.kind === "episode" ? node.episode_title : node.label;
-  sidebarType.textContent = node.kind === "episode" ? "episode" : node.type;
-  sidebarType.dataset.type = node.kind === "episode" ? "episode" : node.type;
-  sidebarRoute.textContent = node.internal ? "internal" : "external";
+  const displayType = getDisplayType(node);
+  sidebarTitle.textContent = getDisplayTitle(node);
+  sidebarType.textContent = displayType;
+  sidebarType.dataset.type = displayType;
+  sidebarRoute.textContent = getRouteLabel(node);
   sidebarDescription.textContent = node.description;
+  nodeInvitation.textContent = getInvitation(node);
   nodeUrl.textContent = node.url;
+  openProjectButton.textContent = getPrimaryActionLabel(node);
 
   const { nodeLookup } = getGraphState();
   connectionList.innerHTML = "";
@@ -319,8 +346,6 @@ function renderSidebar(node) {
     });
 
   renderEpisodeMeta(node);
-  renderPlaceholder(node);
-  renderDrawer(node);
 }
 
 function updateGraphState() {
@@ -354,7 +379,7 @@ function selectNode(nodeId) {
   selectedNodeId = nodeId;
   renderSidebar(node);
   updateGraphState();
-  terminalResponse.textContent = (node.kind === "episode" ? node.episode_title : node.label) + " selected. " + node.description;
+  terminalResponse.textContent = getDisplayTitle(node) + " active. " + getInvitation(node);
 }
 
 function activateNode(node, section = "") {
@@ -377,7 +402,7 @@ function activateNode(node, section = "") {
 
   if (!node.internal) {
     window.open(node.url, "_blank", "noopener,noreferrer");
-    terminalResponse.textContent = "Opened external project for " + node.label + ".";
+    terminalResponse.textContent = "Opened " + getDisplayTitle(node) + ".";
     return;
   }
 
@@ -395,7 +420,7 @@ function focusConnections() {
   const names = node.connections
     .map((id) => nodeLookup.get(id))
     .filter(Boolean)
-    .map((item) => item.kind === "episode" ? item.episode_title : item.label)
+    .map((item) => getDisplayTitle(item))
     .join(", ");
 
   terminalResponse.textContent = names ? "Connected to: " + names + "." : "No connections available for this node.";
@@ -457,7 +482,7 @@ function parseCommand(command) {
 
   if (normalized === "list") {
     const { nodes } = getGraphState();
-    terminalResponse.textContent = nodes.map((node) => node.kind === "episode" ? node.episode_title : node.label).join(" | ");
+    terminalResponse.textContent = nodes.map((node) => getDisplayTitle(node)).join(" | ");
     return;
   }
 
@@ -668,16 +693,7 @@ transcriptProjectButton.addEventListener("click", () => {
   activateNode(nodeLookup.get(selectedNodeId), "transcript");
 });
 
-drawerOpenProject.addEventListener("click", () => {
-  const { nodeLookup } = getGraphState();
-  activateNode(nodeLookup.get(selectedNodeId));
-});
-
 viewConnectionsButton.addEventListener("click", () => {
-  focusConnections();
-});
-
-drawerInspectConnections.addEventListener("click", () => {
   focusConnections();
 });
 
@@ -685,12 +701,6 @@ terminalForm.addEventListener("submit", (event) => {
   event.preventDefault();
   parseCommand(terminalInput.value);
   terminalInput.value = "";
-});
-
-document.querySelectorAll("[data-command]").forEach((button) => {
-  button.addEventListener("click", () => {
-    parseCommand(button.getAttribute("data-command"));
-  });
 });
 
 episodeToggle.addEventListener("change", () => {
