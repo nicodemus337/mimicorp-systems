@@ -3,7 +3,7 @@ const nodes = [
     id: "mimicorp",
     label: "Mimicorp",
     type: "kernel",
-    description: "Exploring the networks that connect land, people, and technology.",
+    description: "Creative technology for land, media, and living systems.",
     internal: true,
     url: "/",
     connections: ["second_cutting", "ag_lab", "joynet", "design", "media", "data", "software"]
@@ -30,7 +30,7 @@ const nodes = [
     id: "joynet",
     label: "JoyNet",
     type: "branch",
-    description: "JoyNet explores the philosophical and ethical frameworks that underlie systems of belief, community, and responsibility.",
+    description: "An online sanctuary exploring faith, doubt, and meaning for people who never quite fit the mold.",
     internal: true,
     url: "/nodes/joynet/",
     connections: ["mimicorp", "design", "media", "software", "teche_lake_outfitters"]
@@ -93,7 +93,7 @@ const nodes = [
     id: "data",
     label: "Data",
     type: "fruit",
-    description: "Data projects gather and organize information about land and ecological systems to reveal patterns otherwise hard to see.",
+    description: "A living archive of ecological data documenting how soil, plants, animals, and landscapes change over time.",
     internal: true,
     url: "/nodes/data/",
     connections: ["mimicorp", "second_cutting", "ag_lab", "shady_pines"]
