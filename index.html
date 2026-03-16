@@ -18,8 +18,7 @@
         <p class="eyebrow">Creative Systems Dashboard</p>
         <h1>Mimicorp Systems</h1>
         <p class="top-bar__summary">
-          Explore projects as a connected operating system for land, agriculture,
-          media, and ecological infrastructure.
+          Operating at the intersection of land, media, and technology.
         </p>
       </div>
 
@@ -58,8 +57,7 @@
             <span class="route-chip" id="node-route">internal</span>
           </div>
           <p class="node-description" id="node-description">
-            Root kernel for an interconnected set of projects exploring land,
-            agriculture, media, and ecological systems.
+            Exploring the networks that connect land, people, and technology.
           </p>
 
           <div class="panel-section panel-section--compact">
@@ -105,6 +103,30 @@
           <p>Click to inspect, drag to reposition, scroll to zoom, double-click to open.</p>
         </div>
 
+        <div class="boot-log" aria-label="System boot status">
+          <p>Initializing Mimicorp Systems...</p>
+          <p>Loading network map</p>
+          <p>Indexing nodes</p>
+          <p>Connecting branches, stems, and fruit</p>
+          <p class="boot-log__ready">System ready.</p>
+        </div>
+
+        <section class="selection-drawer" id="selection-drawer" aria-live="polite">
+          <p class="panel-kicker">Active Selection</p>
+          <h3 id="drawer-title">Mimicorp</h3>
+          <p class="selection-drawer__description" id="drawer-description">
+            Exploring the networks that connect land, people, and technology.
+          </p>
+          <div class="selection-drawer__meta">
+            <span class="type-chip" id="drawer-type">kernel</span>
+            <span class="route-chip" id="drawer-route">internal</span>
+          </div>
+          <div class="selection-drawer__actions">
+            <button class="action-button" type="button" id="drawer-open-project">Open project</button>
+            <button class="action-button action-button--secondary" type="button" id="drawer-inspect-connections">View connections</button>
+          </div>
+        </section>
+
         <svg id="graph-canvas" aria-label="Mimicorp node network"></svg>
       </section>
     </main>
@@ -131,7 +153,7 @@
         <button class="shortcut-chip" type="button" data-command="open second_cutting">open second_cutting</button>
       </div>
       <p class="terminal__response" id="terminal-response">
-        System ready. Click a node to inspect it, then open the project when you are ready to enter.
+        Initializing Mimicorp Systems... System ready. Click a node to inspect it, then open the project when you are ready to enter.
       </p>
     </footer>
   </div>

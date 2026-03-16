@@ -3,7 +3,7 @@ const nodes = [
     id: "mimicorp",
     label: "Mimicorp",
     type: "kernel",
-    description: "Root kernel for the Mimicorp ecosystem, connecting projects across land, agriculture, media, and ecological systems.",
+    description: "Exploring the networks that connect land, people, and technology.",
     internal: true,
     url: "/",
     connections: ["second_cutting", "ag_lab", "joynet", "design", "media", "data", "software"]
@@ -12,7 +12,7 @@ const nodes = [
     id: "second_cutting",
     label: "Second Cutting",
     type: "branch",
-    description: "Podcast and documentary work focused on land, animals, and ecological systems.",
+    description: "Second Cutting is a podcast and documentary project about land, animals, people, and the systems that connect them.",
     internal: true,
     url: "/nodes/second-cutting/",
     connections: ["mimicorp", "glc", "media", "data"]
@@ -21,7 +21,7 @@ const nodes = [
     id: "ag_lab",
     label: "Ag Lab",
     type: "branch",
-    description: "Experimental agriculture lab for field systems, applied research, and practical prototyping.",
+    description: "Ag Lab is an experimental space for observing and testing agricultural systems.",
     internal: true,
     url: "/nodes/ag-lab/",
     connections: ["mimicorp", "data", "software", "gp_supply", "shady_pines"]
@@ -30,7 +30,7 @@ const nodes = [
     id: "joynet",
     label: "JoyNet",
     type: "branch",
-    description: "Creative network layer for distributed storytelling, publishing, and cultural collaboration.",
+    description: "JoyNet explores the philosophical and ethical frameworks that underlie systems of belief, community, and responsibility.",
     internal: true,
     url: "/nodes/joynet/",
     connections: ["mimicorp", "design", "media", "software", "teche_lake_outfitters"]
@@ -39,7 +39,7 @@ const nodes = [
     id: "glc",
     label: "GLC",
     type: "stem",
-    description: "Ground logistics and connective infrastructure for field operations and partner systems.",
+    description: "Gonsoulin Land and Cattle is a grass fed cattle ranch in South Louisiana and a real world environment where many Mimicorp ideas begin.",
     internal: false,
     url: "https://example.com/glc",
     connections: ["second_cutting", "media", "design"]
@@ -48,7 +48,7 @@ const nodes = [
     id: "teche_lake_outfitters",
     label: "Teche Lake Outfitters",
     type: "stem",
-    description: "Place-based operations node for land access, fieldwork, and outdoor systems.",
+    description: "Teche Lake Outfitters connects people to the landscape through guided outdoor experiences and a deeper sense of place.",
     internal: false,
     url: "https://example.com/teche-lake-outfitters",
     connections: ["joynet", "design"]
@@ -57,7 +57,7 @@ const nodes = [
     id: "gp_supply",
     label: "GP Supply",
     type: "stem",
-    description: "Supply and support node for infrastructure, materials, and practical deployment.",
+    description: "GP Supply and Lumber is a rural hardware and building supply store representing the practical layer of rural infrastructure.",
     internal: false,
     url: "https://example.com/gp-supply",
     connections: ["ag_lab", "software"]
@@ -66,7 +66,7 @@ const nodes = [
     id: "shady_pines",
     label: "Shady Pines",
     type: "stem",
-    description: "Landscape and stewardship node focused on habitat, seasonality, and ecological management.",
+    description: "Shady Pines is a working landscape and creative site for observation, experimentation, and retreat.",
     internal: false,
     url: "https://example.com/shady-pines",
     connections: ["ag_lab", "data"]
@@ -75,7 +75,7 @@ const nodes = [
     id: "design",
     label: "Design",
     type: "fruit",
-    description: "Visual systems, interfaces, and creative direction across the Mimicorp network.",
+    description: "Design is where ideas become visible and complex systems communicate clearly.",
     internal: true,
     url: "/nodes/design/",
     connections: ["mimicorp", "joynet", "glc", "teche_lake_outfitters"]
@@ -84,7 +84,7 @@ const nodes = [
     id: "media",
     label: "Media",
     type: "fruit",
-    description: "Publishing, audio, film, and documentary output distributed through the ecosystem.",
+    description: "Media production is one of the primary ways Mimicorp documents the systems it studies.",
     internal: true,
     url: "/nodes/media/",
     connections: ["mimicorp", "second_cutting", "joynet", "glc"]
@@ -93,7 +93,7 @@ const nodes = [
     id: "data",
     label: "Data",
     type: "fruit",
-    description: "Research, archives, mapping, and information systems supporting adaptive work.",
+    description: "Data projects gather and organize information about land and ecological systems to reveal patterns otherwise hard to see.",
     internal: true,
     url: "/nodes/data/",
     connections: ["mimicorp", "second_cutting", "ag_lab", "shady_pines"]
@@ -102,7 +102,7 @@ const nodes = [
     id: "software",
     label: "Software",
     type: "fruit",
-    description: "Tools, automations, and custom lightweight systems that hold the network together.",
+    description: "Software tools support the infrastructure behind Mimicorp projects through dashboards, data pipelines, media systems, and custom applications.",
     internal: true,
     url: "/nodes/software/",
     connections: ["mimicorp", "ag_lab", "joynet", "gp_supply"]
@@ -155,6 +155,12 @@ const terminalResponse = document.getElementById("terminal-response");
 const statusNodeCount = document.getElementById("status-node-count");
 const statusLinkCount = document.getElementById("status-link-count");
 const graphCanvas = document.getElementById("graph-canvas");
+const drawerTitle = document.getElementById("drawer-title");
+const drawerDescription = document.getElementById("drawer-description");
+const drawerType = document.getElementById("drawer-type");
+const drawerRoute = document.getElementById("drawer-route");
+const drawerOpenProject = document.getElementById("drawer-open-project");
+const drawerInspectConnections = document.getElementById("drawer-inspect-connections");
 
 statusNodeCount.textContent = String(nodes.length);
 statusLinkCount.textContent = String(links.length);
@@ -173,8 +179,8 @@ function getConnectedSet(nodeId) {
 function renderPlaceholder(node) {
   placeholderTitle.textContent = node.label;
   placeholderDescription.textContent = node.internal
-    ? "This project has an internal page ready. Use Open Project or double-click the node to enter it."
-    : "This node routes to an external destination. Use Open Project to launch it in a new tab.";
+    ? "This project has an internal page ready. Open it to move deeper into the Mimicorp system."
+    : "This node routes to an external destination. Open it to visit the real world counterpart.";
   placeholderPath.textContent = node.url;
   placeholderPanel.hidden = false;
 }
@@ -201,6 +207,15 @@ function renderSidebar(node) {
     });
 
   renderPlaceholder(node);
+  renderDrawer(node);
+}
+
+function renderDrawer(node) {
+  drawerTitle.textContent = node.label;
+  drawerDescription.textContent = node.description;
+  drawerType.textContent = node.type;
+  drawerType.dataset.type = node.type;
+  drawerRoute.textContent = node.internal ? "internal" : "external";
 }
 
 function updateGraphState() {
@@ -233,7 +248,7 @@ function selectNode(nodeId) {
   selectedNodeId = nodeId;
   renderSidebar(node);
   updateGraphState();
-  terminalResponse.textContent = "Selected " + node.label + ". Use Open Project to enter it.";
+  terminalResponse.textContent = node.label + " selected. " + node.description;
 }
 
 function activateNode(node) {
@@ -486,7 +501,15 @@ openProjectButton.addEventListener("click", () => {
   activateNode(nodeLookup.get(selectedNodeId));
 });
 
+drawerOpenProject.addEventListener("click", () => {
+  activateNode(nodeLookup.get(selectedNodeId));
+});
+
 viewConnectionsButton.addEventListener("click", () => {
+  focusConnections();
+});
+
+drawerInspectConnections.addEventListener("click", () => {
   focusConnections();
 });
 
