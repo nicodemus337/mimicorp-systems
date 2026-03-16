@@ -57,6 +57,32 @@ a {
   padding: 24px 0 44px;
 }
 
+.brand-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.brand-strip__mark {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.08));
+}
+
+.brand-strip__wordmark {
+  width: min(250px, 48vw);
+  height: 32px;
+  border-radius: 10px;
+  background-image: url("../assets/mimicorp.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left center;
+  opacity: 0.92;
+  filter: invert(1) brightness(1.02);
+}
+
 .node-header,
 .node-card,
 .node-nav {
@@ -280,6 +306,40 @@ a {
   background: rgba(255, 255, 255, 0.03);
 }
 
+.symbol-panel {
+  position: relative;
+  min-height: 240px;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at top right, rgba(215, 180, 95, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0)),
+    rgba(255, 255, 255, 0.03);
+}
+
+.symbol-panel--apple::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/mimicorp.png");
+  background-repeat: no-repeat;
+  background-size: 620px auto;
+  background-position: left 36px center;
+  opacity: 0.9;
+  filter: invert(1) brightness(1.05);
+}
+
+.symbol-panel__caption {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
 .node-link:hover,
 .nav-link:hover {
   background: rgba(255, 255, 255, 0.08);
@@ -294,5 +354,9 @@ a {
 
   .card-grid {
     grid-template-columns: 1fr;
+  }
+
+  .brand-strip {
+    flex-wrap: wrap;
   }
 }
