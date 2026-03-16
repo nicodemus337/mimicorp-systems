@@ -206,7 +206,6 @@ const terminalForm = document.getElementById("terminal-form");
 const terminalInput = document.getElementById("terminal-input");
 const terminalResponse = document.getElementById("terminal-response");
 const statusNodeCount = document.getElementById("status-node-count");
-const statusLinkCount = document.getElementById("status-link-count");
 const graphCanvas = document.getElementById("graph-canvas");
 const episodeToggle = document.getElementById("episode-toggle");
 
@@ -528,7 +527,6 @@ function buildGraph() {
 
   graphCanvas.setAttribute("viewBox", "0 0 " + width + " " + height);
   statusNodeCount.textContent = String(graphData.nodes.length);
-  statusLinkCount.textContent = String(graphData.links.length);
 
   const svg = d3.select(graphCanvas);
   svg.selectAll("*").remove();
