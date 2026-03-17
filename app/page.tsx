@@ -30,7 +30,8 @@ export default function HomePage() {
 
           <p className="max-w-xl text-[16px] leading-[1.5] text-text/72">
             A living structure of branches, stems, and fruit. Nothing here is a page.
-            The system reorganizes around attention.
+            The system reorganizes around attention, and around what the land reports
+            back.
           </p>
         </section>
 
