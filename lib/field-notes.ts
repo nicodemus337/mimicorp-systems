@@ -1,9 +1,13 @@
 export type FieldNote = {
   id: string;
+  recordId: string;
   node: string;
   index: string;
+  date: string;
   timestamp: string;
   habitat: string;
+  condition: string;
+  status: string;
   signal: string;
   metricLabel: string;
   metricValue: string;
@@ -14,10 +18,14 @@ export type FieldNote = {
 export const fieldNotes: FieldNote[] = [
   {
     id: "transect-03",
+    recordId: "FN-240317-03",
     node: "Ag Lab + Ecological Archive",
     index: "Transect 03",
+    date: "2026-03-17",
     timestamp: "06:14 CST",
     habitat: "North fence line / little bluestem edge",
+    condition: "Ground wet / wind low / visibility clear",
+    status: "Logged",
     signal: "Dew still holding on the wire. Pollinator traffic begins before the road does.",
     metricLabel: "Canopy humidity",
     metricValue: "81%",
@@ -27,10 +35,14 @@ export const fieldNotes: FieldNote[] = [
   },
   {
     id: "sample-11",
+    recordId: "FN-240317-11",
     node: "Second Cutting + VAPG",
     index: "Sample 11",
+    date: "2026-03-17",
     timestamp: "11:42 CST",
     habitat: "South pasture / cutover lane",
+    condition: "Heat rising / open cover / recent disturbance",
+    status: "Logged",
     signal: "Fresh stubble changes the acoustics. Footsteps sharpen. Wind becomes editorial.",
     metricLabel: "Surface temperature",
     metricValue: "92 F",
@@ -40,10 +52,14 @@ export const fieldNotes: FieldNote[] = [
   },
   {
     id: "listening-07",
+    recordId: "FN-240317-07",
     node: "JoyNet.church",
     index: "Listening 07",
+    date: "2026-03-17",
     timestamp: "19:26 CST",
     habitat: "Creek crossing / shade break",
+    condition: "Light dropping / insect activity high / water audible",
+    status: "Logged",
     signal: "Crickets overtake machinery. Water carries the last intelligible frequencies.",
     metricLabel: "Light remainder",
     metricValue: "14 min",

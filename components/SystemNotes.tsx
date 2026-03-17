@@ -21,6 +21,15 @@ export default function SystemNotes() {
           </div>
 
           <div className="space-y-5 rounded-[28px] border border-white/10 bg-black/20 p-5">
+            <div className="flex flex-wrap gap-2">
+              <span className="rounded-full border border-[#dce7c8]/20 bg-[#dce7c8]/8 px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-[#e5eed6]">
+                Observation log
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-text/52">
+                Time / place / condition
+              </span>
+            </div>
+
             <p className="max-w-lg font-accent text-[28px] leading-[1.14] text-text/84">
               Field Notes exists to record those signals.
             </p>
@@ -42,7 +51,7 @@ export default function SystemNotes() {
           <div className="grid gap-4 sm:grid-cols-3 xl:grid-cols-1">
             <article className="rounded-[24px] border border-white/10 bg-black/20 p-4">
               <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
-                Trace
+                Trace retention
               </p>
               <p className="mt-3 text-[15px] leading-[1.5] text-text/74">
                 There is no data loss in nature. Every event leaves a trace. Every
@@ -52,7 +61,7 @@ export default function SystemNotes() {
 
             <article className="rounded-[24px] border border-white/10 bg-black/20 p-4">
               <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
-                Significance
+                Signal handling
               </p>
               <p className="mt-3 text-[15px] leading-[1.5] text-text/74">
                 What looks insignificant is often just unresolved. Field Notes treats
@@ -62,7 +71,7 @@ export default function SystemNotes() {
 
             <article className="rounded-[24px] border border-white/10 bg-black/20 p-4">
               <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
-                Alignment
+                System alignment
               </p>
               <p className="mt-3 text-[15px] leading-[1.5] text-text/74">
                 Everything downstream either reflects what is observed here, or it
@@ -91,44 +100,86 @@ export default function SystemNotes() {
             {fieldNotes.map((note) => (
               <article
                 key={note.id}
-                className="field-note-card relative ml-9 rounded-[26px] border border-white/12 bg-[rgba(8,12,9,0.7)] p-5 md:ml-12 md:p-6"
+                className="field-note-card relative ml-9 rounded-[26px] border border-white/12 bg-[rgba(8,12,9,0.78)] p-5 md:ml-12 md:p-6"
               >
                 <div className="absolute left-[-22px] top-7 h-3 w-3 rounded-full border border-white/35 bg-[#c7d2b1] shadow-[0_0_16px_rgba(199,210,177,0.45)] md:left-[-30px]" />
 
-                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                  <div className="space-y-2">
-                    <p className="text-[11px] uppercase tracking-[0.3em] text-text/42">
-                      {note.index}
-                    </p>
-                    <h3 className="font-primary text-[28px] leading-[1.05] tracking-[-0.04em] text-text">
-                      {note.node}
-                    </h3>
-                    <p className="text-[13px] uppercase tracking-[0.18em] text-text/46">
-                      {note.timestamp} / {note.habitat}
-                    </p>
+                <div className="flex flex-col gap-5">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="rounded-full border border-[#dce7c8]/20 bg-[#dce7c8]/8 px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-[#e5eed6]">
+                      {note.recordId}
+                    </span>
+                    <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-text/52">
+                      {note.status}
+                    </span>
+                    <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-text/52">
+                      {note.date}
+                    </span>
                   </div>
 
-                  <div className="rounded-[18px] border border-white/10 bg-white/[0.03] px-4 py-3 md:min-w-[160px]">
-                    <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">
-                      {note.metricLabel}
-                    </p>
-                    <p className="mt-2 font-primary text-[28px] leading-none tracking-[-0.04em] text-text">
-                      {note.metricValue}
-                    </p>
+                  <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                    <div className="space-y-2">
+                      <p className="text-[11px] uppercase tracking-[0.3em] text-text/42">
+                        {note.index}
+                      </p>
+                      <h3 className="font-primary text-[28px] leading-[1.05] tracking-[-0.04em] text-text">
+                        {note.node}
+                      </h3>
+                      <p className="text-[13px] uppercase tracking-[0.18em] text-text/46">
+                        {note.timestamp} / {note.habitat}
+                      </p>
+                    </div>
+
+                    <div className="grid gap-3 md:min-w-[240px]">
+                      <div className="rounded-[18px] border border-white/10 bg-white/[0.03] px-4 py-3">
+                        <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">
+                          {note.metricLabel}
+                        </p>
+                        <p className="mt-2 font-primary text-[28px] leading-none tracking-[-0.04em] text-text">
+                          {note.metricValue}
+                        </p>
+                      </div>
+
+                      <div className="rounded-[18px] border border-white/10 bg-black/20 px-4 py-3">
+                        <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">
+                          Condition
+                        </p>
+                        <p className="mt-2 text-[13px] uppercase tracking-[0.16em] text-text/60">
+                          {note.condition}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="field-note-grid grid gap-3 border-t border-white/8 pt-4">
+                    <div>
+                      <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">
+                        Observed signal
+                      </p>
+                      <p className="mt-3 max-w-2xl text-[14px] uppercase tracking-[0.14em] text-text/56">
+                        {note.signal}
+                      </p>
+                    </div>
+
+                    <div>
+                      <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">
+                        Field entry
+                      </p>
+                      <p className="mt-3 max-w-2xl font-accent text-[27px] leading-[1.12] text-text/80">
+                        {note.excerpt}
+                      </p>
+                    </div>
+
+                    <div>
+                      <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">
+                        System implication
+                      </p>
+                      <p className="mt-3 text-[14px] leading-[1.5] text-[#d8e1c6]">
+                        {note.implication}
+                      </p>
+                    </div>
                   </div>
                 </div>
-
-                <p className="mt-5 max-w-2xl text-[15px] uppercase tracking-[0.14em] text-text/52">
-                  {note.signal}
-                </p>
-
-                <p className="mt-5 max-w-2xl font-accent text-[27px] leading-[1.12] text-text/80">
-                  {note.excerpt}
-                </p>
-
-                <p className="mt-5 border-t border-white/8 pt-4 text-[14px] leading-[1.5] text-[#d8e1c6]">
-                  {note.implication}
-                </p>
               </article>
             ))}
           </div>

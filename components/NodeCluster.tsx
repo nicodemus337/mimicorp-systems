@@ -178,19 +178,19 @@ export function NodeCluster() {
 
           <div className="absolute left-4 top-4 space-y-2 sm:left-6 sm:top-6">
             <p className="text-[12px] uppercase tracking-[0.28em] text-text/48">
-              Survey field
+              Survey interface
             </p>
             <p className="max-w-xs text-[16px] leading-[1.5] text-text/70">
-              Hover to expose relation. Click to pull a node into the center.
+              Hover to inspect relation. Click to bring a system into the active read.
             </p>
           </div>
 
           <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2 sm:bottom-6 sm:left-6 sm:right-6">
             <span className="rounded-full border border-white/10 bg-black/25 px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-text/50">
-              sensor sweep / 16:12 field
+              relation map / live sample
             </span>
             <span className="rounded-full border border-[#dce7c8]/20 bg-[#dce7c8]/8 px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-[#e5eed6]">
-              relation density / live
+              field alignment / active
             </span>
           </div>
         </div>
@@ -205,7 +205,7 @@ export function NodeCluster() {
       >
         <div className="space-y-3">
           <p className="text-[12px] uppercase tracking-[0.32em] text-text/48">
-            Active reading
+            Reading console
           </p>
           <h2 className="font-primary text-[36px] leading-[1.15] tracking-[-0.04em]">
             {activeNode.label}
@@ -213,21 +213,29 @@ export function NodeCluster() {
           <p className="text-[12px] uppercase tracking-[0.28em] text-text/48">
             {activeNode.orbitLabel}
           </p>
+          <div className="flex flex-wrap gap-2">
+            <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-text/52">
+              focus id / {activeNode.id}
+            </span>
+            <span className="rounded-full border border-[#dce7c8]/20 bg-[#dce7c8]/8 px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-[#e5eed6]">
+              linked nodes / {activeNode.connections.length}
+            </span>
+          </div>
           <p className="text-[16px] leading-[1.5] text-text/72">{activeNode.summary}</p>
           <p className="text-[16px] leading-[1.5] text-text/60">{activeNode.detail}</p>
         </div>
 
         <div className="space-y-3 border-t border-white/8 pt-4">
           <p className="text-[12px] uppercase tracking-[0.32em] text-text/48">
-            Adjacent signals
+            Linked systems
           </p>
           <div className="space-y-2">
             <p className="text-[16px] leading-[1.5] text-text/78">
-              Center: {activeNode.label}
+              Active read: {activeNode.label}
             </p>
             <p className="text-[16px] leading-[1.5] text-text/60">
-              Immediate voices reorganize around the center. Outer voices hold the next
-              reversal in reserve.
+              Immediate relations are surfaced here first. More distant systems stay in
+              the field until focus changes.
             </p>
           </div>
           <div className="space-y-2">
@@ -246,9 +254,14 @@ export function NodeCluster() {
           </div>
         </div>
 
-        <blockquote className="border-t border-white/8 pt-4 font-accent text-[24px] leading-[1.15] text-text/68">
-          “One system. Many entrances.”
-        </blockquote>
+        <div className="border-t border-white/8 pt-4">
+          <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">
+            Read method
+          </p>
+          <p className="mt-3 font-accent text-[24px] leading-[1.15] text-text/68">
+            Record first. Interpret later.
+          </p>
+        </div>
       </motion.aside>
     </section>
   );

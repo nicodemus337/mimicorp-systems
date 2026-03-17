@@ -21,10 +21,10 @@ export default function HomePage() {
           <div className="relative space-y-8">
             <div className="flex flex-col gap-3 border-b border-white/8 pb-4 md:flex-row md:items-center md:justify-between">
               <p className="text-[11px] uppercase tracking-[0.34em] text-text/46">
-                Overture / live wireframe
+                Survey header / live system
               </p>
               <p className="max-w-md text-[12px] uppercase tracking-[0.22em] text-text/38 md:text-right">
-                A network view for branches, stems, fruit, and field signals
+                A logging surface for branches, stems, outputs, and field conditions
               </p>
             </div>
 
@@ -35,10 +35,10 @@ export default function HomePage() {
                     Survey mode / active
                   </div>
                   <div className="rounded-[18px] border border-white/10 bg-black/20 px-3 py-2">
-                    Signal relay / stable
+                    Log state / collecting
                   </div>
                   <div className="rounded-[18px] border border-[#dce7c8]/20 bg-[#dce7c8]/8 px-3 py-2 text-[#e5eed6]">
-                    Field alignment / live
+                    Drift check / live
                   </div>
                 </div>
 
@@ -57,8 +57,8 @@ export default function HomePage() {
 
                 <p className="max-w-xl text-[17px] leading-[1.6] text-text/72 sm:text-[18px]">
                   A living structure of branches, stems, and fruit. Nothing here is a
-                  page. The system reorganizes around attention, and around what the
-                  land reports back.
+                  page. It is a working surface for what the land reports back, and for
+                  keeping downstream decisions aligned with observation.
                 </p>
 
                 <div className="grid gap-3 sm:grid-cols-3">
@@ -70,7 +70,7 @@ export default function HomePage() {
                       03
                     </p>
                     <p className="mt-2 text-[12px] uppercase tracking-[0.18em] text-text/52">
-                      branch layers visible
+                      branch layers in active read
                     </p>
                   </article>
 
@@ -82,7 +82,7 @@ export default function HomePage() {
                       81%
                     </p>
                     <p className="mt-2 text-[12px] uppercase tracking-[0.18em] text-text/52">
-                      signal retained
+                      field signal retained
                     </p>
                   </article>
 
@@ -94,7 +94,7 @@ export default function HomePage() {
                       LOW
                     </p>
                     <p className="mt-2 text-[12px] uppercase tracking-[0.18em] text-text/52">
-                      observation still aligned
+                      observation inside tolerance
                     </p>
                   </article>
                 </div>
@@ -103,28 +103,28 @@ export default function HomePage() {
               <div className="grid gap-3 sm:grid-cols-3 xl:grid-cols-1">
                 <article className="hero-stat-card rounded-[22px] border border-white/10 bg-black/20 p-4">
                   <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
-                    Structure
+                    Primary use
                   </p>
                   <p className="mt-2 text-[15px] leading-[1.45] text-text/76">
-                    Single day system
+                    ecological logging
                   </p>
                 </article>
 
                 <article className="hero-stat-card rounded-[22px] border border-white/10 bg-black/20 p-4">
                   <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
-                    Method
+                    Read method
                   </p>
                   <p className="mt-2 text-[15px] leading-[1.45] text-text/76">
-                    Node composition
+                    node composition
                   </p>
                 </article>
 
                 <article className="hero-stat-card rounded-[22px] border border-white/10 bg-black/20 p-4">
                   <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
-                    State
+                    Output condition
                   </p>
                   <p className="mt-2 text-[15px] leading-[1.45] text-text/76">
-                    Continuous unfolding
+                    continuously revised
                   </p>
                 </article>
               </div>

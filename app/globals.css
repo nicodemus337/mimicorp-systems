@@ -113,6 +113,10 @@ body::before {
     0 18px 60px rgba(0, 0, 0, 0.22);
 }
 
+.field-note-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .hero-grid {
   position: absolute;
   inset: 0;
@@ -222,6 +226,12 @@ body::before {
       rgba(219, 231, 197, 0.14) 28px,
       rgba(219, 231, 197, 0.14) 29px
     );
+}
+
+@media (max-width: 900px) {
+  .field-note-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @keyframes ambient-shift {
