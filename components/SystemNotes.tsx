@@ -12,45 +12,75 @@ export default function SystemNotes() {
               Field Notes
             </p>
             <h2 className="max-w-lg font-primary text-[36px] leading-[1.02] tracking-[-0.05em] text-text md:text-[48px]">
-              Ecological readings folded into the wireframe
+              There are no cheat codes in nature.
             </h2>
             <p className="max-w-md text-[16px] leading-[1.6] text-text/70">
-              Instead of treating context as caption, the system can carry observation as
-              part of its structure. Each note works like a specimen tag: partial,
-              situated, and precise enough to change how the network is read.
+              Nothing skips steps. Nothing gets to the outcome without passing through
+              process. Every change is earned, and every signal has a cause.
             </p>
+          </div>
+
+          <div className="space-y-5 rounded-[28px] border border-white/10 bg-black/20 p-5">
+            <p className="max-w-lg font-accent text-[28px] leading-[1.14] text-text/84">
+              Field Notes exists to record those signals.
+            </p>
+
+            <div className="space-y-3 text-[16px] leading-[1.65] text-text/70">
+              <p>Not as stories. Not as content. As observations.</p>
+              <p>
+                A late leaf-out. Soil holding moisture past expectation. Insects
+                arriving earlier, or not at all. Animal behavior that does not match
+                the season.
+              </p>
+              <p>
+                Individually, these mean very little. Ignored, they disappear.
+                Recorded, they accumulate.
+              </p>
+            </div>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-3 xl:grid-cols-1">
             <article className="rounded-[24px] border border-white/10 bg-black/20 p-4">
               <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
-                Branch use
+                Trace
               </p>
               <p className="mt-3 text-[15px] leading-[1.5] text-text/74">
-                Attach notes to primary movements so each branch accumulates climate,
-                timing, and sensory evidence.
+                There is no data loss in nature. Every event leaves a trace. Every
+                pattern is built from repetition.
               </p>
             </article>
 
             <article className="rounded-[24px] border border-white/10 bg-black/20 p-4">
               <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
-                Visual logic
+                Significance
               </p>
               <p className="mt-3 text-[15px] leading-[1.5] text-text/74">
-                Use clipped measurements, observed fragments, and marginal labels rather
-                than long paragraphs.
+                What looks insignificant is often just unresolved. Field Notes treats
+                all observations as significant.
               </p>
             </article>
 
             <article className="rounded-[24px] border border-white/10 bg-black/20 p-4">
               <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
-                Narrative effect
+                Alignment
               </p>
               <p className="mt-3 text-[15px] leading-[1.5] text-text/74">
-                Let data feel lived in. The site becomes less like a sitemap and more
-                like an active survey.
+                Everything downstream either reflects what is observed here, or it
+                drifts.
               </p>
             </article>
+          </div>
+
+          <div className="space-y-3 border-t border-white/8 pt-5 text-[15px] leading-[1.65] text-text/68">
+            <p>
+              Each entry is anchored to time, place, and condition, not to
+              interpretation or narrative.
+            </p>
+            <p>
+              Over time, this becomes a working record of reality: a way to track what
+              is actually happening, not what is assumed, remembered, or expected.
+            </p>
+            <p className="text-text/84">This is where alignment begins.</p>
           </div>
         </div>
 
