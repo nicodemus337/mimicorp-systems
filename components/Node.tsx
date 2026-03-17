@@ -22,28 +22,28 @@ const nodeStyles: Record<
   { fill: string; border: string; text: string; backgroundOpacity: string }
 > = {
   core: {
-    fill: "rgba(245,245,245,0.96)",
-    border: "rgba(245,245,245,0.96)",
+    fill: "radial-gradient(circle at 30% 30%, rgba(255,255,255,1), rgba(217,231,196,0.92))",
+    border: "rgba(227,238,211,0.96)",
     text: "#f5f5f5",
-    backgroundOpacity: "rgba(245,245,245,0.12)"
+    backgroundOpacity: "rgba(221,235,197,0.16)"
   },
   branch: {
-    fill: "rgba(245,245,245,0.08)",
-    border: "rgba(245,245,245,0.86)",
+    fill: "radial-gradient(circle at 35% 35%, rgba(211,228,184,0.18), rgba(255,255,255,0.06))",
+    border: "rgba(223,234,206,0.88)",
     text: "#f5f5f5",
-    backgroundOpacity: "rgba(245,245,245,0.08)"
+    backgroundOpacity: "rgba(213,226,188,0.1)"
   },
   stem: {
-    fill: "rgba(245,245,245,0.08)",
-    border: "rgba(245,245,245,0.34)",
+    fill: "radial-gradient(circle at 35% 35%, rgba(167,191,133,0.22), rgba(255,255,255,0.04))",
+    border: "rgba(210,223,188,0.42)",
     text: "#f5f5f5",
-    backgroundOpacity: "rgba(245,245,245,0.05)"
+    backgroundOpacity: "rgba(130,154,102,0.08)"
   },
   fruit: {
-    fill: "rgba(28,42,30,1)",
-    border: "rgba(28,42,30,1)",
+    fill: "radial-gradient(circle at 30% 30%, rgba(149,177,114,0.95), rgba(28,42,30,1))",
+    border: "rgba(168,195,133,0.8)",
     text: "#f5f5f5",
-    backgroundOpacity: "rgba(28,42,30,0.24)"
+    backgroundOpacity: "rgba(95,117,67,0.26)"
   }
 };
 
@@ -94,8 +94,8 @@ export function Node({
         initial={false}
         animate={{
           boxShadow: isFocused
-            ? "0 0 0 1px rgba(245,245,245,0.16), 0 0 42px rgba(245,245,245,0.16)"
-            : "0 0 0 1px rgba(245,245,245,0.04), 0 0 22px rgba(245,245,245,0.04)"
+            ? "0 0 0 1px rgba(223,234,206,0.22), 0 0 48px rgba(192,216,155,0.22)"
+            : "0 0 0 1px rgba(245,245,245,0.04), 0 0 24px rgba(173,199,135,0.08)"
         }}
         style={{
           background: style.backgroundOpacity,

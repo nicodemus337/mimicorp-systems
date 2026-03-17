@@ -89,15 +89,18 @@ export function NodeCluster() {
   return (
     <section className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_340px]">
       <motion.div
-        className="composition-shell overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.03] p-4 shadow-[0_40px_120px_rgba(0,0,0,0.35)] backdrop-blur-sm sm:p-6"
+        className="composition-shell overflow-hidden rounded-[32px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_40px_120px_rgba(0,0,0,0.35)] backdrop-blur-sm sm:p-6"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: motionTiming.structural, ease: easing.primary }}
       >
-        <div className="relative aspect-[16/12] overflow-hidden rounded-[28px] border border-white/8 bg-black/40">
+        <div className="relative aspect-[16/12] overflow-hidden rounded-[28px] border border-white/8 bg-[radial-gradient(circle_at_50%_50%,rgba(65,88,45,0.18),rgba(0,0,0,0)_34%),rgba(0,0,0,0.52)]">
+          <div className="cluster-calibration cluster-calibration-x" />
+          <div className="cluster-calibration cluster-calibration-y" />
           <div className="orbital-ring ambient-shift h-[28%] w-[28%]" />
           <div className="orbital-ring ambient-counter h-[52%] w-[52%]" />
           <div className="orbital-ring ambient-shift h-[78%] w-[78%]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(225,236,208,0.08),transparent_30%),radial-gradient(circle_at_18%_20%,rgba(174,200,132,0.08),transparent_18%)]" />
 
           <motion.div
             className="absolute inset-0"
@@ -175,17 +178,26 @@ export function NodeCluster() {
 
           <div className="absolute left-4 top-4 space-y-2 sm:left-6 sm:top-6">
             <p className="text-[12px] uppercase tracking-[0.28em] text-text/48">
-              Continuous score
+              Survey field
             </p>
             <p className="max-w-xs text-[16px] leading-[1.5] text-text/70">
               Hover to expose relation. Click to pull a node into the center.
             </p>
           </div>
+
+          <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2 sm:bottom-6 sm:left-6 sm:right-6">
+            <span className="rounded-full border border-white/10 bg-black/25 px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-text/50">
+              sensor sweep / 16:12 field
+            </span>
+            <span className="rounded-full border border-[#dce7c8]/20 bg-[#dce7c8]/8 px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-[#e5eed6]">
+              relation density / live
+            </span>
+          </div>
         </div>
       </motion.div>
 
       <motion.aside
-        className="space-y-4 rounded-[28px] border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm"
+        className="space-y-4 rounded-[28px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-5 backdrop-blur-sm"
         key={focusedId}
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -193,7 +205,7 @@ export function NodeCluster() {
       >
         <div className="space-y-3">
           <p className="text-[12px] uppercase tracking-[0.32em] text-text/48">
-            Active node
+            Active reading
           </p>
           <h2 className="font-primary text-[36px] leading-[1.15] tracking-[-0.04em]">
             {activeNode.label}
@@ -207,7 +219,7 @@ export function NodeCluster() {
 
         <div className="space-y-3 border-t border-white/8 pt-4">
           <p className="text-[12px] uppercase tracking-[0.32em] text-text/48">
-            Example branch expansion
+            Adjacent signals
           </p>
           <div className="space-y-2">
             <p className="text-[16px] leading-[1.5] text-text/78">
