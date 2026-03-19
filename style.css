@@ -115,6 +115,24 @@ code {
   gap: 18px;
   padding: 20px 22px;
   border-radius: var(--radius-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.top-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 24% 18%, rgba(255, 255, 255, 0.05), transparent 20%),
+    radial-gradient(circle at 74% 0%, rgba(94, 169, 106, 0.1), transparent 24%);
+}
+
+.top-bar__title {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
 }
 
 .eyebrow,
@@ -157,28 +175,52 @@ code {
 
 .brand-lockup {
   display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 12px;
-}
-
-.brand-lockup__mark {
-  width: 54px;
-  height: 54px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 24px rgba(255, 255, 255, 0.08));
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin: -4px 0 18px;
+  padding-left: clamp(6px, 1.6vw, 22px);
+  transform: translateX(clamp(0px, 1vw, 14px));
 }
 
 .brand-lockup__wordmark {
-  width: min(320px, 56vw);
-  height: 42px;
-  border-radius: 12px;
+  position: relative;
+  width: clamp(240px, 28vw, 380px);
+  height: clamp(58px, 6vw, 82px);
+  border-radius: 22px 10px 26px 12px;
   background-image: url("assets/mimicorp.png");
   background-repeat: no-repeat;
-  background-size: contain;
-  background-position: left center;
-  opacity: 0.94;
+  background-size: 88% auto;
+  background-position: 54% center;
+  opacity: 0.96;
   filter: invert(1) brightness(1.02);
+  background-color: rgba(6, 8, 12, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 20px 40px rgba(0, 0, 0, 0.28);
+  transform: translateX(clamp(4px, 1.4vw, 18px)) rotate(-2.6deg);
+}
+
+.brand-lockup__wordmark::before {
+  content: "";
+  position: absolute;
+  inset: -12px auto auto -18px;
+  width: 112px;
+  height: 112px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08), transparent 72%);
+  pointer-events: none;
+}
+
+.brand-lockup__wordmark::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 18px;
+  top: 10px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.22), transparent 72%);
+  opacity: 0.9;
 }
 
 .top-bar__status {
@@ -186,6 +228,8 @@ code {
   flex-wrap: wrap;
   gap: 10px;
   justify-content: flex-end;
+  position: relative;
+  z-index: 1;
 }
 
 .status-pill {
@@ -697,11 +741,15 @@ code {
   }
 
   .brand-lockup {
-    flex-wrap: wrap;
+    margin: 0 0 16px;
+    padding-left: 0;
+    transform: none;
   }
 
   .brand-lockup__wordmark {
-    width: min(280px, 72vw);
+    width: min(320px, 82vw);
+    height: 64px;
+    transform: rotate(-1.4deg);
   }
 
   .terminal__form {
