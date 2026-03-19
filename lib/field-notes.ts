@@ -31,7 +31,8 @@ export const fieldNotes: FieldNote[] = [
     metricValue: "81%",
     excerpt:
       "Soil reads dark at first light, but the field is not quiet. The earliest motion is lateral: seed heads passing information to one another before any human arrival can be measured.",
-    implication: "Archive note: the network wakes by relay, not by command."
+    implication:
+      "Design note: moisture retention and pollinator timing should shape how restoration capital is deployed here."
   },
   {
     id: "sample-11",
@@ -48,7 +49,8 @@ export const fieldNotes: FieldNote[] = [
     metricValue: "92 F",
     excerpt:
       "After the second pass, the field behaves like an open notebook. Compression marks, clipped stems, and tractor intervals turn labor into a readable score.",
-    implication: "Story note: disturbance here is also annotation."
+    implication:
+      "Funding note: disturbance is measurable, which means intervention can be scoped, budgeted, and evaluated."
   },
   {
     id: "listening-07",
@@ -65,6 +67,7 @@ export const fieldNotes: FieldNote[] = [
     metricValue: "14 min",
     excerpt:
       "At dusk the network stops looking infrastructural and starts sounding devotional. What was route, drainage, or utility in daylight turns into chorus after the heat lets go.",
-    implication: "Broadcast note: public feeling enters through changing conditions."
+    implication:
+      "Partner note: trust increases when collaborators can experience the land as a living system rather than a static asset."
   }
 ];

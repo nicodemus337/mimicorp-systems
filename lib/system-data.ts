@@ -15,110 +15,111 @@ export const systemNodes: SystemNode[] = [
     id: "mimicorp",
     label: "mimicorp",
     kind: "core",
-    orbitLabel: "Home / Overture",
-    summary: "The overture. A central score that keeps every movement in relation.",
+    orbitLabel: "Home / Thesis",
+    summary:
+      "A systems lab that attracts capital and partners to build ecological infrastructure.",
     detail:
-      "The center holds the system for one continuous composition. Branches circle first. Stems and fruit answer from further out.",
+      "The center states the thesis plainly: observation, media, operations, and design are assembled here to de-risk projects, align collaborators, and move ecological infrastructure from concept into financed reality.",
     connections: ["second-cutting-vapg", "ag-lab-archive", "joynet-church"]
   },
   {
     id: "second-cutting-vapg",
     label: "Second Cutting + VAPG",
     kind: "branch",
-    orbitLabel: "Branch / Primary movement",
-    summary: "Stories, funding logic, and field observation move together.",
+    orbitLabel: "Branch / Capital narrative",
+    summary: "Stories, funding logic, and field evidence move together.",
     detail:
-      "This branch stages reversal and overlap: documentary listening, grant structure, and working land in the same frame.",
+      "This branch turns working landscapes into investable narratives. Documentary listening, grant structure, and field observation are kept in one frame so support can convert into durable infrastructure.",
     connections: ["mimicorp", "glc", "media", "data"]
   },
   {
     id: "ag-lab-archive",
     label: "Ag Lab + Ecological Archive",
     kind: "branch",
-    orbitLabel: "Branch / Primary movement",
-    summary: "Experiment, record, compare, and return.",
+    orbitLabel: "Branch / Proof system",
+    summary: "Experiment, record, compare, and return with evidence.",
     detail:
-      "A branch for patient observation. It links working operations to archive systems so each pass changes what the next pass can see.",
+      "A branch for generating proof. It links field operations to archive systems so ecological change becomes legible to collaborators, operators, and capital partners over time.",
     connections: ["mimicorp", "gp-supply", "shady-pines", "data", "design"]
   },
   {
     id: "joynet-church",
     label: "JoyNet.church",
     kind: "branch",
-    orbitLabel: "Branch / Primary movement",
-    summary: "A branch for voice, doubt, and public intimacy.",
+    orbitLabel: "Branch / Public signal",
+    summary: "A branch for trust, public signal, and cultural legitimacy.",
     detail:
-      "This movement shifts perspective quickly. It brings confession, signal, and publication into one lighter register.",
+      "This movement builds the human register around the system. It turns values, doubt, and public voice into a credible surface that can attract aligned partners instead of passive spectators.",
     connections: ["mimicorp", "tlo", "media", "design"]
   },
   {
     id: "glc",
     label: "GLC",
     kind: "stem",
-    orbitLabel: "Stem / Operational system",
-    summary: "The ranch. Concrete pressure. Real timing.",
+    orbitLabel: "Stem / Operating ground",
+    summary: "The ranch. Real constraints, real sequencing, real proof.",
     detail:
-      "GLC grounds the composition in work that cannot be faked. It gives the system weather, constraint, and proof.",
+      "GLC grounds the system in conditions that cannot be faked. It supplies weather, labor, constraint, and timing so infrastructure strategy stays accountable to operational reality.",
     connections: ["second-cutting-vapg", "media", "data"]
   },
   {
     id: "tlo",
     label: "TLO",
     kind: "stem",
-    orbitLabel: "Stem / Operational system",
-    summary: "A route into place through guided movement.",
+    orbitLabel: "Stem / Access system",
+    summary: "A route into place through guided movement and shared encounter.",
     detail:
-      "TLO extends the score outward. It translates observation into a shared encounter with the landscape.",
+      "TLO extends the system outward. It translates ecological observation into guided experience so partners can encounter place directly instead of relating to it only through abstraction.",
     connections: ["joynet-church", "design", "media"]
   },
   {
     id: "gp-supply",
     label: "GP Supply",
     kind: "stem",
-    orbitLabel: "Stem / Operational system",
+    orbitLabel: "Stem / Utility system",
     summary: "Rural infrastructure. Utility without ornament.",
     detail:
-      "GP Supply introduces the practical counterpoint. Materials, logistics, and ordinary need reshape the branch around them.",
+      "GP Supply introduces practical necessity. Materials, logistics, and ordinary rural demand keep the lab oriented toward infrastructure that can actually be sourced, installed, and maintained.",
     connections: ["ag-lab-archive", "design"]
   },
   {
     id: "shady-pines",
     label: "Shady Pines",
     kind: "stem",
-    orbitLabel: "Stem / Operational system",
-    summary: "A site for testing, retreat, and return.",
+    orbitLabel: "Stem / Test site",
+    summary: "A site for testing, retreat, and field iteration.",
     detail:
-      "Shady Pines slows the tempo without stopping it. It gives the archive a place to accumulate texture.",
+      "Shady Pines gives the system a place to test and iterate. It lets ecological infrastructure concepts accumulate texture before they are generalized, funded, or scaled.",
     connections: ["ag-lab-archive", "data", "media"]
   },
   {
     id: "design",
     label: "Design",
     kind: "fruit",
-    orbitLabel: "Fruit / Output",
+    orbitLabel: "Fruit / Partner-facing output",
     summary: "Form, clarity, and precise transmission.",
     detail:
-      "Design is fruit because it leaves the system carrying structure outward. It is concise but not simple.",
+      "Design is fruit because it packages the thesis for partners. It turns complexity into legible briefs, interfaces, decks, and decision surfaces that help projects secure commitment.",
     connections: ["ag-lab-archive", "joynet-church", "tlo", "gp-supply"]
   },
   {
     id: "media",
     label: "Media",
     kind: "fruit",
-    orbitLabel: "Fruit / Output",
-    summary: "Sound, image, sequence, release.",
+    orbitLabel: "Fruit / Attention output",
+    summary: "Sound, image, sequence, and release.",
     detail:
-      "Media captures the overlapping cast. It lets multiple movements remain audible at the same time.",
+      "Media captures the overlapping cast and makes the work visible. It is how projects gain attention, trust, and partner energy without flattening the complexity of the land.",
     connections: ["second-cutting-vapg", "joynet-church", "glc", "tlo", "shady-pines"]
   },
   {
     id: "data",
     label: "Data",
     kind: "fruit",
-    orbitLabel: "Fruit / Output",
+    orbitLabel: "Fruit / Evidence output",
     summary: "Memory that can be queried, compared, and revised.",
     detail:
-      "Data is the fruit that keeps unfolding after release. It carries evidence back into the next cycle of attention.",
+      "Data is the fruit that keeps compounding after release. It carries evidence back into the next cycle of financing, design, and stewardship so decisions can be made against records instead of slogans.",
     connections: ["second-cutting-vapg", "ag-lab-archive", "glc", "shady-pines"]
   }
 ];

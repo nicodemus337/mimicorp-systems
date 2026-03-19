@@ -9,21 +9,22 @@ export default function SystemNotes() {
         <div className="space-y-6">
           <div className="space-y-3">
             <p className="text-[12px] uppercase tracking-[0.32em] text-text/48">
-              Field Notes
+              Evidence Notes
             </p>
             <h2 className="max-w-lg font-primary text-[36px] leading-[1.02] tracking-[-0.05em] text-text md:text-[48px]">
-              There are no cheat codes in nature.
+              Ecological infrastructure needs proof, not branding.
             </h2>
             <p className="max-w-md text-[16px] leading-[1.6] text-text/70">
-              Nothing skips steps. Nothing gets to the outcome without passing through
-              process. Every change is earned, and every signal has a cause.
+              Mimicorp does not ask capital or partners to believe in a vibe. It asks
+              them to enter a record: time, place, condition, change, and implication
+              tracked closely enough to justify action.
             </p>
           </div>
 
           <div className="space-y-5 rounded-[28px] border border-white/10 bg-black/20 p-5">
             <div className="flex flex-wrap gap-2">
               <span className="rounded-full border border-[#dce7c8]/20 bg-[#dce7c8]/8 px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-[#e5eed6]">
-                Observation log
+                Evidence log
               </span>
               <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-text/52">
                 Time / place / condition
@@ -31,19 +32,20 @@ export default function SystemNotes() {
             </div>
 
             <p className="max-w-lg font-accent text-[28px] leading-[1.14] text-text/84">
-              Field Notes exists to record those signals.
+              This record exists to make ecological investment legible.
             </p>
 
             <div className="space-y-3 text-[16px] leading-[1.65] text-text/70">
-              <p>Not as stories. Not as content. As observations.</p>
+              <p>Not as mood. Not as marketing. As observations that can support decisions.</p>
               <p>
                 A late leaf-out. Soil holding moisture past expectation. Insects
                 arriving earlier, or not at all. Animal behavior that does not match
                 the season.
               </p>
               <p>
-                Individually, these mean very little. Ignored, they disappear.
-                Recorded, they accumulate.
+                Individually, these signals can be dismissed. Recorded over time, they
+                become evidence for where intervention is needed, what should be built,
+                and how support should be structured.
               </p>
             </div>
           </div>
@@ -51,45 +53,46 @@ export default function SystemNotes() {
           <div className="grid gap-4 sm:grid-cols-3 xl:grid-cols-1">
             <article className="rounded-[24px] border border-white/10 bg-black/20 p-4">
               <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
-                Trace retention
+                Evidence retention
               </p>
               <p className="mt-3 text-[15px] leading-[1.5] text-text/74">
-                There is no data loss in nature. Every event leaves a trace. Every
-                pattern is built from repetition.
+                Every event leaves a trace. A serious systems lab preserves those traces
+                so projects can be designed against reality rather than memory.
               </p>
             </article>
 
             <article className="rounded-[24px] border border-white/10 bg-black/20 p-4">
               <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
-                Signal handling
+                Decision support
               </p>
               <p className="mt-3 text-[15px] leading-[1.5] text-text/74">
-                What looks insignificant is often just unresolved. Field Notes treats
-                all observations as significant.
+                What looks minor is often just unresolved. Mimicorp treats observations
+                as decision inputs for financing, stewardship, and build sequencing.
               </p>
             </article>
 
             <article className="rounded-[24px] border border-white/10 bg-black/20 p-4">
               <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
-                System alignment
+                Partner alignment
               </p>
               <p className="mt-3 text-[15px] leading-[1.5] text-text/74">
                 Everything downstream either reflects what is observed here, or it
-                drifts.
+                becomes narrative drift. Alignment starts with shared evidence.
               </p>
             </article>
           </div>
 
           <div className="space-y-3 border-t border-white/8 pt-5 text-[15px] leading-[1.65] text-text/68">
             <p>
-              Each entry is anchored to time, place, and condition, not to
-              interpretation or narrative.
+              Each entry is anchored to time, place, and condition, not just
+              interpretation. That is how ecological claims become operational.
             </p>
             <p>
-              Over time, this becomes a working record of reality: a way to track what
-              is actually happening, not what is assumed, remembered, or expected.
+              Over time, this becomes a working record of reality: a basis for partner
+              trust, project prioritization, and infrastructure design tied to actual
+              conditions.
             </p>
-            <p className="text-text/84">This is where alignment begins.</p>
+            <p className="text-text/84">This is where ecological infrastructure becomes financeable.</p>
           </div>
         </div>
 
@@ -172,7 +175,7 @@ export default function SystemNotes() {
 
                     <div>
                       <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">
-                        System implication
+                        Infrastructure implication
                       </p>
                       <p className="mt-3 text-[14px] leading-[1.5] text-[#d8e1c6]">
                         {note.implication}

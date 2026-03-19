@@ -21,10 +21,10 @@ export default function HomePage() {
           <div className="relative space-y-8">
             <div className="flex flex-col gap-3 border-b border-white/8 pb-4 md:flex-row md:items-center md:justify-between">
               <p className="text-[11px] uppercase tracking-[0.34em] text-text/46">
-                Survey header / live system
+                Thesis surface / live system
               </p>
               <p className="max-w-md text-[12px] uppercase tracking-[0.22em] text-text/38 md:text-right">
-                A logging surface for branches, stems, outputs, and field conditions
+                Capital, partners, and operating systems aligned around ecological infrastructure
               </p>
             </div>
 
@@ -32,22 +32,22 @@ export default function HomePage() {
               <div className="space-y-5">
                 <div className="grid gap-2 text-[11px] uppercase tracking-[0.24em] text-text/42 sm:grid-cols-3">
                   <div className="rounded-[18px] border border-white/10 bg-black/20 px-3 py-2">
-                    Survey mode / active
+                    Thesis mode / active
                   </div>
                   <div className="rounded-[18px] border border-white/10 bg-black/20 px-3 py-2">
-                    Log state / collecting
+                    Capital stack / assembling
                   </div>
                   <div className="rounded-[18px] border border-[#dce7c8]/20 bg-[#dce7c8]/8 px-3 py-2 text-[#e5eed6]">
-                    Drift check / live
+                    Build pipeline / live
                   </div>
                 </div>
 
                 <div className="flex flex-wrap gap-2">
                   <span className="rounded-full border border-[#dce7c8]/20 bg-[#dce7c8]/8 px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-[#e5eed6]">
-                    Ecological systems
+                    Ecological infrastructure
                   </span>
                   <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-text/54">
-                    Field logic
+                    Capital formation
                   </span>
                 </div>
 
@@ -56,45 +56,47 @@ export default function HomePage() {
                 </h1>
 
                 <p className="max-w-xl text-[17px] leading-[1.6] text-text/72 sm:text-[18px]">
-                  A living structure of branches, stems, and fruit. Nothing here is a
-                  page. It is a working surface for what the land reports back, and for
-                  keeping downstream decisions aligned with observation.
+                  Mimicorp is a systems lab built to attract capital and partners for
+                  the design, financing, and construction of ecological infrastructure.
+                  This site functions as the thesis: it shows how observation, media,
+                  strategy, and operating systems compound into real projects on real
+                  land.
                 </p>
 
                 <div className="grid gap-3 sm:grid-cols-3">
                   <article className="hero-metric rounded-[22px] border border-white/10 bg-black/20 p-4">
                     <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">
-                      Read depth
+                      Core claim
                     </p>
                     <p className="mt-2 font-primary text-[30px] leading-none tracking-[-0.05em] text-text">
-                      03
+                      BUILD
                     </p>
                     <p className="mt-2 text-[12px] uppercase tracking-[0.18em] text-text/52">
-                      branch layers in active read
+                      ecological infrastructure, not just content
                     </p>
                   </article>
 
                   <article className="hero-metric rounded-[22px] border border-white/10 bg-black/20 p-4">
                     <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">
-                      Capture state
+                      Capital logic
                     </p>
                     <p className="mt-2 font-primary text-[30px] leading-none tracking-[-0.05em] text-[#e2eccf]">
-                      81%
+                      ALIGN
                     </p>
                     <p className="mt-2 text-[12px] uppercase tracking-[0.18em] text-text/52">
-                      field signal retained
+                      funders, operators, and land-based evidence
                     </p>
                   </article>
 
                   <article className="hero-metric rounded-[22px] border border-white/10 bg-black/20 p-4">
                     <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">
-                      Drift check
+                      Partner role
                     </p>
                     <p className="mt-2 font-primary text-[30px] leading-none tracking-[-0.05em] text-text">
-                      LOW
+                      JOIN
                     </p>
                     <p className="mt-2 text-[12px] uppercase tracking-[0.18em] text-text/52">
-                      observation inside tolerance
+                      bring capital, capability, or site access
                     </p>
                   </article>
                 </div>
@@ -106,7 +108,7 @@ export default function HomePage() {
                     Primary use
                   </p>
                   <p className="mt-2 text-[15px] leading-[1.45] text-text/76">
-                    ecological logging
+                    attract and organize ecological investment
                   </p>
                 </article>
 
@@ -115,7 +117,7 @@ export default function HomePage() {
                     Read method
                   </p>
                   <p className="mt-2 text-[15px] leading-[1.45] text-text/76">
-                    node composition
+                    thesis through nodes, evidence, and outputs
                   </p>
                 </article>
 
@@ -124,7 +126,7 @@ export default function HomePage() {
                     Output condition
                   </p>
                   <p className="mt-2 text-[15px] leading-[1.45] text-text/76">
-                    continuously revised
+                    partnerships shaped into buildable systems
                   </p>
                 </article>
               </div>

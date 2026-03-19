@@ -3,7 +3,7 @@ const coreNodes = [
     id: "mimicorp",
     label: "Mimicorp",
     type: "kernel",
-    description: "Creative technology for land, media, and living systems.",
+    description: "A systems lab that attracts capital and partners to build ecological infrastructure.",
     internal: true,
     url: "/",
     connections: ["second_cutting", "ag_lab", "joynet"]
@@ -12,7 +12,7 @@ const coreNodes = [
     id: "second_cutting",
     label: "Second Cutting",
     type: "branch",
-    description: "Second Cutting is a podcast and documentary project about land, animals, people, and the systems that connect them.",
+    description: "Second Cutting builds the narrative case around land, labor, and infrastructure so ecological projects can earn support and strategic alignment.",
     internal: true,
     url: "/nodes/second-cutting/",
     connections: ["mimicorp", "glc", "media", "data"]
@@ -21,7 +21,7 @@ const coreNodes = [
     id: "ag_lab",
     label: "Ag Lab",
     type: "branch",
-    description: "An experimental agricultural lab linking ranch operations, USDA VAPG funding, and ecological research.",
+    description: "An experimental agricultural lab linking ranch operations, ecological research, and funding pathways that can support infrastructure on the ground.",
     internal: true,
     url: "/nodes/ag-lab/",
     connections: ["mimicorp", "data", "software", "gp_supply", "shady_pines"]
@@ -30,7 +30,7 @@ const coreNodes = [
     id: "joynet",
     label: "JoyNet",
     type: "branch",
-    description: "An online sanctuary exploring faith, doubt, and meaning for people who never quite fit the mold.",
+    description: "A public-facing branch that builds trust, values alignment, and cultural legitimacy around the wider Mimicorp system.",
     internal: true,
     url: "/nodes/joynet/",
     connections: ["mimicorp", "media", "instagram_joynet_church"]
@@ -39,7 +39,7 @@ const coreNodes = [
     id: "glc",
     label: "GLC",
     type: "stem",
-    description: "Gonsoulin Land and Cattle is a grass fed cattle ranch in South Louisiana and a real world environment where many Mimicorp ideas begin.",
+    description: "Gonsoulin Land and Cattle is a working ranch that gives Mimicorp real operating conditions, constraints, and proof for infrastructure ideas.",
     internal: false,
     url: "https://glcranch.com",
     connections: ["second_cutting", "media", "design"]
@@ -48,7 +48,7 @@ const coreNodes = [
     id: "teche_lake_outfitters",
     label: "Teche Lake Outfitters",
     type: "stem",
-    description: "Teche Lake Outfitters connects people to the landscape through guided outdoor experiences and a deeper sense of place.",
+    description: "Teche Lake Outfitters connects people to the landscape through direct encounter, helping partners understand place as lived reality instead of abstraction.",
     internal: false,
     url: "https://www.techelakeoutfitters.com",
     connections: ["design"]
@@ -66,7 +66,7 @@ const coreNodes = [
     id: "shady_pines",
     label: "Shady Pines",
     type: "stem",
-    description: "Shady Pines is a working landscape and creative site for observation, experimentation, and retreat.",
+    description: "Shady Pines is a working landscape for observation, experimentation, and testing ecological infrastructure ideas before they scale.",
     internal: false,
     url: "https://example.com/shady-pines",
     connections: ["ag_lab", "data"]
@@ -75,7 +75,7 @@ const coreNodes = [
     id: "design",
     label: "Design",
     type: "fruit",
-    description: "Design is where ideas become visible and complex systems communicate clearly.",
+    description: "Design packages complex systems into briefs, interfaces, and materials that help projects secure commitment.",
     internal: true,
     url: "/nodes/design/",
     connections: ["mimicorp", "glc", "teche_lake_outfitters"]
@@ -84,7 +84,7 @@ const coreNodes = [
     id: "media",
     label: "Media",
     type: "fruit",
-    description: "Media production is one of the primary ways Mimicorp documents the systems it studies.",
+    description: "Media makes the work visible so partners, funders, and the public can see ecological systems and interventions clearly.",
     internal: true,
     url: "/nodes/media/",
     connections: ["mimicorp", "second_cutting", "joynet", "glc", "instagram_cajunleprochaun", "tiktok_auntie_christ", "instagram_joynet_church"]
@@ -93,7 +93,7 @@ const coreNodes = [
     id: "data",
     label: "Data",
     type: "fruit",
-    description: "A living archive of ecological data documenting how soil, plants, animals, and landscapes change over time.",
+    description: "A living archive of ecological data that turns observation into evidence for design, funding, and stewardship decisions.",
     internal: true,
     url: "/nodes/data/",
     connections: ["mimicorp", "second_cutting", "ag_lab", "shady_pines"]
@@ -102,7 +102,7 @@ const coreNodes = [
     id: "software",
     label: "Software",
     type: "fruit",
-    description: "Software tools support the infrastructure behind Mimicorp projects through dashboards, data pipelines, media systems, and custom applications.",
+    description: "Software tools support the infrastructure behind Mimicorp projects through dashboards, data pipelines, and custom decision systems.",
     internal: true,
     url: "/nodes/software/",
     connections: ["mimicorp", "ag_lab", "gp_supply"]
@@ -111,7 +111,7 @@ const coreNodes = [
     id: "book_time",
     label: "Book Time",
     type: "fruit",
-    description: "Reserve focused studio time for creative direction, strategy, editorial thinking, technical problem solving, or project triage.",
+    description: "Reserve focused studio time to shape strategy, partnerships, and project pathways for ecological infrastructure work.",
     internal: true,
     url: "/nodes/book-time/",
     connections: ["mimicorp"]
@@ -231,7 +231,7 @@ function getRouteLabel(node) {
 
 function getInvitation(node) {
   if (node.id === "mimicorp") {
-    return "Explore the network to see how the pieces connect.";
+    return "Explore the network to see how Mimicorp attracts capital and partners around ecological infrastructure.";
   }
 
   if (node.id === "second_cutting") {
@@ -243,14 +243,14 @@ function getInvitation(node) {
   }
 
   if (!node.internal) {
-    return "Open the live site and move from the map into the field.";
+    return "Open the live site to see the operating context behind the thesis.";
   }
 
   if (node.type === "fruit") {
-    return "Open this service layer to see how Mimicorp turns observation into usable tools.";
+    return "Open this output layer to see how Mimicorp turns strategy and evidence into partner-facing infrastructure tools.";
   }
 
-  return "Open this node to follow the work in more detail.";
+  return "Open this node to follow the infrastructure logic in more detail.";
 }
 
 function getPrimaryActionLabel(node) {
