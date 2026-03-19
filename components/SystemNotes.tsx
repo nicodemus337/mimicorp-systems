@@ -9,22 +9,23 @@ export default function SystemNotes() {
         <div className="space-y-6">
           <div className="space-y-3">
             <p className="text-[12px] uppercase tracking-[0.32em] text-text/48">
-              Evidence Notes
+              Next Phase / Field Notes
             </p>
             <h2 className="max-w-lg font-primary text-[36px] leading-[1.02] tracking-[-0.05em] text-text md:text-[48px]">
-              Ecological infrastructure needs proof, not branding.
+              Field Notes launches in the next phase of development.
             </h2>
             <p className="max-w-md text-[16px] leading-[1.6] text-text/70">
-              Mimicorp does not ask capital or partners to believe in a vibe. It asks
-              them to enter a record: time, place, condition, change, and implication
-              tracked closely enough to justify action.
+              It will become Mimicorp's evidence layer: a structured field record for
+              time, place, condition, change, and implication. The goal is to give
+              partners and capital a closer view of the observations that justify
+              ecological action.
             </p>
           </div>
 
           <div className="space-y-5 rounded-[28px] border border-white/10 bg-black/20 p-5">
             <div className="flex flex-wrap gap-2">
               <span className="rounded-full border border-[#dce7c8]/20 bg-[#dce7c8]/8 px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-[#e5eed6]">
-                Evidence log
+                Upcoming module
               </span>
               <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-text/52">
                 Time / place / condition
@@ -32,7 +33,7 @@ export default function SystemNotes() {
             </div>
 
             <p className="max-w-lg font-accent text-[28px] leading-[1.14] text-text/84">
-              This record exists to make ecological investment legible.
+              This preview shows how Field Notes will make ecological investment legible.
             </p>
 
             <div className="space-y-3 text-[16px] leading-[1.65] text-text/70">
@@ -43,9 +44,10 @@ export default function SystemNotes() {
                 the season.
               </p>
               <p>
-                Individually, these signals can be dismissed. Recorded over time, they
-                become evidence for where intervention is needed, what should be built,
-                and how support should be structured.
+                Individually, these signals can be dismissed. Once Field Notes is
+                live, recorded observations like these can accumulate into evidence
+                for where intervention is needed, what should be built, and how
+                support should be structured.
               </p>
             </div>
           </div>
@@ -56,8 +58,8 @@ export default function SystemNotes() {
                 Evidence retention
               </p>
               <p className="mt-3 text-[15px] leading-[1.5] text-text/74">
-                Every event leaves a trace. A serious systems lab preserves those traces
-                so projects can be designed against reality rather than memory.
+                Every event leaves a trace. Field Notes will preserve those traces so
+                projects can be designed against reality rather than memory.
               </p>
             </article>
 
@@ -66,8 +68,9 @@ export default function SystemNotes() {
                 Decision support
               </p>
               <p className="mt-3 text-[15px] leading-[1.5] text-text/74">
-                What looks minor is often just unresolved. Mimicorp treats observations
-                as decision inputs for financing, stewardship, and build sequencing.
+                What looks minor is often just unresolved. Field Notes is being built
+                to turn observations into decision inputs for financing, stewardship,
+                and build sequencing.
               </p>
             </article>
 
@@ -84,15 +87,16 @@ export default function SystemNotes() {
 
           <div className="space-y-3 border-t border-white/8 pt-5 text-[15px] leading-[1.65] text-text/68">
             <p>
-              Each entry is anchored to time, place, and condition, not just
-              interpretation. That is how ecological claims become operational.
+              In the next phase, each entry will be anchored to time, place, and
+              condition, not just interpretation. That is how ecological claims become
+              operational.
             </p>
             <p>
-              Over time, this becomes a working record of reality: a basis for partner
-              trust, project prioritization, and infrastructure design tied to actual
-              conditions.
+              Over time, it is meant to become a working record of reality: a basis
+              for partner trust, project prioritization, and infrastructure design
+              tied to actual conditions.
             </p>
-            <p className="text-text/84">This is where ecological infrastructure becomes financeable.</p>
+            <p className="text-text/84">This is the next layer of the Mimicorp thesis.</p>
           </div>
         </div>
 
