@@ -187,12 +187,7 @@ code {
   width: clamp(240px, 28vw, 380px);
   height: clamp(58px, 6vw, 82px);
   border-radius: 22px 10px 26px 12px;
-  background-image: url("assets/mimicorp.png");
-  background-repeat: no-repeat;
-  background-size: 88% auto;
-  background-position: 54% center;
   opacity: 0.96;
-  filter: invert(1) brightness(1.02);
   background-color: rgba(6, 8, 12, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow:

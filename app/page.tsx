@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import logoMark from "@/assets/logo.png";
-import logoWordmark from "@/assets/mimicorp.png";
 
 import { LayoutContainer } from "@/components/LayoutContainer";
 import { MotionWrapper } from "@/components/MotionWrapper";
@@ -76,15 +75,6 @@ export default function HomePage() {
                     width={44}
                     height={44}
                     className="h-full w-full object-contain"
-                  />
-                </div>
-                <div className="min-w-0 rounded-full bg-black px-3 py-2">
-                  <Image
-                    src={logoWordmark}
-                    alt="Mimicorp"
-                    width={170}
-                    height={63}
-                    className="h-7 w-auto object-contain md:h-8"
                   />
                 </div>
               </div>

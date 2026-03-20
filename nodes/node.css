@@ -75,12 +75,7 @@ a {
   width: min(250px, 48vw);
   height: 32px;
   border-radius: 10px;
-  background-image: url("../assets/mimicorp.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: left center;
   opacity: 0.92;
-  filter: invert(1) brightness(1.02);
 }
 
 .node-header,
@@ -322,12 +317,7 @@ a {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../assets/mimicorp.png");
-  background-repeat: no-repeat;
-  background-size: 620px auto;
-  background-position: left 36px center;
   opacity: 0.9;
-  filter: invert(1) brightness(1.05);
 }
 
 .symbol-panel__caption {
