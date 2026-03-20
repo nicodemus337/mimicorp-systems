@@ -2,7 +2,10 @@ import { fieldNotes } from "@/lib/field-notes";
 
 export default function SystemNotes() {
   return (
-    <section className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-6 shadow-[0_32px_120px_rgba(0,0,0,0.28)] backdrop-blur-sm md:p-8">
+    <section
+      id="field-notes"
+      className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-6 shadow-[0_32px_120px_rgba(0,0,0,0.28)] backdrop-blur-sm md:p-8"
+    >
       <div className="field-notes-haze" />
 
       <div className="relative grid gap-8 xl:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
@@ -20,6 +23,18 @@ export default function SystemNotes() {
               partners and capital a closer view of the observations that justify
               ecological action.
             </p>
+
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <a
+                href="#"
+                className="rounded-full border border-[#dce7c8]/24 bg-[#dce7c8]/10 px-5 py-3 text-center text-[11px] uppercase tracking-[0.28em] text-[#e5eed6] transition-colors duration-200 hover:bg-[#dce7c8]/16"
+              >
+                Log In For Field Note Access
+              </a>
+              <span className="rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-center text-[11px] uppercase tracking-[0.28em] text-text/52">
+                Subscriber preview / coming online
+              </span>
+            </div>
           </div>
 
           <div className="space-y-5 rounded-[28px] border border-white/10 bg-black/20 p-5">
