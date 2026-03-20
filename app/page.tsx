@@ -16,14 +16,14 @@ export default function HomePage() {
           <div className="hero-aura hero-aura-secondary" />
           <div className="hero-scanline" />
           <div className="absolute inset-x-[12%] top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-          <div className="absolute right-[-6%] top-[-14%] h-40 w-40 rounded-full border border-white/8 bg-white/[0.02] blur-2xl" />
+          <div className="hero-orb" />
 
           <div className="relative space-y-8">
-            <div className="flex flex-col gap-3 border-b border-white/8 pb-4 md:flex-row md:items-center md:justify-between">
-              <p className="text-[11px] uppercase tracking-[0.34em] text-text/46">
+            <div className="hero-kicker border-b border-white/8 pb-4">
+              <p className="hero-kicker-label text-[11px] uppercase tracking-[0.34em] text-text/46">
                 Thesis surface / live system
               </p>
-              <p className="max-w-md text-[12px] uppercase tracking-[0.22em] text-text/38 md:text-right">
+              <p className="hero-kicker-copy text-[12px] uppercase tracking-[0.22em] text-text/38 md:text-right">
                 Capital, partners, and operating systems aligned around ecological infrastructure
               </p>
             </div>
