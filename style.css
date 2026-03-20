@@ -103,14 +103,6 @@ a {
   backdrop-filter: blur(16px);
 }
 
-.system-header {
-  top: 24px;
-  left: 24px;
-  right: 24px;
-  width: auto;
-}
-
-.system-kicker,
 .panel-label,
 .system-status span,
 .note-row span:first-child,
@@ -120,54 +112,10 @@ a {
   letter-spacing: 0.18em;
 }
 
-.system-kicker,
 .panel-label {
   margin: 0;
   color: rgba(234, 241, 229, 0.54);
   font-size: 11px;
-}
-
-.system-banner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  padding: 12px 16px;
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  background: rgba(8, 14, 10, 0.52);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  width: min(720px, 100%);
-}
-
-.system-hero-copy {
-  width: min(920px, 100%);
-  text-align: center;
-}
-
-.system-eyebrow {
-  margin: 0 0 10px;
-  color: rgba(234, 241, 229, 0.42);
-  font-size: 13px;
-  letter-spacing: 0.22em;
-}
-
-.system-header h1 {
-  margin: 0;
-  font-family: "Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif;
-  font-size: clamp(3.2rem, 8vw, 7rem);
-  line-height: 0.9;
-  letter-spacing: -0.08em;
-  font-weight: 500;
-  max-width: 12ch;
-}
-
-.system-summary {
-  margin: 18px auto 0;
-  color: var(--muted);
-  line-height: 1.75;
-  font-size: 13px;
-  max-width: 52ch;
 }
 
 .system-status {
@@ -224,30 +172,6 @@ a {
 
 
 @media (max-width: 900px) {
-  .system-header {
-    gap: 20px;
-  }
-
-  .system-banner {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .system-kicker {
-    max-width: 26ch;
-    text-align: center;
-  }
-
-  .system-hero-copy {
-    text-align: center;
-  }
-
-  .system-header h1,
-  .system-summary {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   .system-footer {
     width: 240px;
   }
@@ -268,14 +192,6 @@ a {
     left: 18px;
     right: 18px;
     top: 18px;
-  }
-
-  .system-banner {
-    padding: 12px;
-  }
-
-  .system-eyebrow {
-    font-size: 11px;
   }
 
   .system-listen {
