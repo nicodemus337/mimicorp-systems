@@ -235,17 +235,9 @@ a {
   transform: translateX(-50%);
 }
 
-.system-footer-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: min(520px, calc(100vw - 48px));
-  padding: 0;
-}
-
 .system-footer-mark {
   display: block;
-  width: 100%;
+  width: min(520px, calc(100vw - 48px));
   height: auto;
   object-fit: contain;
   filter: saturate(0) brightness(1.08);
@@ -281,7 +273,7 @@ a {
     width: 240px;
   }
 
-  .system-footer-logo {
+  .system-footer-mark {
     width: min(420px, calc(100vw - 40px));
   }
 
@@ -321,7 +313,7 @@ a {
     transform: translateX(-50%);
   }
 
-  .system-footer-logo {
+  .system-footer-mark {
     width: min(320px, calc(100vw - 36px));
   }
 }
