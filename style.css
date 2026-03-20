@@ -104,7 +104,10 @@ a {
 .system-header {
   top: 24px;
   left: 24px;
-  width: min(440px, calc(100% - 48px));
+  right: 24px;
+  width: auto;
+  display: grid;
+  gap: 28px;
 }
 
 .system-kicker,
@@ -119,9 +122,73 @@ a {
 
 .system-kicker,
 .panel-label {
-  margin: 0 0 14px;
+  margin: 0;
   color: rgba(234, 241, 229, 0.54);
   font-size: 11px;
+}
+
+.system-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(8, 14, 10, 0.52);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.system-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.system-mark-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  padding: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.system-mark {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.system-wordmark-wrap {
+  display: flex;
+  align-items: center;
+  padding: 10px 18px;
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.system-wordmark {
+  display: block;
+  width: auto;
+  height: 34px;
+  object-fit: contain;
+}
+
+.system-hero-copy {
+  margin-left: auto;
+  width: min(860px, 100%);
+  text-align: right;
+}
+
+.system-eyebrow {
+  margin: 0 0 10px;
+  color: rgba(234, 241, 229, 0.42);
+  font-size: 13px;
+  letter-spacing: 0.22em;
 }
 
 .system-header h1 {
@@ -131,11 +198,12 @@ a {
   line-height: 0.9;
   letter-spacing: -0.08em;
   font-weight: 500;
-  max-width: 8ch;
+  margin-left: auto;
+  max-width: 10ch;
 }
 
 .system-summary {
-  margin: 18px 0 0;
+  margin: 18px 0 0 auto;
   color: var(--muted);
   line-height: 1.75;
   font-size: 13px;
@@ -161,6 +229,65 @@ a {
   background: rgba(8, 14, 10, 0.42);
   text-decoration: none;
   font-size: 10px;
+}
+
+@media (max-width: 900px) {
+  .system-header {
+    gap: 20px;
+  }
+
+  .system-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .system-kicker {
+    max-width: 26ch;
+  }
+
+  .system-hero-copy {
+    margin-left: 0;
+    text-align: left;
+  }
+
+  .system-header h1,
+  .system-summary {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .system-header {
+    left: 18px;
+    right: 18px;
+    top: 18px;
+  }
+
+  .system-banner {
+    padding: 12px;
+  }
+
+  .system-brand {
+    gap: 10px;
+  }
+
+  .system-mark-wrap {
+    width: 52px;
+    height: 52px;
+    padding: 6px;
+  }
+
+  .system-wordmark-wrap {
+    padding: 8px 12px;
+  }
+
+  .system-wordmark {
+    height: 26px;
+  }
+
+  .system-eyebrow {
+    font-size: 11px;
+  }
 }
 
 .field-notes-panel {
