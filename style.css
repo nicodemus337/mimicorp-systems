@@ -110,6 +110,7 @@ a {
   width: auto;
   display: grid;
   gap: 28px;
+  justify-items: center;
 }
 
 .system-kicker,
@@ -132,19 +133,19 @@ a {
 .system-banner {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 20px;
   padding: 12px 16px;
   border: 1px solid var(--line);
   border-radius: 22px;
   background: rgba(8, 14, 10, 0.52);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  width: min(720px, 100%);
 }
 
 .system-hero-copy {
-  margin-left: auto;
-  width: min(860px, 100%);
-  text-align: right;
+  width: min(920px, 100%);
+  text-align: center;
 }
 
 .system-eyebrow {
@@ -161,16 +162,15 @@ a {
   line-height: 0.9;
   letter-spacing: -0.08em;
   font-weight: 500;
-  margin-left: auto;
-  max-width: 10ch;
+  max-width: 12ch;
 }
 
 .system-summary {
-  margin: 18px 0 0 auto;
+  margin: 18px auto 0;
   color: var(--muted);
   line-height: 1.75;
   font-size: 13px;
-  max-width: 34ch;
+  max-width: 52ch;
 }
 
 .system-status {
@@ -239,21 +239,20 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: clamp(220px, 28vw, 360px);
-  height: clamp(220px, 28vw, 360px);
-  padding: 10px;
+  width: min(520px, calc(100vw - 48px));
+  padding: 0;
 }
 
 .system-footer-mark {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: contain;
   filter:
     drop-shadow(0 18px 36px rgba(0, 0, 0, 0.32))
     saturate(0)
-    brightness(1.2);
-  opacity: 0.94;
+    brightness(1.15);
+  opacity: 0.92;
 }
 
 @media (max-width: 900px) {
@@ -263,21 +262,22 @@ a {
 
   .system-banner {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .system-kicker {
     max-width: 26ch;
+    text-align: center;
   }
 
   .system-hero-copy {
-    margin-left: 0;
-    text-align: left;
+    text-align: center;
   }
 
   .system-header h1,
   .system-summary {
-    margin-left: 0;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .system-footer {
@@ -285,8 +285,7 @@ a {
   }
 
   .system-footer-logo {
-    width: 220px;
-    height: 220px;
+    width: min(420px, calc(100vw - 40px));
   }
 
   .system-listen {
@@ -321,14 +320,12 @@ a {
   .system-footer {
     left: 50%;
     bottom: 18px;
-    width: 160px;
+    width: calc(100vw - 36px);
     transform: translateX(-50%);
   }
 
   .system-footer-logo {
-    width: 148px;
-    height: 148px;
-    padding: 8px;
+    width: min(320px, calc(100vw - 36px));
   }
 }
 
