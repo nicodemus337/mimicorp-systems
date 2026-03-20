@@ -93,6 +93,7 @@ a {
 }
 
 .system-header,
+.system-listen,
 .system-status,
 .field-notes-panel,
 .node-modal,
@@ -183,7 +184,8 @@ a {
 
 .system-status span,
 .modal-links button,
-.modal-route {
+.modal-route,
+.system-listen-link {
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 10px 14px;
@@ -191,6 +193,35 @@ a {
   background: rgba(8, 14, 10, 0.42);
   text-decoration: none;
   font-size: 10px;
+}
+
+.system-listen {
+  top: 320px;
+  left: 24px;
+  width: min(300px, calc(100% - 48px));
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--panel);
+}
+
+.system-listen-copy {
+  margin: 0 0 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 12px;
+}
+
+.system-listen-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.system-listen-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .system-footer {
@@ -257,6 +288,12 @@ a {
     width: 220px;
     height: 220px;
   }
+
+  .system-listen {
+    top: 300px;
+    left: 18px;
+    width: min(280px, calc(100% - 36px));
+  }
 }
 
 @media (max-width: 640px) {
@@ -272,6 +309,13 @@ a {
 
   .system-eyebrow {
     font-size: 11px;
+  }
+
+  .system-listen {
+    top: auto;
+    left: 18px;
+    bottom: 190px;
+    width: calc(100% - 36px);
   }
 
   .system-footer {
