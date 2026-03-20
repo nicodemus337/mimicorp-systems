@@ -3,194 +3,67 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mimicorp Systems</title>
+  <title>mimicorp.systems</title>
   <meta
     name="description"
-    content="Mimicorp Systems is a systems lab that attracts capital and partners to build ecological infrastructure."
+    content="A lightweight living system for Mimicorp: pulse-driven nodes, field notes, and ecological infrastructure logic."
   >
-  <link rel="icon" type="image/png" href="assets/logo.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app-shell">
-    <header class="top-bar">
-      <div class="top-bar__title">
-        <div class="brand-lockup">
-          <div class="brand-lockup__wordmark" role="img" aria-label="Mimicorp Systems"></div>
-        </div>
-        <p class="eyebrow">Mimicorp Systems</p>
-        <h1>A systems lab for attracting capital and partners to build ecological infrastructure.</h1>
-        <p class="top-bar__summary">
-          Mimicorp organizes evidence, narrative, strategy, and operating relationships so ecological projects can move from idea to financed and durable reality.
-        </p>
-      </div>
+  <main class="system-shell" id="system-shell">
+    <canvas id="pulse-canvas" class="pulse-canvas" aria-hidden="true"></canvas>
+    <div class="noise-layer" aria-hidden="true"></div>
+    <div class="gradient-layer gradient-layer--a" aria-hidden="true"></div>
+    <div class="gradient-layer gradient-layer--b" aria-hidden="true"></div>
 
-      <div class="top-bar__status" aria-label="System status">
-        <div class="status-pill">
-          <span class="status-pill__label">Status</span>
-          <strong>Network Live</strong>
-        </div>
-        <div class="status-pill">
-          <span class="status-pill__label">Nodes</span>
-          <strong id="status-node-count">12</strong>
-        </div>
-      </div>
+    <header class="system-header">
+      <p class="system-kicker">mimicorp.systems / ecological operating system</p>
+      <h1>Something is happening here.</h1>
+      <p class="system-summary">
+        A live field of branches, stems, and fruit. Notes from the ground feed the
+        network. Pulse ripples through the system every few seconds.
+      </p>
     </header>
 
-    <main class="workspace">
-      <aside class="sidebar" id="sidebar" aria-live="polite">
-        <div class="panel-card panel-card--guide">
-          <p class="panel-kicker">System</p>
-          <h2>Read the thesis at a glance.</h2>
-          <p class="node-description">
-            Branches build the case. Stems ground the work in real operations. Fruit carries partner-facing outputs that help turn ecological intent into funded infrastructure.
-          </p>
-          <ul class="guide-list">
-            <li><strong>Branches</strong> = strategy, narrative, and proof</li>
-            <li><strong>Stems</strong> = real world operating conditions</li>
-            <li><strong>Fruit</strong> = outputs that attract partners and capital</li>
-          </ul>
-          <label class="toggle-row" for="episode-toggle">
-            <span>Show episode nodes</span>
-            <input id="episode-toggle" type="checkbox" checked>
-          </label>
-        </div>
-
-        <div class="panel-card panel-card--active">
-          <p class="panel-kicker">Active Selection</p>
-          <h2 id="node-title">Mimicorp</h2>
-          <div class="node-meta">
-            <span class="type-chip" id="node-type">kernel</span>
-            <span class="route-chip" id="node-route">internal page</span>
-          </div>
-          <p class="node-description" id="node-description">
-            A systems lab for ecological infrastructure.
-          </p>
-          <p class="node-invitation" id="node-invitation">
-            Explore the network to see how each piece supports ecological investment and project delivery.
-          </p>
-
-          <div class="panel-section panel-section--compact">
-            <p class="panel-kicker">Path</p>
-            <p class="node-route-path" id="node-url">/</p>
-          </div>
-
-          <div class="panel-section">
-            <p class="panel-kicker">Connections</p>
-            <div class="connection-list" id="connection-list"></div>
-          </div>
-
-          <div class="panel-section panel-section--compact" id="episode-meta" hidden>
-            <p class="panel-kicker">Episode</p>
-            <div class="episode-meta-list">
-              <p id="episode-number"></p>
-              <p id="episode-guest"></p>
-              <p id="episode-date"></p>
-              <p id="episode-themes"></p>
-            </div>
-          </div>
-
-          <div class="panel-actions">
-            <button class="action-button" type="button" id="open-project">
-              Explore node
-            </button>
-            <button class="action-button action-button--secondary" type="button" id="watch-project" hidden>
-              Watch
-            </button>
-            <button class="action-button action-button--secondary" type="button" id="transcript-project" hidden>
-              Transcript
-            </button>
-          </div>
-        </div>
-      </aside>
-
-      <section class="graph-panel">
-        <div class="graph-watermark" aria-hidden="true">
-          <img src="assets/logo.png" alt="">
-        </div>
-        <div class="graph-panel__overlay">
-          <article class="graph-callout">
-            <p class="panel-kicker">Network Map</p>
-            <h2>Start anywhere. Follow the infrastructure logic.</h2>
-            <p>Click to inspect how each node helps attract, align, or deploy support.</p>
-          </article>
-
-          <div class="legend" aria-label="Node types">
-            <span class="legend-item legend-item--kernel">Kernel</span>
-            <span class="legend-item legend-item--branch">Branch</span>
-            <span class="legend-item legend-item--stem">Stem</span>
-            <span class="legend-item legend-item--fruit">Fruit</span>
-          </div>
-        </div>
-
-        <svg id="graph-canvas" aria-label="Mimicorp node network"></svg>
-      </section>
-    </main>
-
-    <footer class="terminal">
-      <form class="terminal__form" id="terminal-form">
-        <label class="sr-only" for="terminal-input">Terminal command</label>
-        <span class="terminal__prompt">mimicorp@system:~$</span>
-        <input
-          id="terminal-input"
-          class="terminal__input"
-          name="command"
-          type="text"
-          autocomplete="off"
-          spellcheck="false"
-          placeholder="help | list | inspect second_cutting | open ag_lab"
-        >
-        <button class="terminal__button" type="submit">Run</button>
-      </form>
-      <p class="terminal__response" id="terminal-response">
-        System ready. Inspect a node, then open it when you want to go deeper.
-      </p>
-    </footer>
-
-    <section class="funnel">
-      <div class="funnel__intro">
-        <p class="eyebrow">Work Together</p>
-        <h2>Join the buildout of ecological infrastructure.</h2>
-        <p>
-          Mimicorp works with funders, land partners, operators, and strategic collaborators who want to turn ecological observation into durable systems on the ground.
-        </p>
-        <a class="action-button funnel-card__button" href="/nodes/book-time/">Book studio time</a>
-      </div>
-
-      <div class="funnel__grid">
-        <article class="funnel-card">
-          <p class="panel-kicker">Web + Social</p>
-          <h3>Clarify the public case for investment.</h3>
-          <p>Websites, campaigns, and narrative systems that help ecological projects earn attention, trust, and backing.</p>
-          <a class="action-button funnel-card__button" href="/nodes/contact/">Explore</a>
-        </article>
-
-        <article class="funnel-card">
-          <p class="panel-kicker">Documentary + Drone</p>
-          <h3>Show the landscape as it actually functions.</h3>
-          <p>Aerial media, field cinematography, and documentary systems that make land-based work visible to partners and supporters.</p>
-          <a class="action-button funnel-card__button" href="/nodes/contact/">Explore</a>
-        </article>
-
-        <article class="funnel-card">
-          <p class="panel-kicker">Data + Stewardship</p>
-          <h3>Build evidence that can guide action.</h3>
-          <p>Ecological archives, observation workflows, and data structures that reveal change over time and justify intervention.</p>
-          <a class="action-button funnel-card__button" href="/nodes/contact/">Explore</a>
-        </article>
-
-        <article class="funnel-card funnel-card--cta">
-          <p class="panel-kicker">Funding + Partnership</p>
-          <h3>Turn support into ecological infrastructure.</h3>
-          <p>Grant writing, collaborative strategy, and place-based systems that connect capital to durable ecological outcomes.</p>
-          <a class="action-button funnel-card__button" href="/nodes/contact/">Explore</a>
-        </article>
-      </div>
+    <section class="system-status" aria-label="System status">
+      <span>pulse / variable</span>
+      <span>field notes / simulating</span>
+      <span>media / external only</span>
     </section>
-  </div>
 
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="scripts/episodes.js"></script>
-  <script src="graph.js"></script>
+    <section class="field-notes-panel" aria-live="polite">
+      <p class="panel-label">Field Notes</p>
+      <div id="field-notes-feed" class="field-notes-feed"></div>
+    </section>
+
+    <section class="node-overlay" id="node-overlay" aria-label="Node network"></section>
+
+    <aside class="node-modal" id="node-modal" aria-live="polite">
+      <p class="panel-label" id="modal-orbit">Core / heartbeat</p>
+      <div class="modal-header">
+        <h2 id="modal-title">mimicorp</h2>
+        <span id="modal-status">active</span>
+      </div>
+      <p class="modal-summary" id="modal-summary">
+        The core holds the living argument together.
+      </p>
+      <p class="modal-detail" id="modal-detail">
+        Branches, stems, fruit, and notes remain visible as one changing field rather
+        than separate pages or a pitch deck.
+      </p>
+      <div class="modal-links" id="modal-links"></div>
+      <a
+        id="modal-route"
+        class="modal-route"
+        href="#"
+        target="_self"
+        rel="noreferrer"
+        hidden
+      >open route</a>
+    </aside>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>
