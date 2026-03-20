@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 import { LayoutContainer } from "@/components/LayoutContainer";
 import { MotionWrapper } from "@/components/MotionWrapper";
@@ -16,20 +17,37 @@ export default function HomePage() {
           <div className="hero-aura hero-aura-secondary" />
           <div className="hero-scanline" />
           <div className="absolute inset-x-[12%] top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-          <div className="hero-orb" />
 
           <div className="relative space-y-8">
-            <div className="hero-kicker border-b border-white/8 pb-4">
-              <p className="hero-kicker-label text-[11px] uppercase tracking-[0.34em] text-text/46">
+            <div className="flex items-center justify-between gap-4 rounded-[22px] border border-white/10 bg-black/30 px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] md:px-5">
+              <div className="flex min-w-0 items-center gap-3">
+                <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-sm bg-white/95 p-1">
+                  <Image
+                    src="/assets/logo.png"
+                    alt="Mimicorp mark"
+                    width={44}
+                    height={44}
+                    className="h-full w-full object-contain"
+                  />
+                </div>
+                <div className="min-w-0 rounded-full bg-black px-3 py-2">
+                  <Image
+                    src="/assets/mimicorp.png"
+                    alt="Mimicorp"
+                    width={170}
+                    height={63}
+                    className="h-7 w-auto object-contain md:h-8"
+                  />
+                </div>
+              </div>
+
+              <p className="hidden max-w-md text-right text-[11px] uppercase tracking-[0.28em] text-text/42 md:block">
                 Thesis surface / live system
-              </p>
-              <p className="hero-kicker-copy text-[12px] uppercase tracking-[0.22em] text-text/38 md:text-right">
-                Capital, partners, and operating systems aligned around ecological infrastructure
               </p>
             </div>
 
-            <div className="grid gap-8 xl:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)] xl:items-end">
-              <div className="space-y-5">
+            <div className="grid gap-8 xl:grid-cols-[minmax(280px,0.78fr)_minmax(0,1.22fr)] xl:items-start">
+              <div className="space-y-5 xl:pt-4">
                 <div className="grid gap-2 text-[11px] uppercase tracking-[0.24em] text-text/42 sm:grid-cols-3">
                   <div className="rounded-[18px] border border-white/10 bg-black/20 px-3 py-2">
                     Thesis mode / active
@@ -50,18 +68,21 @@ export default function HomePage() {
                     Capital formation
                   </span>
                 </div>
+              </div>
 
-                <h1 className="max-w-4xl font-primary text-[56px] leading-[0.96] tracking-[-0.07em] text-text sm:text-[72px] md:text-[96px] xl:text-[120px]">
-                  mimicorp.systems
-                </h1>
-
-                <p className="max-w-xl text-[17px] leading-[1.6] text-text/72 sm:text-[18px]">
-                  Mimicorp is a systems lab built to attract capital and partners for
-                  the design, financing, and construction of ecological infrastructure.
-                  This site functions as the thesis: it shows how observation, media,
-                  strategy, and operating systems compound into real projects on real
-                  land.
-                </p>
+              <div className="space-y-8 xl:text-right">
+                <div className="space-y-4 xl:ml-auto xl:max-w-4xl">
+                  <p className="text-[11px] uppercase tracking-[0.34em] text-text/46">
+                    Mimicorp systems
+                  </p>
+                  <h1 className="font-primary text-[56px] leading-[0.96] tracking-[-0.07em] text-text sm:text-[72px] md:text-[96px] xl:text-[120px]">
+                    A systems lab for ecological infrastructure
+                  </h1>
+                  <p className="text-[17px] leading-[1.6] text-text/72 sm:text-[18px] xl:ml-auto xl:max-w-2xl">
+                    Mimicorp is building a thesis surface for capital, partners, and operating
+                    systems to converge around real projects on real land.
+                  </p>
+                </div>
 
                 <div className="grid gap-3 sm:grid-cols-3">
                   <article className="hero-metric rounded-[22px] border border-white/10 bg-black/20 p-4">
@@ -100,35 +121,35 @@ export default function HomePage() {
                     </p>
                   </article>
                 </div>
-              </div>
 
-              <div className="grid gap-3 sm:grid-cols-3 xl:grid-cols-1">
-                <article className="hero-stat-card rounded-[22px] border border-white/10 bg-black/20 p-4">
-                  <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
-                    Primary use
-                  </p>
-                  <p className="mt-2 text-[15px] leading-[1.45] text-text/76">
-                    attract and organize ecological investment
-                  </p>
-                </article>
+                <div className="grid gap-3 sm:grid-cols-3 xl:grid-cols-3">
+                  <article className="hero-stat-card rounded-[22px] border border-white/10 bg-black/20 p-4">
+                    <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
+                      Primary use
+                    </p>
+                    <p className="mt-2 text-[15px] leading-[1.45] text-text/76">
+                      attract and organize ecological investment
+                    </p>
+                  </article>
 
-                <article className="hero-stat-card rounded-[22px] border border-white/10 bg-black/20 p-4">
-                  <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
-                    Read method
-                  </p>
-                  <p className="mt-2 text-[15px] leading-[1.45] text-text/76">
-                    thesis through nodes, evidence, and outputs
-                  </p>
-                </article>
+                  <article className="hero-stat-card rounded-[22px] border border-white/10 bg-black/20 p-4">
+                    <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
+                      Read method
+                    </p>
+                    <p className="mt-2 text-[15px] leading-[1.45] text-text/76">
+                      thesis through nodes, evidence, and outputs
+                    </p>
+                  </article>
 
-                <article className="hero-stat-card rounded-[22px] border border-white/10 bg-black/20 p-4">
-                  <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
-                    Output condition
-                  </p>
-                  <p className="mt-2 text-[15px] leading-[1.45] text-text/76">
-                    partnerships shaped into buildable systems
-                  </p>
-                </article>
+                  <article className="hero-stat-card rounded-[22px] border border-white/10 bg-black/20 p-4">
+                    <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
+                      Output condition
+                    </p>
+                    <p className="mt-2 text-[15px] leading-[1.45] text-text/76">
+                      partnerships shaped into buildable systems
+                    </p>
+                  </article>
+                </div>
               </div>
             </div>
           </div>
