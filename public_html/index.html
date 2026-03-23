@@ -6,49 +6,94 @@
   <title>Mimicorp Systems</title>
   <meta
     name="description"
-    content="Mimicorp Systems is a lab that builds ecological infrastructure."
+    content="Mimicorp Systems is a signal-led hub for ecological infrastructure, field evidence, and project routing."
   >
   <link rel="icon" type="image/png" href="assets/logo_bw.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="app-shell">
-    <header class="top-bar">
-      <div class="top-bar__title">
-        <div class="brand-lockup">
-          <div class="brand-lockup__wordmark" role="img" aria-label="Mimicorp Systems"></div>
-        </div>
+    <header class="hero-panel">
+      <div class="hero-copy">
         <p class="eyebrow">Mimicorp Systems</p>
-        <h1>A systems lab for attracting capital and partners to build ecological infrastructure.</h1>
-        <p class="top-bar__summary">
-          Mimicorp organizes evidence, narrative, strategy, and operating relationships so ecological projects can move from idea to financed and durable reality.
+        <h1 class="glitch-title">Ecological infrastructure, routed like a live transmission.</h1>
+        <p class="hero-summary">
+          The static homepage now follows the animated mark instead of the former wordmark/header
+          system: black field, white force, RGB drift, scanlines, and sharper broadcast framing.
         </p>
+
+        <div class="status-strip" aria-label="System status">
+          <span class="status-pill"><span class="status-pill__label">Signal</span><strong>Live</strong></span>
+          <span class="status-pill"><span class="status-pill__label">Nodes</span><strong id="status-node-count">12</strong></span>
+          <span class="status-pill"><span class="status-pill__label">Mode</span><strong>Broadcast Thesis</strong></span>
+        </div>
+
+        <div class="hero-actions">
+          <a class="action-button action-button--primary" href="#graph-zone">Enter the network</a>
+          <a class="action-button" href="/nodes/second-cutting/">Open Second Cutting</a>
+        </div>
       </div>
 
-      <div class="top-bar__status" aria-label="System status">
-        <div class="status-pill">
-          <span class="status-pill__label">Status</span>
-          <strong>Network Live</strong>
+      <div class="hero-video-panel">
+        <div class="video-meta">
+          <span>Animated identity feed</span>
+          <span>03.77 sec loop</span>
         </div>
-        <div class="status-pill">
-          <span class="status-pill__label">Nodes</span>
-          <strong id="status-node-count">12</strong>
+        <div class="video-frame">
+          <video
+            class="hero-video"
+            src="assets/media/mimicorp-glitch-logo.mov"
+            autoplay
+            loop
+            muted
+            playsinline
+            aria-label="Animated Mimicorp glitch logo"
+          ></video>
         </div>
       </div>
     </header>
 
-    <main class="workspace">
+    <section class="path-strip" aria-label="Project routes">
+      <article class="path-card">
+        <p class="panel-kicker">Public signal</p>
+        <h2>JoyNet</h2>
+        <p>Values, voice, and legitimacy routed outward.</p>
+        <a class="action-button" href="https://joynet.church" target="_blank" rel="noreferrer">Open</a>
+      </article>
+      <article class="path-card">
+        <p class="panel-kicker">Field proof</p>
+        <h2>GLC Ranch</h2>
+        <p>Working ground behind the thesis and its constraints.</p>
+        <a class="action-button" href="https://glcranch.com" target="_blank" rel="noreferrer">Open</a>
+      </article>
+      <article class="path-card">
+        <p class="panel-kicker">Listening</p>
+        <h2>Second Cutting</h2>
+        <p>Documentary branch carrying the argument in public.</p>
+        <a class="action-button" href="https://podcasts.apple.com/us/podcast/second-cutting/id1865905475?i=1000752307523" target="_blank" rel="noreferrer">Listen</a>
+      </article>
+      <article class="path-card">
+        <p class="panel-kicker">Place access</p>
+        <h2>Teche Lake</h2>
+        <p>Landscape encounter as lived context, not abstraction.</p>
+        <a class="action-button" href="https://www.techelakeoutfitters.com" target="_blank" rel="noreferrer">Open</a>
+      </article>
+    </section>
+
+    <main class="workspace" id="graph-zone">
       <aside class="sidebar" id="sidebar" aria-live="polite">
         <div class="panel-card panel-card--guide">
-          <p class="panel-kicker">System</p>
-          <h2>Read the thesis at a glance.</h2>
+          <p class="panel-kicker">Read Method</p>
+          <h2>Start with relation, then go deeper.</h2>
           <p class="node-description">
-            Branches build the case. Stems ground the work in real operations. Fruit carries partner-facing outputs that help turn ecological intent into funded infrastructure.
+            The graph still works as the main routing layer. What changed is the framing around
+            it: less dashboard, more signal console.
           </p>
           <ul class="guide-list">
-            <li><strong>Branches</strong> = strategy, narrative, and proof</li>
-            <li><strong>Stems</strong> = real world operating conditions</li>
-            <li><strong>Fruit</strong> = outputs that attract partners and capital</li>
+            <li><strong>Kernel</strong> holds the system center.</li>
+            <li><strong>Branches</strong> extend narrative and strategy.</li>
+            <li><strong>Stems</strong> ground the thesis in operating reality.</li>
+            <li><strong>Fruit</strong> packages visible outputs for partners.</li>
           </ul>
           <label class="toggle-row" for="episode-toggle">
             <span>Show episode nodes</span>
@@ -91,13 +136,13 @@
           </div>
 
           <div class="panel-actions">
-            <button class="action-button" type="button" id="open-project">
+            <button class="action-button action-button--primary" type="button" id="open-project">
               Explore node
             </button>
-            <button class="action-button action-button--secondary" type="button" id="watch-project" hidden>
+            <button class="action-button" type="button" id="watch-project" hidden>
               Watch
             </button>
-            <button class="action-button action-button--secondary" type="button" id="transcript-project" hidden>
+            <button class="action-button" type="button" id="transcript-project" hidden>
               Transcript
             </button>
           </div>
@@ -105,14 +150,11 @@
       </aside>
 
       <section class="graph-panel">
-        <div class="graph-watermark" aria-hidden="true">
-          <img src="assets/logo_bw.png" alt="">
-        </div>
         <div class="graph-panel__overlay">
           <article class="graph-callout">
             <p class="panel-kicker">Network Map</p>
-            <h2>Start anywhere. Follow the infrastructure logic.</h2>
-            <p>Click to inspect how each node helps attract, align, or deploy support.</p>
+            <h2>Follow the infrastructure logic through the system.</h2>
+            <p>Click nodes to inspect how each branch attracts, aligns, or deploys support.</p>
           </article>
 
           <div class="legend" aria-label="Node types">
@@ -130,7 +172,7 @@
     <footer class="terminal">
       <form class="terminal__form" id="terminal-form">
         <label class="sr-only" for="terminal-input">Terminal command</label>
-        <span class="terminal__prompt">mimicorp@system:~$</span>
+        <span class="terminal__prompt">mimicorp@signal:~$</span>
         <input
           id="terminal-input"
           class="terminal__input"
@@ -152,9 +194,10 @@
         <p class="eyebrow">Work Together</p>
         <h2>Join the buildout of ecological infrastructure.</h2>
         <p>
-          Mimicorp works with funders, land partners, operators, and strategic collaborators who want to turn ecological observation into durable systems on the ground.
+          Mimicorp works with funders, land partners, operators, and strategic collaborators who
+          want to turn ecological observation into durable systems on the ground.
         </p>
-        <a class="action-button funnel-card__button" href="/nodes/book-time/">Book studio time</a>
+        <a class="action-button action-button--primary funnel-card__button" href="/nodes/book-time/">Book studio time</a>
       </div>
 
       <div class="funnel__grid">
