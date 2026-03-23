@@ -117,7 +117,7 @@ code {
 
 .hero-panel {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+  grid-template-columns: minmax(0, 1.22fr) minmax(260px, 0.78fr);
   gap: 22px;
   padding: 22px;
   border-radius: var(--radius-xl);
@@ -176,14 +176,14 @@ code {
 }
 
 .glitch-title {
-  max-width: 11ch;
-  font-size: clamp(2.6rem, 6vw, 5.6rem);
-  line-height: 0.88;
-  letter-spacing: -0.08em;
+  max-width: 13ch;
+  font-size: clamp(2.35rem, 5.4vw, 4.75rem);
+  line-height: 0.92;
+  letter-spacing: -0.065em;
   text-shadow:
-    -2px 0 rgba(255, 0, 88, 0.72),
-    2px 0 rgba(0, 213, 255, 0.72),
-    0 0 20px rgba(255, 255, 255, 0.12);
+    -1px 0 rgba(255, 0, 88, 0.44),
+    1px 0 rgba(0, 213, 255, 0.44),
+    0 0 14px rgba(255, 255, 255, 0.08);
 }
 
 .hero-summary,
@@ -272,6 +272,9 @@ code {
   background: rgba(0, 0, 0, 0.74);
   display: grid;
   align-content: start;
+  align-self: start;
+  max-width: 340px;
+  justify-self: end;
 }
 
 .video-meta {
@@ -285,7 +288,8 @@ code {
 .video-frame {
   position: relative;
   aspect-ratio: 1 / 1;
-  min-height: 360px;
+  min-height: 0;
+  max-height: 340px;
   overflow: hidden;
   background: #000;
 }
@@ -308,7 +312,8 @@ code {
 .hero-video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  transform: scale(0.9);
 }
 
 .video-caption {
@@ -316,7 +321,8 @@ code {
   padding: 14px 16px 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--muted);
-  line-height: 1.6;
+  line-height: 1.55;
+  font-size: 0.95rem;
 }
 
 .hero-subgrid {
@@ -635,6 +641,11 @@ code {
     grid-template-columns: 1fr;
   }
 
+  .hero-video-panel {
+    max-width: 320px;
+    justify-self: start;
+  }
+
   .status-strip {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -662,6 +673,10 @@ code {
   .status-strip,
   .hero-subgrid {
     grid-template-columns: 1fr;
+  }
+
+  .hero-video-panel {
+    max-width: 100%;
   }
 
   .terminal__form {
