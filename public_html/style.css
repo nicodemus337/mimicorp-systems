@@ -143,6 +143,12 @@ code {
   z-index: 1;
 }
 
+.hero-copy {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+}
+
 .eyebrow,
 .panel-kicker,
 .status-pill__label,
@@ -203,6 +209,13 @@ code {
   gap: 8px;
 }
 
+.status-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  max-width: 780px;
+}
+
 .status-pill,
 .type-chip,
 .route-chip,
@@ -228,8 +241,18 @@ code {
 
 .status-pill strong {
   display: block;
-  margin-top: 2px;
-  font-size: 0.92rem;
+  margin-top: 6px;
+  font-size: 1.1rem;
+  letter-spacing: -0.03em;
+  text-transform: none;
+}
+
+.status-pill {
+  display: block;
+  min-height: 0;
+  padding: 14px 16px;
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 .action-button:hover,
@@ -247,6 +270,8 @@ code {
 .hero-video-panel {
   border: 1px solid var(--panel-border);
   background: rgba(0, 0, 0, 0.74);
+  display: grid;
+  align-content: start;
 }
 
 .video-meta {
@@ -260,6 +285,7 @@ code {
 .video-frame {
   position: relative;
   aspect-ratio: 1 / 1;
+  min-height: 360px;
   overflow: hidden;
   background: #000;
 }
@@ -283,6 +309,35 @@ code {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.video-caption {
+  margin: 0;
+  padding: 14px 16px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.hero-subgrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.hero-note {
+  padding: 16px 18px;
+  border: 1px solid var(--panel-border);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
+    var(--panel-soft);
+  box-shadow: var(--shadow);
+}
+
+.hero-note p:last-child {
+  margin: 10px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 .path-strip {
@@ -580,6 +635,10 @@ code {
     grid-template-columns: 1fr;
   }
 
+  .status-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .path-strip,
   .funnel__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -597,6 +656,11 @@ code {
 
   .path-strip,
   .funnel__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .status-strip,
+  .hero-subgrid {
     grid-template-columns: 1fr;
   }
 

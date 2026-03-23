@@ -42,16 +42,39 @@
         <div class="video-frame">
           <video
             class="hero-video"
-            src="assets/media/mimicorp-glitch-logo.mov"
             autoplay
             loop
             muted
             playsinline
+            poster="assets/media/mimicorp-glitch-logo-poster.jpg"
             aria-label="Animated Mimicorp glitch logo"
-          ></video>
+          >
+            <source src="assets/media/mimicorp-glitch-logo.mp4" type="video/mp4">
+          </video>
         </div>
+        <p class="video-caption">
+          The animated mark is now the visual source for the whole homepage.
+        </p>
       </div>
     </header>
+
+    <section class="hero-subgrid" aria-label="Hero support panels">
+      <article class="hero-note">
+        <p class="panel-kicker">Why this changed</p>
+        <p>
+          The old header was just branding furniture. This version uses the motion asset itself as
+          the organizing object, then builds the typography and panel system around it.
+        </p>
+      </article>
+
+      <article class="hero-note">
+        <p class="panel-kicker">Visual language</p>
+        <p>
+          Hard contrast, scanlines, clipped borders, and RGB fringing make the page feel like a
+          transmission surface instead of a soft dashboard.
+        </p>
+      </article>
+    </section>
 
     <section class="path-strip" aria-label="Project routes">
       <article class="path-card">
