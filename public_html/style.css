@@ -149,6 +149,13 @@ code {
   gap: 18px;
 }
 
+.hero-rail {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  justify-items: end;
+}
+
 .eyebrow,
 .panel-kicker,
 .status-pill__label,
@@ -272,9 +279,7 @@ code {
   background: rgba(0, 0, 0, 0.74);
   display: grid;
   align-content: start;
-  align-self: start;
-  max-width: 340px;
-  justify-self: end;
+  width: min(100%, 340px);
 }
 
 .video-meta {
@@ -325,25 +330,25 @@ code {
   font-size: 0.95rem;
 }
 
-.hero-subgrid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
 .hero-note {
   padding: 16px 18px;
   border: 1px solid var(--panel-border);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
     var(--panel-soft);
-  box-shadow: var(--shadow);
+  width: min(100%, 340px);
 }
 
 .hero-note p:last-child {
   margin: 10px 0 0;
   color: var(--muted);
   line-height: 1.6;
+}
+
+.hero-side-notes {
+  display: grid;
+  gap: 14px;
+  width: min(100%, 340px);
 }
 
 .path-strip {
@@ -641,9 +646,8 @@ code {
     grid-template-columns: 1fr;
   }
 
-  .hero-video-panel {
-    max-width: 320px;
-    justify-self: start;
+  .hero-rail {
+    justify-items: start;
   }
 
   .status-strip {
@@ -670,13 +674,14 @@ code {
     grid-template-columns: 1fr;
   }
 
-  .status-strip,
-  .hero-subgrid {
+  .status-strip {
     grid-template-columns: 1fr;
   }
 
-  .hero-video-panel {
-    max-width: 100%;
+  .hero-video-panel,
+  .hero-note,
+  .hero-side-notes {
+    width: 100%;
   }
 
   .terminal__form {
