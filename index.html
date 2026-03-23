@@ -6,132 +6,147 @@
   <title>mimicorp.systems</title>
   <meta
     name="description"
-    content="Mimicorp is an ecological data lab."
+    content="Mimicorp Systems routes people into ecological infrastructure, field evidence, and live project branches."
   >
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="system-shell system-shell--organism" id="system-shell">
+  <main class="system-shell" id="system-shell">
     <canvas id="pulse-canvas" class="pulse-canvas" aria-hidden="true"></canvas>
     <div class="noise-layer" aria-hidden="true"></div>
-    <div class="gradient-layer gradient-layer--a" aria-hidden="true"></div>
-    <div class="gradient-layer gradient-layer--b" aria-hidden="true"></div>
+    <div class="scanline-layer" aria-hidden="true"></div>
 
-    <section class="system-anchor" aria-label="Mimicorp anchor">
-      <a class="system-anchor-mark" href="/" aria-label="Mimicorp home">
-        <img
-          class="system-anchor-logo"
-          src="assets/logo.m..png"
-          alt="Mimicorp logo"
-        >
-      </a>
+    <section class="hero-panel" aria-label="Mimicorp hero">
+      <div class="hero-copy">
+        <p class="panel-label">Mimicorp Systems</p>
+        <h1 class="glitch-title">
+          Ecological infrastructure transmitted like a signal.
+        </h1>
+        <p class="hero-summary">
+          This static site now follows the animated mark instead of the old header treatment:
+          black field, hard white interruptions, RGB drift, and a live-system feeling that
+          carries through the whole page.
+        </p>
 
-      
-
-      <div class="system-anchor-status" aria-label="System overview">
-        <div class="status-card">
-          <span class="status-card-label">STATUS</span>
-          <strong class="status-card-value">Network Live</strong>
+        <div class="signal-row" aria-label="Signal status">
+          <span>Transmission 01</span>
+          <span>Header removed</span>
+          <span>Identity feed live</span>
         </div>
-        <div class="status-card">
-          <span class="status-card-label">MODE</span>
-          <strong class="status-card-value">Living Organism</strong>
-        </div>
-        <div class="status-card">
-          <span class="status-card-label">OPERATOR</span>
-          <strong class="status-card-value">Amelia</strong>
+
+        <div class="hero-actions">
+          <a class="signal-link signal-link--primary" href="#field-layer">Read field notes</a>
+          <a class="signal-link" href="#node-layer">Inspect node network</a>
         </div>
       </div>
+
+      <div class="hero-video-panel">
+        <div class="video-label-row">
+          <span>Animated identity feed</span>
+          <span>03.77 sec loop</span>
+        </div>
+        <div class="video-frame">
+          <video
+            class="hero-video"
+            src="assets/media/mimicorp-glitch-logo.mov"
+            autoplay
+            loop
+            muted
+            playsinline
+            aria-label="Animated Mimicorp glitch logo"
+          ></video>
+        </div>
+      </div>
+    </section>
+
+    <section class="switchboard-panel" aria-label="Project switchboard">
+      <article class="switch-card">
+        <p class="panel-label">Media</p>
+        <h2>Second Cutting</h2>
+        <p>Documentary reporting and public narrative from the field.</p>
+        <a class="signal-link" href="https://podcasts.apple.com/us/podcast/second-cutting/id1865905475?i=1000752307523" target="_blank" rel="noreferrer">Apple Podcasts</a>
+      </article>
+
+      <article class="switch-card">
+        <p class="panel-label">Public Signal</p>
+        <h2>JoyNet</h2>
+        <p>Values, voice, and cultural legitimacy made legible in public.</p>
+        <a class="signal-link" href="https://joynet.church" target="_blank" rel="noreferrer">Open JoyNet</a>
+      </article>
+
+      <article class="switch-card">
+        <p class="panel-label">Operating Ground</p>
+        <h2>GLC Ranch</h2>
+        <p>Working conditions and land-based proof behind the thesis.</p>
+        <a class="signal-link" href="https://glcranch.com" target="_blank" rel="noreferrer">Open GLC Ranch</a>
+      </article>
+
+      <article class="switch-card">
+        <p class="panel-label">Place Access</p>
+        <h2>Teche Lake</h2>
+        <p>Direct encounter with landscape, movement, and lived context.</p>
+        <a class="signal-link" href="https://www.techelakeoutfitters.com" target="_blank" rel="noreferrer">Open Teche Lake</a>
+      </article>
     </section>
 
     <section class="system-status" aria-label="System status">
-      <span>pulse / active</span>
+      <span>signal / active</span>
       <span>field notes / ingesting</span>
-      <span>media / external</span>
+      <span>network / responsive</span>
     </section>
 
-    <section class="system-presence" aria-label="Mimicorp system statement">
-      <p class="panel-label">System</p>
-      <p class="system-presence-copy">
-        Mimicorp is a lab.
-        Everything is ecological.
-      </p>
-    </section>
-
-    <section class="system-listen" aria-label="Second Cutting links">
-      <p class="panel-label">Second Cutting</p>
-      <p class="system-listen-copy">
-        Listen on the platforms people already use.
-      </p>
-      <div class="system-listen-links">
-        <a
-          class="system-listen-link"
-          href="https://podcasts.apple.com/us/podcast/second-cutting/id1865905475?i=1000752307523"
-          target="_blank"
-          rel="noreferrer"
-        >Apple Podcasts</a>
-
-        <a
-          class="system-listen-link"
-          href="https://creators.spotify.com/pod/profile/second-cutting/episodes/Time-Changes-the-Math-e3fp4no"
-          target="_blank"
-          rel="noreferrer"
-        >Spotify</a>
-      </div>
-    </section>
-
-    <section class="field-notes-panel" aria-live="polite" aria-label="Field Notes input layer">
+    <section class="field-notes-panel" id="field-layer" aria-live="polite" aria-label="Field Notes input layer">
       <p class="panel-label">Field Notes</p>
       <p class="field-notes-description">
-        Raw ecological observations.
-        No rewriting.
-        No embellishment.
-        Input layer.
+        Raw ecological observations held close to source. No smoothing. No decorative thesis.
+        Just input, accumulation, and signal.
       </p>
       <div id="field-notes-feed" class="field-notes-feed"></div>
     </section>
 
-    <section class="node-overlay" id="node-overlay" aria-label="Node network"></section>
-
-    <aside class="node-modal" id="node-modal" aria-live="polite">
-      <p class="panel-label" id="modal-orbit">Core / heartbeat</p>
-
-      <div class="modal-header">
-        <h2 id="modal-title">mimicorp</h2>
-        <span id="modal-status">active</span>
+    <section class="network-panel" id="node-layer" aria-label="Mimicorp node network">
+      <div class="network-copy">
+        <p class="panel-label">Thesis map</p>
+        <h2>Hover the live nodes. Click to shift the active logic.</h2>
+        <p>
+          The pulse system remains intact, but the surrounding surface now matches the animated
+          identity instead of the older green lab aesthetic.
+        </p>
       </div>
 
-      <p class="modal-summary" id="modal-summary">
-        The core maintains system coherence.
-      </p>
+      <div class="network-stage">
+        <section class="node-overlay" id="node-overlay" aria-label="Node network"></section>
 
-      <p class="modal-detail" id="modal-detail">
-        All nodes operate inside one field.
-        Field Notes, branches, stems, and fruit remain connected as a living system.
-      </p>
+        <aside class="node-modal" id="node-modal" aria-live="polite">
+          <p class="panel-label" id="modal-orbit">Core / heartbeat</p>
 
-      <div class="modal-links" id="modal-links"></div>
+          <div class="modal-header">
+            <h3 id="modal-title">mimicorp</h3>
+            <span id="modal-status">active</span>
+          </div>
 
-      <a
-        id="modal-route"
-        class="modal-route"
-        href="#"
-        target="_self"
-        rel="noreferrer"
-        hidden
-      >open route</a>
-    </aside>
+          <p class="modal-summary" id="modal-summary">
+            The core maintains system coherence.
+          </p>
 
-    <footer class="system-footer" aria-label="Mimicorp footer">
-      <img
-        class="system-footer-mark"
-        src="assets/logo_bw.png"
-        alt="Mimicorp logo"
-      >
-      <p class="system-footer-text">
-        mimicorp.systems / living ecological infrastructure
-      </p>
-    </footer>
+          <p class="modal-detail" id="modal-detail">
+            All nodes operate inside one field. Branches, stems, fruit, and field notes remain
+            connected as one working system.
+          </p>
+
+          <div class="modal-links" id="modal-links"></div>
+
+          <a
+            id="modal-route"
+            class="modal-route"
+            href="#"
+            target="_self"
+            rel="noreferrer"
+            hidden
+          >open route</a>
+        </aside>
+      </div>
+    </section>
   </main>
 
   <script type="module" src="js/main.js"></script>
