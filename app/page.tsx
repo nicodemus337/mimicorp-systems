@@ -1,6 +1,4 @@
 import dynamic from "next/dynamic";
-import Image from "next/image";
-import logoMark from "@/assets/logo.png";
 
 import { LayoutContainer } from "@/components/LayoutContainer";
 import { MotionWrapper } from "@/components/MotionWrapper";
@@ -54,224 +52,185 @@ const listeningLinks = [
   }
 ];
 
+const signalFacts = [
+  {
+    label: "Mode",
+    value: "Broadcast thesis",
+    detail: "Not a clean brochure. A live signal surface for projects, partners, and proof."
+  },
+  {
+    label: "Primary job",
+    value: "Route intent",
+    detail: "Move people toward the exact branch they need without flattening the larger system."
+  },
+  {
+    label: "Visual source",
+    value: "Glitch mark",
+    detail: "RGB offsets, scanlines, hard contrast, and transmission noise now drive the interface."
+  }
+];
+
 export default function HomePage() {
   return (
     <LayoutContainer>
-      <MotionWrapper className="space-y-12 pb-16 pt-6 md:space-y-16 md:pb-24 md:pt-10">
-        <section className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-5 shadow-[0_32px_120px_rgba(0,0,0,0.24)] backdrop-blur-sm md:p-8">
-          <div className="hero-grid" />
-          <div className="hero-aura hero-aura-primary" />
-          <div className="hero-aura hero-aura-secondary" />
-          <div className="hero-scanline" />
-          <div className="absolute inset-x-[12%] top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+      <MotionWrapper className="space-y-8 pb-16 pt-4 md:space-y-10 md:pb-24 md:pt-6">
+        <section className="signal-panel relative overflow-hidden rounded-[34px] p-5 md:p-8">
+          <div className="signal-noise" />
+          <div className="signal-scanlines" />
+          <div className="signal-beam" />
 
-          <div className="relative space-y-8">
-            <div className="flex items-center justify-between gap-4 rounded-[22px] border border-white/10 bg-black/30 px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] md:px-5">
-              <div className="flex min-w-0 items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-sm bg-white/95 p-1">
-                  <Image
-                    src={logoMark}
-                    alt="Mimicorp mark"
-                    width={44}
-                    height={44}
-                    className="h-full w-full object-contain"
+          <div className="relative grid gap-8 xl:grid-cols-[minmax(0,1.05fr)_minmax(360px,0.95fr)]">
+            <div className="space-y-8">
+              <div className="flex flex-wrap items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-text/60">
+                <span className="signal-chip">Transmission 01</span>
+                <span className="signal-chip">Identity source / live animation</span>
+                <span className="signal-chip">Former header removed</span>
+              </div>
+
+              <div className="space-y-5">
+                <p className="text-[11px] uppercase tracking-[0.4em] text-text/48">
+                  Mimicorp Systems
+                </p>
+                <h1 className="glitch-title max-w-5xl font-primary text-[58px] leading-[0.9] tracking-[-0.08em] text-text sm:text-[78px] md:text-[108px] xl:text-[132px]">
+                  Ecological infrastructure transmitted like a signal, not presented like a deck.
+                </h1>
+                <p className="max-w-2xl text-[17px] leading-[1.75] text-text/72 md:text-[19px]">
+                  The site now keys off the animated mark: severe black field, white
+                  interruptions, RGB shear, and the feeling of something live on the edge of
+                  distortion. The job is still orientation, but the visual language is now built
+                  from the logo instead of sitting beside it.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <a href="#pathways" className="signal-button signal-button-primary">
+                  Enter the system map
+                </a>
+                <a href="#second-cutting" className="signal-button signal-button-secondary">
+                  Open featured listening
+                </a>
+              </div>
+
+              <div className="grid gap-3 md:grid-cols-3">
+                {signalFacts.map((fact) => (
+                  <article key={fact.label} className="signal-card">
+                    <p className="text-[10px] uppercase tracking-[0.32em] text-text/42">
+                      {fact.label}
+                    </p>
+                    <p className="mt-3 font-primary text-[28px] leading-[1] tracking-[-0.05em] text-text">
+                      {fact.value}
+                    </p>
+                    <p className="mt-3 text-[14px] leading-[1.6] text-text/62">{fact.detail}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid gap-4 xl:pl-4">
+              <div className="signal-frame">
+                <div className="signal-frame-header">
+                  <span>Animated identity feed</span>
+                  <span>03.77 sec loop</span>
+                </div>
+                <div className="signal-video-wrap">
+                  <video
+                    className="signal-video"
+                    src="/media/mimicorp-glitch-logo.mov"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    aria-label="Animated Mimicorp glitch logo"
                   />
                 </div>
               </div>
 
-              <p className="hidden max-w-md text-right text-[11px] uppercase tracking-[0.28em] text-text/42 md:block">
-                Thesis surface / live system
-              </p>
-            </div>
-
-            <div className="grid gap-8 xl:grid-cols-[minmax(300px,0.82fr)_minmax(0,1.18fr)] xl:items-start">
-              <div className="space-y-4 xl:pt-4">
-                <div className="grid gap-2 text-[11px] uppercase tracking-[0.24em] text-text/42 sm:grid-cols-3">
-                  <div className="rounded-[18px] border border-white/10 bg-black/20 px-3 py-2">
-                    Thesis mode / active
-                  </div>
-                  <div className="rounded-[18px] border border-white/10 bg-black/20 px-3 py-2">
-                    Capital stack / assembling
-                  </div>
-                  <div className="rounded-[18px] border border-[#dce7c8]/20 bg-[#dce7c8]/8 px-3 py-2 text-[#e5eed6]">
-                    Build pipeline / live
-                  </div>
-                </div>
-
-                <div className="rounded-[24px] border border-white/10 bg-black/20 p-5">
-                  <p className="text-[11px] uppercase tracking-[0.32em] text-text/42">
-                    Go Directly To
+              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-1">
+                <article className="signal-card min-h-[180px]">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-text/42">
+                    Signal notes
                   </p>
-                  <div className="mt-4 space-y-3">
-                    {projectPaths.map((path) => (
-                      <a
-                        key={path.name}
-                        href={path.href}
-                        target={path.href.startsWith("http") ? "_blank" : undefined}
-                        rel={path.href.startsWith("http") ? "noreferrer" : undefined}
-                        className="block rounded-[18px] border border-white/8 bg-white/[0.02] px-4 py-3 transition-colors duration-200 hover:border-[#dce7c8]/30 hover:bg-[#dce7c8]/6"
-                      >
-                        <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">
-                          {path.eyebrow}
-                        </p>
-                        <div className="mt-2 flex items-center justify-between gap-4">
-                          <p className="font-primary text-[24px] leading-none tracking-[-0.04em] text-text">
-                            {path.name}
-                          </p>
-                          <span className="text-[10px] uppercase tracking-[0.24em] text-text/44">
-                            Open
-                          </span>
-                        </div>
-                      </a>
-                    ))}
+                  <div className="mt-4 space-y-3 text-[15px] leading-[1.7] text-text/70">
+                    <p>Black carries most of the frame so white interruptions feel forceful.</p>
+                    <p>RGB fringing adds instability without losing legibility.</p>
+                    <p>Horizontal scanlines keep the motion language present even when static.</p>
                   </div>
-                </div>
-              </div>
+                </article>
 
-              <div className="space-y-8 xl:text-right">
-                <div className="space-y-4 xl:ml-auto xl:max-w-4xl">
-                  <p className="text-[11px] uppercase tracking-[0.34em] text-text/46">
-                    Mimicorp systems
+                <article className="signal-card min-h-[180px]">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-text/42">
+                    System readout
                   </p>
-                  <h1 className="font-primary text-[56px] leading-[0.96] tracking-[-0.07em] text-text sm:text-[72px] md:text-[96px] xl:text-[120px]">
-                    The hub for ecological infrastructure, field research, and working landscape projects
-                  </h1>
-                  <p className="text-[17px] leading-[1.6] text-text/72 sm:text-[18px] xl:ml-auto xl:max-w-2xl">
-                    Mimicorp is where the larger system becomes navigable: listen to Second
-                    Cutting, move into JoyNet, Teche Lake Outfitters, and GLC Ranch, and follow
-                    the field research that will eventually sit behind subscriber access.
-                  </p>
-                </div>
-
-                <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-                  <a
-                    href="#pathways"
-                    className="rounded-full border border-[#dce7c8]/24 bg-[#dce7c8]/10 px-5 py-3 text-center text-[11px] uppercase tracking-[0.28em] text-[#e5eed6] transition-colors duration-200 hover:bg-[#dce7c8]/16"
-                  >
-                    Explore Pathways
-                  </a>
-                  <a
-                    href="#field-notes"
-                    className="rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-center text-[11px] uppercase tracking-[0.28em] text-text/72 transition-colors duration-200 hover:border-white/18 hover:bg-white/[0.06]"
-                  >
-                    Log In For Field Note Access
-                  </a>
-                </div>
-
-                <div className="grid gap-3 sm:grid-cols-3">
-                  <article className="hero-metric rounded-[22px] border border-white/10 bg-black/20 p-4">
-                    <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">
-                      Core claim
-                    </p>
-                    <p className="mt-2 font-primary text-[30px] leading-none tracking-[-0.05em] text-text">
-                      BUILD
-                    </p>
-                    <p className="mt-2 text-[12px] uppercase tracking-[0.18em] text-text/52">
-                      ecological infrastructure, not just content
-                    </p>
-                  </article>
-
-                  <article className="hero-metric rounded-[22px] border border-white/10 bg-black/20 p-4">
-                    <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">
-                      Capital logic
-                    </p>
-                    <p className="mt-2 font-primary text-[30px] leading-none tracking-[-0.05em] text-[#e2eccf]">
-                      ALIGN
-                    </p>
-                    <p className="mt-2 text-[12px] uppercase tracking-[0.18em] text-text/52">
-                      funders, operators, and land-based evidence
-                    </p>
-                  </article>
-
-                  <article className="hero-metric rounded-[22px] border border-white/10 bg-black/20 p-4">
-                    <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">
-                      Partner role
-                    </p>
-                    <p className="mt-2 font-primary text-[30px] leading-none tracking-[-0.05em] text-text">
-                      JOIN
-                    </p>
-                    <p className="mt-2 text-[12px] uppercase tracking-[0.18em] text-text/52">
-                      bring capital, capability, or site access
-                    </p>
-                  </article>
-                </div>
-
-                <div className="grid gap-3 sm:grid-cols-3 xl:grid-cols-3">
-                  <article className="hero-stat-card rounded-[22px] border border-white/10 bg-black/20 p-4">
-                    <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
-                      Primary use
-                    </p>
-                    <p className="mt-2 text-[15px] leading-[1.45] text-text/76">
-                      attract and organize ecological investment
-                    </p>
-                  </article>
-
-                  <article className="hero-stat-card rounded-[22px] border border-white/10 bg-black/20 p-4">
-                    <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
-                      Read method
-                    </p>
-                    <p className="mt-2 text-[15px] leading-[1.45] text-text/76">
-                      thesis through nodes, evidence, and outputs
-                    </p>
-                  </article>
-
-                  <article className="hero-stat-card rounded-[22px] border border-white/10 bg-black/20 p-4">
-                    <p className="text-[11px] uppercase tracking-[0.28em] text-text/42">
-                      Output condition
-                    </p>
-                    <p className="mt-2 text-[15px] leading-[1.45] text-text/76">
-                      partnerships shaped into buildable systems
-                    </p>
-                  </article>
-                </div>
+                  <div className="mt-4 space-y-4">
+                    <div className="signal-readout">
+                      <span>Media</span>
+                      <span>Second Cutting</span>
+                    </div>
+                    <div className="signal-readout">
+                      <span>Field proof</span>
+                      <span>GLC Ranch</span>
+                    </div>
+                    <div className="signal-readout">
+                      <span>Public signal</span>
+                      <span>JoyNet</span>
+                    </div>
+                    <div className="signal-readout">
+                      <span>Place access</span>
+                      <span>Teche Lake</span>
+                    </div>
+                  </div>
+                </article>
               </div>
             </div>
           </div>
         </section>
 
-        <section
-          id="pathways"
-          className="grid gap-6 rounded-[32px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-6 shadow-[0_32px_120px_rgba(0,0,0,0.24)] backdrop-blur-sm md:p-8"
-        >
-          <div className="flex flex-col gap-4 border-b border-white/8 pb-6 md:flex-row md:items-end md:justify-between">
+        <section className="signal-marquee rounded-[28px] px-4 py-3 text-[10px] uppercase tracking-[0.34em] text-text/58 md:px-6">
+          Mimicorp Systems / ecological infrastructure / signal routing / partner orientation /
+          field evidence / land-based proof / public signal / documentary branch
+        </section>
+
+        <section id="pathways" className="signal-panel rounded-[32px] p-6 md:p-8">
+          <div className="grid gap-6 border-b border-white/10 pb-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-end">
             <div className="space-y-3">
-              <p className="text-[12px] uppercase tracking-[0.32em] text-text/48">
-                Destination Paths
+              <p className="text-[11px] uppercase tracking-[0.34em] text-text/48">
+                Pathway Switchboard
               </p>
-              <h2 className="max-w-2xl font-primary text-[36px] leading-[1.02] tracking-[-0.05em] text-text md:text-[52px]">
-                Clear routes into the live projects around Mimicorp
+              <h2 className="max-w-2xl font-primary text-[40px] leading-[0.96] tracking-[-0.06em] text-text md:text-[58px]">
+                Four direct channels, each framed like an active transmission.
               </h2>
             </div>
-            <p className="max-w-xl text-[16px] leading-[1.6] text-text/66 md:text-right">
-              The homepage should behave like a switchboard. These are the most important
-              places to go next depending on whether someone wants media, place, public signal,
-              or operating proof.
+            <p className="max-w-2xl text-[16px] leading-[1.7] text-text/68 lg:ml-auto lg:text-right">
+              The old homepage tried to summarize everything at once. This version routes by
+              intent first so the visual energy of the logo becomes structural, not ornamental.
             </p>
           </div>
 
-          <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
-            {projectPaths.map((path) => (
-              <article
-                key={path.name}
-                className="flex h-full flex-col justify-between rounded-[24px] border border-white/10 bg-black/20 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]"
-              >
-                <div className="space-y-3">
-                  <p className="text-[10px] uppercase tracking-[0.3em] text-text/42">
-                    {path.eyebrow}
-                  </p>
-                  <h3 className="font-primary text-[30px] leading-[1.02] tracking-[-0.04em] text-text">
+          <div className="mt-6 grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
+            {projectPaths.map((path, index) => (
+              <article key={path.name} className="signal-path-card">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between gap-4">
+                    <p className="text-[10px] uppercase tracking-[0.32em] text-text/42">
+                      {path.eyebrow}
+                    </p>
+                    <span className="text-[10px] uppercase tracking-[0.32em] text-text/34">
+                      0{index + 1}
+                    </span>
+                  </div>
+                  <h3 className="font-primary text-[34px] leading-[0.96] tracking-[-0.05em] text-text">
                     {path.name}
                   </h3>
-                  <p className="text-[15px] leading-[1.6] text-text/68">{path.description}</p>
+                  <p className="text-[15px] leading-[1.7] text-text/68">{path.description}</p>
                 </div>
+
                 <a
                   href={path.href}
                   target={path.href.startsWith("http") ? "_blank" : undefined}
                   rel={path.href.startsWith("http") ? "noreferrer" : undefined}
-                  className="mt-5 inline-flex items-center justify-between rounded-full border border-white/10 bg-white/[0.03] px-4 py-3 text-[11px] uppercase tracking-[0.24em] text-text/72 transition-colors duration-200 hover:border-[#dce7c8]/24 hover:bg-[#dce7c8]/8"
+                  className="signal-button signal-button-secondary mt-6"
                 >
-                  <span>{path.cta}</span>
-                  <span>Open</span>
+                  {path.cta}
                 </a>
               </article>
             ))}
@@ -280,20 +239,39 @@ export default function HomePage() {
 
         <section
           id="second-cutting"
-          className="grid gap-6 rounded-[32px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-6 shadow-[0_32px_120px_rgba(0,0,0,0.24)] backdrop-blur-sm md:p-8 xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]"
+          className="signal-panel rounded-[32px] p-6 md:p-8 xl:grid xl:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] xl:gap-6"
         >
-          <div className="space-y-5">
-            <p className="text-[12px] uppercase tracking-[0.32em] text-text/48">
-              Featured Listening
-            </p>
-            <h2 className="max-w-lg font-primary text-[40px] leading-[1.02] tracking-[-0.05em] text-text md:text-[58px]">
-              Second Cutting should be one click away
-            </h2>
-            <p className="max-w-xl text-[16px] leading-[1.65] text-text/68">
-              This branch is one of the clearest ways into the Mimicorp world, so the
-              listening path needs to be obvious. The featured episode is surfaced here first,
-              with direct links out to the actual platforms.
-            </p>
+          <div className="space-y-6 border-b border-white/10 pb-6 xl:border-b-0 xl:border-r xl:pb-0 xl:pr-6">
+            <div className="space-y-3">
+              <p className="text-[11px] uppercase tracking-[0.34em] text-text/48">
+                Featured listening
+              </p>
+              <h2 className="max-w-3xl font-primary text-[40px] leading-[0.96] tracking-[-0.06em] text-text md:text-[58px]">
+                Second Cutting stays close to the top because it carries the thesis in public.
+              </h2>
+              <p className="max-w-2xl text-[16px] leading-[1.75] text-text/68">
+                If the homepage is a transmission deck, this is the loudest recurring channel.
+                It translates field conditions into narrative form without smoothing out the
+                rough edges that make those conditions real.
+              </p>
+            </div>
+
+            <article className="signal-card">
+              <p className="text-[10px] uppercase tracking-[0.32em] text-text/42">
+                Current spotlight
+              </p>
+              <h3 className="mt-4 font-primary text-[42px] leading-[0.95] tracking-[-0.06em] text-text">
+                Time Changes the Math
+              </h3>
+              <p className="mt-3 text-[12px] uppercase tracking-[0.24em] text-text/46">
+                Episode 05 / Dr Shannon Gonsoulin
+              </p>
+              <p className="mt-4 max-w-2xl text-[16px] leading-[1.75] text-text/70">
+                A conversation about how time changes the economics, biology, and expectations
+                of agricultural systems, and why slow realities often break fast assumptions.
+              </p>
+            </article>
+
             <div className="flex flex-wrap gap-3">
               {listeningLinks.map((link) => (
                 <a
@@ -301,7 +279,7 @@ export default function HomePage() {
                   href={link.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-full border border-[#dce7c8]/24 bg-[#dce7c8]/10 px-5 py-3 text-[11px] uppercase tracking-[0.28em] text-[#e5eed6] transition-colors duration-200 hover:bg-[#dce7c8]/16"
+                  className="signal-button signal-button-primary"
                 >
                   Listen on {link.label}
                 </a>
@@ -309,37 +287,29 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="grid gap-4 lg:grid-cols-[minmax(0,1.1fr)_minmax(260px,0.9fr)]">
-            <article className="rounded-[28px] border border-white/10 bg-black/20 p-5">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-text/42">Latest featured episode</p>
-              <h3 className="mt-3 font-primary text-[34px] leading-[1.02] tracking-[-0.04em] text-text">
-                Time Changes the Math
-              </h3>
-              <p className="mt-3 text-[13px] uppercase tracking-[0.2em] text-text/46">
-                Episode 05 / Dr Shannon Gonsoulin
-              </p>
-              <p className="mt-4 text-[16px] leading-[1.65] text-text/68">
-                A conversation about how time changes the economics, biology, and
-                expectations of agricultural systems.
+          <div className="mt-6 grid gap-4 xl:mt-0">
+            <article className="signal-card">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-text/42">Why it matters</p>
+              <p className="mt-4 text-[15px] leading-[1.7] text-text/70">
+                It is one of the cleanest bridges between lived conditions and outside
+                understanding, which makes it essential for trust, narrative coherence, and
+                partner onboarding.
               </p>
             </article>
-
-            <div className="grid gap-4">
-              <article className="rounded-[24px] border border-white/10 bg-black/20 p-5">
-                <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">Why it matters</p>
-                <p className="mt-3 text-[15px] leading-[1.6] text-text/70">
-                  Second Cutting translates field conditions into story, signal, and
-                  partner understanding without flattening the land into a pitch.
-                </p>
-              </article>
-              <article className="rounded-[24px] border border-white/10 bg-black/20 p-5">
-                <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">Next step</p>
-                <p className="mt-3 text-[15px] leading-[1.6] text-text/70">
-                  We can turn this into a dedicated archive page in the Next app so people can
-                  browse episodes without leaving the site first.
-                </p>
-              </article>
-            </div>
+            <article className="signal-card">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-text/42">Next move</p>
+              <p className="mt-4 text-[15px] leading-[1.7] text-text/70">
+                The current treatment keeps it visible on the homepage while leaving room for a
+                deeper archive section later without diluting the new visual identity.
+              </p>
+            </article>
+            <article className="signal-card">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-text/42">Visual cue</p>
+              <p className="mt-4 text-[15px] leading-[1.7] text-text/70">
+                Sharp borders, clipped panels, and high-contrast typography now make the media
+                branch feel like part of the same transmission system as the mark itself.
+              </p>
+            </article>
           </div>
         </section>
 

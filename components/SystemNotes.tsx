@@ -4,7 +4,7 @@ export default function SystemNotes() {
   return (
     <section
       id="field-notes"
-      className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-6 shadow-[0_32px_120px_rgba(0,0,0,0.28)] backdrop-blur-sm md:p-8"
+      className="relative overflow-hidden rounded-[32px] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] p-6 shadow-[0_32px_120px_rgba(0,0,0,0.34)] backdrop-blur-sm md:p-8"
     >
       <div className="field-notes-haze" />
 
@@ -27,7 +27,7 @@ export default function SystemNotes() {
             <div className="flex flex-col gap-3 sm:flex-row">
               <a
                 href="#"
-                className="rounded-full border border-[#dce7c8]/24 bg-[#dce7c8]/10 px-5 py-3 text-center text-[11px] uppercase tracking-[0.28em] text-[#e5eed6] transition-colors duration-200 hover:bg-[#dce7c8]/16"
+                className="rounded-full border border-white/14 bg-white/[0.92] px-5 py-3 text-center text-[11px] uppercase tracking-[0.28em] text-black transition-colors duration-200 hover:bg-white"
               >
                 Log In For Field Note Access
               </a>
@@ -37,9 +37,9 @@ export default function SystemNotes() {
             </div>
           </div>
 
-          <div className="space-y-5 rounded-[28px] border border-white/10 bg-black/20 p-5">
+          <div className="space-y-5 rounded-[28px] border border-white/10 bg-black/30 p-5">
             <div className="flex flex-wrap gap-2">
-              <span className="rounded-full border border-[#dce7c8]/20 bg-[#dce7c8]/8 px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-[#e5eed6]">
+              <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-text/76">
                 Upcoming module
               </span>
               <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-text/52">
@@ -128,7 +128,7 @@ export default function SystemNotes() {
 
                 <div className="flex flex-col gap-5">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-full border border-[#dce7c8]/20 bg-[#dce7c8]/8 px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-[#e5eed6]">
+                    <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-text/76">
                       {note.recordId}
                     </span>
                     <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-text/52">
@@ -196,7 +196,7 @@ export default function SystemNotes() {
                       <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">
                         Infrastructure implication
                       </p>
-                      <p className="mt-3 text-[14px] leading-[1.5] text-[#d8e1c6]">
+                      <p className="mt-3 text-[14px] leading-[1.5] text-text/78">
                         {note.implication}
                       </p>
                     </div>

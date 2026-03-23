@@ -89,18 +89,18 @@ export function NodeCluster() {
   return (
     <section className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_340px]">
       <motion.div
-        className="composition-shell overflow-hidden rounded-[32px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_40px_120px_rgba(0,0,0,0.35)] backdrop-blur-sm sm:p-6"
+        className="composition-shell overflow-hidden rounded-[32px] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] p-4 shadow-[0_40px_120px_rgba(0,0,0,0.4)] backdrop-blur-sm sm:p-6"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: motionTiming.structural, ease: easing.primary }}
       >
-        <div className="relative aspect-[16/12] overflow-hidden rounded-[28px] border border-white/8 bg-[radial-gradient(circle_at_50%_50%,rgba(65,88,45,0.18),rgba(0,0,0,0)_34%),rgba(0,0,0,0.52)]">
+        <div className="relative aspect-[16/12] overflow-hidden rounded-[28px] border border-white/10 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.08),rgba(0,0,0,0)_34%),radial-gradient(circle_at_18%_20%,rgba(0,213,255,0.08),transparent_20%),radial-gradient(circle_at_82%_24%,rgba(255,0,76,0.08),transparent_18%),rgba(0,0,0,0.6)]">
           <div className="cluster-calibration cluster-calibration-x" />
           <div className="cluster-calibration cluster-calibration-y" />
           <div className="orbital-ring ambient-shift h-[28%] w-[28%]" />
           <div className="orbital-ring ambient-counter h-[52%] w-[52%]" />
           <div className="orbital-ring ambient-shift h-[78%] w-[78%]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(225,236,208,0.08),transparent_30%),radial-gradient(circle_at_18%_20%,rgba(174,200,132,0.08),transparent_18%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.08),transparent_30%),radial-gradient(circle_at_18%_20%,rgba(0,213,255,0.08),transparent_18%),radial-gradient(circle_at_80%_78%,rgba(255,230,0,0.07),transparent_18%)]" />
 
           <motion.div
             className="absolute inset-0"
@@ -189,7 +189,7 @@ export function NodeCluster() {
             <span className="rounded-full border border-white/10 bg-black/25 px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-text/50">
               relation map / active thesis
             </span>
-            <span className="rounded-full border border-[#dce7c8]/20 bg-[#dce7c8]/8 px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-[#e5eed6]">
+            <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-text/74">
               infrastructure pipeline / active
             </span>
           </div>
@@ -197,7 +197,7 @@ export function NodeCluster() {
       </motion.div>
 
       <motion.aside
-        className="space-y-4 rounded-[28px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-5 backdrop-blur-sm"
+        className="space-y-4 rounded-[28px] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] p-5 backdrop-blur-sm"
         key={focusedId}
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -217,7 +217,7 @@ export function NodeCluster() {
             <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-text/52">
               focus id / {activeNode.id}
             </span>
-            <span className="rounded-full border border-[#dce7c8]/20 bg-[#dce7c8]/8 px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-[#e5eed6]">
+            <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-text/74">
               strategic links / {activeNode.connections.length}
             </span>
           </div>
