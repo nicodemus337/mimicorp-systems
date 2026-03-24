@@ -203,6 +203,10 @@ a {
   gap: 14px;
 }
 
+.card-grid--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .price-card {
   display: grid;
   gap: 14px;
@@ -283,6 +287,23 @@ a {
   gap: 14px;
 }
 
+.summary-card--social {
+  padding: 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0)),
+    rgba(255, 255, 255, 0.03);
+}
+
+.summary-card h3 {
+  margin: 0;
+  font-weight: 500;
+  font-size: 1.45rem;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
 .summary-card__line {
   margin: 0;
   color: var(--muted);
@@ -291,6 +312,36 @@ a {
 
 .summary-card__strong {
   color: var(--text);
+}
+
+.portrait-placeholder {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  min-height: 320px;
+  border-radius: 22px;
+  border: 1px dashed rgba(255, 255, 255, 0.14);
+  background:
+    radial-gradient(circle at top right, rgba(215, 180, 95, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0)),
+    rgba(255, 255, 255, 0.03);
+  text-align: center;
+}
+
+.portrait-placeholder p,
+.portrait-placeholder span {
+  margin: 0;
+}
+
+.portrait-placeholder p {
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.portrait-placeholder span {
+  max-width: 24ch;
+  color: var(--muted);
+  line-height: 1.5;
 }
 
 .embed-frame {
@@ -343,6 +394,10 @@ a {
   }
 
   .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-grid--two {
     grid-template-columns: 1fr;
   }
 
