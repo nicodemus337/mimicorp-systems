@@ -108,69 +108,57 @@
 
     <main class="workspace" id="graph-zone">
       <aside class="sidebar" id="sidebar" aria-live="polite">
-        <div class="panel-card panel-card--guide">
-          <p class="panel-kicker">Read Method</p>
-          <h2>Start with relation, then depth.</h2>
+        <div class="panel-card panel-card--about">
+          <p class="panel-kicker">About Mimicorp</p>
+          <h2>Making ecological infrastructure more legible, investable, and durable.</h2>
           <p class="node-description">
-            The graph still works as the main routing layer. What changed is the framing around
-            it: less dashboard, more signal console.
+            Mimicorp is a systems-driven platform focused on helping ecological infrastructure
+            move from field reality to durable execution. The business brings together field
+            evidence, strategic narrative, and partner-facing design to make complex land-based
+            projects easier to understand, support, and finance.
           </p>
-          <ul class="guide-list">
-            <li><strong>Kernel</strong> holds the system center.</li>
-            <li><strong>Branches</strong> extend narrative and strategy.</li>
-            <li><strong>Stems</strong> ground the thesis in operating reality.</li>
-            <li><strong>Fruit</strong> packages visible outputs for partners.</li>
-          </ul>
+
+          <div class="about-grid">
+            <article class="about-item">
+              <p class="panel-kicker">Mission</p>
+              <p>Mimicorp develops the narrative, evidence, and strategic infrastructure that helps ecological projects attract capital, align stakeholders, and move from concept to durable execution.</p>
+            </article>
+
+            <article class="about-item">
+              <p class="panel-kicker">Vision</p>
+              <p>Mimicorp envisions a future where ecological infrastructure is investable, legible, and scalable because the gap between field conditions, public understanding, and capital deployment has been closed.</p>
+            </article>
+          </div>
+
           <label class="toggle-row" for="episode-toggle">
             <span>Show episode nodes</span>
             <input id="episode-toggle" type="checkbox" checked>
           </label>
         </div>
 
-        <div class="panel-card panel-card--active">
-          <p class="panel-kicker">Active Selection</p>
-          <h2 id="node-title">Mimicorp</h2>
-          <div class="node-meta">
-            <span class="type-chip" id="node-type">kernel</span>
-            <span class="route-chip" id="node-route">internal page</span>
-          </div>
-          <p class="node-description" id="node-description">
-            A systems lab for ecological infrastructure.
-          </p>
-          <p class="node-invitation" id="node-invitation">
-            Explore the network to see how each piece supports ecological investment and project delivery.
-          </p>
+        <div class="panel-card panel-card--services">
+          <p class="panel-kicker">What Mimicorp Does</p>
+          <h2>Turning observation, narrative, and structure into investable projects.</h2>
+          <div class="about-grid">
+            <article class="about-item">
+              <p class="panel-kicker">Field evidence</p>
+              <p>Observation workflows, archives, and land-based records that help ecological claims stay grounded in actual conditions.</p>
+            </article>
 
-          <div class="panel-section panel-section--compact">
-            <p class="panel-kicker">Path</p>
-            <p class="node-route-path" id="node-url">/</p>
-          </div>
+            <article class="about-item">
+              <p class="panel-kicker">Strategic narrative</p>
+              <p>Documentary, publishing, and partner-facing communication that helps complex projects earn trust and aligned attention.</p>
+            </article>
 
-          <div class="panel-section">
-            <p class="panel-kicker">Connections</p>
-            <div class="connection-list" id="connection-list"></div>
-          </div>
+            <article class="about-item">
+              <p class="panel-kicker">Project infrastructure</p>
+              <p>Design, systems thinking, and collaborative frameworks that help ecological work move from idea toward capitalized execution.</p>
+            </article>
 
-          <div class="panel-section panel-section--compact" id="episode-meta" hidden>
-            <p class="panel-kicker">Episode</p>
-            <div class="episode-meta-list">
-              <p id="episode-number"></p>
-              <p id="episode-guest"></p>
-              <p id="episode-date"></p>
-              <p id="episode-themes"></p>
-            </div>
-          </div>
-
-          <div class="panel-actions">
-            <button class="action-button action-button--primary" type="button" id="open-project">
-              Explore node
-            </button>
-            <button class="action-button" type="button" id="watch-project" hidden>
-              Watch
-            </button>
-            <button class="action-button" type="button" id="transcript-project" hidden>
-              Transcript
-            </button>
+            <article class="about-item">
+              <p class="panel-kicker">Why the map matters</p>
+              <p>The network map shows how the business connects media, operations, archives, and public voice into one coherent investment story rather than a set of unrelated projects.</p>
+            </article>
           </div>
         </div>
       </aside>

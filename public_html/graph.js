@@ -305,6 +305,10 @@ function getConnectedSet(nodeId) {
 }
 
 function renderEpisodeMeta(node) {
+  if (!episodeMeta || !watchProjectButton || !transcriptProjectButton) {
+    return;
+  }
+
   if (node.kind !== "episode") {
     episodeMeta.hidden = true;
     watchProjectButton.hidden = true;
@@ -322,6 +326,20 @@ function renderEpisodeMeta(node) {
 }
 
 function renderSidebar(node) {
+  if (
+    !sidebarTitle ||
+    !sidebarType ||
+    !sidebarRoute ||
+    !sidebarDescription ||
+    !nodeInvitation ||
+    !nodeUrl ||
+    !connectionList ||
+    !openProjectButton
+  ) {
+    renderEpisodeMeta(node);
+    return;
+  }
+
   const displayType = getDisplayType(node);
   sidebarTitle.textContent = getDisplayTitle(node);
   sidebarType.textContent = displayType;
@@ -526,7 +544,9 @@ function buildGraph() {
   const graphData = getGraphState();
 
   graphCanvas.setAttribute("viewBox", "0 0 " + width + " " + height);
-  statusNodeCount.textContent = String(graphData.nodes.length);
+  if (statusNodeCount) {
+    statusNodeCount.textContent = String(graphData.nodes.length) + " nodes";
+  }
 
   const svg = d3.select(graphCanvas);
   svg.selectAll("*").remove();
@@ -684,32 +704,42 @@ function buildGraph() {
   updateGraphState();
 }
 
-openProjectButton.addEventListener("click", () => {
-  const { nodeLookup } = getGraphState();
-  activateNode(nodeLookup.get(selectedNodeId));
-});
+if (openProjectButton) {
+  openProjectButton.addEventListener("click", () => {
+    const { nodeLookup } = getGraphState();
+    activateNode(nodeLookup.get(selectedNodeId));
+  });
+}
 
-watchProjectButton.addEventListener("click", () => {
-  const { nodeLookup } = getGraphState();
-  activateNode(nodeLookup.get(selectedNodeId), "watch");
-});
+if (watchProjectButton) {
+  watchProjectButton.addEventListener("click", () => {
+    const { nodeLookup } = getGraphState();
+    activateNode(nodeLookup.get(selectedNodeId), "watch");
+  });
+}
 
-transcriptProjectButton.addEventListener("click", () => {
-  const { nodeLookup } = getGraphState();
-  activateNode(nodeLookup.get(selectedNodeId), "transcript");
-});
+if (transcriptProjectButton) {
+  transcriptProjectButton.addEventListener("click", () => {
+    const { nodeLookup } = getGraphState();
+    activateNode(nodeLookup.get(selectedNodeId), "transcript");
+  });
+}
 
-terminalForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  parseCommand(terminalInput.value);
-  terminalInput.value = "";
-});
+if (terminalForm && terminalInput) {
+  terminalForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    parseCommand(terminalInput.value);
+    terminalInput.value = "";
+  });
+}
 
-episodeToggle.addEventListener("change", () => {
-  showEpisodes = episodeToggle.checked;
-  buildGraph();
-  selectNode(selectedNodeId);
-});
+if (episodeToggle) {
+  episodeToggle.addEventListener("change", () => {
+    showEpisodes = episodeToggle.checked;
+    buildGraph();
+    selectNode(selectedNodeId);
+  });
+}
 
 window.addEventListener("resize", buildGraph);
 

@@ -457,6 +457,20 @@ code {
     var(--panel);
 }
 
+.panel-card--about {
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0)),
+    var(--panel);
+}
+
+.panel-card--services {
+  background:
+    radial-gradient(circle at top right, rgba(0, 213, 255, 0.1), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0)),
+    var(--panel);
+}
+
 .guide-list {
   margin: 0;
   padding-left: 18px;
@@ -464,6 +478,24 @@ code {
 
 .guide-list li + li {
   margin-top: 8px;
+}
+
+.about-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.about-item {
+  display: grid;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.about-item p:last-child {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 .toggle-row {
@@ -881,10 +913,6 @@ code {
     gap: 12px;
   }
 
-  .panel-card--guide {
-    display: none;
-  }
-
   .node-meta,
   .panel-actions {
     display: grid;
@@ -894,6 +922,10 @@ code {
   .connection-list {
     display: grid;
     grid-template-columns: 1fr;
+  }
+
+  .about-item {
+    padding-top: 12px;
   }
 
   .terminal__form {
