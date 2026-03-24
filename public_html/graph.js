@@ -93,7 +93,7 @@ const coreNodes = [
     id: "data",
     label: "Data",
     type: "fruit",
-    description: "A living archive of ecological data that turns observation into evidence for design, funding, and stewardship decisions.",
+    description: "A living archive of ecological data, connected to The Ecological Archive, that turns observation into evidence for design, funding, and stewardship decisions.",
     internal: true,
     url: "/nodes/data/",
     connections: ["mimicorp", "second_cutting", "ag_lab", "shady_pines"]
