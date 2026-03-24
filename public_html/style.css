@@ -716,7 +716,44 @@ code {
 
 @media (max-width: 720px) {
   .app-shell {
-    padding: 14px;
+    gap: 14px;
+    padding: 12px;
+  }
+
+  .hero-panel,
+  .path-strip,
+  .panel-card,
+  .graph-panel,
+  .terminal,
+  .funnel {
+    border-radius: 20px;
+  }
+
+  .hero-panel {
+    gap: 18px;
+    padding: 18px;
+  }
+
+  .hero-copy {
+    gap: 14px;
+  }
+
+  .glitch-title {
+    max-width: 9ch;
+    font-size: clamp(2.1rem, 11vw, 3.35rem);
+    line-height: 0.94;
+  }
+
+  .hero-summary {
+    max-width: 30ch;
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   .path-strip,
@@ -725,13 +762,109 @@ code {
   }
 
   .status-strip {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .status-pill {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 14px;
+  }
+
+  .status-pill:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .status-pill__label {
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .status-pill strong {
+    margin-top: 0;
+    font-size: 1rem;
+  }
+
+  .action-button,
+  .terminal__button {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 14px;
+  }
+
+  .hero-rail {
+    gap: 12px;
+  }
+
+  .video-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .video-frame {
+    max-height: 280px;
   }
 
   .hero-video-panel,
   .hero-note,
   .hero-side-notes {
     width: 100%;
+  }
+
+  .video-caption {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .hero-side-notes {
+    gap: 10px;
+  }
+
+  .hero-note {
+    padding: 14px 16px;
+  }
+
+  .path-strip {
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .path-intro {
+    gap: 8px;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .path-intro h2 {
+    font-size: 1.85rem;
+    line-height: 1;
+  }
+
+  .path-intro p:last-child {
+    max-width: 34ch;
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .path-card {
+    gap: 10px;
+    min-height: 0;
+    padding: 16px;
+  }
+
+  .path-card h2 {
+    font-size: 2rem;
+  }
+
+  .path-card p:last-of-type {
+    max-width: none;
+    font-size: 0.98rem;
+    line-height: 1.5;
+  }
+
+  .panel-card {
+    padding: 18px;
   }
 
   .terminal__form {
@@ -746,5 +879,83 @@ code {
   .graph-callout {
     right: 16px;
     max-width: none;
+  }
+
+  .graph-panel,
+  #graph-canvas {
+    min-height: 560px;
+  }
+
+  .graph-callout h2 {
+    font-size: 1.7rem;
+  }
+
+  .legend {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .funnel {
+    gap: 16px;
+    padding: 18px;
+  }
+
+  .funnel-card {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 520px) {
+  .glitch-title {
+    max-width: 8ch;
+    font-size: clamp(1.95rem, 12vw, 2.85rem);
+  }
+
+  .hero-summary,
+  .path-intro p:last-child,
+  .path-card p:last-of-type,
+  .video-caption,
+  .node-description,
+  .node-invitation,
+  .graph-callout p,
+  .terminal__response,
+  .funnel__intro p,
+  .funnel-card p:last-of-type {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .status-strip {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .status-pill:last-child {
+    grid-column: auto;
+  }
+
+  .hero-side-notes {
+    display: none;
+  }
+
+  .video-frame {
+    max-height: 240px;
+  }
+
+  .path-card h2,
+  .panel-card h2,
+  .graph-callout h2,
+  .funnel__intro h2 {
+    font-size: 1.8rem;
+  }
+
+  .panel-kicker,
+  .eyebrow,
+  .status-pill__label,
+  .terminal__prompt,
+  .node-route-path,
+  .video-meta {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
   }
 }
