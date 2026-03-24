@@ -9,7 +9,7 @@ const SystemNotes = dynamic(() => import("@/components/SystemNotes"));
 const projectPaths = [
   {
     name: "Second Cutting",
-    href: "#second-cutting",
+    href: "/second-cutting",
     eyebrow: "Start here",
     description:
       "The quickest way to understand the work through documentary episodes, reporting, and public-facing stories.",
@@ -17,7 +17,7 @@ const projectPaths = [
   },
   {
     name: "JoyNet",
-    href: "https://joynet.church",
+    href: "/joynet",
     eyebrow: "Public voice",
     description:
       "The clearest path into the values, language, and public-facing side of the broader system.",
@@ -25,7 +25,7 @@ const projectPaths = [
   },
   {
     name: "GLC Ranch",
-    href: "https://glcranch.com",
+    href: "/glc-ranch",
     eyebrow: "On-the-ground work",
     description:
       "A practical view of the land, constraints, and field conditions that keep the work grounded.",
@@ -33,7 +33,7 @@ const projectPaths = [
   },
   {
     name: "Teche Lake Outfitters",
-    href: "https://www.techelakeoutfitters.com",
+    href: "/teche-lake",
     eyebrow: "Experience in place",
     description:
       "A direct way to understand the place itself through guided movement and firsthand experience.",
