@@ -13,6 +13,16 @@
 </head>
 <body>
   <div class="app-shell">
+    <nav class="site-nav" aria-label="Primary">
+      <a class="site-nav__brand" href="index.html">Mimicorp Systems</a>
+      <div class="site-nav__links">
+        <a class="site-nav__link" href="index.html">Home</a>
+        <a class="site-nav__link" href="/nodes/contact/">About</a>
+        <a class="site-nav__link" href="/nodes/learn-more/">Learn More</a>
+        <a class="site-nav__link" href="/nodes/book-time/">Book Time</a>
+      </div>
+    </nav>
+
     <header class="hero-panel">
       <div class="hero-copy">
         <p class="eyebrow">Mimicorp Systems</p>
@@ -29,7 +39,7 @@
         </div>
 
         <div class="hero-actions">
-          <a class="action-button action-button--primary" href="https://podcasts.apple.com/us/podcast/second-cutting/id1865905475?i=1000752307523" target="_blank" rel="noreferrer">Start with audio</a>
+          <a class="action-button action-button--primary" href="https://podcasts.apple.com/us/podcast/second-cutting/id1865905475" target="_blank" rel="noreferrer">Start with audio</a>
           <a class="action-button" href="#graph-zone">View system map</a>
         </div>
       </div>
@@ -50,7 +60,7 @@
               poster="assets/media/mimicorp-glitch-logo-poster.jpg"
               aria-label="Animated Mimicorp glitch logo"
             >
-              <source src="assets/media/mimicorp-glitch-logo.mp4" type="video/mp4">
+              <source src="assets/media/mimicorp_glitch_logo.mp4" type="video/mp4">
             </video>
           </div>
           <p class="video-caption">
@@ -93,7 +103,7 @@
         <p class="panel-kicker">Listening</p>
         <h2>Second Cutting</h2>
         <p>The fastest way to understand the work through documentary reporting and conversation.</p>
-        <a class="action-button" href="https://podcasts.apple.com/us/podcast/second-cutting/id1865905475?i=1000752307523" target="_blank" rel="noreferrer">Listen</a>
+        <a class="action-button" href="https://podcasts.apple.com/us/podcast/second-cutting/id1865905475" target="_blank" rel="noreferrer">Listen</a>
       </article>
       <article class="path-card">
         <p class="panel-kicker">Field proof</p>
@@ -152,32 +162,30 @@
         </div>
 
         <div class="panel-card panel-card--services">
-          <p class="panel-kicker">What Mimicorp Does</p>
-          <h2>Building software, media, and project structure around ecological work.</h2>
+          <p class="panel-kicker">Explore More</p>
+          <h2>Use these pages to learn more about the business and the person behind it.</h2>
           <div class="about-grid">
             <article class="about-item">
-              <p class="panel-kicker">Software</p>
-              <p>Decision tools, archives, and digital systems that help ecological work become more legible, organized, and actionable.</p>
+              <p class="panel-kicker">About</p>
+              <p>Read the biography, social channels, and the broader context behind Mimicorp.</p>
+              <a class="action-button" href="/nodes/contact/">About Amelia</a>
             </article>
 
             <article class="about-item">
-              <p class="panel-kicker">Media creation</p>
-              <p>Documentary, publishing, and partner-facing communication that helps complex projects earn trust and aligned attention.</p>
+              <p class="panel-kicker">Learn More</p>
+              <p>See the fuller breakdown of Mimicorp's software, media, strategy, and project support work.</p>
+              <a class="action-button" href="/nodes/learn-more/">Open learn more</a>
             </article>
 
             <article class="about-item">
-              <p class="panel-kicker">Field evidence</p>
-              <p>Observation workflows, archives, and land-based records, including work connected to <a href="https://ecologicalarchive.org" target="_blank" rel="noreferrer">The Ecological Archive</a>, that help ecological claims stay grounded in actual conditions.</p>
+              <p class="panel-kicker">Current project</p>
+              <p>Follow <a href="https://ecologicalarchive.org" target="_blank" rel="noreferrer">The Ecological Archive</a>, where Amelia serves on the Board of Directors as Secretary.</p>
             </article>
 
             <article class="about-item">
-              <p class="panel-kicker">Project infrastructure</p>
-              <p>Design, systems thinking, and collaborative frameworks that help ecological work move from idea toward capitalized execution.</p>
-            </article>
-
-            <article class="about-item">
-              <p class="panel-kicker">Why the map matters</p>
-              <p>The network map shows how the business connects media, operations, archives, and public voice into one coherent investment story rather than a set of unrelated projects.</p>
+              <p class="panel-kicker">Work together</p>
+              <p>Book time when the work needs structure, visibility, or a clearer next move.</p>
+              <a class="action-button" href="/nodes/book-time/">Book studio time</a>
             </article>
           </div>
         </div>
@@ -188,8 +196,51 @@
           <article class="graph-callout">
             <p class="panel-kicker">Network Map</p>
             <h2>Follow the infrastructure logic through the system.</h2>
-            <p>Click nodes to inspect how each branch attracts, aligns, or deploys support.</p>
+            <p>Click nodes to inspect how each branch attracts, aligns, or deploys support. Double-click to open the selected route.</p>
           </article>
+
+          <aside class="graph-detail">
+            <p class="panel-kicker">Selected Node</p>
+            <h3 id="node-title">Mimicorp</h3>
+            <div class="node-meta">
+              <span class="type-chip" id="node-type">kernel</span>
+              <span class="route-chip" id="node-route">internal page</span>
+            </div>
+            <p class="node-description" id="node-description">
+              A systems lab that attracts capital and partners to build ecological infrastructure.
+            </p>
+            <p class="node-invitation" id="node-invitation">
+              Click through the map to see how the branches connect.
+            </p>
+            <div class="panel-section panel-section--compact">
+              <p class="panel-kicker">Path</p>
+              <p class="node-route-path" id="node-url">/</p>
+            </div>
+            <div class="panel-section">
+              <p class="panel-kicker">Connections</p>
+              <div class="connection-list" id="connection-list"></div>
+            </div>
+            <div class="panel-section panel-section--compact" id="episode-meta" hidden>
+              <p class="panel-kicker">Episode</p>
+              <div class="episode-meta-list">
+                <p id="episode-number"></p>
+                <p id="episode-guest"></p>
+                <p id="episode-date"></p>
+                <p id="episode-themes"></p>
+              </div>
+            </div>
+            <div class="panel-actions">
+              <button class="action-button action-button--primary" type="button" id="open-project">
+                Explore node
+              </button>
+              <button class="action-button" type="button" id="watch-project" hidden>
+                Watch
+              </button>
+              <button class="action-button" type="button" id="transcript-project" hidden>
+                Transcript
+              </button>
+            </div>
+          </aside>
 
           <div class="legend" aria-label="Node types">
             <span class="legend-item legend-item--kernel">Kernel</span>

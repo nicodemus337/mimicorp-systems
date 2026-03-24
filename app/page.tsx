@@ -44,7 +44,7 @@ const projectPaths = [
 const listeningLinks = [
   {
     label: "Apple Podcasts",
-    href: "https://podcasts.apple.com/us/podcast/second-cutting/id1865905475?i=1000752307523"
+    href: "https://podcasts.apple.com/us/podcast/second-cutting/id1865905475"
   },
   {
     label: "Spotify",
@@ -162,7 +162,7 @@ export default function HomePage() {
                 <div className="signal-video-wrap">
                   <video
                     className="signal-video"
-                    src="/media/mimicorp-glitch-logo.mov"
+                    src="/media/mimicorp_glitch_logo.mp4"
                     autoPlay
                     loop
                     muted

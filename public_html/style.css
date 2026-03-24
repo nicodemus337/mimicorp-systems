@@ -101,6 +101,55 @@ code {
   padding: 20px;
 }
 
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border: 1px solid var(--panel-border);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0)),
+    var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+}
+
+.site-nav__brand,
+.site-nav__link {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-nav__brand {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.site-nav__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.site-nav__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 8px 12px;
+  border: 1px solid var(--panel-border);
+  background: rgba(255, 255, 255, 0.04);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
 .hero-panel,
 .path-strip,
 .panel-card,
@@ -590,6 +639,32 @@ code {
   gap: 10px;
 }
 
+.graph-detail {
+  position: absolute;
+  right: 22px;
+  top: 22px;
+  z-index: 3;
+  width: min(360px, calc(100% - 44px));
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+    rgba(8, 8, 8, 0.92);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(16px);
+  pointer-events: auto;
+}
+
+.graph-detail h3 {
+  margin: 0;
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
 .legend {
   position: absolute;
   left: 22px;
@@ -717,6 +792,10 @@ code {
 
   .workspace {
     grid-template-columns: 1fr;
+  }
+
+  .graph-detail {
+    width: min(340px, calc(100% - 44px));
   }
 }
 
@@ -904,13 +983,33 @@ code {
     max-width: none;
   }
 
+  .site-nav {
+    padding: 12px 14px;
+  }
+
+  .site-nav__links {
+    width: 100%;
+  }
+
+  .site-nav__link {
+    flex: 1 1 calc(50% - 8px);
+  }
+
   .graph-panel,
   #graph-canvas {
-    min-height: 560px;
+    min-height: 720px;
   }
 
   .graph-callout h2 {
     font-size: 1.7rem;
+  }
+
+  .graph-detail {
+    top: auto;
+    right: 16px;
+    bottom: 70px;
+    left: 16px;
+    width: auto;
   }
 
   .graph-callout p {
@@ -972,6 +1071,10 @@ code {
     left: 14px;
     right: 14px;
     top: 14px;
+  }
+
+  .site-nav__link {
+    flex-basis: 100%;
   }
 
   .legend {
