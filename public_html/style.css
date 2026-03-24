@@ -105,7 +105,6 @@ code {
 .path-strip,
 .panel-card,
 .graph-panel,
-.terminal,
 .funnel {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
@@ -159,7 +158,6 @@ code {
 .eyebrow,
 .panel-kicker,
 .status-pill__label,
-.terminal__prompt,
 .node-route-path,
 .video-meta {
   margin: 0;
@@ -662,36 +660,6 @@ code {
   text-transform: uppercase;
 }
 
-.terminal {
-  display: grid;
-  gap: 12px;
-  padding: 20px 22px;
-  border-radius: var(--radius-lg);
-}
-
-.terminal__form {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: 10px;
-  align-items: center;
-}
-
-.terminal__input {
-  min-width: 0;
-  padding: 11px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(0, 0, 0, 0.36);
-  color: var(--text);
-}
-
-.terminal__input::placeholder {
-  color: var(--soft);
-}
-
-.terminal__response {
-  margin: 0;
-}
-
 .funnel {
   display: grid;
   gap: 20px;
@@ -762,7 +730,6 @@ code {
   .path-strip,
   .panel-card,
   .graph-panel,
-  .terminal,
   .funnel {
     border-radius: 20px;
   }
@@ -823,8 +790,7 @@ code {
     font-size: 1rem;
   }
 
-  .action-button,
-  .terminal__button {
+  .action-button {
     width: 100%;
     justify-content: center;
     padding: 12px 14px;
@@ -928,10 +894,6 @@ code {
     padding-top: 12px;
   }
 
-  .terminal__form {
-    grid-template-columns: 1fr;
-  }
-
   .graph-callout,
   .legend {
     left: 16px;
@@ -983,7 +945,6 @@ code {
   .node-description,
   .node-invitation,
   .graph-callout p,
-  .terminal__response,
   .funnel__intro p,
   .funnel-card p:last-of-type {
     font-size: 0.95rem;
@@ -1013,8 +974,7 @@ code {
     top: 14px;
   }
 
-  .legend,
-  .terminal {
+  .legend {
     display: none;
   }
 

@@ -202,9 +202,6 @@ const episodeThemes = document.getElementById("episode-themes");
 const openProjectButton = document.getElementById("open-project");
 const watchProjectButton = document.getElementById("watch-project");
 const transcriptProjectButton = document.getElementById("transcript-project");
-const terminalForm = document.getElementById("terminal-form");
-const terminalInput = document.getElementById("terminal-input");
-const terminalResponse = document.getElementById("terminal-response");
 const statusNodeCount = document.getElementById("status-node-count");
 const graphCanvas = document.getElementById("graph-canvas");
 const episodeToggle = document.getElementById("episode-toggle");
@@ -397,14 +394,12 @@ function selectNode(nodeId) {
   const { nodeLookup } = getGraphState();
   const node = nodeLookup.get(nodeId);
   if (!node) {
-    terminalResponse.textContent = 'Node "' + nodeId + '" not found.';
     return;
   }
 
   selectedNodeId = nodeId;
   renderSidebar(node);
   updateGraphState();
-  terminalResponse.textContent = getDisplayTitle(node) + " active. " + getInvitation(node);
 }
 
 function activateNode(node, section = "") {
@@ -427,7 +422,6 @@ function activateNode(node, section = "") {
 
   if (!node.internal) {
     window.open(node.url, "_blank", "noopener,noreferrer");
-    terminalResponse.textContent = "Opened " + getDisplayTitle(node) + ".";
     return;
   }
 
@@ -442,13 +436,6 @@ function focusConnections() {
   }
 
   updateGraphState();
-  const names = node.connections
-    .map((id) => nodeLookup.get(id))
-    .filter(Boolean)
-    .map((item) => getDisplayTitle(item))
-    .join(", ");
-
-  terminalResponse.textContent = names ? "Connected to: " + names + "." : "No connections available for this node.";
 }
 
 function centerOnNode(nodeId) {
@@ -483,58 +470,6 @@ function findNodeByQuery(query) {
     const normalizedLabel = normalizeNodeQuery(node.kind === "episode" ? node.episode_title : node.label);
     return node.id === normalized || normalizedLabel === normalized;
   });
-}
-
-function parseCommand(command) {
-  const normalized = command.trim().toLowerCase();
-  if (!normalized) {
-    terminalResponse.textContent = "Enter a command.";
-    return;
-  }
-
-  if (normalized === "help") {
-    terminalResponse.textContent = "Commands: help, map, list, inspect [node], open [node].";
-    return;
-  }
-
-  if (normalized === "map") {
-    if (simulation) {
-      simulation.alpha(1).restart();
-    }
-    terminalResponse.textContent = "Map simulation refreshed.";
-    return;
-  }
-
-  if (normalized === "list") {
-    const { nodes } = getGraphState();
-    terminalResponse.textContent = nodes.map((node) => getDisplayTitle(node)).join(" | ");
-    return;
-  }
-
-  if (normalized.startsWith("inspect ")) {
-    const node = findNodeByQuery(normalized.slice(8));
-    if (!node) {
-      terminalResponse.textContent = 'Node "' + normalized.slice(8) + '" not found.';
-      return;
-    }
-    selectNode(node.id);
-    centerOnNode(node.id);
-    return;
-  }
-
-  if (normalized.startsWith("open ")) {
-    const node = findNodeByQuery(normalized.slice(5));
-    if (!node) {
-      terminalResponse.textContent = 'Node "' + normalized.slice(5) + '" not found.';
-      return;
-    }
-    selectNode(node.id);
-    centerOnNode(node.id);
-    activateNode(node);
-    return;
-  }
-
-  terminalResponse.textContent = 'Unknown command "' + command + '". Use help for available commands.';
 }
 
 function buildGraph() {
@@ -722,14 +657,6 @@ if (transcriptProjectButton) {
   transcriptProjectButton.addEventListener("click", () => {
     const { nodeLookup } = getGraphState();
     activateNode(nodeLookup.get(selectedNodeId), "transcript");
-  });
-}
-
-if (terminalForm && terminalInput) {
-  terminalForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    parseCommand(terminalInput.value);
-    terminalInput.value = "";
   });
 }
 
