@@ -267,6 +267,12 @@ a {
   background: var(--panel-soft);
 }
 
+.switch-card--primary {
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.08), transparent 34%),
+    var(--panel-soft);
+}
+
 .switch-card h2,
 .network-copy h2,
 .modal-header h3 {
@@ -489,15 +495,60 @@ a {
 
 @media (max-width: 760px) {
   .system-shell {
-    padding: 14px;
+    padding: 12px;
+  }
+
+  .hero-panel,
+  .switchboard-panel,
+  .field-notes-panel,
+  .network-panel,
+  .node-modal {
+    border-radius: 20px;
+  }
+
+  .hero-panel {
+    gap: 18px;
+    padding: 18px;
+  }
+
+  .hero-copy {
+    gap: 14px;
+  }
+
+  .glitch-title {
+    max-width: 9ch;
+    font-size: clamp(2.1rem, 11vw, 3.3rem);
+    line-height: 0.94;
+  }
+
+  .hero-summary {
+    max-width: 30ch;
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .signal-link {
+    width: 100%;
   }
 
   .switchboard-panel {
     grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .switch-card {
+    min-height: 0;
+    padding: 16px;
   }
 
   .network-stage {
-    min-height: 860px;
+    min-height: 640px;
   }
 
   .node-modal {
@@ -505,5 +556,39 @@ a {
     right: 14px;
     bottom: 14px;
     width: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .glitch-title {
+    max-width: 8ch;
+    font-size: clamp(1.95rem, 12vw, 2.85rem);
+  }
+
+  .hero-summary,
+  .field-notes-description,
+  .network-copy p:last-child,
+  .switch-card p:last-of-type,
+  .modal-summary,
+  .modal-detail,
+  .note-row span:last-child,
+  .floating-note p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .signal-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .video-label-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .network-copy h2 {
+    font-size: 1.9rem;
   }
 }

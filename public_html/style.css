@@ -392,6 +392,12 @@ code {
   background: var(--panel-soft);
 }
 
+.path-card--primary {
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.08), transparent 34%),
+    var(--panel-soft);
+}
+
 .path-card h2,
 .panel-card h2,
 .funnel__intro h2 {
@@ -796,6 +802,10 @@ code {
     gap: 12px;
   }
 
+  .hero-side-notes {
+    display: none;
+  }
+
   .video-meta {
     flex-direction: column;
     align-items: flex-start;
@@ -813,16 +823,7 @@ code {
   }
 
   .video-caption {
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-
-  .hero-side-notes {
-    gap: 10px;
-  }
-
-  .hero-note {
-    padding: 14px 16px;
+    display: none;
   }
 
   .path-strip {
@@ -867,6 +868,34 @@ code {
     padding: 18px;
   }
 
+  .workspace {
+    gap: 14px;
+  }
+
+  .graph-panel {
+    order: 1;
+  }
+
+  .sidebar {
+    order: 2;
+    gap: 12px;
+  }
+
+  .panel-card--guide {
+    display: none;
+  }
+
+  .node-meta,
+  .panel-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .connection-list {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
   .terminal__form {
     grid-template-columns: 1fr;
   }
@@ -888,6 +917,10 @@ code {
 
   .graph-callout h2 {
     font-size: 1.7rem;
+  }
+
+  .graph-callout p {
+    display: none;
   }
 
   .legend {
@@ -940,6 +973,17 @@ code {
 
   .video-frame {
     max-height: 240px;
+  }
+
+  .graph-callout {
+    left: 14px;
+    right: 14px;
+    top: 14px;
+  }
+
+  .legend,
+  .terminal {
+    display: none;
   }
 
   .path-card h2,
