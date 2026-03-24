@@ -178,19 +178,20 @@ export function NodeCluster() {
 
           <div className="absolute left-4 top-4 space-y-2 sm:left-6 sm:top-6">
             <p className="text-[12px] uppercase tracking-[0.28em] text-text/48">
-              Thesis map
+              System map
             </p>
             <p className="max-w-xs text-[16px] leading-[1.5] text-text/70">
-              Hover to inspect the argument. Click to see how each system helps attract capital, align partners, or build ecological infrastructure.
+              Hover to preview a part of the system. Click any node to see what it does and what
+              it connects to.
             </p>
           </div>
 
           <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2 sm:bottom-6 sm:left-6 sm:right-6">
             <span className="rounded-full border border-white/10 bg-black/25 px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-text/50">
-              relation map / active thesis
+              click a node for details
             </span>
             <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-text/74">
-              infrastructure pipeline / active
+              connected items stay highlighted
             </span>
           </div>
         </div>
@@ -205,7 +206,7 @@ export function NodeCluster() {
       >
         <div className="space-y-3">
           <p className="text-[12px] uppercase tracking-[0.32em] text-text/48">
-            Thesis console
+            Selected item
           </p>
           <h2 className="font-primary text-[36px] leading-[1.15] tracking-[-0.04em]">
             {activeNode.label}
@@ -227,14 +228,15 @@ export function NodeCluster() {
 
         <div className="space-y-3 border-t border-white/8 pt-4">
           <p className="text-[12px] uppercase tracking-[0.32em] text-text/48">
-            Linked systems
+            Connected parts
           </p>
           <div className="space-y-2">
             <p className="text-[16px] leading-[1.5] text-text/78">
-              Active thesis layer: {activeNode.label}
+              You&apos;re viewing: {activeNode.label}
             </p>
             <p className="text-[16px] leading-[1.5] text-text/60">
-              Immediate relations surface the nearest strategic logic first. More distant systems stay visible until the thesis shifts focus.
+              The items below are the nearest links in the system, so you can understand the
+              relationship before exploring the wider map.
             </p>
           </div>
           <div className="space-y-2">
@@ -254,11 +256,9 @@ export function NodeCluster() {
         </div>
 
         <div className="border-t border-white/8 pt-4">
-          <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">
-            Read method
-          </p>
+          <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">How to use it</p>
           <p className="mt-3 font-accent text-[24px] leading-[1.15] text-text/68">
-            Record first. Interpret later.
+            Start with one node, then follow the links.
           </p>
         </div>
       </motion.aside>

@@ -15,13 +15,12 @@ export default function SystemNotes() {
               Next Phase / Field Notes
             </p>
             <h2 className="max-w-lg font-primary text-[36px] leading-[1.02] tracking-[-0.05em] text-text md:text-[48px]">
-              Field Notes launches in the next phase of development.
+              Field Notes is the next layer planned for the site.
             </h2>
             <p className="max-w-md text-[16px] leading-[1.6] text-text/70">
-              It will become Mimicorp's evidence layer: a structured field record for
-              time, place, condition, change, and implication. The goal is to give
-              partners and capital a closer view of the observations that justify
-              ecological action.
+              It is designed to become the evidence layer: a structured record of what was
+              observed, where it happened, and why it matters. The goal is to make the field
+              reality easier to understand and easier to act on.
             </p>
 
             <div className="flex flex-col gap-3 sm:flex-row">
@@ -48,21 +47,19 @@ export default function SystemNotes() {
             </div>
 
             <p className="max-w-lg font-accent text-[28px] leading-[1.14] text-text/84">
-              This preview shows how Field Notes will make ecological investment legible.
+              This preview shows how Field Notes can turn observations into usable evidence.
             </p>
 
             <div className="space-y-3 text-[16px] leading-[1.65] text-text/70">
               <p>Not as mood. Not as marketing. As observations that can support decisions.</p>
               <p>
-                A late leaf-out. Soil holding moisture past expectation. Insects
-                arriving earlier, or not at all. Animal behavior that does not match
-                the season.
+                A late leaf-out. Soil holding moisture longer than expected. Insects arriving
+                earlier, or not at all. Animal behavior that does not match the season.
               </p>
               <p>
-                Individually, these signals can be dismissed. Once Field Notes is
-                live, recorded observations like these can accumulate into evidence
-                for where intervention is needed, what should be built, and how
-                support should be structured.
+                Individually, these signals can be dismissed. Recorded over time, they become a
+                practical basis for deciding where intervention is needed, what should be built,
+                and how support should be structured.
               </p>
             </div>
           </div>
@@ -73,8 +70,8 @@ export default function SystemNotes() {
                 Evidence retention
               </p>
               <p className="mt-3 text-[15px] leading-[1.5] text-text/74">
-                Every event leaves a trace. Field Notes will preserve those traces so
-                projects can be designed against reality rather than memory.
+                Every event leaves a trace. Field Notes is meant to preserve those traces so
+                decisions can be made against reality rather than memory.
               </p>
             </article>
 
@@ -83,9 +80,8 @@ export default function SystemNotes() {
                 Decision support
               </p>
               <p className="mt-3 text-[15px] leading-[1.5] text-text/74">
-                What looks minor is often just unresolved. Field Notes is being built
-                to turn observations into decision inputs for financing, stewardship,
-                and build sequencing.
+                What looks minor is often just unresolved. This system is being designed to turn
+                observations into useful inputs for financing, stewardship, and build sequencing.
               </p>
             </article>
 
@@ -94,22 +90,20 @@ export default function SystemNotes() {
                 Partner alignment
               </p>
               <p className="mt-3 text-[15px] leading-[1.5] text-text/74">
-                Everything downstream either reflects what is observed here, or it
-                becomes narrative drift. Alignment starts with shared evidence.
+                Shared evidence helps everyone stay aligned. Without it, the story can drift away
+                from the conditions on the ground.
               </p>
             </article>
           </div>
 
           <div className="space-y-3 border-t border-white/8 pt-5 text-[15px] leading-[1.65] text-text/68">
             <p>
-              In the next phase, each entry will be anchored to time, place, and
-              condition, not just interpretation. That is how ecological claims become
-              operational.
+              In the next phase, each entry will be anchored to time, place, and condition, not
+              just interpretation. That is how ecological claims become operational.
             </p>
             <p>
-              Over time, it is meant to become a working record of reality: a basis
-              for partner trust, project prioritization, and infrastructure design
-              tied to actual conditions.
+              Over time, it is meant to become a working record of reality: a basis for partner
+              trust, project prioritization, and infrastructure design tied to actual conditions.
             </p>
             <p className="text-text/84">This is the next layer of the Mimicorp thesis.</p>
           </div>

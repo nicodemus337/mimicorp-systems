@@ -257,6 +257,10 @@ body::after {
     0 18px 42px rgba(0, 0, 0, 0.24);
 }
 
+.signal-card-compact {
+  padding: 1rem 1.1rem;
+}
+
 .signal-card::after {
   content: "";
   position: absolute;
