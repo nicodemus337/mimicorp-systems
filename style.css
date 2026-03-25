@@ -106,6 +106,7 @@ a {
 }
 
 .hero-panel,
+.entry-panel,
 .switchboard-panel,
 .field-notes-panel,
 .network-panel,
@@ -257,6 +258,139 @@ a {
   filter: drop-shadow(0 0 32px rgba(255, 255, 255, 0.08));
 }
 
+.entry-panel {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+  padding: 20px;
+  border-radius: 28px;
+}
+
+.entry-intro {
+  display: grid;
+  gap: 10px;
+  max-width: 880px;
+}
+
+.entry-intro h2 {
+  margin: 0;
+  max-width: 12ch;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+}
+
+.entry-intro p:last-child,
+.sort-option__body,
+.sort-result__summary,
+.sort-note p:last-child {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.entry-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+  gap: 16px;
+}
+
+.sort-options {
+  display: grid;
+  gap: 12px;
+}
+
+.sort-option {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border: 1px solid var(--line-soft);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
+    rgba(0, 0, 0, 0.42);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    opacity 180ms ease;
+}
+
+.sort-option:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.sort-option strong {
+  font-size: 1.2rem;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.sort-option__eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+
+.sort-option.is-selected {
+  border-color: rgba(255, 255, 255, 0.26);
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.018)),
+    rgba(6, 6, 6, 0.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 18px 48px rgba(0, 0, 0, 0.24);
+}
+
+.sort-result {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 32%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)),
+    rgba(0, 0, 0, 0.58);
+}
+
+.sort-result h3 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+}
+
+.sort-result__notes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.sort-note {
+  padding: 14px;
+  border: 1px solid var(--line-soft);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.sort-browse-link {
+  color: var(--soft);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
 .switchboard-panel {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -274,12 +408,33 @@ a {
   padding: 18px;
   border: 1px solid var(--line-soft);
   background: var(--panel-soft);
+  transition:
+    opacity 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .switch-card--primary {
   background:
     radial-gradient(circle at top right, rgba(255, 255, 255, 0.08), transparent 34%),
     var(--panel-soft);
+}
+
+.switch-card.is-recommended {
+  border-color: rgba(255, 255, 255, 0.24);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 18px 48px rgba(0, 0, 0, 0.26);
+}
+
+.switch-card.is-supporting {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.switchboard-panel.is-guided .switch-card.is-muted {
+  opacity: 0.42;
+  transform: scale(0.985);
 }
 
 .switch-card h2,
@@ -497,6 +652,10 @@ a {
     grid-template-columns: 1fr;
   }
 
+  .entry-grid {
+    grid-template-columns: 1fr;
+  }
+
   .switchboard-panel {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -508,6 +667,7 @@ a {
   }
 
   .hero-panel,
+  .entry-panel,
   .switchboard-panel,
   .field-notes-panel,
   .network-panel,
@@ -549,6 +709,10 @@ a {
     grid-template-columns: 1fr;
     gap: 12px;
     padding: 16px;
+  }
+
+  .sort-result__notes {
+    grid-template-columns: 1fr;
   }
 
   .switch-card {

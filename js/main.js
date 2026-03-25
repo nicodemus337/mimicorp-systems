@@ -14,11 +14,55 @@ const modalSummary = document.getElementById("modal-summary");
 const modalDetail = document.getElementById("modal-detail");
 const modalLinks = document.getElementById("modal-links");
 const modalRoute = document.getElementById("modal-route");
+const sortOptions = Array.from(document.querySelectorAll(".sort-option"));
+const sortTitle = document.getElementById("sort-title");
+const sortSummary = document.getElementById("sort-summary");
+const sortNext = document.getElementById("sort-next");
+const sortPrimaryLink = document.getElementById("sort-primary-link");
+const sortSecondaryLink = document.getElementById("sort-secondary-link");
+const switchCards = Array.from(document.querySelectorAll(".switch-card[data-path]"));
 
 const state = {
   activeId: "mimicorp",
-  hoveredId: null
+  hoveredId: null,
+  selectedPath: sortOptions[0]?.dataset.primaryPath ?? null,
+  supportingPath: sortOptions[0]?.dataset.secondaryPath ?? null
 };
+
+function applySortSelection(option) {
+  if (!option || !sortTitle || !sortSummary || !sortNext || !sortPrimaryLink || !sortSecondaryLink) {
+    return;
+  }
+
+  state.selectedPath = option.dataset.primaryPath ?? null;
+  state.supportingPath = option.dataset.secondaryPath ?? null;
+
+  sortOptions.forEach((entry) => {
+    entry.classList.toggle("is-selected", entry === option);
+  });
+
+  sortTitle.textContent = option.dataset.title ?? "";
+  sortSummary.textContent = option.dataset.summary ?? "";
+  sortNext.textContent = option.dataset.next ?? "";
+
+  sortPrimaryLink.textContent = option.dataset.primaryLabel ?? "Open path";
+  sortPrimaryLink.href = option.dataset.primaryHref ?? "#";
+  sortPrimaryLink.target = (option.dataset.primaryHref ?? "").startsWith("http") ? "_blank" : "_self";
+
+  sortSecondaryLink.textContent = option.dataset.secondaryLabel ?? "Next path";
+  sortSecondaryLink.href = option.dataset.secondaryHref ?? "#";
+  sortSecondaryLink.target = (option.dataset.secondaryHref ?? "").startsWith("http") ? "_blank" : "_self";
+
+  switchCards.forEach((card) => {
+    const path = card.dataset.path;
+    const isPrimary = path === state.selectedPath;
+    const isSupporting = path === state.supportingPath;
+
+    card.classList.toggle("is-recommended", isPrimary);
+    card.classList.toggle("is-supporting", isSupporting);
+    card.classList.toggle("is-muted", !isPrimary && !isSupporting);
+  });
+}
 
 const liveNodes = nodes.map((node) => ({
   ...node,
@@ -137,6 +181,16 @@ for (const node of liveNodes) {
 
 updateModal();
 updateOverlay();
+
+sortOptions.forEach((option) => {
+  option.addEventListener("click", () => {
+    applySortSelection(option);
+  });
+});
+
+if (sortOptions[0]) {
+  applySortSelection(sortOptions[0]);
+}
 
 createPulseSystem({
   canvas,

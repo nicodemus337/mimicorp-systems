@@ -87,7 +87,120 @@
       </div>
     </header>
 
-    <section class="path-strip" aria-label="Project routes">
+    <section class="entry-panel" id="first-visit" aria-label="First visit guide">
+      <div class="entry-panel__intro">
+        <p class="panel-kicker">First Visit Guide</p>
+        <h2>Choose one way in before you browse the whole system.</h2>
+        <p>
+          New visitors do not need the whole Mimicorp stack at once. Pick what you want first and
+          the site will recommend the clearest entry path.
+        </p>
+      </div>
+
+      <div class="entry-panel__grid">
+        <div class="entry-options" role="list" aria-label="Pick your first path">
+          <button
+            type="button"
+            class="entry-option is-selected"
+            data-primary-path="second-cutting"
+            data-secondary-path="joynet"
+            data-title="Start with Second Cutting"
+            data-summary="Use the documentary branch if you want the fastest, least overwhelming explanation of the work."
+            data-next="Then move to JoyNet for the public voice and values layer."
+            data-primary-label="Start with audio"
+            data-primary-href="https://podcasts.apple.com/us/podcast/second-cutting/id1865905475"
+            data-secondary-label="Then visit JoyNet"
+            data-secondary-href="https://joynet.church"
+          >
+            <span class="entry-option__kicker">01 / Overview</span>
+            <strong>I want the simplest explanation first.</strong>
+            <span class="entry-option__body">Give me the cleanest orientation path before the rest of the system.</span>
+          </button>
+
+          <button
+            type="button"
+            class="entry-option"
+            data-primary-path="glc-ranch"
+            data-secondary-path="second-cutting"
+            data-title="Start with GLC Ranch"
+            data-summary="Use the operating ground if you want proof, constraints, and field reality before bigger framing."
+            data-next="Then use Second Cutting to hear how that reality is translated for a wider audience."
+            data-primary-label="Visit GLC Ranch"
+            data-primary-href="https://glcranch.com"
+            data-secondary-label="Then listen to Second Cutting"
+            data-secondary-href="https://podcasts.apple.com/us/podcast/second-cutting/id1865905475"
+          >
+            <span class="entry-option__kicker">02 / Proof</span>
+            <strong>I want the field reality first.</strong>
+            <span class="entry-option__body">Show me the part that keeps the work grounded in actual conditions.</span>
+          </button>
+
+          <button
+            type="button"
+            class="entry-option"
+            data-primary-path="joynet"
+            data-secondary-path="second-cutting"
+            data-title="Start with JoyNet"
+            data-summary="Use JoyNet if you want the worldview, language, and public-facing signal around the work first."
+            data-next="Then use Second Cutting for the more grounded documentary bridge."
+            data-primary-label="Visit JoyNet"
+            data-primary-href="https://joynet.church"
+            data-secondary-label="Then start with audio"
+            data-secondary-href="https://podcasts.apple.com/us/podcast/second-cutting/id1865905475"
+          >
+            <span class="entry-option__kicker">03 / Context</span>
+            <strong>I want the worldview and public voice.</strong>
+            <span class="entry-option__body">Help me understand the values and framing before the operations.</span>
+          </button>
+
+          <button
+            type="button"
+            class="entry-option"
+            data-primary-path="teche-lake"
+            data-secondary-path="glc-ranch"
+            data-title="Start with Teche Lake"
+            data-summary="Use Teche Lake if you understand the work best through direct encounter and place-based experience."
+            data-next="Then move to GLC Ranch to connect that encounter back to the operating ground."
+            data-primary-label="Visit Teche Lake"
+            data-primary-href="https://www.techelakeoutfitters.com"
+            data-secondary-label="Then visit GLC Ranch"
+            data-secondary-href="https://glcranch.com"
+          >
+            <span class="entry-option__kicker">04 / Place</span>
+            <strong>I want direct experience, not just explanation.</strong>
+            <span class="entry-option__body">Point me toward the branch that gets me closest to the landscape itself.</span>
+          </button>
+        </div>
+
+        <article class="entry-result" aria-live="polite">
+          <p class="panel-kicker">Recommended path</p>
+          <h3 id="entry-title">Start with Second Cutting</h3>
+          <p class="entry-result__summary" id="entry-summary">
+            Use the documentary branch if you want the fastest, least overwhelming explanation of the work.
+          </p>
+
+          <div class="entry-result__notes">
+            <article class="entry-result__note">
+              <p class="panel-kicker">Why this works</p>
+              <p>One useful doorway is better than trying to decode the whole system at once.</p>
+            </article>
+            <article class="entry-result__note">
+              <p class="panel-kicker">What happens next</p>
+              <p id="entry-next">Then move to JoyNet for the public voice and values layer.</p>
+            </article>
+          </div>
+
+          <div class="hero-actions">
+            <a class="action-button action-button--primary" id="entry-primary-link" href="https://podcasts.apple.com/us/podcast/second-cutting/id1865905475" target="_blank" rel="noreferrer">Start with audio</a>
+            <a class="action-button" id="entry-secondary-link" href="https://joynet.church" target="_blank" rel="noreferrer">Then visit JoyNet</a>
+          </div>
+
+          <a class="entry-result__browse" href="#path-strip">Or compare every path anyway</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="path-strip is-guided" id="path-strip" aria-label="Project routes">
       <div class="path-intro">
         <p class="panel-kicker">Direct Paths</p>
         <h2>Choose the clearest next step.</h2>
@@ -97,25 +210,25 @@
         </p>
       </div>
 
-      <article class="path-card path-card--primary">
+      <article class="path-card path-card--primary is-recommended" data-path="second-cutting">
         <p class="panel-kicker">Listening</p>
         <h2>Second Cutting</h2>
         <p>The fastest way to understand the work through documentary reporting and conversation.</p>
         <a class="action-button" href="https://podcasts.apple.com/us/podcast/second-cutting/id1865905475" target="_blank" rel="noreferrer">Listen</a>
       </article>
-      <article class="path-card">
+      <article class="path-card" data-path="glc-ranch">
         <p class="panel-kicker">Field proof</p>
         <h2>GLC Ranch</h2>
         <p>The on-the-ground context behind the thesis, constraints, and operating reality.</p>
         <a class="action-button" href="https://glcranch.com" target="_blank" rel="noreferrer">Open site</a>
       </article>
-      <article class="path-card">
+      <article class="path-card is-supporting" data-path="joynet">
         <p class="panel-kicker">Public signal</p>
         <h2>JoyNet</h2>
         <p>The public voice and values layer surrounding the work.</p>
         <a class="action-button" href="https://joynet.church" target="_blank" rel="noreferrer">Open site</a>
       </article>
-      <article class="path-card">
+      <article class="path-card" data-path="teche-lake">
         <p class="panel-kicker">Place access</p>
         <h2>Teche Lake</h2>
         <p>A direct encounter with landscape and lived context.</p>
@@ -283,6 +396,45 @@
   </div>
   <script>
     const animatedLogos = document.querySelectorAll(".hero-video, .signal-stage__video");
+    const entryOptions = Array.from(document.querySelectorAll(".entry-option"));
+    const entryTitle = document.getElementById("entry-title");
+    const entrySummary = document.getElementById("entry-summary");
+    const entryNext = document.getElementById("entry-next");
+    const entryPrimaryLink = document.getElementById("entry-primary-link");
+    const entrySecondaryLink = document.getElementById("entry-secondary-link");
+    const pathCards = Array.from(document.querySelectorAll(".path-card[data-path]"));
+
+    const applyEntrySelection = (option) => {
+      if (!option || !entryTitle || !entrySummary || !entryNext || !entryPrimaryLink || !entrySecondaryLink) {
+        return;
+      }
+
+      entryOptions.forEach((entry) => {
+        entry.classList.toggle("is-selected", entry === option);
+      });
+
+      entryTitle.textContent = option.dataset.title || "";
+      entrySummary.textContent = option.dataset.summary || "";
+      entryNext.textContent = option.dataset.next || "";
+
+      entryPrimaryLink.textContent = option.dataset.primaryLabel || "Open path";
+      entryPrimaryLink.href = option.dataset.primaryHref || "#";
+      entryPrimaryLink.target = (option.dataset.primaryHref || "").startsWith("http") ? "_blank" : "_self";
+
+      entrySecondaryLink.textContent = option.dataset.secondaryLabel || "Next path";
+      entrySecondaryLink.href = option.dataset.secondaryHref || "#";
+      entrySecondaryLink.target = (option.dataset.secondaryHref || "").startsWith("http") ? "_blank" : "_self";
+
+      pathCards.forEach((card) => {
+        const path = card.dataset.path;
+        const isPrimary = path === option.dataset.primaryPath;
+        const isSupporting = path === option.dataset.secondaryPath;
+
+        card.classList.toggle("is-recommended", isPrimary);
+        card.classList.toggle("is-supporting", isSupporting);
+        card.classList.toggle("is-muted", !isPrimary && !isSupporting);
+      });
+    };
 
     for (const logo of animatedLogos) {
       logo.muted = true;
@@ -305,6 +457,14 @@
           tryPlay();
         }
       });
+    }
+
+    entryOptions.forEach((option) => {
+      option.addEventListener("click", () => applyEntrySelection(option));
+    });
+
+    if (entryOptions[0]) {
+      applyEntrySelection(entryOptions[0]);
     }
   </script>
 </body>

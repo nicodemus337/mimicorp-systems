@@ -54,29 +54,166 @@
       </div>
     </section>
 
-    <section class="switchboard-panel" aria-label="Project switchboard">
-      <article class="switch-card switch-card--primary">
+    <section class="entry-panel" id="first-visit" aria-label="First visit guide">
+      <div class="entry-intro">
+        <p class="panel-label">First Visit Guide</p>
+        <h2>Pick one way in. Ignore the rest for now.</h2>
+        <p>
+          If Mimicorp feels dense on first contact, start by telling the site what kind of
+          understanding you want first. It will point you to one branch and dim the rest until
+          you are ready.
+        </p>
+      </div>
+
+      <div class="entry-grid">
+        <div class="sort-options" role="list" aria-label="Choose your first path">
+          <button
+            type="button"
+            class="sort-option is-selected"
+            data-sort-id="overview"
+            data-primary-path="second-cutting"
+            data-secondary-path="joynet"
+            data-title="Start with Second Cutting"
+            data-summary="This is the fastest route if you want the whole thing explained in human language before you look at the wider system."
+            data-next="After that, JoyNet adds the public voice and values layer around the work."
+            data-primary-label="Start with audio"
+            data-primary-href="https://podcasts.apple.com/us/podcast/second-cutting/id1865905475?i=1000752307523"
+            data-secondary-label="Then visit JoyNet"
+            data-secondary-href="https://joynet.church"
+          >
+            <span class="sort-option__eyebrow">01 / Overview</span>
+            <strong>I need the simplest explanation first.</strong>
+            <span class="sort-option__body">Show me the fastest orientation path before anything technical.</span>
+          </button>
+
+          <button
+            type="button"
+            class="sort-option"
+            data-sort-id="proof"
+            data-primary-path="glc-ranch"
+            data-secondary-path="second-cutting"
+            data-title="Start with GLC Ranch"
+            data-summary="This is the best route if you want to see field reality, operating constraints, and proof before philosophy."
+            data-next="Then use Second Cutting to hear how those conditions translate into public narrative."
+            data-primary-label="Visit GLC Ranch"
+            data-primary-href="https://glcranch.com"
+            data-secondary-label="Then listen to Second Cutting"
+            data-secondary-href="https://podcasts.apple.com/us/podcast/second-cutting/id1865905475?i=1000752307523"
+          >
+            <span class="sort-option__eyebrow">02 / Proof</span>
+            <strong>I want the field reality first.</strong>
+            <span class="sort-option__body">Show me what keeps the thesis grounded in actual land, labor, and timing.</span>
+          </button>
+
+          <button
+            type="button"
+            class="sort-option"
+            data-sort-id="context"
+            data-primary-path="joynet"
+            data-secondary-path="second-cutting"
+            data-title="Start with JoyNet"
+            data-summary="This is the strongest first stop if you want the values, public voice, and worldview around the work."
+            data-next="Then use Second Cutting for the documentary bridge back into the wider system."
+            data-primary-label="Visit JoyNet"
+            data-primary-href="https://joynet.church"
+            data-secondary-label="Then start with audio"
+            data-secondary-href="https://podcasts.apple.com/us/podcast/second-cutting/id1865905475?i=1000752307523"
+          >
+            <span class="sort-option__eyebrow">03 / Context</span>
+            <strong>I want the worldview and public voice.</strong>
+            <span class="sort-option__body">Help me understand the meaning and language around the work first.</span>
+          </button>
+
+          <button
+            type="button"
+            class="sort-option"
+            data-sort-id="place"
+            data-primary-path="teche-lake"
+            data-secondary-path="glc-ranch"
+            data-title="Start with Teche Lake"
+            data-summary="This is the clearest route if you understand places best through direct encounter instead of only reading about them."
+            data-next="Then visit GLC Ranch to connect that encounter back to the operating ground."
+            data-primary-label="Visit Teche Lake"
+            data-primary-href="https://www.techelakeoutfitters.com"
+            data-secondary-label="Then visit GLC Ranch"
+            data-secondary-href="https://glcranch.com"
+          >
+            <span class="sort-option__eyebrow">04 / Place</span>
+            <strong>I want direct experience, not just explanation.</strong>
+            <span class="sort-option__body">Point me toward the branch that gets me closest to the landscape itself.</span>
+          </button>
+        </div>
+
+        <article class="sort-result" aria-live="polite">
+          <div class="signal-row">
+            <span>Recommended first move</span>
+            <span>One branch at a time</span>
+          </div>
+          <p class="panel-label" id="sort-kicker">Recommended path</p>
+          <h3 id="sort-title">Start with Second Cutting</h3>
+          <p class="sort-result__summary" id="sort-summary">
+            This is the fastest route if you want the whole thing explained in human language
+            before you look at the wider system.
+          </p>
+
+          <div class="sort-result__notes">
+            <article class="sort-note">
+              <p class="panel-label">Why this fits</p>
+              <p>You only need one useful doorway, not the whole map.</p>
+            </article>
+            <article class="sort-note">
+              <p class="panel-label">What happens next</p>
+              <p id="sort-next">
+                After that, JoyNet adds the public voice and values layer around the work.
+              </p>
+            </article>
+          </div>
+
+          <div class="hero-actions">
+            <a
+              class="signal-link signal-link--primary"
+              id="sort-primary-link"
+              href="https://podcasts.apple.com/us/podcast/second-cutting/id1865905475?i=1000752307523"
+              target="_blank"
+              rel="noreferrer"
+            >Start with audio</a>
+            <a
+              class="signal-link"
+              id="sort-secondary-link"
+              href="https://joynet.church"
+              target="_blank"
+              rel="noreferrer"
+            >Then visit JoyNet</a>
+          </div>
+
+          <a class="sort-browse-link" href="#switchboard">Or browse every path anyway</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="switchboard-panel is-guided" id="switchboard" aria-label="Project switchboard">
+      <article class="switch-card switch-card--primary is-recommended" data-path="second-cutting">
         <p class="panel-label">Listening</p>
         <h2>Second Cutting</h2>
         <p>The fastest way to understand the work through documentary reporting and conversation.</p>
         <a class="signal-link" href="https://podcasts.apple.com/us/podcast/second-cutting/id1865905475?i=1000752307523" target="_blank" rel="noreferrer">Listen</a>
       </article>
 
-      <article class="switch-card">
+      <article class="switch-card is-supporting" data-path="joynet">
         <p class="panel-label">Public Signal</p>
         <h2>JoyNet</h2>
         <p>The public voice and values layer surrounding the work.</p>
         <a class="signal-link" href="https://joynet.church" target="_blank" rel="noreferrer">Open site</a>
       </article>
 
-      <article class="switch-card">
+      <article class="switch-card" data-path="glc-ranch">
         <p class="panel-label">Operating Ground</p>
         <h2>GLC Ranch</h2>
         <p>The on-the-ground context behind the thesis and its constraints.</p>
         <a class="signal-link" href="https://glcranch.com" target="_blank" rel="noreferrer">Open site</a>
       </article>
 
-      <article class="switch-card">
+      <article class="switch-card" data-path="teche-lake">
         <p class="panel-label">Place Access</p>
         <h2>Teche Lake</h2>
         <p>A direct encounter with landscape, movement, and lived context.</p>
@@ -91,21 +228,21 @@
     </section>
 
     <section class="field-notes-panel" id="field-layer" aria-live="polite" aria-label="Field Notes input layer">
-      <p class="panel-label">Field Notes</p>
+      <p class="panel-label">Later / Field Notes</p>
       <p class="field-notes-description">
-        Raw ecological observations held close to source. No smoothing. No decorative thesis.
-        Just input, accumulation, and signal.
+        Come here after you have a basic read on the system. This is the raw observation layer:
+        input, accumulation, and signal without a softer introduction.
       </p>
       <div id="field-notes-feed" class="field-notes-feed"></div>
     </section>
 
     <section class="network-panel" id="node-layer" aria-label="Mimicorp node network">
       <div class="network-copy">
-        <p class="panel-label">Thesis map</p>
-        <h2>Hover the live nodes. Click to shift the active logic.</h2>
+        <p class="panel-label">Later / Thesis map</p>
+        <h2>Use the live map after you already know one branch.</h2>
         <p>
-          The pulse system remains intact, but the surrounding surface now matches the animated
-          identity instead of the older green lab aesthetic.
+          This is for relationship-mapping, not first contact. Start with one path above, then use
+          the nodes here to understand how the surrounding logic connects.
         </p>
       </div>
 
