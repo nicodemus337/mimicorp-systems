@@ -41,7 +41,7 @@ const coreNodes = [
     type: "stem",
     description: "Gonsoulin Land and Cattle is a working ranch that gives Mimicorp real operating conditions, constraints, and proof for infrastructure ideas.",
     internal: false,
-    url: "https://glcranch.com",
+    url: "https://www.glcranch.com",
     connections: ["second_cutting", "media", "design"]
   },
   {
