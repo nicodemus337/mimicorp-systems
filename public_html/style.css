@@ -153,7 +153,6 @@ code {
 .hero-panel,
 .path-strip,
 .panel-card,
-.graph-panel,
 .funnel {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
@@ -220,7 +219,6 @@ code {
 .glitch-title,
 .panel-card h2,
 .panel-card h3,
-.graph-callout h2,
 .funnel__intro h2,
 .funnel-card h3,
 .path-card h2 {
@@ -243,8 +241,6 @@ code {
 .hero-summary,
 .node-description,
 .node-invitation,
-.graph-callout p,
-.terminal__response,
 .funnel__intro p,
 .funnel-card p:last-of-type,
 .guide-list,
@@ -256,8 +252,7 @@ code {
 .status-strip,
 .hero-actions,
 .node-meta,
-.panel-actions,
-.legend {
+.panel-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -273,10 +268,9 @@ code {
 .status-pill,
 .type-chip,
 .route-chip,
-.legend-item,
 .connection-chip,
 .action-button,
-.terminal__button {
+.action-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -310,7 +304,6 @@ code {
 }
 
 .action-button:hover,
-.terminal__button:hover,
 .connection-chip:hover {
   transform: translateY(-1px);
   border-color: rgba(255, 255, 255, 0.22);
@@ -327,6 +320,7 @@ code {
   display: grid;
   align-content: start;
   width: min(100%, 340px);
+  animation: signal-float 8s ease-in-out infinite;
 }
 
 .video-meta {
@@ -366,6 +360,7 @@ code {
   height: 100%;
   object-fit: contain;
   transform: scale(0.9);
+  animation: signal-breathe 6s ease-in-out infinite;
 }
 
 .video-caption {
@@ -456,7 +451,6 @@ code {
 .path-card h2,
 .funnel-card h3,
 .panel-card h2,
-.graph-callout h2,
 .funnel__intro h2 {
   text-wrap: balance;
 }
@@ -471,7 +465,7 @@ code {
 .workspace {
   min-height: 0;
   display: grid;
-  grid-template-columns: 340px minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -518,6 +512,14 @@ code {
     var(--panel);
 }
 
+.panel-card--signal {
+  background:
+    radial-gradient(circle at top right, rgba(255, 0, 88, 0.12), transparent 34%),
+    radial-gradient(circle at bottom left, rgba(0, 213, 255, 0.1), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0)),
+    var(--panel);
+}
+
 .guide-list {
   margin: 0;
   padding-left: 18px;
@@ -545,17 +547,42 @@ code {
   line-height: 1.6;
 }
 
-.toggle-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  color: var(--text);
+.signal-stage {
+  position: relative;
+  overflow: hidden;
+  min-height: 420px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08), transparent 34%),
+    rgba(0, 0, 0, 0.86);
 }
 
-.toggle-row input {
-  width: 18px;
-  height: 18px;
+.signal-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06) 0,
+    rgba(255, 255, 255, 0.06) 2px,
+    transparent 2px,
+    transparent 8px
+  );
+  opacity: 0.22;
+  mix-blend-mode: screen;
+}
+
+.signal-stage__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  object-fit: contain;
+  transform: scale(0.92);
+  filter: contrast(1.08) saturate(1.04);
+  animation: signal-breathe 6s ease-in-out infinite;
 }
 
 .type-chip[data-type="kernel"] {
@@ -602,137 +629,6 @@ code {
 
 .episode-meta-list p {
   margin: 0;
-}
-
-.graph-panel {
-  position: relative;
-  min-height: 720px;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.06), transparent 24%),
-    radial-gradient(circle at 18% 22%, rgba(0, 213, 255, 0.08), transparent 18%),
-    radial-gradient(circle at 82% 22%, rgba(255, 0, 88, 0.08), transparent 18%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
-    rgba(0, 0, 0, 0.64);
-}
-
-.graph-callout h2 {
-  font-size: clamp(1.5rem, 2.8vw, 2.4rem);
-  line-height: 0.98;
-  letter-spacing: -0.04em;
-}
-
-.graph-panel__overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.graph-callout {
-  position: absolute;
-  left: 22px;
-  top: 22px;
-  max-width: 360px;
-  display: grid;
-  gap: 10px;
-}
-
-.graph-detail {
-  position: absolute;
-  right: 22px;
-  top: 22px;
-  z-index: 3;
-  width: min(360px, calc(100% - 44px));
-  display: grid;
-  gap: 14px;
-  padding: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 22px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
-    rgba(8, 8, 8, 0.92);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
-  backdrop-filter: blur(16px);
-  pointer-events: auto;
-}
-
-.graph-detail h3 {
-  margin: 0;
-  font-size: clamp(1.5rem, 2vw, 2rem);
-  line-height: 0.98;
-  letter-spacing: -0.03em;
-}
-
-.legend {
-  position: absolute;
-  left: 22px;
-  bottom: 22px;
-}
-
-.legend-item--branch {
-  box-shadow: inset 2px 0 0 rgba(255, 0, 88, 0.72), inset -2px 0 0 rgba(0, 213, 255, 0.72);
-}
-
-.legend-item--stem {
-  border-color: rgba(255, 228, 92, 0.4);
-}
-
-.legend-item--fruit {
-  border-color: rgba(0, 213, 255, 0.36);
-}
-
-#graph-canvas {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  min-height: 720px;
-}
-
-.link-line {
-  stroke: rgba(255, 255, 255, 0.16);
-  stroke-width: 1.2;
-}
-
-.link-line.is-highlighted {
-  stroke: rgba(255, 255, 255, 0.5);
-  stroke-width: 1.7;
-}
-
-.node-group {
-  cursor: pointer;
-  transition: opacity 160ms ease;
-}
-
-.node-group.is-dimmed {
-  opacity: 0.22;
-}
-
-.node-group .node-ring {
-  fill: transparent;
-  stroke: rgba(255, 255, 255, 0.22);
-  stroke-width: 1.2;
-}
-
-.node-group.is-selected .node-ring,
-.node-group.is-hovered .node-ring {
-  stroke: rgba(255, 255, 255, 0.56);
-  stroke-width: 1.8;
-}
-
-.node-group .node-core {
-  stroke: rgba(255, 255, 255, 0.22);
-  stroke-width: 1;
-}
-
-.node-label {
-  fill: var(--text);
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
 }
 
 .funnel {
@@ -793,10 +689,6 @@ code {
   .workspace {
     grid-template-columns: 1fr;
   }
-
-  .graph-detail {
-    width: min(340px, calc(100% - 44px));
-  }
 }
 
 @media (max-width: 720px) {
@@ -808,7 +700,6 @@ code {
   .hero-panel,
   .path-strip,
   .panel-card,
-  .graph-panel,
   .funnel {
     border-radius: 20px;
   }
@@ -949,12 +840,7 @@ code {
     gap: 14px;
   }
 
-  .graph-panel {
-    order: 1;
-  }
-
   .sidebar {
-    order: 2;
     gap: 12px;
   }
 
@@ -973,16 +859,6 @@ code {
     padding-top: 12px;
   }
 
-  .graph-callout,
-  .legend {
-    left: 16px;
-  }
-
-  .graph-callout {
-    right: 16px;
-    max-width: none;
-  }
-
   .site-nav {
     padding: 12px 14px;
   }
@@ -995,30 +871,9 @@ code {
     flex: 1 1 calc(50% - 8px);
   }
 
-  .graph-panel,
-  #graph-canvas {
-    min-height: 720px;
-  }
-
-  .graph-callout h2 {
-    font-size: 1.7rem;
-  }
-
-  .graph-detail {
-    top: auto;
-    right: 16px;
-    bottom: 70px;
-    left: 16px;
-    width: auto;
-  }
-
-  .graph-callout p {
-    display: none;
-  }
-
-  .legend {
-    right: 16px;
-    bottom: 16px;
+  .signal-stage,
+  .signal-stage__video {
+    min-height: 320px;
   }
 
   .funnel {
@@ -1043,7 +898,6 @@ code {
   .video-caption,
   .node-description,
   .node-invitation,
-  .graph-callout p,
   .funnel__intro p,
   .funnel-card p:last-of-type {
     font-size: 0.95rem;
@@ -1067,23 +921,12 @@ code {
     max-height: 240px;
   }
 
-  .graph-callout {
-    left: 14px;
-    right: 14px;
-    top: 14px;
-  }
-
   .site-nav__link {
     flex-basis: 100%;
   }
 
-  .legend {
-    display: none;
-  }
-
   .path-card h2,
   .panel-card h2,
-  .graph-callout h2,
   .funnel__intro h2 {
     font-size: 1.8rem;
   }
@@ -1091,10 +934,33 @@ code {
   .panel-kicker,
   .eyebrow,
   .status-pill__label,
-  .terminal__prompt,
   .node-route-path,
   .video-meta {
     font-size: 0.68rem;
     letter-spacing: 0.16em;
+  }
+}
+
+@keyframes signal-breathe {
+  0%,
+  100% {
+    transform: scale(0.92);
+    filter: contrast(1.08) saturate(1.04);
+  }
+
+  50% {
+    transform: scale(0.96);
+    filter: contrast(1.12) saturate(1.08);
+  }
+}
+
+@keyframes signal-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
   }
 }

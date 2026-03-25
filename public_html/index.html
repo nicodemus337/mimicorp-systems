@@ -35,12 +35,12 @@
         <div class="status-strip" aria-label="System status">
           <span class="status-pill"><span class="status-pill__label">Signal</span><strong>Live</strong></span>
           <span class="status-pill"><span class="status-pill__label">Best first step</span><strong>Second Cutting</strong></span>
-          <span class="status-pill"><span class="status-pill__label">Map</span><strong id="status-node-count">12 nodes</strong></span>
+          <span class="status-pill"><span class="status-pill__label">Latest</span><strong>Field Notes on X</strong></span>
         </div>
 
         <div class="hero-actions">
           <a class="action-button action-button--primary" href="https://podcasts.apple.com/us/podcast/second-cutting/id1865905475" target="_blank" rel="noreferrer">Start with audio</a>
-          <a class="action-button" href="#graph-zone">View system map</a>
+          <a class="action-button" href="/nodes/learn-more/">Learn more</a>
         </div>
       </div>
 
@@ -72,8 +72,8 @@
           <article class="hero-note">
             <p class="panel-kicker">How to read this</p>
             <p>
-              Start with Second Cutting if you are new, then use the map and branch cards below to
-              follow proof, context, or place-based access.
+              Start with Second Cutting if you are new, then use the pages below to follow proof,
+              context, current projects, or place-based access.
             </p>
           </article>
 
@@ -131,8 +131,8 @@
       </article>
     </section>
 
-    <main class="workspace" id="graph-zone">
-      <aside class="sidebar" id="sidebar" aria-live="polite">
+    <section class="workspace">
+      <div class="sidebar">
         <div class="panel-card panel-card--about">
           <p class="panel-kicker">About Mimicorp</p>
           <h2>A software and media creation company making ecological projects more legible and investable.</h2>
@@ -154,11 +154,6 @@
               <p>Mimicorp envisions a future where ecological infrastructure is investable, legible, and scalable because the gap between field conditions, public understanding, and capital deployment has been closed.</p>
             </article>
           </div>
-
-          <label class="toggle-row" for="episode-toggle">
-            <span>Show episode nodes</span>
-            <input id="episode-toggle" type="checkbox" checked>
-          </label>
         </div>
 
         <div class="panel-card panel-card--services">
@@ -189,70 +184,51 @@
             </article>
           </div>
         </div>
-      </aside>
+      </div>
 
-      <section class="graph-panel">
-        <div class="graph-panel__overlay">
-          <article class="graph-callout">
-            <p class="panel-kicker">Network Map</p>
-            <h2>Follow the infrastructure logic through the system.</h2>
-            <p>Click nodes to inspect how each branch attracts, aligns, or deploys support. Double-click to open the selected route.</p>
-          </article>
-
-          <aside class="graph-detail">
-            <p class="panel-kicker">Selected Node</p>
-            <h3 id="node-title">Mimicorp</h3>
-            <div class="node-meta">
-              <span class="type-chip" id="node-type">kernel</span>
-              <span class="route-chip" id="node-route">internal page</span>
-            </div>
-            <p class="node-description" id="node-description">
-              A systems lab that attracts capital and partners to build ecological infrastructure.
-            </p>
-            <p class="node-invitation" id="node-invitation">
-              Click through the map to see how the branches connect.
-            </p>
-            <div class="panel-section panel-section--compact">
-              <p class="panel-kicker">Path</p>
-              <p class="node-route-path" id="node-url">/</p>
-            </div>
-            <div class="panel-section">
-              <p class="panel-kicker">Connections</p>
-              <div class="connection-list" id="connection-list"></div>
-            </div>
-            <div class="panel-section panel-section--compact" id="episode-meta" hidden>
-              <p class="panel-kicker">Episode</p>
-              <div class="episode-meta-list">
-                <p id="episode-number"></p>
-                <p id="episode-guest"></p>
-                <p id="episode-date"></p>
-                <p id="episode-themes"></p>
-              </div>
-            </div>
-            <div class="panel-actions">
-              <button class="action-button action-button--primary" type="button" id="open-project">
-                Explore node
-              </button>
-              <button class="action-button" type="button" id="watch-project" hidden>
-                Watch
-              </button>
-              <button class="action-button" type="button" id="transcript-project" hidden>
-                Transcript
-              </button>
-            </div>
-          </aside>
-
-          <div class="legend" aria-label="Node types">
-            <span class="legend-item legend-item--kernel">Kernel</span>
-            <span class="legend-item legend-item--branch">Branch</span>
-            <span class="legend-item legend-item--stem">Stem</span>
-            <span class="legend-item legend-item--fruit">Fruit</span>
+      <div class="sidebar">
+        <div class="panel-card panel-card--signal">
+          <p class="panel-kicker">Animated Mark</p>
+          <h2>The logo now carries the motion language for the site.</h2>
+          <div class="signal-stage">
+            <video
+              class="signal-stage__video"
+              autoplay
+              loop
+              muted
+              playsinline
+              poster="assets/media/mimicorp-glitch-logo-poster.jpg"
+              aria-label="Animated Mimicorp glitch logo"
+            >
+              <source src="assets/media/mimicorp_glitch_logo.mp4" type="video/mp4">
+            </video>
           </div>
+          <p class="node-description">
+            The animated logo acts as the homepage's live signal surface: a compact visual anchor
+            that keeps motion present without forcing visitors into a brittle interface.
+          </p>
         </div>
 
-        <svg id="graph-canvas" aria-label="Mimicorp node network"></svg>
-      </section>
-    </main>
+        <div class="panel-card panel-card--services">
+          <p class="panel-kicker">Current Signals</p>
+          <h2>Three stable ways to keep up with the work.</h2>
+          <div class="about-grid">
+            <article class="about-item">
+              <p class="panel-kicker">Listen</p>
+              <p>Use Second Cutting as the main public-facing entry point into the work.</p>
+            </article>
+            <article class="about-item">
+              <p class="panel-kicker">Follow</p>
+              <p>Daily field notes and live updates continue on <a href="https://x.com/mimicorpx" target="_blank" rel="noreferrer">@mimicorpx</a>.</p>
+            </article>
+            <article class="about-item">
+              <p class="panel-kicker">Learn more</p>
+              <p>Use the About and Learn More pages to understand the business, current projects, and collaboration paths.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="funnel">
       <div class="funnel__intro">
@@ -306,8 +282,5 @@
     </section>
   </div>
 
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="scripts/episodes.js"></script>
-  <script src="graph.js"></script>
 </body>
 </html>
