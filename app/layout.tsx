@@ -33,7 +33,12 @@ export default function RootLayout({
       <body
         className={`${interTight.variable} ${inter.variable} ${garamond.variable} bg-background text-text antialiased`}
       >
-        {children}
+        <div className="flex min-h-screen flex-col">
+          <div className="flex-1">{children}</div>
+          <footer className="relative z-10 border-t border-white/10 bg-black/20 px-6 py-5 text-center font-body text-[11px] uppercase tracking-[0.28em] text-white/60 backdrop-blur-sm">
+            Copyright 2026 Mimicorp
+          </footer>
+        </div>
       </body>
     </html>
   );
