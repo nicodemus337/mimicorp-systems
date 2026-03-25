@@ -57,6 +57,8 @@
               loop
               muted
               playsinline
+              webkit-playsinline="true"
+              preload="auto"
               poster="assets/media/mimicorp-glitch-logo-poster.jpg"
               aria-label="Animated Mimicorp glitch logo"
             >
@@ -197,6 +199,8 @@
               loop
               muted
               playsinline
+              webkit-playsinline="true"
+              preload="auto"
               poster="assets/media/mimicorp-glitch-logo-poster.jpg"
               aria-label="Animated Mimicorp glitch logo"
             >
@@ -281,6 +285,31 @@
       </div>
     </section>
   </div>
+  <script>
+    const animatedLogos = document.querySelectorAll(".hero-video, .signal-stage__video");
 
+    for (const logo of animatedLogos) {
+      logo.muted = true;
+
+      const tryPlay = () => {
+        const playback = logo.play();
+        if (playback && typeof playback.catch === "function") {
+          playback.catch(() => {});
+        }
+      };
+
+      if (logo.readyState >= 2) {
+        tryPlay();
+      } else {
+        logo.addEventListener("loadeddata", tryPlay, { once: true });
+      }
+
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) {
+          tryPlay();
+        }
+      });
+    }
+  </script>
 </body>
 </html>
