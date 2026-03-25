@@ -771,7 +771,8 @@ code {
 }
 
 .signal-stage__video,
-.signal-stage__image {
+.signal-stage__image,
+.signal-stage__mark {
   display: block;
   width: 100%;
   height: 100%;
@@ -788,6 +789,14 @@ code {
 .signal-stage__image {
   padding: 32px;
   filter: drop-shadow(0 0 24px rgba(255, 255, 255, 0.12));
+}
+
+.signal-stage__mark {
+  padding: 56px;
+  fill: rgba(246, 246, 242, 0.98);
+  filter: drop-shadow(-10px 0 0 rgba(255, 0, 88, 0.65))
+    drop-shadow(10px 0 0 rgba(0, 213, 255, 0.5))
+    drop-shadow(0 0 24px rgba(255, 255, 255, 0.08));
 }
 
 .type-chip[data-type="kernel"] {
@@ -1085,7 +1094,8 @@ code {
 
   .signal-stage,
   .signal-stage__video,
-  .signal-stage__image {
+  .signal-stage__image,
+  .signal-stage__mark {
     min-height: 320px;
   }
 
