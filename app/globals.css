@@ -365,6 +365,67 @@ body::after {
     0 18px 48px rgba(0, 0, 0, 0.26);
 }
 
+.path-sort-option {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.028), rgba(255, 255, 255, 0.01)),
+    rgba(0, 0, 0, 0.44);
+  padding: 1.15rem 1.2rem;
+  transition:
+    border-color var(--duration-base) var(--ease-primary),
+    background-color var(--duration-base) var(--ease-primary),
+    transform var(--duration-base) var(--ease-primary);
+}
+
+.path-sort-option:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.18);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.014)),
+    rgba(0, 0, 0, 0.5);
+}
+
+.path-sort-option-active {
+  border-color: rgba(255, 255, 255, 0.26);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.018)),
+    rgba(8, 8, 8, 0.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 18px 42px rgba(0, 0, 0, 0.22);
+}
+
+.path-sort-result {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015)),
+    rgba(4, 4, 4, 0.82);
+  padding: 1.35rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 24px 60px rgba(0, 0, 0, 0.26);
+}
+
+.path-sort-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.35rem 0.7rem;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgb(246 246 242 / 0.68);
+}
+
+.path-sort-pill-solid {
+  background: rgba(255, 255, 255, 0.92);
+  color: #050505;
+}
+
 .cluster-calibration {
   position: absolute;
   pointer-events: none;

@@ -178,11 +178,11 @@ export function NodeCluster() {
 
           <div className="absolute left-4 top-4 space-y-2 sm:left-6 sm:top-6">
             <p className="text-[12px] uppercase tracking-[0.28em] text-text/48">
-              System map
+              System map / second step
             </p>
             <p className="max-w-xs text-[16px] leading-[1.5] text-text/70">
-              Hover to preview a part of the system. Click any node to see what it does and what
-              it connects to.
+              Use this after you&apos;ve picked a path above. Hover to preview a part of the
+              system, then click any node to see what it does and what it connects to.
             </p>
           </div>
 
@@ -258,7 +258,7 @@ export function NodeCluster() {
         <div className="border-t border-white/8 pt-4">
           <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">How to use it</p>
           <p className="mt-3 font-accent text-[24px] leading-[1.15] text-text/68">
-            Start with one node, then follow the links.
+            Start with one familiar branch, then follow the links.
           </p>
         </div>
       </motion.aside>

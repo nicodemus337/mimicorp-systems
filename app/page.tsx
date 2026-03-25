@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { LayoutContainer } from "@/components/LayoutContainer";
 import { MotionWrapper } from "@/components/MotionWrapper";
 import { NodeCluster } from "@/components/NodeCluster";
+import { PathwaySorter } from "@/components/PathwaySorter";
 
 const SystemNotes = dynamic(() => import("@/components/SystemNotes"));
 
@@ -213,19 +214,21 @@ export default function HomePage() {
           land-based work / partner context
         </section>
 
+        <PathwaySorter projectPaths={projectPaths} />
+
         <section id="pathways" className="signal-panel rounded-[32px] p-6 md:p-8">
           <div className="grid gap-6 border-b border-white/10 pb-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-end">
             <div className="space-y-3">
               <p className="text-[11px] uppercase tracking-[0.34em] text-text/48">
-                Start Here
+                Browse All Paths
               </p>
               <h2 className="max-w-2xl font-primary text-[40px] leading-[0.96] tracking-[-0.06em] text-text md:text-[58px]">
-                Four simple ways into the work.
+                Four simple ways into the work, once you know your angle.
               </h2>
             </div>
             <p className="max-w-2xl text-[16px] leading-[1.7] text-text/68 lg:ml-auto lg:text-right">
-              Pick the path that best matches why you&apos;re here. You don&apos;t need to understand
-              the whole system before choosing a useful place to begin.
+              If the sorter above already gave you a fit, use it. If not, this is the full browse
+              view so you can compare all four paths side by side.
             </p>
           </div>
 
