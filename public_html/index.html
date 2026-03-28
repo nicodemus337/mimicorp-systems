@@ -21,63 +21,49 @@
       </div>
       <div class="site-nav__links">
         <a class="site-nav__link" href="index.html" aria-current="page">Home</a>
-        <a class="site-nav__link" href="/nodes/contact/">About</a>
-        <a class="site-nav__link" href="/nodes/learn-more/">Learn More</a>
+        <a class="site-nav__link" href="/research/staging-the-state.html">Research</a>
+        <a class="site-nav__link" href="/nodes/learn-more/">About</a>
+        <a class="site-nav__link" href="/nodes/contact/">Amelia</a>
         <a class="site-nav__link" href="/nodes/services/">Services</a>
         <a class="site-nav__link" href="/nodes/book-time/">Book Time</a>
       </div>
     </nav>
 
-    <header class="hero-panel">
-      <div class="hero-copy">
-        <p class="eyebrow">Mimicorp Systems</p>
-        <h1 class="glitch-title">Local websites, practical tech help, and creative problem-solving for small projects.</h1>
-        <p class="hero-summary">
-          If you need help with a website, email setup, forms, light automation, content cleanup,
-          or a small IT project that has been hanging over your head, Mimicorp can help you get it
-          into working shape without making the process feel overwhelming.
+    <header
+      class="hero-panel"
+      aria-label="System navigator"
+      style="grid-template-columns: 1fr; min-height: 60svh; align-items: center; justify-items: center;"
+    >
+      <div
+        class="hero-copy"
+        style="width: min(680px, 100%); justify-items: center; text-align: center;"
+      >
+        <p class="eyebrow">System Navigator</p>
+        <h1 class="glitch-title" style="max-width: none;">MIMICORP IS A FIELD LAB</h1>
+        <p class="hero-summary" style="margin: 0; font-size: clamp(1.15rem, 2vw, 1.4rem);">
+          Why are you here?
         </p>
 
-        <div class="status-strip" aria-label="System status">
-          <span class="status-pill"><span class="status-pill__label">Based in</span><strong>South Louisiana</strong></span>
-          <span class="status-pill"><span class="status-pill__label">Projects</span><strong>Small jobs welcome</strong></span>
-          <span class="status-pill"><span class="status-pill__label">First step</span><strong>Friendly consult</strong></span>
-        </div>
-
-        <div class="hero-actions">
-          <a class="action-button action-button--primary" href="/nodes/services/">See services</a>
-          <a class="action-button" href="/nodes/book-time/">Book a consult</a>
-        </div>
-      </div>
-
-      <div class="hero-rail">
-        <div class="hero-video-panel">
-          <div class="video-frame">
-            <img
-              class="hero-image"
-              src="assets/fruitfulbrain.png"
-              alt="Fruitful Brain logo"
-            >
-          </div>
-        </div>
-
-        <div class="hero-side-notes" aria-label="Hero support panels">
-          <article class="hero-note">
-            <p class="panel-kicker">Good fit</p>
-            <p>
-              Start here if you need a clean website, help untangling digital tools, better forms,
-              or practical support for a small business, farm, nonprofit, or personal project.
-            </p>
-          </article>
-
-          <article class="hero-note">
-            <p class="panel-kicker">Style of work</p>
-            <p>
-              Clear communication, useful output, and a little edge. The goal is to make tech feel
-              more workable, not more intimidating.
-            </p>
-            <a class="action-button hero-note__button" href="/nodes/contact/">Meet Amelia</a>
-          </article>
+        <div
+          class="hero-actions"
+          aria-label="Choose a path"
+          style="display: grid; width: min(560px, 100%); gap: 12px; margin-top: 8px;"
+        >
+          <a
+            class="action-button action-button--primary"
+            href="/nodes/book-time/"
+            style="width: 100%; justify-content: flex-start; padding: 16px 18px;"
+          >I WANT TO WORK WITH YOU</a>
+          <a
+            class="action-button"
+            href="/research/staging-the-state.html"
+            style="width: 100%; justify-content: flex-start; padding: 16px 18px;"
+          >I'M EXPLORING YOUR RESEARCH</a>
+          <a
+            class="action-button"
+            href="/nodes/second-cutting/"
+            style="width: 100%; justify-content: flex-start; padding: 16px 18px;"
+          >I WANT TO EXPERIENCE THE SYSTEM</a>
         </div>
       </div>
     </header>
@@ -454,6 +440,7 @@
       applyEntrySelection(entryOptions[0]);
     }
   </script>
+  </div>
   <footer class="site-footer">
     <p>Copyright 2026 Mimicorp</p>
   </footer>

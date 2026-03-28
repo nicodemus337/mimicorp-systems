@@ -31,18 +31,15 @@ html,
 body {
   margin: 0;
   min-height: 100%;
+  background-color: #000000;
 }
 
 body {
   min-height: 100svh;
   font-family: var(--sans);
   color: var(--text);
-  background:
-    radial-gradient(circle at 50% -10%, rgba(255, 255, 255, 0.08), transparent 28%),
-    radial-gradient(circle at 18% 16%, rgba(0, 213, 255, 0.08), transparent 24%),
-    radial-gradient(circle at 82% 20%, rgba(255, 0, 88, 0.08), transparent 22%),
-    radial-gradient(circle at 50% 84%, rgba(255, 228, 92, 0.06), transparent 24%),
-    linear-gradient(180deg, #070707 0%, #030303 100%);
+  background: none;
+  background-color: #000000;
 }
 
 body::before,
@@ -54,22 +51,13 @@ body::after {
 }
 
 body::before {
-  background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 60px 60px;
-  opacity: 0.42;
+  background: none;
+  opacity: 0;
 }
 
 body::after {
-  background: repeating-linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02) 0,
-    rgba(255, 255, 255, 0.02) 2px,
-    transparent 2px,
-    transparent 6px
-  );
-  opacity: 0.16;
+  background: none;
+  opacity: 0;
 }
 
 button,
@@ -1190,4 +1178,69 @@ code {
   50% {
     transform: translateY(-4px);
   }
+}
+
+.research-page {
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.research-main {
+  width: min(960px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 18px;
+}
+
+.research-header,
+.research-card {
+  padding: 24px;
+  border-radius: var(--radius-xl);
+}
+
+.research-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.research-title,
+.research-card h2 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.research-title {
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+}
+
+.research-subtitle {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.research-prototype {
+  display: grid;
+  gap: 16px;
+}
+
+.research-audio-placeholder {
+  display: grid;
+  place-items: center;
+  min-height: 120px;
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015)),
+    rgba(255, 255, 255, 0.02);
+}
+
+.research-audio-placeholder__label {
+  color: var(--soft);
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
