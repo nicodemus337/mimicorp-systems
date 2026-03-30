@@ -42,9 +42,9 @@ export const branchPages: BranchPageContent[] = [
     pathLabel: "Best first stop for new visitors",
     chips: ["Podcast", "Field Reporting", "Public Narrative"],
     featuredLabel: "Current spotlight",
-    featuredTitle: "Time Changes the Math",
+    featuredTitle: "The Meadow is the Pharmacy, Part 2",
     featuredBody:
-      "A conversation about how time reshapes the economics, biology, and expectations surrounding agricultural systems, and why slow realities often break fast assumptions.",
+      "A continuation of the meadow pharmacy conversation, following how ecological conditions move through animals, land, and human life as one connected system.",
     purpose: [
       {
         title: "What it is",
@@ -87,13 +87,13 @@ export const branchPages: BranchPageContent[] = [
     actions: [
       {
         label: "Listen on Apple Podcasts",
-        href: "https://podcasts.apple.com/us/podcast/second-cutting/id1865905475?i=1000752307523",
+        href: "https://podcasts.apple.com/us/podcast/second-cutting/id1865905475?i=1000758078662",
         external: true,
         variant: "primary"
       },
       {
         label: "Listen on Spotify",
-        href: "https://creators.spotify.com/pod/profile/second-cutting/episodes/Time-Changes-the-Math-e3fp4no",
+        href: "https://open.spotify.com/episode/4SY1lU1XjGKHAAVbSGMvHT?si=R3ET1KIVTyCOtQX-kXCB2g",
         external: true,
         variant: "secondary"
       }

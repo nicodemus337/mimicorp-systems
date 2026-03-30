@@ -45,11 +45,11 @@ const projectPaths = [
 const listeningLinks = [
   {
     label: "Apple Podcasts",
-    href: "https://podcasts.apple.com/us/podcast/second-cutting/id1865905475"
+    href: "https://podcasts.apple.com/us/podcast/second-cutting/id1865905475?i=1000758078662"
   },
   {
     label: "Spotify",
-    href: "https://creators.spotify.com/pod/profile/second-cutting/episodes/Time-Changes-the-Math-e3fp4no"
+    href: "https://open.spotify.com/episode/4SY1lU1XjGKHAAVbSGMvHT?si=R3ET1KIVTyCOtQX-kXCB2g"
   }
 ];
 
@@ -287,14 +287,14 @@ export default function HomePage() {
                 Current spotlight
               </p>
               <h3 className="mt-4 font-primary text-[42px] leading-[0.95] tracking-[-0.06em] text-text">
-                Time Changes the Math
+                The Meadow is the Pharmacy, Part 2
               </h3>
               <p className="mt-3 text-[12px] uppercase tracking-[0.24em] text-text/46">
-                Episode 05 / Dr Shannon Gonsoulin
+                Episode 07 / Dr Shannon Gonsoulin
               </p>
               <p className="mt-4 max-w-2xl text-[16px] leading-[1.75] text-text/70">
-                A conversation about how time changes the economics, biology, and expectations
-                of agricultural systems, and why slow realities often break fast assumptions.
+                A continuation of the meadow pharmacy conversation, following how ecological
+                conditions move through animals, land, and human life as one connected system.
               </p>
             </article>
 

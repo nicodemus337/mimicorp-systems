@@ -82,5 +82,19 @@ const episodeRegistry = [
     spotify_url: "https://creators.spotify.com/pod/profile/second-cutting/episodes/The-Meadow-is-the-Pharmacy--part-1-e3gfiti",
     watch_url: "",
     transcript_url: ""
+  },
+  {
+    id: "episode_07_meadow_pharmacy_part_2",
+    episode_number: 7,
+    title: "The Meadow is the Pharmacy, Part 2",
+    guest: "Dr Shannon Gonsoulin",
+    themes: ["meadow ecology", "animal health", "human health"],
+    date: "2026",
+    description: "A continuation of the meadow pharmacy conversation, following how land health becomes biological and human consequence.",
+    connections: ["second_cutting", "glc", "media"],
+    listen_url: "https://podcasts.apple.com/us/podcast/second-cutting/id1865905475?i=1000758078662",
+    spotify_url: "https://open.spotify.com/episode/4SY1lU1XjGKHAAVbSGMvHT?si=R3ET1KIVTyCOtQX-kXCB2g",
+    watch_url: "",
+    transcript_url: ""
   }
 ];
