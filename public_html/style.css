@@ -1244,3 +1244,172 @@ code {
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
+
+:root {
+  --accent: #d7b45f;
+  --accent-soft: rgba(215, 180, 95, 0.18);
+}
+
+body::before {
+  background-image:
+    radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.18) 0.5px, transparent 0.9px),
+    radial-gradient(circle at 72% 38%, rgba(255, 255, 255, 0.14) 0.6px, transparent 1px),
+    radial-gradient(circle at 28% 74%, rgba(255, 255, 255, 0.12) 0.4px, transparent 0.8px);
+  background-size: 180px 180px;
+  opacity: 0.12;
+}
+
+body::after {
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.04), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(215, 180, 95, 0.06), transparent 26%),
+    radial-gradient(circle at center, transparent 58%, rgba(0, 0, 0, 0.46) 100%);
+  opacity: 1;
+}
+
+.site-nav,
+.hero-panel,
+.entry-panel,
+.path-strip,
+.panel-card,
+.funnel,
+.site-footer,
+.entry-result,
+.entry-option,
+.path-card,
+.funnel-card,
+.research-header,
+.research-card,
+.research-audio-placeholder {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.site-nav::after,
+.hero-panel::after,
+.entry-panel::after,
+.path-strip::after,
+.panel-card::after,
+.funnel::after,
+.site-footer::after,
+.entry-result::after,
+.entry-option::after,
+.path-card::after,
+.funnel-card::after,
+.research-header::after,
+.research-card::after,
+.research-audio-placeholder::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 22%),
+    repeating-linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.018) 0,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px,
+      transparent 5px
+    );
+  opacity: 0.22;
+  z-index: 0;
+}
+
+.hero-copy,
+.panel-card > *,
+.entry-panel__intro,
+.entry-options,
+.entry-result > *,
+.path-intro,
+.path-card > *,
+.funnel__intro > *,
+.funnel-card > *,
+.research-header > *,
+.research-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow,
+.panel-kicker,
+.status-pill__label,
+.node-route-path,
+.video-meta,
+.site-nav__context {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.eyebrow::after,
+.panel-kicker::after,
+.status-pill__label::after,
+.node-route-path::after,
+.video-meta::after,
+.site-nav__context::after {
+  content: "";
+  width: 34px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent-soft), transparent);
+}
+
+.site-nav__link,
+.action-button,
+.entry-option,
+.path-card,
+.funnel-card,
+.panel-card,
+.entry-result,
+.research-card,
+.research-header {
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.site-nav__link:hover,
+.action-button:hover,
+.entry-option:hover,
+.path-card:hover,
+.funnel-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(215, 180, 95, 0.24);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 22px 58px rgba(0, 0, 0, 0.34);
+}
+
+.site-nav__link[aria-current="page"],
+.entry-option.is-selected,
+.path-card.is-recommended,
+.action-button--primary {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 0 1px rgba(215, 180, 95, 0.12);
+}
+
+.path-intro,
+.entry-panel__intro,
+.funnel__intro,
+.research-header {
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glitch-title,
+.entry-panel__intro h2,
+.entry-result h3,
+.path-intro h2,
+.panel-card h2,
+.panel-card h3,
+.funnel__intro h2,
+.funnel-card h3,
+.path-card h2,
+.research-title,
+.research-card h2 {
+  text-wrap: balance;
+}
