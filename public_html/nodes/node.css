@@ -12,6 +12,7 @@
   --radius-md: 16px;
   --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
   --sans: "Avenir Next", "Segoe UI", Arial, sans-serif;
+  --photo-cow: url("../assets/media/IMG_1268.JPG");
 }
 
 * {
@@ -105,6 +106,51 @@ a {
   border: 1px solid var(--panel-border);
   box-shadow: var(--shadow);
   backdrop-filter: blur(16px);
+}
+
+.theme-second-cutting .node-header,
+.theme-second-cutting .node-card,
+.theme-second-cutting .node-nav,
+.theme-second-cutting .site-footer {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.theme-second-cutting .node-header::before,
+.theme-second-cutting .node-card::before,
+.theme-second-cutting .node-nav::before,
+.theme-second-cutting .site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(180deg, rgba(9, 11, 9, 0.5), rgba(6, 8, 6, 0.78)),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.08) 38%, rgba(0, 0, 0, 0.38)),
+    var(--photo-cow);
+  background-size: cover;
+  background-position: center 54%;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.theme-second-cutting .node-header::before {
+  background-position: center 46%;
+  opacity: 0.62;
+}
+
+.theme-second-cutting .node-card:nth-of-type(2n)::before {
+  background-position: center 62%;
+  opacity: 0.42;
+}
+
+.theme-second-cutting .node-header > *,
+.theme-second-cutting .node-card > *,
+.theme-second-cutting .node-nav > *,
+.theme-second-cutting .site-footer > * {
+  position: relative;
+  z-index: 1;
 }
 
 .node-header {
