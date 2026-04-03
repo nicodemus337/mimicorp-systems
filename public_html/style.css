@@ -45,8 +45,10 @@ body {
   min-height: 100svh;
   font-family: var(--sans);
   color: var(--text);
-  background: none;
-  background-color: #000000;
+  background:
+    linear-gradient(rgba(2, 6, 4, 0.84), rgba(2, 4, 3, 0.9)),
+    var(--photo-swamp) center 44% / cover fixed no-repeat,
+    #000000;
 }
 
 body::before,
@@ -58,13 +60,24 @@ body::after {
 }
 
 body::before {
-  background: none;
-  opacity: 0;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.04), transparent 34%),
+    radial-gradient(circle at 82% 18%, rgba(94, 169, 106, 0.08), transparent 24%),
+    radial-gradient(circle at 18% 82%, rgba(215, 180, 95, 0.08), transparent 24%);
+  opacity: 1;
 }
 
 body::after {
-  background: none;
-  opacity: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent 22%),
+    repeating-linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.018) 0,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px,
+      transparent 5px
+    );
+  opacity: 0.18;
 }
 
 button,
@@ -1355,28 +1368,33 @@ body::after {
 }
 
 .hero-panel {
+  --section-photo: var(--photo-swamp);
+  --section-photo-position: center 44%;
+}
+
+.entry-panel {
   --section-photo: var(--photo-meadow);
   --section-photo-position: center 56%;
 }
 
-.entry-panel {
-  --section-photo: var(--photo-seed);
-  --section-photo-position: center 48%;
-}
-
 .path-strip {
-  --section-photo: var(--photo-yellow);
-  --section-photo-position: center 42%;
-}
-
-.panel-card--about {
   --section-photo: var(--photo-wildflower);
   --section-photo-position: center 54%;
 }
 
+.panel-card--about {
+  --section-photo: var(--photo-swamp);
+  --section-photo-position: center 44%;
+}
+
 .panel-card--services {
-  --section-photo: var(--photo-mushroom);
-  --section-photo-position: center 58%;
+  --section-photo: var(--photo-seed);
+  --section-photo-position: center 48%;
+}
+
+.panel-card--services-alt {
+  --section-photo: var(--photo-yellow);
+  --section-photo-position: center 42%;
 }
 
 .panel-card--signal,
@@ -1391,23 +1409,23 @@ body::after {
 }
 
 .funnel {
+  --section-photo: var(--photo-swamp);
+  --section-photo-position: center 44%;
+}
+
+.funnel-card:nth-child(3n + 1) {
   --section-photo: var(--photo-wildflower);
   --section-photo-position: center 54%;
 }
 
-.funnel-card:nth-child(3n + 1) {
-  --section-photo: var(--photo-yellow);
-  --section-photo-position: center 42%;
-}
-
 .funnel-card:nth-child(3n + 2) {
-  --section-photo: var(--photo-seed);
-  --section-photo-position: center 48%;
+  --section-photo: var(--photo-meadow);
+  --section-photo-position: center 56%;
 }
 
 .funnel-card:nth-child(3n) {
-  --section-photo: var(--photo-meadow);
-  --section-photo-position: center 56%;
+  --section-photo: var(--photo-seed);
+  --section-photo-position: center 48%;
 }
 
 .research-header,
@@ -1422,18 +1440,18 @@ body::after {
 }
 
 .research-stack .research-card:nth-child(2n) {
-  --section-photo: var(--photo-yellow);
-  --section-photo-position: center 42%;
-}
-
-.dissertation-card {
   --section-photo: var(--photo-wildflower);
   --section-photo-position: center 54%;
 }
 
+.dissertation-card {
+  --section-photo: var(--photo-meadow);
+  --section-photo-position: center 56%;
+}
+
 .dissertation-card:nth-of-type(2n) {
-  --section-photo: var(--photo-yellow);
-  --section-photo-position: center 42%;
+  --section-photo: var(--photo-seed);
+  --section-photo-position: center 48%;
 }
 
 .dissertation-content {

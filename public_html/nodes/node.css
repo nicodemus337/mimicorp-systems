@@ -12,7 +12,8 @@
   --radius-md: 16px;
   --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
   --sans: "Avenir Next", "Segoe UI", Arial, sans-serif;
-  --photo-cow: url("../assets/media/IMG_1268.JPG");
+  --photo-swamp: url("../assets/media/IMG_2205.JPG");
+  --photo-meadow: url("../assets/media/IMG_1971.JPG");
 }
 
 * {
@@ -30,8 +31,10 @@ body {
   min-height: 100svh;
   font-family: var(--sans);
   color: var(--text);
-  background: none;
-  background-color: #000000;
+  background:
+    linear-gradient(rgba(2, 6, 4, 0.84), rgba(2, 4, 3, 0.9)),
+    var(--photo-swamp) center 44% / cover fixed no-repeat,
+    #000000;
 }
 
 body::before {
@@ -39,8 +42,27 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: none;
-  mask-image: none;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.04), transparent 34%),
+    radial-gradient(circle at 82% 18%, rgba(94, 169, 106, 0.08), transparent 24%),
+    radial-gradient(circle at 18% 82%, rgba(215, 180, 95, 0.08), transparent 24%);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent 22%),
+    repeating-linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.018) 0,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px,
+      transparent 5px
+    );
+  opacity: 0.18;
 }
 
 a {
@@ -128,20 +150,24 @@ a {
   background-image:
     linear-gradient(180deg, rgba(9, 11, 9, 0.5), rgba(6, 8, 6, 0.78)),
     linear-gradient(90deg, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.08) 38%, rgba(0, 0, 0, 0.38)),
-    var(--photo-cow);
+    var(--photo-swamp);
   background-size: cover;
-  background-position: center 54%;
+  background-position: center 44%;
   opacity: 0.5;
   z-index: 0;
 }
 
 .theme-second-cutting .node-header::before {
-  background-position: center 46%;
+  background-position: center 40%;
   opacity: 0.62;
 }
 
 .theme-second-cutting .node-card:nth-of-type(2n)::before {
-  background-position: center 62%;
+  background-image:
+    linear-gradient(180deg, rgba(9, 11, 9, 0.5), rgba(6, 8, 6, 0.78)),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.08) 38%, rgba(0, 0, 0, 0.38)),
+    var(--photo-meadow);
+  background-position: center 56%;
   opacity: 0.42;
 }
 
