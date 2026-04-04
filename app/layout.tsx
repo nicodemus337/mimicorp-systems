@@ -1,5 +1,9 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import { EB_Garamond, Inter, Inter_Tight } from "next/font/google";
+
+import fruitfulBrainLogo from "@/assets/fruitfulbrain.png";
+import mLogo from "@/assets/logo_wb.png";
 
 import "./globals.css";
 
@@ -35,8 +39,25 @@ export default function RootLayout({
       >
         <div className="flex min-h-screen flex-col">
           <div className="flex-1">{children}</div>
-          <footer className="relative z-10 border-t border-white/10 bg-black/20 px-6 py-5 text-center font-body text-[11px] uppercase tracking-[0.28em] text-white/60 backdrop-blur-sm">
-            Copyright 2026 Mimicorp
+          <footer className="relative z-10 border-t border-white/10 bg-black/20 px-6 py-6 backdrop-blur-sm">
+            <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-center gap-4 text-center">
+              <div className="flex items-center justify-center gap-5">
+                <Image
+                  src={mLogo}
+                  alt="Mimicorp M logo"
+                  className="h-8 w-auto object-contain opacity-85"
+                  priority
+                />
+                <Image
+                  src={fruitfulBrainLogo}
+                  alt="Fruitful Brain logo"
+                  className="h-10 w-auto object-contain opacity-85"
+                />
+              </div>
+              <p className="font-body text-[11px] uppercase tracking-[0.28em] text-white/60">
+                Copyright 2026 Mimicorp Systems
+              </p>
+            </div>
           </footer>
         </div>
       </body>

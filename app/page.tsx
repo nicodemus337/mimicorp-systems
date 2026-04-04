@@ -80,7 +80,7 @@ export default function HomePage() {
           <div className="signal-scanlines" />
           <div className="signal-beam" />
 
-          <div className="relative grid gap-8 xl:grid-cols-[minmax(0,1.05fr)_minmax(360px,0.95fr)]">
+          <div className="relative grid gap-8 xl:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]">
             <div className="space-y-8">
               <div className="flex flex-wrap items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-text/60">
                 <span className="signal-chip">Transmission 01</span>
@@ -155,30 +155,17 @@ export default function HomePage() {
             </div>
 
             <div className="grid gap-4 xl:pl-4">
-              <div className="signal-frame">
-                <div className="signal-frame-header">
-                  <span>Identity loop</span>
-                  <span>Glitch mark</span>
-                </div>
-                <div className="signal-video-wrap">
-                  <video
-                    className="signal-video"
-                    src="/media/mimicorp_glitch_logo.mp4"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    aria-label="Animated Mimicorp glitch logo"
-                  />
-                </div>
-              </div>
-
               <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-1">
                 <article className="signal-card min-h-[180px]">
-                  <p className="text-[10px] uppercase tracking-[0.3em] text-text/42">What to expect</p>
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-text/42">
+                    What to expect
+                  </p>
                   <div className="mt-4 space-y-3 text-[15px] leading-[1.7] text-text/70">
                     <p>The page is dark and high-contrast, but the structure is intentionally simple.</p>
-                    <p>Each section answers a basic question: what this is, where to start, and what connects to what.</p>
+                    <p>
+                      Each section answers a basic question: what this is, where to start, and
+                      what connects to what.
+                    </p>
                     <p>The visual identity stays bold without getting in the way of navigation.</p>
                   </div>
                 </article>
@@ -202,6 +189,22 @@ export default function HomePage() {
                       <span>In-person access</span>
                       <span>Teche Lake</span>
                     </div>
+                  </div>
+                </article>
+
+                <article className="signal-card min-h-[180px] md:col-span-2 xl:col-span-1">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-text/42">
+                    Brand note
+                  </p>
+                  <div className="mt-4 space-y-3 text-[15px] leading-[1.7] text-text/70">
+                    <p>
+                      The homepage keeps the focus on orientation first: what Mimicorp is, where to
+                      begin, and how each branch connects.
+                    </p>
+                    <p>
+                      The logos now live in the footer at the bottom of every page instead of
+                      competing with the main content in the middle.
+                    </p>
                   </div>
                 </article>
               </div>
