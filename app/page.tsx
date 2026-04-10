@@ -53,6 +53,46 @@ const listeningLinks = [
   }
 ];
 
+const moreLinks = [
+  {
+    title: "Second Cutting",
+    eyebrow: "Listen",
+    href: "/second-cutting",
+    description:
+      "Open the podcast landing page to listen, browse episodes, and move out to Apple Podcasts or Spotify.",
+    cta: "Open Second Cutting",
+    external: false
+  },
+  {
+    title: "Field Notes on X",
+    eyebrow: "Follow",
+    href: "#field-notes",
+    description:
+      "Drop into the Field Notes layer on-site for the observation feed while the external social link is still being finalized.",
+    cta: "Open Field Notes",
+    external: false,
+    pending: true
+  },
+  {
+    title: "Instagram",
+    eyebrow: "Follow",
+    href: "https://instagram.com/cajunleprochaun",
+    description:
+      "Follow the visual and field-storytelling thread through the main Instagram presence already connected to the Mimicorp media branch.",
+    cta: "Follow on Instagram",
+    external: true
+  },
+  {
+    title: "Research Prospectus",
+    eyebrow: "Read",
+    href: "/research/staging-the-state.html",
+    description:
+      "Read the Staging the State prospectus through the table of contents and chapter structure from the main site.",
+    cta: "Read the prospectus",
+    external: false
+  }
+];
+
 const signalFacts = [
   {
     label: "What this is",
@@ -108,6 +148,9 @@ export default function HomePage() {
                 </a>
                 <a href="#second-cutting" className="signal-button signal-button-secondary">
                   Start with featured listening
+                </a>
+                <a href="#more" className="signal-button signal-button-secondary">
+                  More
                 </a>
               </div>
 
@@ -338,6 +381,56 @@ export default function HomePage() {
                 evidence.
               </p>
             </article>
+          </div>
+        </section>
+
+        <section id="more" className="signal-panel rounded-[32px] p-6 md:p-8">
+          <div className="grid gap-6 border-b border-white/10 pb-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-end">
+            <div className="space-y-3">
+              <p className="text-[11px] uppercase tracking-[0.34em] text-text/48">More</p>
+              <h2 className="max-w-3xl font-primary text-[40px] leading-[0.96] tracking-[-0.06em] text-text md:text-[58px]">
+                The creative output lives here when you want the fruits, not just the overview.
+              </h2>
+            </div>
+            <p className="max-w-2xl text-[16px] leading-[1.7] text-text/68 lg:ml-auto lg:text-right">
+              This is the quick-access shelf for listening, following the public signal, and
+              reading the longer research thread without hunting through the full map.
+            </p>
+          </div>
+
+          <div className="mt-6 grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
+            {moreLinks.map((link) => (
+              <article key={link.title} className="signal-path-card">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between gap-4">
+                    <p className="text-[10px] uppercase tracking-[0.32em] text-text/42">
+                      {link.eyebrow}
+                    </p>
+                    {link.pending ? (
+                      <span className="text-[10px] uppercase tracking-[0.28em] text-text/32">
+                        Link pending
+                      </span>
+                    ) : null}
+                  </div>
+
+                  <h3 className="font-primary text-[34px] leading-[0.96] tracking-[-0.05em] text-text">
+                    {link.title}
+                  </h3>
+                  <p className="text-[15px] leading-[1.7] text-text/68">{link.description}</p>
+                </div>
+
+                <a
+                  href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noreferrer" : undefined}
+                  className={`signal-button mt-6 ${
+                    link.pending ? "signal-button-secondary" : "signal-button-primary"
+                  }`}
+                >
+                  {link.cta}
+                </a>
+              </article>
+            ))}
           </div>
         </section>
 

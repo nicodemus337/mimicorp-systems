@@ -41,6 +41,28 @@ export default function RootLayout({
           <div className="flex-1">{children}</div>
           <footer className="relative z-10 border-t border-white/10 bg-black/20 px-6 py-6 backdrop-blur-sm">
             <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-center gap-4 text-center">
+              <div className="flex flex-wrap items-center justify-center gap-3 text-[10px] uppercase tracking-[0.28em] text-white/58">
+                <a href="/#more" className="transition-colors hover:text-white">
+                  More
+                </a>
+                <a href="/second-cutting" className="transition-colors hover:text-white">
+                  Second Cutting
+                </a>
+                <a
+                  href="https://instagram.com/cajunleprochaun"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="transition-colors hover:text-white"
+                >
+                  Instagram
+                </a>
+                <a
+                  href="/research/staging-the-state.html"
+                  className="transition-colors hover:text-white"
+                >
+                  Prospectus
+                </a>
+              </div>
               <div className="flex items-center justify-center gap-5">
                 <Image
                   src={mLogo}
