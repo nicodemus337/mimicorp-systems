@@ -92,14 +92,13 @@ export function PathwaySorter({ projectPaths }: PathwaySorterProps) {
         <div className="space-y-3">
           <p className="text-[11px] uppercase tracking-[0.34em] text-text/48">First Visit</p>
           <h2 className="max-w-2xl font-primary text-[40px] leading-[0.96] tracking-[-0.06em] text-text md:text-[58px]">
-            Sort yourself before you browse.
+            Pick one clear starting point.
           </h2>
         </div>
 
         <p className="max-w-2xl text-[16px] leading-[1.7] text-text/68 xl:ml-auto xl:text-right">
-          If the full Mimicorp system feels like a lot on first contact, that&apos;s normal. Pick
-          the sentence that sounds most like you and the page will point you to the cleanest way
-          in.
+          If the full Mimicorp system feels like a lot on first contact, use this to narrow it to
+          one doorway and ignore the rest for now.
         </p>
       </div>
 
@@ -125,7 +124,11 @@ export function PathwaySorter({ projectPaths }: PathwaySorterProps) {
                       {lens.prompt}
                     </p>
                   </div>
-                  <span className="path-sort-pill">{isActive ? "Selected" : "Choose"}</span>
+                  <span
+                    className={`path-sort-pill ${isActive ? "path-sort-pill-solid" : ""}`}
+                  >
+                    {isActive ? "Current" : "Option"}
+                  </span>
                 </div>
               </button>
             );
@@ -167,7 +170,7 @@ export function PathwaySorter({ projectPaths }: PathwaySorterProps) {
             <a href={recommendedPath.href} className="signal-button signal-button-primary">
               {recommendedPath.cta}
             </a>
-            <a href={supportingPath.href} className="signal-button signal-button-secondary">
+            <a href={supportingPath.href} className="signal-button signal-button-soft">
               Then explore {supportingPath.name}
             </a>
           </div>

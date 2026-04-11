@@ -181,8 +181,8 @@ export function NodeCluster() {
               System map / second step
             </p>
             <p className="max-w-xs text-[16px] leading-[1.5] text-text/70">
-              Use this after you&apos;ve picked a path above. Hover to preview a part of the
-              system, then click any node to see what it does and what it connects to.
+              Use this after you&apos;ve picked a path above. Click a node to bring it forward and
+              keep the rest of the system visible in the background.
             </p>
           </div>
 
@@ -191,7 +191,7 @@ export function NodeCluster() {
               click a node for details
             </span>
             <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-text/74">
-              connected items stay highlighted
+              everything stays available
             </span>
           </div>
         </div>
@@ -258,7 +258,7 @@ export function NodeCluster() {
         <div className="border-t border-white/8 pt-4">
           <p className="text-[10px] uppercase tracking-[0.28em] text-text/42">How to use it</p>
           <p className="mt-3 font-accent text-[24px] leading-[1.15] text-text/68">
-            Start with one familiar branch, then follow the links.
+            Start with one branch, then expand only if you need more context.
           </p>
         </div>
       </motion.aside>

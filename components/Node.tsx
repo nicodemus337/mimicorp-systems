@@ -74,14 +74,14 @@ export function Node({
       }}
       initial={false}
       animate={{
-        opacity: isDimmed ? 0.2 : isRelated || isFocused ? 1 : 0.85,
-        scale: isFocused ? 1.8 : 1
+        opacity: isDimmed ? 0.56 : isRelated || isFocused ? 1 : 0.9,
+        scale: isFocused ? 1.48 : 1
       }}
       transition={{
         duration: isFocused ? motionTiming.primary : motionTiming.fast,
         ease: isFocused ? easing.expressive : easing.primary
       }}
-      whileHover={{ scale: isFocused ? 1.8 : 1.03, opacity: 1 }}
+      whileHover={{ scale: isFocused ? 1.48 : 1.03, opacity: 1 }}
       onHoverStart={() => onHover(node.id)}
       onHoverEnd={() => onHover(null)}
       onFocus={() => onHover(node.id)}
@@ -113,7 +113,7 @@ export function Node({
 
       <span
         className="pointer-events-none absolute left-1/2 top-[calc(100%+12px)] w-max max-w-[11rem] -translate-x-1/2 text-center font-body text-[12px] uppercase tracking-[0.24em] text-text/72 transition-opacity duration-fast ease-primary group-hover:text-text"
-        style={{ color: isDimmed ? "rgba(245,245,245,0.32)" : style.text }}
+        style={{ color: isDimmed ? "rgba(245,245,245,0.56)" : style.text }}
       >
         {node.label}
       </span>

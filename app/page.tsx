@@ -68,10 +68,9 @@ const moreLinks = [
     eyebrow: "Follow",
     href: "#field-notes",
     description:
-      "Drop into the Field Notes layer on-site for the observation feed while the external social link is still being finalized.",
+      "Drop into the Field Notes layer on-site for the observation feed and working observations from the field.",
     cta: "Open Field Notes",
-    external: false,
-    pending: true
+    external: false
   },
   {
     title: "Instagram",
@@ -93,24 +92,6 @@ const moreLinks = [
   }
 ];
 
-const signalFacts = [
-  {
-    label: "What this is",
-    value: "An overview",
-    detail: "A clear front door into the projects, media, and field work that make up Mimicorp."
-  },
-  {
-    label: "Best first step",
-    value: "Start with audio",
-    detail: "Second Cutting is the fastest way to understand the thesis before exploring the rest."
-  },
-  {
-    label: "What happens next",
-    value: "Follow the branch",
-    detail: "Each section below points you toward the part of the system that matches your interest."
-  }
-];
-
 export default function HomePage() {
   return (
     <LayoutContainer>
@@ -123,9 +104,8 @@ export default function HomePage() {
           <div className="relative grid gap-8 xl:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]">
             <div className="space-y-8">
               <div className="flex flex-wrap items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-text/60">
-                <span className="signal-chip">Transmission 01</span>
-                <span className="signal-chip">Identity source / live animation</span>
-                <span className="signal-chip">Former header removed</span>
+                <span className="signal-chip">Overview</span>
+                <span className="signal-chip">Start with one path</span>
               </div>
 
               <div className="space-y-5">
@@ -144,110 +124,69 @@ export default function HomePage() {
 
               <div className="flex flex-col gap-3 sm:flex-row">
                 <a href="#pathways" className="signal-button signal-button-primary">
-                  Explore the main paths
+                  Choose a path
                 </a>
                 <a href="#second-cutting" className="signal-button signal-button-secondary">
-                  Start with featured listening
-                </a>
-                <a href="#more" className="signal-button signal-button-secondary">
-                  More
+                  Start with listening
                 </a>
               </div>
 
               <div className="grid gap-3 md:grid-cols-3">
                 <article className="signal-card signal-card-compact">
-                  <p className="text-[10px] uppercase tracking-[0.32em] text-text/42">
-                    If you&apos;re new here
-                  </p>
+                  <p className="text-[10px] uppercase tracking-[0.32em] text-text/42">Start here</p>
                   <p className="mt-3 text-[15px] leading-[1.65] text-text/74">
-                    Start with the podcast, then use the pathway cards below to follow your
-                    interest.
+                    New visitors usually do best with Second Cutting first, then a single branch
+                    that matches their interest.
                   </p>
                 </article>
                 <article className="signal-card signal-card-compact">
-                  <p className="text-[10px] uppercase tracking-[0.32em] text-text/42">
-                    If you want proof
-                  </p>
+                  <p className="text-[10px] uppercase tracking-[0.32em] text-text/42">If you want proof</p>
                   <p className="mt-3 text-[15px] leading-[1.65] text-text/74">
                     Visit GLC Ranch and the map section to see how the work connects on the ground.
                   </p>
                 </article>
                 <article className="signal-card signal-card-compact">
-                  <p className="text-[10px] uppercase tracking-[0.32em] text-text/42">
-                    If you want context
-                  </p>
+                  <p className="text-[10px] uppercase tracking-[0.32em] text-text/42">If you want context</p>
                   <p className="mt-3 text-[15px] leading-[1.65] text-text/74">
                     JoyNet and Teche Lake show the public voice and lived experience around the work.
                   </p>
                 </article>
-              </div>
-
-              <div className="grid gap-3 md:grid-cols-3">
-                {signalFacts.map((fact) => (
-                  <article key={fact.label} className="signal-card">
-                    <p className="text-[10px] uppercase tracking-[0.32em] text-text/42">
-                      {fact.label}
-                    </p>
-                    <p className="mt-3 font-primary text-[28px] leading-[1] tracking-[-0.05em] text-text">
-                      {fact.value}
-                    </p>
-                    <p className="mt-3 text-[14px] leading-[1.6] text-text/62">{fact.detail}</p>
-                  </article>
-                ))}
               </div>
             </div>
 
             <div className="grid gap-4 xl:pl-4">
               <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-1">
                 <article className="signal-card min-h-[180px]">
-                  <p className="text-[10px] uppercase tracking-[0.3em] text-text/42">
-                    What to expect
-                  </p>
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-text/42">What this page does</p>
                   <div className="mt-4 space-y-3 text-[15px] leading-[1.7] text-text/70">
-                    <p>The page is dark and high-contrast, but the structure is intentionally simple.</p>
+                    <p>The homepage is meant to orient you quickly, not ask you to absorb the whole system at once.</p>
                     <p>
-                      Each section answers a basic question: what this is, where to start, and
-                      what connects to what.
+                      Pick one path, use the featured listening if you need context, and treat the
+                      map as a second step.
                     </p>
-                    <p>The visual identity stays bold without getting in the way of navigation.</p>
+                    <p>The rest can wait until one branch already feels familiar.</p>
                   </div>
                 </article>
 
                 <article className="signal-card min-h-[180px]">
-                  <p className="text-[10px] uppercase tracking-[0.3em] text-text/42">Quick links</p>
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-text/42">Best first moves</p>
                   <div className="mt-4 space-y-4">
                     <div className="signal-readout">
-                      <span>Listen</span>
+                      <span>Need the overview</span>
                       <span>Second Cutting</span>
                     </div>
                     <div className="signal-readout">
-                      <span>Field work</span>
+                      <span>Need proof</span>
                       <span>GLC Ranch</span>
                     </div>
                     <div className="signal-readout">
-                      <span>Public voice</span>
+                      <span>Need worldview</span>
                       <span>JoyNet</span>
                     </div>
                     <div className="signal-readout">
-                      <span>In-person access</span>
+                      <span>Need place</span>
                       <span>Teche Lake</span>
                     </div>
-                  </div>
-                </article>
-
-                <article className="signal-card min-h-[180px] md:col-span-2 xl:col-span-1">
-                  <p className="text-[10px] uppercase tracking-[0.3em] text-text/42">
-                    Brand note
-                  </p>
-                  <div className="mt-4 space-y-3 text-[15px] leading-[1.7] text-text/70">
-                    <p>
-                      The homepage keeps the focus on orientation first: what Mimicorp is, where to
-                      begin, and how each branch connects.
-                    </p>
-                    <p>
-                      The logos now live in the footer at the bottom of every page instead of
-                      competing with the main content in the middle.
-                    </p>
                   </div>
                 </article>
               </div>
@@ -256,8 +195,7 @@ export default function HomePage() {
         </section>
 
         <section className="signal-marquee rounded-[28px] px-4 py-3 text-[10px] uppercase tracking-[0.34em] text-text/58 md:px-6">
-          Mimicorp Systems / overview first / clear pathways / field evidence / public stories /
-          land-based work / partner context
+          Mimicorp Systems / choose one path / get context fast / use the map second
         </section>
 
         <PathwaySorter projectPaths={projectPaths} />
@@ -273,8 +211,8 @@ export default function HomePage() {
               </h2>
             </div>
             <p className="max-w-2xl text-[16px] leading-[1.7] text-text/68 lg:ml-auto lg:text-right">
-              If the sorter above already gave you a fit, use it. If not, this is the full browse
-              view so you can compare all four paths side by side.
+              If the sorter above already gave you an answer, use that. This section is here only
+              if you want the full set side by side.
             </p>
           </div>
 
@@ -389,12 +327,12 @@ export default function HomePage() {
             <div className="space-y-3">
               <p className="text-[11px] uppercase tracking-[0.34em] text-text/48">More</p>
               <h2 className="max-w-3xl font-primary text-[40px] leading-[0.96] tracking-[-0.06em] text-text md:text-[58px]">
-                The creative output lives here when you want the fruits, not just the overview.
+                A shorter shelf of follow-up links, once you have your bearings.
               </h2>
             </div>
             <p className="max-w-2xl text-[16px] leading-[1.7] text-text/68 lg:ml-auto lg:text-right">
-              This is the quick-access shelf for listening, following the public signal, and
-              reading the longer research thread without hunting through the full map.
+              Keep this section lean: a few useful next stops without making the homepage feel like
+              a directory.
             </p>
           </div>
 
@@ -406,11 +344,6 @@ export default function HomePage() {
                     <p className="text-[10px] uppercase tracking-[0.32em] text-text/42">
                       {link.eyebrow}
                     </p>
-                    {link.pending ? (
-                      <span className="text-[10px] uppercase tracking-[0.28em] text-text/32">
-                        Link pending
-                      </span>
-                    ) : null}
                   </div>
 
                   <h3 className="font-primary text-[34px] leading-[0.96] tracking-[-0.05em] text-text">
@@ -423,9 +356,7 @@ export default function HomePage() {
                   href={link.href}
                   target={link.external ? "_blank" : undefined}
                   rel={link.external ? "noreferrer" : undefined}
-                  className={`signal-button mt-6 ${
-                    link.pending ? "signal-button-secondary" : "signal-button-primary"
-                  }`}
+                  className="signal-button signal-button-primary mt-6"
                 >
                   {link.cta}
                 </a>
