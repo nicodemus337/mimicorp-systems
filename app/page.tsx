@@ -1,373 +1,191 @@
-import dynamic from "next/dynamic";
-
 import { LayoutContainer } from "@/components/LayoutContainer";
 import { MotionWrapper } from "@/components/MotionWrapper";
-import { NodeCluster } from "@/components/NodeCluster";
-import { PathwaySorter } from "@/components/PathwaySorter";
 
-const SystemNotes = dynamic(() => import("@/components/SystemNotes"));
-
-const projectPaths = [
+const domains = [
   {
-    name: "Second Cutting",
-    href: "/second-cutting",
-    eyebrow: "Start here",
+    name: "Land",
+    stem: "Operating ground",
     description:
-      "The quickest way to understand the work through documentary episodes, reporting, and public-facing stories.",
-    cta: "Open the listening guide"
+      "Land keeps the system honest by forcing every idea through weather, labor, timing, and living conditions.",
+    example:
+      "Example: Gonsoulin Land & Cattle gives Mimicorp a real environment for testing stewardship, sequencing, and infrastructure decisions."
   },
   {
-    name: "JoyNet",
-    href: "/joynet",
-    eyebrow: "Public voice",
+    name: "Media",
+    stem: "Public narrative",
     description:
-      "The clearest path into the values, language, and public-facing side of the broader system.",
-    cta: "Visit JoyNet"
+      "Media turns field conditions into language people can understand, trust, and act on.",
+    example:
+      "Example: Second Cutting translates ranch realities into documentary episodes that make the wider system legible fast."
   },
   {
-    name: "GLC Ranch",
-    href: "/glc-ranch",
-    eyebrow: "On-the-ground work",
+    name: "Technology",
+    stem: "Operational infrastructure",
     description:
-      "A practical view of the land, constraints, and field conditions that keep the work grounded.",
-    cta: "Visit GLC Ranch"
-  },
-  {
-    name: "Teche Lake Outfitters",
-    href: "/teche-lake",
-    eyebrow: "Experience in place",
-    description:
-      "A direct way to understand the place itself through guided movement and firsthand experience.",
-    cta: "Visit Teche Lake Outfitters"
+      "Technology gives projects the forms, websites, and automations that let the work move cleanly once the direction is clear.",
+    example:
+      "Example: Mimicorp builds digital systems, intake flows, and lightweight infrastructure that reduce drag behind the scenes."
   }
-];
+] as const;
 
-const listeningLinks = [
+const proofs = [
   {
-    label: "Apple Podcasts",
-    href: "https://podcasts.apple.com/us/podcast/second-cutting/id1865905475?i=1000758078662"
+    title: "Gonsoulin Land & Cattle",
+    type: "Stem / Land",
+    summary:
+      "A working ranch that anchors the thesis in real constraints instead of concept alone.",
+    outcome:
+      "The work is tested against grass, animals, labor, and timing before it becomes a story, tool, or plan.",
+    href: "https://glcranch.com",
+    cta: "Visit GLC Ranch",
+    external: true
   },
-  {
-    label: "Spotify",
-    href: "https://open.spotify.com/episode/4SY1lU1XjGKHAAVbSGMvHT?si=R3ET1KIVTyCOtQX-kXCB2g"
-  }
-];
-
-const moreLinks = [
   {
     title: "Second Cutting",
-    eyebrow: "Listen",
+    type: "Fruit / Media",
+    summary:
+      "A documentary podcast that explains how land, animals, food, and people move together.",
+    outcome:
+      "It gives first-time listeners a clear entry point into Mimicorp without asking them to decode the entire system.",
     href: "/second-cutting",
-    description:
-      "Open the podcast landing page to listen, browse episodes, and move out to Apple Podcasts or Spotify.",
     cta: "Open Second Cutting",
     external: false
   },
   {
-    title: "Field Notes on X",
-    eyebrow: "Follow",
-    href: "#field-notes",
-    description:
-      "Drop into the Field Notes layer on-site for the observation feed and working observations from the field.",
-    cta: "Open Field Notes",
-    external: false
-  },
-  {
-    title: "Instagram",
-    eyebrow: "Follow",
-    href: "https://instagram.com/cajunleprochaun",
-    description:
-      "Follow the visual and field-storytelling thread through the main Instagram presence already connected to the Mimicorp media branch.",
-    cta: "Follow on Instagram",
-    external: true
-  },
-  {
-    title: "Research Prospectus",
-    eyebrow: "Read",
-    href: "/research/staging-the-state.html",
-    description:
-      "Read the Staging the State prospectus through the table of contents and chapter structure from the main site.",
-    cta: "Read the prospectus",
+    title: "System Builds",
+    type: "Fruit / Technology",
+    summary:
+      "Websites, forms, scheduling flows, and operational cleanup for projects that need clearer infrastructure.",
+    outcome:
+      "The result is less administrative drag, better handoffs, and a system that can actually carry the work forward.",
+    href: "/nodes/services/",
+    cta: "View services",
     external: false
   }
-];
+] as const;
+
+const heroLines = [
+  "Mimicorp builds land, media, and technical systems that move real work forward.",
+  "It connects operating ground, public narrative, and infrastructure so projects can be understood, trusted, and built.",
+  "You can see it in Gonsoulin Land & Cattle, Second Cutting, and the systems that support the work."
+] as const;
 
 export default function HomePage() {
   return (
     <LayoutContainer>
-      <MotionWrapper className="space-y-8 pb-16 pt-4 md:space-y-10 md:pb-24 md:pt-6">
-        <section className="signal-panel relative overflow-hidden rounded-[34px] p-5 md:p-8">
-          <div className="signal-noise" />
-          <div className="signal-scanlines" />
-          <div className="signal-beam" />
+      <MotionWrapper className="homepage-flow pb-20 pt-6 md:pb-28 md:pt-8">
+        <section className="home-hero" aria-labelledby="home-hero-title">
+          <div className="home-hero__copy">
+            <p className="home-kicker">Mimicorp Systems</p>
+            <h1 id="home-hero-title" className="home-hero__title">
+              {heroLines[0]}
+            </h1>
+            <p className="home-hero__mechanism">{heroLines[1]}</p>
+            <p className="home-hero__proof">{heroLines[2]}</p>
+            <a href="#entry-point" className="home-button home-button--primary">
+              Start a project
+            </a>
+          </div>
 
-          <div className="relative grid gap-8 xl:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]">
-            <div className="space-y-8">
-              <div className="flex flex-wrap items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-text/60">
-                <span className="signal-chip">Overview</span>
-                <span className="signal-chip">Start with one path</span>
-              </div>
-
-              <div className="space-y-5">
-                <p className="text-[11px] uppercase tracking-[0.4em] text-text/48">
-                  Mimicorp Systems
-                </p>
-                <h1 className="glitch-title max-w-5xl font-primary text-[58px] leading-[0.9] tracking-[-0.08em] text-text sm:text-[78px] md:text-[108px] xl:text-[132px]">
-                  Ecological infrastructure, explained through projects, media, and field work.
-                </h1>
-                <p className="max-w-2xl text-[17px] leading-[1.75] text-text/72 md:text-[19px]">
-                  Mimicorp brings together land-based operations, documentary storytelling, and
-                  practical systems design. This homepage is meant to help you understand the work
-                  quickly, then move straight to the part that matters most to you.
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <a href="#pathways" className="signal-button signal-button-primary">
-                  Choose a path
-                </a>
-                <a href="#second-cutting" className="signal-button signal-button-secondary">
-                  Start with listening
-                </a>
-              </div>
-
-              <div className="grid gap-3 md:grid-cols-3">
-                <article className="signal-card signal-card-compact">
-                  <p className="text-[10px] uppercase tracking-[0.32em] text-text/42">Start here</p>
-                  <p className="mt-3 text-[15px] leading-[1.65] text-text/74">
-                    New visitors usually do best with Second Cutting first, then a single branch
-                    that matches their interest.
-                  </p>
-                </article>
-                <article className="signal-card signal-card-compact">
-                  <p className="text-[10px] uppercase tracking-[0.32em] text-text/42">If you want proof</p>
-                  <p className="mt-3 text-[15px] leading-[1.65] text-text/74">
-                    Visit GLC Ranch and the map section to see how the work connects on the ground.
-                  </p>
-                </article>
-                <article className="signal-card signal-card-compact">
-                  <p className="text-[10px] uppercase tracking-[0.32em] text-text/42">If you want context</p>
-                  <p className="mt-3 text-[15px] leading-[1.65] text-text/74">
-                    JoyNet and Teche Lake show the public voice and lived experience around the work.
-                  </p>
-                </article>
-              </div>
+          <div className="system-mark" aria-hidden="true">
+            <div className="system-mark__orbital" />
+            <div className="system-mark__core">
+              <span className="system-mark__label system-mark__label--core">System</span>
+              <span className="system-mark__trunk" />
+              <span className="system-mark__branch system-mark__branch--left" />
+              <span className="system-mark__branch system-mark__branch--right" />
+              <span className="system-mark__fruit system-mark__fruit--top" />
+              <span className="system-mark__fruit system-mark__fruit--left" />
+              <span className="system-mark__fruit system-mark__fruit--right" />
             </div>
-
-            <div className="grid gap-4 xl:pl-4">
-              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-1">
-                <article className="signal-card min-h-[180px]">
-                  <p className="text-[10px] uppercase tracking-[0.3em] text-text/42">What this page does</p>
-                  <div className="mt-4 space-y-3 text-[15px] leading-[1.7] text-text/70">
-                    <p>The homepage is meant to orient you quickly, not ask you to absorb the whole system at once.</p>
-                    <p>
-                      Pick one path, use the featured listening if you need context, and treat the
-                      map as a second step.
-                    </p>
-                    <p>The rest can wait until one branch already feels familiar.</p>
-                  </div>
-                </article>
-
-                <article className="signal-card min-h-[180px]">
-                  <p className="text-[10px] uppercase tracking-[0.3em] text-text/42">Best first moves</p>
-                  <div className="mt-4 space-y-4">
-                    <div className="signal-readout">
-                      <span>Need the overview</span>
-                      <span>Second Cutting</span>
-                    </div>
-                    <div className="signal-readout">
-                      <span>Need proof</span>
-                      <span>GLC Ranch</span>
-                    </div>
-                    <div className="signal-readout">
-                      <span>Need worldview</span>
-                      <span>JoyNet</span>
-                    </div>
-                    <div className="signal-readout">
-                      <span>Need place</span>
-                      <span>Teche Lake</span>
-                    </div>
-                  </div>
-                </article>
-              </div>
+            <div className="system-mark__legend">
+              <span>Branches: land, media, technology</span>
+              <span>Stems: projects</span>
+              <span>Fruit: outputs</span>
             </div>
           </div>
         </section>
 
-        <section className="signal-marquee rounded-[28px] px-4 py-3 text-[10px] uppercase tracking-[0.34em] text-text/58 md:px-6">
-          Mimicorp Systems / choose one path / get context fast / use the map second
-        </section>
-
-        <PathwaySorter projectPaths={projectPaths} />
-
-        <section id="pathways" className="signal-panel rounded-[32px] p-6 md:p-8">
-          <div className="grid gap-6 border-b border-white/10 pb-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-end">
-            <div className="space-y-3">
-              <p className="text-[11px] uppercase tracking-[0.34em] text-text/48">
-                Browse All Paths
-              </p>
-              <h2 className="max-w-2xl font-primary text-[40px] leading-[0.96] tracking-[-0.06em] text-text md:text-[58px]">
-                Four simple ways into the work, once you know your angle.
-              </h2>
-            </div>
-            <p className="max-w-2xl text-[16px] leading-[1.7] text-text/68 lg:ml-auto lg:text-right">
-              If the sorter above already gave you an answer, use that. This section is here only
-              if you want the full set side by side.
+        <section className="home-section" aria-labelledby="system-explanation-title">
+          <div className="home-section__intro">
+            <p className="home-kicker">How It Works</p>
+            <h2 id="system-explanation-title" className="home-section__title">
+              Mimicorp is a system with three working branches.
+            </h2>
+            <p className="home-section__body">
+              Each branch does a distinct job, but they only make sense as one structure.
             </p>
           </div>
 
-          <div className="mt-6 grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
-            {projectPaths.map((path, index) => (
-              <article key={path.name} className="signal-path-card">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between gap-4">
-                    <p className="text-[10px] uppercase tracking-[0.32em] text-text/42">
-                      {path.eyebrow}
-                    </p>
-                    <span className="text-[10px] uppercase tracking-[0.32em] text-text/34">
-                      0{index + 1}
-                    </span>
-                  </div>
-                  <h3 className="font-primary text-[34px] leading-[0.96] tracking-[-0.05em] text-text">
-                    {path.name}
-                  </h3>
-                  <p className="text-[15px] leading-[1.7] text-text/68">{path.description}</p>
-                </div>
+          <div className="branch-grid">
+            {domains.map((domain) => (
+              <article key={domain.name} className="branch-card">
+                <p className="branch-card__stem">{domain.stem}</p>
+                <h3 className="branch-card__title">{domain.name}</h3>
+                <p className="branch-card__description">{domain.description}</p>
+                <p className="branch-card__example">{domain.example}</p>
+              </article>
+            ))}
+          </div>
+        </section>
 
+        <section className="home-section" aria-labelledby="proof-title">
+          <div className="home-section__intro">
+            <p className="home-kicker">Real Outputs</p>
+            <h2 id="proof-title" className="home-section__title">
+              The work shows up in projects, not claims.
+            </h2>
+          </div>
+
+          <div className="proof-grid">
+            {proofs.map((proof) => (
+              <article key={proof.title} className="proof-card">
+                <div className="proof-card__head">
+                  <p className="proof-card__type">{proof.type}</p>
+                  <h3 className="proof-card__title">{proof.title}</h3>
+                </div>
+                <p className="proof-card__summary">{proof.summary}</p>
+                <p className="proof-card__outcome">{proof.outcome}</p>
                 <a
-                  href={path.href}
-                  target={path.href.startsWith("http") ? "_blank" : undefined}
-                  rel={path.href.startsWith("http") ? "noreferrer" : undefined}
-                  className="signal-button signal-button-secondary mt-6"
+                  href={proof.href}
+                  className="home-button home-button--secondary"
+                  target={proof.external ? "_blank" : undefined}
+                  rel={proof.external ? "noreferrer" : undefined}
                 >
-                  {path.cta}
+                  {proof.cta}
                 </a>
               </article>
             ))}
           </div>
         </section>
 
-        <section
-          id="second-cutting"
-          className="signal-panel rounded-[32px] p-6 md:p-8 xl:grid xl:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] xl:gap-6"
-        >
-          <div className="space-y-6 border-b border-white/10 pb-6 xl:border-b-0 xl:border-r xl:pb-0 xl:pr-6">
-            <div className="space-y-3">
-              <p className="text-[11px] uppercase tracking-[0.34em] text-text/48">
-                Featured listening
-              </p>
-              <h2 className="max-w-3xl font-primary text-[40px] leading-[0.96] tracking-[-0.06em] text-text md:text-[58px]">
-                Second Cutting is still the clearest entry point for most visitors.
-              </h2>
-              <p className="max-w-2xl text-[16px] leading-[1.75] text-text/68">
-                It translates field conditions, practical constraints, and long-term thinking into
-                a format people can absorb quickly. If you only click one thing on this page, this
-                is the best place to start.
-              </p>
-            </div>
-
-            <article className="signal-card">
-              <p className="text-[10px] uppercase tracking-[0.32em] text-text/42">
-                Current spotlight
-              </p>
-              <h3 className="mt-4 font-primary text-[42px] leading-[0.95] tracking-[-0.06em] text-text">
-                The Meadow is the Pharmacy, Part 2
-              </h3>
-              <p className="mt-3 text-[12px] uppercase tracking-[0.24em] text-text/46">
-                Episode 07 / Dr Shannon Gonsoulin
-              </p>
-              <p className="mt-4 max-w-2xl text-[16px] leading-[1.75] text-text/70">
-                A continuation of the meadow pharmacy conversation, following how ecological
-                conditions move through animals, land, and human life as one connected system.
-              </p>
-            </article>
-
-            <div className="flex flex-wrap gap-3">
-              {listeningLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="signal-button signal-button-primary"
-                >
-                  Listen on {link.label}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-6 grid gap-4 xl:mt-0">
-            <article className="signal-card">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-text/42">Why start here</p>
-              <p className="mt-4 text-[15px] leading-[1.7] text-text/70">
-                It gives new visitors context fast, without requiring them to read a long strategy
-                explanation first.
-              </p>
-            </article>
-            <article className="signal-card">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-text/42">What you&apos;ll get</p>
-              <p className="mt-4 text-[15px] leading-[1.7] text-text/70">
-                A grounded explanation of the work through conversation, reporting, and specific
-                examples.
-              </p>
-            </article>
-            <article className="signal-card">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-text/42">After that</p>
-              <p className="mt-4 text-[15px] leading-[1.7] text-text/70">
-                Use the map below to see how the media branch connects to operations, design, and
-                evidence.
-              </p>
-            </article>
-          </div>
+        <section className="home-section home-section--principle" aria-labelledby="principle-title">
+          <p className="home-kicker">Operating Principle</p>
+          <h2 id="principle-title" className="home-section__title">
+            Engines fueled by belief + movement
+          </h2>
+          <p className="home-section__body">
+            Belief gives the work direction. Movement gives it proof. Mimicorp exists to keep both
+            in the same machine.
+          </p>
         </section>
 
-        <section id="more" className="signal-panel rounded-[32px] p-6 md:p-8">
-          <div className="grid gap-6 border-b border-white/10 pb-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-end">
-            <div className="space-y-3">
-              <p className="text-[11px] uppercase tracking-[0.34em] text-text/48">More</p>
-              <h2 className="max-w-3xl font-primary text-[40px] leading-[0.96] tracking-[-0.06em] text-text md:text-[58px]">
-                A shorter shelf of follow-up links, once you have your bearings.
-              </h2>
-            </div>
-            <p className="max-w-2xl text-[16px] leading-[1.7] text-text/68 lg:ml-auto lg:text-right">
-              Keep this section lean: a few useful next stops without making the homepage feel like
-              a directory.
+        <section id="entry-point" className="entry-panel" aria-labelledby="entry-point-title">
+          <div className="entry-panel__copy">
+            <p className="home-kicker">Entry Point</p>
+            <h2 id="entry-point-title" className="home-section__title">
+              Start with a 15-minute systems call.
+            </h2>
+            <p className="entry-panel__body">
+              Bring the project, constraint, or messy starting point. The call is paid, and the
+              fee is waived if the project proceeds.
             </p>
           </div>
 
-          <div className="mt-6 grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
-            {moreLinks.map((link) => (
-              <article key={link.title} className="signal-path-card">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between gap-4">
-                    <p className="text-[10px] uppercase tracking-[0.32em] text-text/42">
-                      {link.eyebrow}
-                    </p>
-                  </div>
-
-                  <h3 className="font-primary text-[34px] leading-[0.96] tracking-[-0.05em] text-text">
-                    {link.title}
-                  </h3>
-                  <p className="text-[15px] leading-[1.7] text-text/68">{link.description}</p>
-                </div>
-
-                <a
-                  href={link.href}
-                  target={link.external ? "_blank" : undefined}
-                  rel={link.external ? "noreferrer" : undefined}
-                  className="signal-button signal-button-primary mt-6"
-                >
-                  {link.cta}
-                </a>
-              </article>
-            ))}
-          </div>
+          <a href="/nodes/book-time/" className="home-button home-button--primary">
+            Book the systems call
+          </a>
         </section>
-
-        <NodeCluster />
-
-        <SystemNotes />
       </MotionWrapper>
     </LayoutContainer>
   );

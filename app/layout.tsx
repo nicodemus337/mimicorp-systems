@@ -24,7 +24,8 @@ const garamond = EB_Garamond({
 
 export const metadata: Metadata = {
   title: "mimicorp.systems",
-  description: "A continuous node composition for Mimicorp Systems."
+  description:
+    "Mimicorp builds land, media, and technical systems that turn belief, movement, and infrastructure into real projects."
 };
 
 export default function RootLayout({
