@@ -94,6 +94,25 @@ const deployments = [
   }
 ] as const;
 
+const flowBands = [
+  {
+    label: "Source",
+    value: "Land, people, work, information"
+  },
+  {
+    label: "Current",
+    value: "Observe, structure, distribute, compound"
+  },
+  {
+    label: "Branches",
+    value: "Land systems, business systems, media systems, research systems"
+  },
+  {
+    label: "Streams",
+    value: "Revenue, operations, narrative, feedback loops"
+  }
+] as const;
+
 export default function HomePage() {
   return (
     <LayoutContainer>
@@ -115,23 +134,40 @@ export default function HomePage() {
             </a>
           </div>
 
-          <div className="engine-panel" aria-label="Mimicorp engine">
-            <div className="engine-panel__header">
-              <span>Engine</span>
-              <span>Observe to compound</span>
+          <div className="hero-ledger" aria-label="Mimicorp operating frame">
+            <div className="hero-ledger__row">
+              <span className="hero-ledger__label">Inputs</span>
+              <p className="hero-ledger__value">Land, people, work, information</p>
             </div>
+            <div className="hero-ledger__row">
+              <span className="hero-ledger__label">Process</span>
+              <p className="hero-ledger__value">Observe, structure, distribute, compound</p>
+            </div>
+            <div className="hero-ledger__row">
+              <span className="hero-ledger__label">Outputs</span>
+              <p className="hero-ledger__value">Operations, revenue, clarity, feedback loops</p>
+            </div>
+          </div>
+        </section>
 
-            <div className="engine-panel__track">
-              {engineSteps.map((step) => (
-                <article key={step.title} className="engine-step">
-                  <p className="engine-step__index">{step.step}</p>
-                  <div className="engine-step__body">
-                    <h2 className="engine-step__title">{step.title}</h2>
-                    <p className="engine-step__summary">{step.summary}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
+        <section className="flow-band" aria-labelledby="flow-band-title">
+          <div className="home-section__intro">
+            <p className="home-kicker">System Flow</p>
+            <h2 id="flow-band-title" className="home-section__title">
+              Mimicorp moves like one current into multiple streams.
+            </h2>
+            <p className="home-section__body">
+              The force stays centralized. The outputs multiply.
+            </p>
+          </div>
+
+          <div className="flow-band__grid">
+            {flowBands.map((band) => (
+              <article key={band.label} className="flow-band__card">
+                <p className="flow-band__label">{band.label}</p>
+                <p className="flow-band__value">{band.value}</p>
+              </article>
+            ))}
           </div>
         </section>
 
@@ -139,7 +175,7 @@ export default function HomePage() {
           <div className="home-section__intro">
             <p className="home-kicker">What This Is</p>
             <h2 id="what-this-is-title" className="home-section__title">
-              Mimicorp is a systems company.
+              Mimicorp channels existing force into operations.
             </h2>
           </div>
 
@@ -208,23 +244,27 @@ export default function HomePage() {
 
         <section className="home-section" aria-labelledby="pathways-title">
           <div className="home-section__intro">
-            <p className="home-kicker">Application Pathways</p>
+            <p className="home-kicker">Revenue Streams</p>
             <h2 id="pathways-title" className="home-section__title">
-              Mimicorp systems are deployed across four domains.
+              One operating system. Multiple streams.
             </h2>
+            <p className="home-section__body">
+              Mimicorp keeps one central logic, then deploys it across domains that generate
+              different forms of value.
+            </p>
           </div>
 
           <div className="pathway-grid">
             {pathways.map((pathway) => (
               <article key={pathway.name} className="pathway-card">
-                <p className="pathway-card__label">{pathway.name} Systems</p>
+                <p className="pathway-card__label">{pathway.name} Stream</p>
                 <p className="pathway-card__hook">{pathway.hook}</p>
                 <p className="pathway-card__detail">{pathway.detail}</p>
                 <p className="pathway-card__outcome">
-                  <span>Outcome:</span> {pathway.outcome}
+                  <span>Stream output:</span> {pathway.outcome}
                 </p>
                 <p className="pathway-card__reference">
-                  Reference:{" "}
+                  System link:{" "}
                   <a
                     href={pathway.href}
                     target={pathway.external ? "_blank" : undefined}
@@ -242,7 +282,7 @@ export default function HomePage() {
           <div className="home-section__intro">
             <p className="home-kicker">Deployed Systems</p>
             <h2 id="deployments-title" className="home-section__title">
-              These are not concepts. They are live systems.
+              The stream is already in the field.
             </h2>
             <p className="home-section__body">
               Each system is built to function, not just exist.
@@ -278,7 +318,7 @@ export default function HomePage() {
 
         <section id="conversion" className="conversion-panel" aria-labelledby="conversion-title">
           <div className="conversion-panel__copy">
-            <p className="home-kicker">Start Here</p>
+            <p className="home-kicker">Conversion</p>
             <h2 id="conversion-title" className="home-section__title">
               You need a system.
             </h2>
