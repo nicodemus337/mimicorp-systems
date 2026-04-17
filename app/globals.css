@@ -780,6 +780,27 @@ body::after {
   color: var(--text);
 }
 
+.definition-card__flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  padding-top: 0.25rem;
+}
+
+.definition-card__flow span,
+.engine-strip__node {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(243, 241, 232, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.45rem 0.75rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(243, 241, 232, 0.72);
+}
+
 .definition-card__label,
 .pathway-card__label,
 .deployment-card__label {
@@ -802,6 +823,27 @@ body::after {
   justify-content: space-between;
 }
 
+.engine-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.engine-strip__node {
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-radius: 12px;
+  padding: 0.8rem 0.95rem;
+}
+
+.engine-strip__index {
+  color: var(--gold);
+}
+
+.engine-strip__title {
+  color: var(--text);
+}
+
 .pathway-card__hook {
   margin: 0;
   font-family: var(--font-primary), sans-serif;
@@ -815,6 +857,26 @@ body::after {
 .deployment-card .home-button {
   margin-top: auto;
   align-self: flex-start;
+}
+
+.pathway-card__reference,
+.deployment-card__status {
+  margin: 0;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(243, 241, 232, 0.08);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(243, 241, 232, 0.56);
+}
+
+.pathway-card__reference a {
+  color: rgba(243, 241, 232, 0.88);
+  text-decoration: none;
+}
+
+.pathway-card__reference a:hover {
+  color: #fff;
 }
 
 .pathway-card__outcome {
@@ -901,6 +963,7 @@ body::after {
   }
 
   .definition-grid,
+  .engine-strip,
   .backbone-grid,
   .pathway-grid,
   .deployment-grid,
