@@ -1,363 +1,134 @@
-import { LayoutContainer } from "@/components/LayoutContainer";
-import { MotionWrapper } from "@/components/MotionWrapper";
+import Link from "next/link";
 
-const engineSteps = [
+const systemSteps = [
   {
-    step: "01",
-    title: "Observe",
-    summary:
-      "Capture real-world inputs most systems ignore. Field notes, operational friction, and environmental signals."
+    label: "Observe",
+    body: "Capture real-world inputs most systems ignore."
   },
   {
-    step: "02",
-    title: "Structure",
-    summary:
-      "Turn raw inputs into usable systems. Workflows, infrastructure, and decision logic."
+    label: "Structure",
+    body: "Turn inputs into workflows, infrastructure, and logic."
   },
   {
-    step: "03",
-    title: "Distribute",
-    summary:
-      "Deploy the system outward. Media, commerce, and communication aligned to the operation."
+    label: "Deploy",
+    body: "Connect systems to media, commerce, and output."
   },
   {
-    step: "04",
-    title: "Compound",
-    summary:
-      "Build feedback loops. The system improves itself through use, increasing efficiency and output over time."
+    label: "Compound",
+    body: "Create feedback loops that improve performance over time."
   }
 ] as const;
 
-const pathways = [
+const applications = [
   {
-    name: "Land",
-    hook: "For ranches, farms, and land-based operations.",
-    detail:
-      "Build direct-to-consumer infrastructure, operational visibility, and data-informed decision systems.",
-    href: "https://glcranch.com",
-    external: true,
-    outcome: "A working system that connects land to revenue and narrative."
+    title: "Land Systems",
+    body: "Connect production, data, and revenue into a working system.",
+    href: "/land-systems"
   },
   {
-    name: "Business",
-    hook: "For local businesses and physical operations.",
-    detail:
-      "Build internal workflows, customer pathways, and digital plus physical integration.",
-    href: "/nodes/services/",
-    external: false,
-    outcome: "A business that runs with clarity, not chaos."
+    title: "Business Systems",
+    body: "Structure operations and customer flow for clarity and output.",
+    href: "/business-systems"
   },
   {
-    name: "Media",
-    hook: "For podcasts, brands, and distribution platforms.",
-    detail:
-      "Build content pipelines, narrative systems, and multi-platform distribution.",
-    href: "/nodes/second-cutting/",
-    external: false,
-    outcome: "Media that functions as infrastructure, not noise."
+    title: "Media Systems",
+    body: "Turn content into infrastructure that drives real outcomes.",
+    href: "/media-systems"
   },
   {
-    name: "Experimental",
-    hook: "For archive, theory, and system exploration.",
-    detail:
-      "Build conceptual frameworks, data archives, and long-term system models.",
-    href: "/research/staging-the-state.html",
-    external: false,
-    outcome: "New systems that do not exist yet, but will."
+    title: "Experimental",
+    body: "Develop new system models and long-term frameworks.",
+    href: "/research-lab"
   }
 ] as const;
 
 const deployments = [
   {
-    name: "Gonsoulin Land & Cattle",
-    label: "System deployed / Land",
-    summary:
-      "Direct-to-consumer beef system integrating production, media, and sales.",
-    href: "https://glcranch.com",
-    external: true
+    title: "Gonsoulin Land & Cattle",
+    body: "Direct-to-consumer beef system integrating production, media, and sales."
   },
   {
-    name: "GP Supply & Lumber",
-    label: "System deployed / Business",
-    summary:
-      "Legacy retail operation restructured with modern systems and customer flow.",
-    href: "/nodes/services/",
-    external: false
+    title: "GP Supply & Lumber",
+    body: "Legacy retail restructured into a modern operational system."
   },
   {
-    name: "Second Cutting",
-    label: "System deployed / Media",
-    summary:
-      "Media system documenting land, people, and process tied directly to real-world operations.",
-    href: "/nodes/second-cutting/",
-    external: false
-  }
-] as const;
-
-const flowBands = [
-  {
-    label: "Source",
-    value: "Land, people, work, information"
-  },
-  {
-    label: "Current",
-    value: "Observe, structure, distribute, compound"
-  },
-  {
-    label: "Branches",
-    value: "Land systems, business systems, media systems, research systems"
-  },
-  {
-    label: "Streams",
-    value: "Revenue, operations, narrative, feedback loops"
+    title: "Second Cutting",
+    body: "Media system tied directly to land, people, and production."
   }
 ] as const;
 
 export default function HomePage() {
   return (
-    <LayoutContainer>
-      <MotionWrapper className="homepage-flow pb-20 pt-6 md:pb-28 md:pt-8">
-        <section className="home-hero" aria-labelledby="home-hero-title">
-          <div className="home-hero__copy">
-            <p className="home-kicker">Mimicorp Systems</p>
-            <h1 id="home-hero-title" className="home-hero__title">
-              We build systems that turn land, data, and media into operations.
-            </h1>
-            <p className="home-hero__mechanism">
-              Infrastructure for modern rural enterprise.
-            </p>
-            <p className="home-hero__support">
-              From field notes to functioning systems, deployed in the real world.
-            </p>
-            <a href="#conversion" className="home-button home-button--primary">
-              Start a system
-            </a>
-          </div>
+    <main className="page">
+      <section className="hero container">
+        <p className="eyebrow">Mimicorp Systems</p>
+        <h1>WE BUILD OPERATING SYSTEMS FOR REAL-WORLD BUSINESSES</h1>
+        <p>Land. Business. Media. Structured into systems that produce results.</p>
+        <Link href="#contact" className="cta">
+          Start a system
+        </Link>
+      </section>
 
-          <div className="hero-ledger" aria-label="Mimicorp operating frame">
-            <div className="hero-ledger__row">
-              <span className="hero-ledger__label">Inputs</span>
-              <p className="hero-ledger__value">Land, people, work, information</p>
+      <section className="section container">
+        <h2>Most operations are running on effort, not systems.</h2>
+        <p>
+          Data exists but is not used. Marketing is disconnected from reality. Work happens, but
+          nothing compounds.
+        </p>
+      </section>
+
+      <section className="section container" id="system">
+        <h2>The System</h2>
+
+        <div className="grid">
+          {systemSteps.map((step) => (
+            <div key={step.label} className="system-step">
+              <div className="label">{step.label}</div>
+              <p>{step.body}</p>
             </div>
-            <div className="hero-ledger__row">
-              <span className="hero-ledger__label">Process</span>
-              <p className="hero-ledger__value">Observe, structure, distribute, compound</p>
+          ))}
+        </div>
+      </section>
+
+      <section className="section container" id="domains">
+        <h2>Where This Applies</h2>
+
+        <div className="grid">
+          {applications.map((item) => (
+            <Link key={item.title} href={item.href} className="pathway">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="section container" id="deployments">
+        <h2>Deployed Systems</h2>
+
+        <div className="grid">
+          {deployments.map((item) => (
+            <div key={item.title} className="deployment">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
             </div>
-            <div className="hero-ledger__row">
-              <span className="hero-ledger__label">Outputs</span>
-              <p className="hero-ledger__value">Operations, revenue, clarity, feedback loops</p>
-            </div>
-          </div>
-        </section>
+          ))}
+        </div>
+      </section>
 
-        <section className="flow-band" aria-labelledby="flow-band-title">
-          <div className="home-section__intro">
-            <p className="home-kicker">System Flow</p>
-            <h2 id="flow-band-title" className="home-section__title">
-              Mimicorp moves like one current into multiple streams.
-            </h2>
-            <p className="home-section__body">
-              The force stays centralized. The outputs multiply.
-            </p>
-          </div>
+      <section className="section container">
+        <h2>Why Mimicorp</h2>
+        <p>
+          Most systems are designed from the outside. These are built from within.
+        </p>
+      </section>
 
-          <div className="flow-band__grid">
-            {flowBands.map((band) => (
-              <article key={band.label} className="flow-band__card">
-                <p className="flow-band__label">{band.label}</p>
-                <p className="flow-band__value">{band.value}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="home-section home-section--source" aria-labelledby="what-this-is-title">
-          <div className="home-section__intro">
-            <p className="home-kicker">What This Is</p>
-            <h2 id="what-this-is-title" className="home-section__title">
-              Mimicorp channels existing force into operations.
-            </h2>
-          </div>
-
-          <div className="definition-grid">
-            <div className="definition-card definition-card--primary">
-              <p className="definition-card__statement">
-                We build integrated operational systems across land, data, and media.
-              </p>
-              <div className="definition-card__flow" aria-hidden="true">
-                <span>land</span>
-                <span>people</span>
-                <span>work</span>
-                <span>information</span>
-              </div>
-            </div>
-
-            <div className="definition-card">
-              <p className="definition-card__label">Not this</p>
-              <ul className="definition-card__list">
-                <li>Not an agency</li>
-                <li>Not a content studio</li>
-                <li>Not traditional consulting</li>
-              </ul>
-            </div>
-
-            <div className="definition-card">
-              <p className="definition-card__label">What we do</p>
-              <p className="definition-card__body">
-                We take what already exists: land, people, work, and information, then structure
-                it into systems that produce revenue, communicate clearly, and improve over time.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="home-section home-section--engine" aria-labelledby="how-it-works-title">
-          <div className="home-section__intro">
-            <p className="home-kicker">How It Works</p>
-            <h2 id="how-it-works-title" className="home-section__title">
-              Every system follows the same engine.
-            </h2>
-            <p className="home-section__body">
-              This is not theory. This is how systems are built, deployed, and scaled.
-            </p>
-          </div>
-
-          <div className="engine-strip" aria-hidden="true">
-            {engineSteps.map((step) => (
-              <div key={step.title} className="engine-strip__node">
-                <span className="engine-strip__index">{step.step}</span>
-                <span className="engine-strip__title">{step.title}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="backbone-grid">
-            {engineSteps.map((step) => (
-              <article key={step.title} className="backbone-card">
-                <p className="backbone-card__index">{step.step}</p>
-                <h3 className="backbone-card__title">{step.title}</h3>
-                <p className="backbone-card__body">{step.summary}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="home-section home-section--streams" aria-labelledby="pathways-title">
-          <div className="home-section__intro">
-            <p className="home-kicker">Revenue Streams</p>
-            <h2 id="pathways-title" className="home-section__title">
-              One operating system. Multiple streams.
-            </h2>
-            <p className="home-section__body">
-              Mimicorp keeps one central logic, then deploys it across domains that generate
-              different forms of value.
-            </p>
-          </div>
-
-          <div className="stream-fan" aria-hidden="true">
-            <div className="stream-fan__source">Mimicorp</div>
-            <div className="stream-fan__branches">
-              {pathways.map((pathway) => (
-                <span key={pathway.name} className="stream-fan__branch">
-                  {pathway.name}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="pathway-grid">
-            {pathways.map((pathway) => (
-              <article key={pathway.name} className="pathway-card">
-                <p className="pathway-card__label">{pathway.name} Stream</p>
-                <p className="pathway-card__hook">{pathway.hook}</p>
-                <p className="pathway-card__detail">{pathway.detail}</p>
-                <p className="pathway-card__outcome">
-                  <span>Stream output:</span> {pathway.outcome}
-                </p>
-                <p className="pathway-card__reference">
-                  System link:{" "}
-                  <a
-                    href={pathway.href}
-                    target={pathway.external ? "_blank" : undefined}
-                    rel={pathway.external ? "noreferrer" : undefined}
-                  >
-                    {pathway.name === "Experimental" ? "Research archive" : `${pathway.name} system`}
-                  </a>
-                </p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="home-section home-section--deployments" aria-labelledby="deployments-title">
-          <div className="home-section__intro">
-            <p className="home-kicker">Deployed Systems</p>
-            <h2 id="deployments-title" className="home-section__title">
-              The stream is already in the field.
-            </h2>
-            <p className="home-section__body">
-              Each system is built to function, not just exist.
-            </p>
-          </div>
-
-          <div className="deployment-list">
-            {deployments.map((deployment) => (
-              <article key={deployment.name} className="deployment-card">
-                <p className="deployment-card__label">{deployment.label}</p>
-                <div className="deployment-card__body">
-                  <h3 className="deployment-card__title">{deployment.name}</h3>
-                  <p className="deployment-card__summary">{deployment.summary}</p>
-                </div>
-                <p className="deployment-card__status">Status: live</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section
-          className="home-section home-section--philosophy"
-          aria-labelledby="philosophy-title"
-        >
-          <div className="home-section__intro">
-            <p className="home-kicker">Philosophy</p>
-            <h2 id="philosophy-title" className="home-section__title">
-              Engines fueled by belief + movement
-            </h2>
-          </div>
-
-          <div className="philosophy-grid">
-            <p className="philosophy-grid__item">Belief defines direction.</p>
-            <p className="philosophy-grid__item">Movement creates output.</p>
-            <p className="philosophy-grid__item">Systems require both.</p>
-          </div>
-        </section>
-
-        <section id="conversion" className="conversion-panel" aria-labelledby="conversion-title">
-          <div className="conversion-panel__copy">
-            <p className="home-kicker">Conversion</p>
-            <h2 id="conversion-title" className="home-section__title">
-              You need a system.
-            </h2>
-            <div className="conversion-panel__list">
-              <p>If you have land that is not fully working,</p>
-              <p>a business that feels fragmented,</p>
-              <p>or media that is not producing results,</p>
-            </div>
-            <p className="conversion-panel__body">
-              then you do not need more ideas.
-            </p>
-            <p className="conversion-panel__body conversion-panel__body--strong">
-              You need a system.
-            </p>
-          </div>
-
-          <div className="conversion-panel__action">
-            <a href="/nodes/contact/" className="home-button home-button--primary">
-              Start a system
-            </a>
-          </div>
-        </section>
-      </MotionWrapper>
-    </LayoutContainer>
+      <section className="container footer" id="contact">
+        <h2>You do not need more ideas. You need a system.</h2>
+        <Link href="/nodes/contact/" className="cta">
+          Start a system
+        </Link>
+      </section>
+    </main>
   );
 }

@@ -1,18 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Inter, Inter_Tight } from "next/font/google";
 
 import "./globals.css";
-
-const interTight = Inter_Tight({
-  subsets: ["latin"],
-  variable: "--font-display"
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-body"
-});
 
 export const metadata: Metadata = {
   title: {
@@ -44,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${interTight.variable} ${inter.variable}`}>
+      <body>
         <div className="site-shell">
           <header className="site-header">
             <div className="site-header__inner">
