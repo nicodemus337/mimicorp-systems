@@ -548,6 +548,7 @@ body::after {
 }
 
 .home-hero__mechanism,
+.home-hero__support,
 .home-section__body,
 .conversion-panel__body,
 .engine-step__summary,
@@ -555,12 +556,19 @@ body::after {
 .pathway-card__detail,
 .deployment-card__summary,
 .definition-card__statement,
+.definition-card__body,
+.pathway-card__outcome,
+.conversion-panel__list p,
 .philosophy-grid__item {
   margin: 0;
   max-width: 62ch;
   font-size: clamp(1rem, 1.4vw, 1.08rem);
   line-height: 1.7;
   color: var(--muted);
+}
+
+.home-hero__support {
+  color: rgba(243, 241, 232, 0.82);
 }
 
 .home-button {
@@ -809,6 +817,19 @@ body::after {
   align-self: flex-start;
 }
 
+.pathway-card__outcome {
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(243, 241, 232, 0.08);
+  color: rgba(243, 241, 232, 0.84);
+}
+
+.pathway-card__outcome span {
+  color: rgba(243, 241, 232, 0.56);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.78rem;
+}
+
 .home-section--philosophy {
   gap: 1.2rem;
 }
@@ -842,6 +863,12 @@ body::after {
   gap: 0.9rem;
 }
 
+.conversion-panel__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
 .conversion-panel__action {
   display: flex;
   max-width: 26rem;
@@ -850,18 +877,13 @@ body::after {
   gap: 1rem;
 }
 
-.conversion-panel__note {
-  margin: 0;
-  font-size: 0.82rem;
-  letter-spacing: 0.18em;
+.conversion-panel__body--strong {
+  font-family: var(--font-primary), sans-serif;
+  font-size: clamp(1.4rem, 2.1vw, 1.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
   text-transform: uppercase;
-  color: rgba(243, 241, 232, 0.68);
-}
-
-.conversion-panel__buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.9rem;
+  color: var(--text);
 }
 
 @keyframes slow-spin {
@@ -921,8 +943,7 @@ body::after {
     gap: 0.6rem;
   }
 
-  .conversion-panel__action,
-  .conversion-panel__buttons {
+  .conversion-panel__action {
     width: 100%;
   }
 }

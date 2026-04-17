@@ -6,60 +6,64 @@ const engineSteps = [
     step: "01",
     title: "Observe",
     summary:
-      "Field notes, land data, constraints, and real-world inputs establish what is actually happening."
+      "Capture real-world inputs most systems ignore. Field notes, operational friction, and environmental signals."
   },
   {
     step: "02",
     title: "Structure",
     summary:
-      "We turn observations into workflows, operating systems, infrastructure, and decision-making logic."
+      "Turn raw inputs into usable systems. Workflows, infrastructure, and decision logic."
   },
   {
     step: "03",
     title: "Distribute",
     summary:
-      "Media, commerce, and narrative distribute the system so people can understand it, use it, and buy into it."
+      "Deploy the system outward. Media, commerce, and communication aligned to the operation."
   },
   {
     step: "04",
     title: "Compound",
     summary:
-      "Feedback loops, measured outcomes, and revenue let the system improve instead of resetting every cycle."
+      "Build feedback loops. The system improves itself through use, increasing efficiency and output over time."
   }
 ] as const;
 
 const pathways = [
   {
     name: "Land",
-    hook: "For ranches, agricultural operations, and place-based projects.",
+    hook: "For ranches, farms, and land-based operations.",
     detail:
-      "Ranching, agriculture, ecology, stewardship, logistics, and on-the-ground operational design.",
+      "Build direct-to-consumer infrastructure, operational visibility, and data-informed decision systems.",
     href: "https://glcranch.com",
-    external: true
+    external: true,
+    outcome: "A working system that connects land to revenue and narrative."
   },
   {
     name: "Business",
-    hook: "For companies that need a cleaner operating system.",
+    hook: "For local businesses and physical operations.",
     detail:
-      "Local businesses, utility infrastructure, offers, workflows, handoffs, and operational cleanup.",
+      "Build internal workflows, customer pathways, and digital plus physical integration.",
     href: "/nodes/services/",
-    external: false
+    external: false,
+    outcome: "A business that runs with clarity, not chaos."
   },
   {
     name: "Media",
-    hook: "For stories that need structure, trust, and release.",
+    hook: "For podcasts, brands, and distribution platforms.",
     detail:
-      "Podcasts, documentary systems, narrative architecture, and distribution built to move attention into action.",
+      "Build content pipelines, narrative systems, and multi-platform distribution.",
     href: "/nodes/second-cutting/",
-    external: false
+    external: false,
+    outcome: "Media that functions as infrastructure, not noise."
   },
   {
     name: "Experimental",
-    hook: "For strange ideas worth testing before they scale.",
+    hook: "For archive, theory, and system exploration.",
     detail:
-      "Archives, research, conceptual prototypes, and experimental infrastructure for ideas still becoming operational.",
+      "Build conceptual frameworks, data archives, and long-term system models.",
     href: "/research/staging-the-state.html",
-    external: false
+    external: false,
+    outcome: "New systems that do not exist yet, but will."
   }
 ] as const;
 
@@ -68,7 +72,7 @@ const deployments = [
     name: "Gonsoulin Land & Cattle",
     label: "System deployed / Land",
     summary:
-      "Operating ground for testing stewardship, sequencing, labor, and real-world agricultural constraints.",
+      "Direct-to-consumer beef system integrating production, media, and sales.",
     href: "https://glcranch.com",
     external: true
   },
@@ -76,7 +80,7 @@ const deployments = [
     name: "GP Supply & Lumber",
     label: "System deployed / Business",
     summary:
-      "Utility-facing business logic focused on infrastructure, materials flow, and practical regional demand.",
+      "Legacy retail operation restructured with modern systems and customer flow.",
     href: "/nodes/services/",
     external: false
   },
@@ -84,7 +88,7 @@ const deployments = [
     name: "Second Cutting",
     label: "System deployed / Media",
     summary:
-      "A documentary distribution system that turns field intelligence into public narrative and partner signal.",
+      "Media system documenting land, people, and process tied directly to real-world operations.",
     href: "/nodes/second-cutting/",
     external: false
   }
@@ -98,14 +102,16 @@ export default function HomePage() {
           <div className="home-hero__copy">
             <p className="home-kicker">Mimicorp Systems</p>
             <h1 id="home-hero-title" className="home-hero__title">
-              We build systems that turn land, data, and media into revenue.
+              We build systems that turn land, data, and media into operations.
             </h1>
             <p className="home-hero__mechanism">
-              Mimicorp builds integrated operational systems for rural enterprise, infrastructure,
-              and media.
+              Infrastructure for modern rural enterprise.
+            </p>
+            <p className="home-hero__support">
+              From field notes to functioning systems, deployed in the real world.
             </p>
             <a href="#conversion" className="home-button home-button--primary">
-              Book a 15 minute systems call
+              Start a system
             </a>
           </div>
 
@@ -154,12 +160,11 @@ export default function HomePage() {
             </div>
 
             <div className="definition-card">
-              <p className="definition-card__label">What we deploy</p>
-              <ul className="definition-card__list">
-                <li>Observation systems</li>
-                <li>Operational infrastructure</li>
-                <li>Distribution and feedback loops</li>
-              </ul>
+              <p className="definition-card__label">What we do</p>
+              <p className="definition-card__body">
+                We take what already exists: land, people, work, and information, then structure
+                it into systems that produce revenue, communicate clearly, and improve over time.
+              </p>
             </div>
           </div>
         </section>
@@ -168,11 +173,10 @@ export default function HomePage() {
           <div className="home-section__intro">
             <p className="home-kicker">How It Works</p>
             <h2 id="how-it-works-title" className="home-section__title">
-              The engine is direct.
+              Every system follows the same engine.
             </h2>
             <p className="home-section__body">
-              Observe. Structure. Distribute. Compound. Each phase exists to move the system into
-              operation.
+              This is not theory. This is how systems are built, deployed, and scaled.
             </p>
           </div>
 
@@ -189,21 +193,21 @@ export default function HomePage() {
 
         <section className="home-section" aria-labelledby="pathways-title">
           <div className="home-section__intro">
-            <p className="home-kicker">Pathways</p>
+            <p className="home-kicker">Application Pathways</p>
             <h2 id="pathways-title" className="home-section__title">
-              Four application pathways.
+              Mimicorp systems are deployed across four domains.
             </h2>
-            <p className="home-section__body">
-              Choose the operating context, then go deeper.
-            </p>
           </div>
 
           <div className="pathway-grid">
             {pathways.map((pathway) => (
               <article key={pathway.name} className="pathway-card">
-                <p className="pathway-card__label">{pathway.name}</p>
+                <p className="pathway-card__label">{pathway.name} Systems</p>
                 <p className="pathway-card__hook">{pathway.hook}</p>
                 <p className="pathway-card__detail">{pathway.detail}</p>
+                <p className="pathway-card__outcome">
+                  <span>Outcome:</span> {pathway.outcome}
+                </p>
                 <a
                   href={pathway.href}
                   className="home-button home-button--secondary"
@@ -219,12 +223,12 @@ export default function HomePage() {
 
         <section className="home-section" aria-labelledby="deployments-title">
           <div className="home-section__intro">
-            <p className="home-kicker">Live Systems</p>
+            <p className="home-kicker">Deployed Systems</p>
             <h2 id="deployments-title" className="home-section__title">
-              Systems deployed in the field.
+              These are not concepts. They are live systems.
             </h2>
             <p className="home-section__body">
-              These are active deployments, not portfolio pieces.
+              Each system is built to function, not just exist.
             </p>
           </div>
 
@@ -256,9 +260,9 @@ export default function HomePage() {
           </div>
 
           <div className="philosophy-grid">
-            <p className="philosophy-grid__item">Belief gives direction.</p>
-            <p className="philosophy-grid__item">Movement produces proof.</p>
-            <p className="philosophy-grid__item">Systems turn both into durable revenue.</p>
+            <p className="philosophy-grid__item">Belief defines direction.</p>
+            <p className="philosophy-grid__item">Movement creates output.</p>
+            <p className="philosophy-grid__item">Systems require both.</p>
           </div>
         </section>
 
@@ -266,26 +270,25 @@ export default function HomePage() {
           <div className="conversion-panel__copy">
             <p className="home-kicker">Start Here</p>
             <h2 id="conversion-title" className="home-section__title">
-              Ready to deploy a system?
+              You need a system.
             </h2>
+            <div className="conversion-panel__list">
+              <p>If you have land that is not fully working,</p>
+              <p>a business that feels fragmented,</p>
+              <p>or media that is not producing results,</p>
+            </div>
             <p className="conversion-panel__body">
-              Bring the bottleneck, the deployment target, or the opportunity. We’ll identify the
-              right pathway and define the next move.
+              then you do not need more ideas.
+            </p>
+            <p className="conversion-panel__body conversion-panel__body--strong">
+              You need a system.
             </p>
           </div>
 
           <div className="conversion-panel__action">
-            <p className="conversion-panel__note">
-              15 minutes. Paid. Waived if we move into a larger engagement.
-            </p>
-            <div className="conversion-panel__buttons">
-              <a href="/nodes/book-time/" className="home-button home-button--primary">
-                Book a systems call
-              </a>
-              <a href="/nodes/contact/" className="home-button home-button--secondary">
-                Start a project
-              </a>
-            </div>
+            <a href="/nodes/contact/" className="home-button home-button--primary">
+              Start a system
+            </a>
           </div>
         </section>
       </MotionWrapper>
