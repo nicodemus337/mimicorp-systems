@@ -96,5 +96,19 @@ const episodeRegistry = [
     spotify_url: "https://open.spotify.com/episode/4SY1lU1XjGKHAAVbSGMvHT?si=R3ET1KIVTyCOtQX-kXCB2g",
     watch_url: "",
     transcript_url: ""
+  },
+  {
+    id: "episode_08_boots_on_the_ground",
+    episode_number: 8,
+    title: "Boots on the Ground",
+    guest: "Dr Shannon Gonsoulin",
+    themes: ["field reporting", "land stewardship", "working landscapes"],
+    date: "2026",
+    description: "A conversation grounded in what becomes visible when you are physically present with the land, the work, and the constraints shaping both.",
+    connections: ["second_cutting", "glc", "media"],
+    listen_url: "https://podcasts.apple.com/us/podcast/boots-on-the-ground/id1865905475?i=1000760968746",
+    spotify_url: "https://open.spotify.com/episode/1WTZx7Nikx2hGaoQVf6Efm?si=DnNgQMSeT7KiTQfogalv3w",
+    watch_url: "",
+    transcript_url: ""
   }
 ];

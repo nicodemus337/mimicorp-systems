@@ -42,9 +42,9 @@ export const branchPages: BranchPageContent[] = [
     pathLabel: "Best first stop for new visitors",
     chips: ["Podcast", "Field Reporting", "Public Narrative"],
     featuredLabel: "Current spotlight",
-    featuredTitle: "The Meadow is the Pharmacy, Part 2",
+    featuredTitle: "Boots on the Ground",
     featuredBody:
-      "A continuation of the meadow pharmacy conversation, following how ecological conditions move through animals, land, and human life as one connected system.",
+      "A field-grounded episode about what becomes visible when the work is observed up close, with attention to land, labor, and the realities shaping both.",
     purpose: [
       {
         title: "What it is",
@@ -87,13 +87,13 @@ export const branchPages: BranchPageContent[] = [
     actions: [
       {
         label: "Listen on Apple Podcasts",
-        href: "https://podcasts.apple.com/us/podcast/second-cutting/id1865905475?i=1000758078662",
+        href: "https://podcasts.apple.com/us/podcast/boots-on-the-ground/id1865905475?i=1000760968746",
         external: true,
         variant: "primary"
       },
       {
         label: "Listen on Spotify",
-        href: "https://open.spotify.com/episode/4SY1lU1XjGKHAAVbSGMvHT?si=R3ET1KIVTyCOtQX-kXCB2g",
+        href: "https://open.spotify.com/episode/1WTZx7Nikx2hGaoQVf6Efm?si=DnNgQMSeT7KiTQfogalv3w",
         external: true,
         variant: "secondary"
       }
