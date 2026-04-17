@@ -171,7 +171,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="home-section" aria-labelledby="what-this-is-title">
+        <section className="home-section home-section--source" aria-labelledby="what-this-is-title">
           <div className="home-section__intro">
             <p className="home-kicker">What This Is</p>
             <h2 id="what-this-is-title" className="home-section__title">
@@ -211,7 +211,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="home-section" aria-labelledby="how-it-works-title">
+        <section className="home-section home-section--engine" aria-labelledby="how-it-works-title">
           <div className="home-section__intro">
             <p className="home-kicker">How It Works</p>
             <h2 id="how-it-works-title" className="home-section__title">
@@ -242,7 +242,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="home-section" aria-labelledby="pathways-title">
+        <section className="home-section home-section--streams" aria-labelledby="pathways-title">
           <div className="home-section__intro">
             <p className="home-kicker">Revenue Streams</p>
             <h2 id="pathways-title" className="home-section__title">
@@ -252,6 +252,17 @@ export default function HomePage() {
               Mimicorp keeps one central logic, then deploys it across domains that generate
               different forms of value.
             </p>
+          </div>
+
+          <div className="stream-fan" aria-hidden="true">
+            <div className="stream-fan__source">Mimicorp</div>
+            <div className="stream-fan__branches">
+              {pathways.map((pathway) => (
+                <span key={pathway.name} className="stream-fan__branch">
+                  {pathway.name}
+                </span>
+              ))}
+            </div>
           </div>
 
           <div className="pathway-grid">
@@ -278,7 +289,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="home-section" aria-labelledby="deployments-title">
+        <section className="home-section home-section--deployments" aria-labelledby="deployments-title">
           <div className="home-section__intro">
             <p className="home-kicker">Deployed Systems</p>
             <h2 id="deployments-title" className="home-section__title">
@@ -289,19 +300,24 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="deployment-grid">
+          <div className="deployment-list">
             {deployments.map((deployment) => (
               <article key={deployment.name} className="deployment-card">
                 <p className="deployment-card__label">{deployment.label}</p>
-                <h3 className="deployment-card__title">{deployment.name}</h3>
-                <p className="deployment-card__summary">{deployment.summary}</p>
+                <div className="deployment-card__body">
+                  <h3 className="deployment-card__title">{deployment.name}</h3>
+                  <p className="deployment-card__summary">{deployment.summary}</p>
+                </div>
                 <p className="deployment-card__status">Status: live</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="home-section home-section--philosophy" aria-labelledby="philosophy-title">
+        <section
+          className="home-section home-section--philosophy"
+          aria-labelledby="philosophy-title"
+        >
           <div className="home-section__intro">
             <p className="home-kicker">Philosophy</p>
             <h2 id="philosophy-title" className="home-section__title">
