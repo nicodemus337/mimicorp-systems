@@ -1,32 +1,41 @@
-import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
-import { EB_Garamond, Inter, Inter_Tight } from "next/font/google";
-
-import fruitfulBrainLogo from "@/assets/fruitfulbrain.png";
-import mLogo from "@/assets/logo_wb.png";
+import { Inter, Inter_Tight } from "next/font/google";
 
 import "./globals.css";
 
 const interTight = Inter_Tight({
   subsets: ["latin"],
-  variable: "--font-primary"
+  variable: "--font-display"
 });
 
 const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-secondary"
-});
-
-const garamond = EB_Garamond({
-  subsets: ["latin"],
-  variable: "--font-accent"
+  variable: "--font-body"
 });
 
 export const metadata: Metadata = {
-  title: "mimicorp.systems",
+  title: {
+    default: "mimicorp.systems",
+    template: "%s | mimicorp.systems"
+  },
   description:
-    "Mimicorp builds land, media, and technical systems that turn belief, movement, and infrastructure into real projects."
+    "Mimicorp builds operational systems across land, business, media, and research."
 };
+
+const primaryNav = [
+  { label: "System", href: "/#system" },
+  { label: "Domains", href: "/#domains" },
+  { label: "Deployments", href: "/#deployments" },
+  { label: "Contact", href: "/#contact" }
+] as const;
+
+const domainNav = [
+  { label: "Land", href: "/land-systems" },
+  { label: "Business", href: "/business-systems" },
+  { label: "Media", href: "/media-systems" },
+  { label: "Research", href: "/research-lab" }
+] as const;
 
 export default function RootLayout({
   children
@@ -35,51 +44,51 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${interTight.variable} ${inter.variable} ${garamond.variable} bg-background text-text antialiased`}
-      >
-        <div className="flex min-h-screen flex-col">
-          <div className="flex-1">{children}</div>
-          <footer className="relative z-10 border-t border-white/10 bg-black/20 px-6 py-6 backdrop-blur-sm">
-            <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-center gap-4 text-center">
-              <div className="flex flex-wrap items-center justify-center gap-3 text-[10px] uppercase tracking-[0.28em] text-white/58">
-                <a href="/#more" className="transition-colors hover:text-white">
-                  More
-                </a>
-                <a href="/second-cutting" className="transition-colors hover:text-white">
-                  Second Cutting
-                </a>
-                <a
-                  href="https://instagram.com/cajunleprochaun"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="transition-colors hover:text-white"
-                >
-                  Instagram
-                </a>
-                <a
-                  href="/research/staging-the-state.html"
-                  className="transition-colors hover:text-white"
-                >
-                  Prospectus
-                </a>
+      <body className={`${interTight.variable} ${inter.variable}`}>
+        <div className="site-shell">
+          <header className="site-header">
+            <div className="site-header__inner">
+              <Link href="/" className="site-brand" aria-label="Mimicorp Systems home">
+                <span className="site-brand__mark">M</span>
+                <span className="site-brand__text">
+                  <span>mimicorp.systems</span>
+                  <span>operational systems</span>
+                </span>
+              </Link>
+
+              <nav className="site-nav" aria-label="Primary">
+                {primaryNav.map((item) => (
+                  <Link key={item.label} href={item.href}>
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+          </header>
+
+          <div className="site-main">{children}</div>
+
+          <footer className="site-footer">
+            <div className="site-footer__inner">
+              <div className="site-footer__block">
+                <p className="site-footer__eyebrow">Mimicorp Systems</p>
+                <p className="site-footer__body">
+                  Operational systems for land, business, media, and research.
+                </p>
               </div>
-              <div className="flex items-center justify-center gap-5">
-                <Image
-                  src={mLogo}
-                  alt="Mimicorp M logo"
-                  className="h-8 w-auto object-contain opacity-85"
-                  priority
-                />
-                <Image
-                  src={fruitfulBrainLogo}
-                  alt="Fruitful Brain logo"
-                  className="h-10 w-auto object-contain opacity-85"
-                />
+
+              <div className="site-footer__links" aria-label="Domain links">
+                {domainNav.map((item) => (
+                  <Link key={item.label} href={item.href}>
+                    {item.label}
+                  </Link>
+                ))}
               </div>
-              <p className="font-body text-[11px] uppercase tracking-[0.28em] text-white/60">
-                Copyright 2026 Mimicorp Systems
-              </p>
+
+              <div className="site-footer__block site-footer__block--right">
+                <p className="site-footer__eyebrow">Principle</p>
+                <p className="site-footer__body">Engines fueled by belief + movement.</p>
+              </div>
             </div>
           </footer>
         </div>
