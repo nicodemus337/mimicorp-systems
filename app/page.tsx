@@ -148,6 +148,12 @@ export default function HomePage() {
               <p className="definition-card__statement">
                 We build integrated operational systems across land, data, and media.
               </p>
+              <div className="definition-card__flow" aria-hidden="true">
+                <span>land</span>
+                <span>people</span>
+                <span>work</span>
+                <span>information</span>
+              </div>
             </div>
 
             <div className="definition-card">
@@ -180,6 +186,15 @@ export default function HomePage() {
             </p>
           </div>
 
+          <div className="engine-strip" aria-hidden="true">
+            {engineSteps.map((step) => (
+              <div key={step.title} className="engine-strip__node">
+                <span className="engine-strip__index">{step.step}</span>
+                <span className="engine-strip__title">{step.title}</span>
+              </div>
+            ))}
+          </div>
+
           <div className="backbone-grid">
             {engineSteps.map((step) => (
               <article key={step.title} className="backbone-card">
@@ -208,14 +223,16 @@ export default function HomePage() {
                 <p className="pathway-card__outcome">
                   <span>Outcome:</span> {pathway.outcome}
                 </p>
-                <a
-                  href={pathway.href}
-                  className="home-button home-button--secondary"
-                  target={pathway.external ? "_blank" : undefined}
-                  rel={pathway.external ? "noreferrer" : undefined}
-                >
-                  Open pathway
-                </a>
+                <p className="pathway-card__reference">
+                  Reference:{" "}
+                  <a
+                    href={pathway.href}
+                    target={pathway.external ? "_blank" : undefined}
+                    rel={pathway.external ? "noreferrer" : undefined}
+                  >
+                    {pathway.name === "Experimental" ? "Research archive" : `${pathway.name} system`}
+                  </a>
+                </p>
               </article>
             ))}
           </div>
@@ -238,14 +255,7 @@ export default function HomePage() {
                 <p className="deployment-card__label">{deployment.label}</p>
                 <h3 className="deployment-card__title">{deployment.name}</h3>
                 <p className="deployment-card__summary">{deployment.summary}</p>
-                <a
-                  href={deployment.href}
-                  className="home-button home-button--secondary"
-                  target={deployment.external ? "_blank" : undefined}
-                  rel={deployment.external ? "noreferrer" : undefined}
-                >
-                  View system
-                </a>
+                <p className="deployment-card__status">Status: live</p>
               </article>
             ))}
           </div>
