@@ -43,7 +43,30 @@ export function SiteChrome({ children }: SiteChromeProps) {
 
           <nav className="site-nav" aria-label="Primary">
             {primaryNav.map((item) => (
-              <Link key={item.label} href={item.href}>
+              <Link
+                key={item.label}
+                href={item.href}
+                className={pathname === "/" && item.href.startsWith("/#") ? "is-active" : ""}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        <div className="site-header__subnav">
+          <div className="site-header__status">
+            <span className="site-status-dot" />
+            <span>System Online</span>
+          </div>
+
+          <nav className="site-domain-nav" aria-label="Domain navigation">
+            {domainNav.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={pathname === item.href ? "is-active" : ""}
+              >
                 {item.label}
               </Link>
             ))}
