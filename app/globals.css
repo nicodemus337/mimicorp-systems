@@ -352,13 +352,32 @@ p,
 .landing-screen__inner {
   display: grid;
   justify-items: center;
-  gap: 28px;
+  gap: 20px;
+  text-align: center;
 }
 
 .landing-logo {
-  width: min(68vw, 380px);
+  width: min(68vw, 360px);
   height: auto;
-  filter: drop-shadow(0 0 36px rgba(255, 255, 255, 0.2));
+  filter: drop-shadow(0 0 36px rgba(255, 255, 255, 0.16));
+}
+
+.landing-prompt,
+.landing-hint {
+  margin: 0;
+  max-width: none;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.landing-prompt {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.landing-hint {
+  color: rgba(255, 255, 255, 0.42);
 }
 
 .landing-start {
@@ -409,7 +428,7 @@ p,
 }
 
 .game-menu__header {
-  margin-bottom: 36px;
+  margin-bottom: 32px;
 }
 
 .game-menu__label {
@@ -464,6 +483,13 @@ p,
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
 }
 
+.game-menu__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 .game-menu__card h2 {
   margin: 0 0 10px;
   color: #fff;
@@ -482,6 +508,14 @@ p,
   font-family: var(--mono);
   font-size: 11px;
   letter-spacing: 0.18em;
+}
+
+.game-menu__action {
+  color: rgba(255, 255, 255, 0.56);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 @media (max-width: 640px) {

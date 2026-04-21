@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -37,6 +37,25 @@ const menuOptions = [
 export default function HomePage() {
   const [hasEntered, setHasEntered] = useState(false);
 
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (hasEntered) {
+        return;
+      }
+
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        setHasEntered(true);
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [hasEntered]);
+
   return (
     <main className={`landing-shell${hasEntered ? " landing-shell--entered" : ""}`}>
       <section className={`landing-screen${hasEntered ? " landing-screen--hidden" : ""}`}>
@@ -48,9 +67,13 @@ export default function HomePage() {
             priority
           />
 
+          <p className="landing-prompt">Press start to enter.</p>
+
           <button type="button" className="landing-start" onClick={() => setHasEntered(true)}>
             Start
           </button>
+
+          <p className="landing-hint">Enter key also works.</p>
         </div>
       </section>
 
@@ -63,7 +86,11 @@ export default function HomePage() {
         <div className="game-menu__grid">
           {menuOptions.map((option, index) => (
             <Link key={option.title} href={option.href} className="game-menu__card">
-              <span className="game-menu__index">{String(index + 1).padStart(2, "0")}</span>
+              <div className="game-menu__meta">
+                <span className="game-menu__index">{String(index + 1).padStart(2, "0")}</span>
+                <span className="game-menu__action">Open</span>
+              </div>
+
               <div>
                 <h2>{option.title}</h2>
                 <p>{option.body}</p>
