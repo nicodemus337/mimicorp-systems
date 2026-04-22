@@ -306,6 +306,11 @@ article .date {
   margin-bottom: 10px;
 }
 
+.panel > p:last-child,
+.panel > ul:last-child {
+  margin-bottom: 0;
+}
+
 .cta {
   display: inline-block;
   padding: 12px 18px;
