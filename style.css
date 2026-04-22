@@ -126,6 +126,10 @@ p {
   opacity: 0.85;
 }
 
+em {
+  font-style: italic;
+}
+
 a {
   color: #fff;
 }
@@ -168,6 +172,25 @@ article .date {
   opacity: 0.5;
   margin-bottom: 10px;
   display: block;
+}
+
+.longform {
+  max-width: 760px;
+}
+
+.longform p {
+  font-size: 16px;
+  line-height: 1.8;
+  opacity: 0.92;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.55;
 }
 
 
