@@ -184,6 +184,26 @@ section a {
   margin-bottom: 24px;
 }
 
+.about-hero {
+  display: grid;
+  grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
+  gap: 36px;
+  align-items: start;
+}
+
+.about-photo-wrap {
+  width: 100%;
+}
+
+.about-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04);
+}
+
 
 /* =========================
    RESEARCH: NOTES SYSTEM
@@ -375,6 +395,11 @@ button:hover,
 
   .split {
     grid-template-columns: 1fr;
+  }
+
+  .about-hero {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 }
 
