@@ -19,6 +19,19 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+body.fade-in {
+  animation: bodyFade 0.8s ease;
+}
+
+@keyframes bodyFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 
 /* =========================
    INTRO (VIDEO SPLASH)
@@ -65,12 +78,16 @@ nav {
   top: 30px;
   right: 50px;
   z-index: 1000;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 18px;
+  max-width: min(80vw, 520px);
 }
 
 nav a {
   color: #fff;
   text-decoration: none;
-  margin-left: 24px;
   font-size: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -124,6 +141,14 @@ p {
   font-size: 15px;
   margin-bottom: 16px;
   opacity: 0.85;
+}
+
+ul {
+  margin: 0 0 18px 20px;
+}
+
+li {
+  margin-bottom: 8px;
 }
 
 em {
@@ -231,6 +256,54 @@ article .date {
   opacity: 0.75;
 }
 
+.meta {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 8px;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.panel {
+  padding: 22px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.03);
+}
+
+.panel h3 {
+  margin-bottom: 10px;
+}
+
+.cta {
+  display: inline-block;
+  padding: 12px 18px;
+  border: 1px solid rgba(255,255,255,0.35);
+  border-bottom: 1px solid rgba(255,255,255,0.35);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 13px;
+}
+
+.contact-list {
+  list-style: none;
+  margin-left: 0;
+}
+
+.contact-list li {
+  margin-bottom: 12px;
+}
+
+.chapter {
+  margin-bottom: 28px;
+}
+
 
 /* =========================
    FORMS (BOOKING)
@@ -258,6 +331,45 @@ input:focus, textarea:focus {
 textarea {
   min-height: 120px;
   resize: vertical;
+}
+
+button {
+  padding: 12px 18px;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: transparent;
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+button:hover,
+.cta:hover {
+  opacity: 1;
+  border-color: #fff;
+}
+
+@media (max-width: 760px) {
+  nav {
+    position: static;
+    padding: 24px 24px 0;
+    justify-content: flex-start;
+    gap: 14px;
+    max-width: none;
+  }
+
+  main {
+    padding: 56px 24px 72px;
+  }
+
+  h1 {
+    font-size: 34px;
+  }
+
+  .split {
+    grid-template-columns: 1fr;
+  }
 }
 
 button {

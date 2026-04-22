@@ -14,7 +14,7 @@
 ========================= -->
 <div id="intro">
   <video id="introVideo" autoplay muted playsinline>
-    <source src="/assets/video/mimicorp_glitch_logo.mp4" type="video/mp4">
+    <source src="/assets/images/mimicorp_glitch_logo.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
@@ -86,38 +86,6 @@
      SCRIPTS
 ========================= -->
 <script src="/main.js"></script>
-
-<script>
-/* =========================
-   INTRO TRANSITION CONTROL
-========================= */
-
-const video = document.getElementById("introVideo");
-const intro = document.getElementById("intro");
-const site = document.getElementById("site");
-
-video.onended = () => {
-  intro.style.opacity = "0";
-
-  setTimeout(() => {
-    intro.style.display = "none";
-    site.classList.remove("hidden");
-    site.style.opacity = "1";
-  }, 800);
-};
-
-
-/* =========================
-   NAV LOAD
-========================= */
-
-fetch("/components/nav.html")
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("nav").innerHTML = data;
-  });
-
-</script>
 
 </body>
 </html>
