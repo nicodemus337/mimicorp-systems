@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mimicorp Systems</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<!-- =========================
+     INTRO VIDEO
+========================= -->
+<div id="intro">
+  <video id="introVideo" autoplay muted playsinline>
+    <source src="/assets/video/mimicorp_glitch_logo.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+
+<!-- =========================
+     MAIN SITE
+========================= -->
+<div id="site" class="hidden">
+
+  <!-- NAV INJECT -->
+  <div id="nav"></div>
+
+  <main>
+
+    <!-- HERO -->
+    <section>
+      <h1>Mimicorp Systems</h1>
+      <p>
+        Research, media, and systems grounded in land, governance, and lived experience.
+      </p>
+    </section>
+
+
+    <!-- RESEARCH -->
+    <section>
+      <h2>Research</h2>
+      <p>
+        Ongoing work on governance, time, and ecological systems. Includes dissertation development and active research notes.
+      </p>
+      <a href="/research/">Enter Research</a>
+    </section>
+
+
+    <!-- MEDIA -->
+    <section>
+      <h2>Media</h2>
+      <p>
+        Second Cutting and Field Notes. Stories from land, animals, and people, alongside daily ecological observations.
+      </p>
+      <a href="/media/">View Media</a>
+    </section>
+
+
+    <!-- ABOUT -->
+    <section>
+      <h2>About</h2>
+      <p>
+        Background, affiliations, and contact. A working profile of a social scientist operating across research and production.
+      </p>
+      <a href="/about/">View Profile</a>
+    </section>
+
+
+    <!-- BOOKING -->
+    <section>
+      <h2>Book</h2>
+      <p>
+        Request studio time, consultation, or collaboration. Access to systems thinking, media production, and applied research.
+      </p>
+      <a href="/book/">Request Time</a>
+    </section>
+
+  </main>
+</div>
+
+
+<!-- =========================
+     SCRIPTS
+========================= -->
+<script src="/main.js"></script>
+
+<script>
+/* =========================
+   INTRO TRANSITION CONTROL
+========================= */
+
+const video = document.getElementById("introVideo");
+const intro = document.getElementById("intro");
+const site = document.getElementById("site");
+
+video.onended = () => {
+  intro.style.opacity = "0";
+
+  setTimeout(() => {
+    intro.style.display = "none";
+    site.classList.remove("hidden");
+    site.style.opacity = "1";
+  }, 800);
+};
+
+
+/* =========================
+   NAV LOAD
+========================= */
+
+fetch("/components/nav.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("nav").innerHTML = data;
+  });
+
+</script>
+
+</body>
+</html>
