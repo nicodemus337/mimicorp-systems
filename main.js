@@ -1,37 +1,4 @@
 /* =========================
-   INTRO TRANSITION
-========================= */
-
-const video = document.getElementById("introVideo");
-const intro = document.getElementById("intro");
-const site = document.getElementById("site");
-
-// If intro video exists, control transition
-if (video && intro && site) {
-  let transitioned = false;
-
-  const revealSite = () => {
-    if (transitioned) return;
-    transitioned = true;
-
-    intro.style.opacity = "0";
-
-    setTimeout(() => {
-      intro.style.display = "none";
-      site.classList.remove("hidden");
-      site.style.opacity = "1";
-    }, 800);
-  };
-
-  // When video ends
-  video.onended = revealSite;
-
-  // Fallback (in case video fails or hangs)
-  setTimeout(revealSite, 8000);
-}
-
-
-/* =========================
    NAV INJECTION
 ========================= */
 

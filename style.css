@@ -34,43 +34,6 @@ body.fade-in {
 
 
 /* =========================
-   INTRO (VIDEO SPLASH)
-========================= */
-#intro {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  transition: opacity 0.8s ease;
-}
-
-#intro video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-
-/* =========================
-   SITE WRAPPER
-========================= */
-#site {
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-
-.hidden {
-  display: none;
-}
-
-
-/* =========================
    NAVIGATION
 ========================= */
 nav {
@@ -182,6 +145,7 @@ section a {
   display: block;
   width: min(220px, 42vw);
   margin-bottom: 24px;
+  filter: invert(1);
 }
 
 .about-hero {
