@@ -18,6 +18,21 @@ if (navContainer) {
 
 
 /* =========================
+   COPYRIGHT WATERMARK
+========================= */
+
+const siteContainer = document.getElementById("site");
+
+if (siteContainer && !document.querySelector(".site-watermark")) {
+  const watermark = document.createElement("footer");
+  watermark.className = "site-watermark";
+  watermark.setAttribute("aria-label", "Copyright");
+  watermark.innerHTML = "&copy; mimicorp labs, llc 2026";
+  siteContainer.appendChild(watermark);
+}
+
+
+/* =========================
    ACTIVE NAV LINK
 ========================= */
 
