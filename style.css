@@ -38,14 +38,48 @@ body.fade-in {
 ========================= */
 nav {
   position: fixed;
-  top: 30px;
-  right: 50px;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 26px 50px 18px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.68) 72%, rgba(0,0,0,0) 100%);
+}
+
+.site-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: max-content;
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.92;
+}
+
+.site-mark img {
+  display: block;
+  width: 38px;
+  height: 38px;
+  filter: invert(1);
+}
+
+.site-mark span {
+  font-size: 13px;
+  letter-spacing: 0.11em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: nowrap;
   justify-content: flex-end;
-  gap: 18px;
-  max-width: min(80vw, 520px);
+  gap: clamp(14px, 2.1vw, 24px);
+  min-width: 0;
 }
 
 nav a {
@@ -62,7 +96,7 @@ nav a:hover {
   opacity: 1;
 }
 
-nav a.active {
+.nav-links a.active {
   opacity: 1;
   border-bottom: 1px solid #fff;
   padding-bottom: 2px;
@@ -76,6 +110,16 @@ main {
   max-width: 900px;
   margin: 0 auto;
   padding: 140px 40px 80px;
+}
+
+.site-watermark {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 40px 36px;
+  color: rgba(255,255,255,0.42);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 
@@ -348,14 +392,30 @@ button:hover,
 @media (max-width: 760px) {
   nav {
     position: static;
-    padding: 24px 24px 0;
+    align-items: flex-start;
+    padding: 22px 24px 0;
+    background: transparent;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
     justify-content: flex-start;
-    gap: 14px;
-    max-width: none;
+    gap: 12px 14px;
+  }
+
+  .site-mark img {
+    width: 34px;
+    height: 34px;
   }
 
   main {
     padding: 56px 24px 72px;
+  }
+
+  .site-watermark {
+    padding: 0 24px 32px;
   }
 
   h1 {
@@ -393,12 +453,16 @@ button:hover {
 ========================= */
 @media (max-width: 768px) {
   nav {
-    top: 20px;
-    right: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   main {
-    padding: 120px 20px 60px;
+    padding: 56px 20px 60px;
+  }
+
+  .site-watermark {
+    padding: 0 20px 30px;
   }
 
   h1 {
