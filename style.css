@@ -551,11 +551,18 @@ body.home-cinematic {
   font-weight: 600;
 }
 
+.home-title-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 4vw, 46px);
+}
+
 .home-brain-logo {
   display: block;
-  width: min(180px, 40vw);
+  flex: 0 0 auto;
+  width: clamp(92px, 14vw, 180px);
   height: auto;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
 .home-kicker {
@@ -1630,9 +1637,14 @@ button:hover,
     margin-bottom: 34px;
   }
 
+  .home-title-row {
+    align-items: flex-start;
+    gap: 14px;
+  }
+
   .home-brain-logo {
-    width: min(150px, 46vw);
-    margin-bottom: 22px;
+    width: clamp(72px, 22vw, 118px);
+    margin-bottom: 18px;
   }
 
   .home-kicker {
