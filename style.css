@@ -1806,3 +1806,198 @@ button:hover {
   font-size: 14px;
   opacity: 0.7;
 }
+
+
+/* =========================
+   GLOBAL MODE: FLAT BLACK / LOWERCASE MONO
+========================= */
+html,
+body,
+body.home-cinematic,
+.systems-page,
+.services-page,
+.schedule-page {
+  background: #000;
+}
+
+body {
+  font-family: "Courier New", "Lucida Console", Monaco, monospace;
+  color: #f2efe5;
+  text-transform: lowercase;
+}
+
+h1,
+h2,
+h3,
+p,
+li,
+a,
+button,
+input,
+textarea,
+.site-mark span,
+.nav-links a,
+.eyebrow,
+.meta,
+.node-hub,
+.home-brand-code,
+.home-kicker,
+.home-field-index,
+.home-manifest span,
+.portal-arrow,
+.cta,
+.site-watermark {
+  font-family: inherit;
+  text-transform: lowercase;
+  letter-spacing: 0.08em;
+}
+
+h1,
+.home-hero h1,
+.services-hero h1,
+.schedule-hero h1,
+.about-hero-copy h1 {
+  color: #f2efe5;
+  font-family: inherit;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  text-shadow: none;
+}
+
+p,
+li,
+.systems-page p,
+.systems-page li,
+.node-card p,
+.system-node-card p,
+.about-portal-card p,
+.home-portal p,
+.home-hero p {
+  color: rgba(242,239,229,0.78);
+}
+
+nav,
+.home-cinematic nav,
+.systems-hero,
+.system-panel,
+.panel.system-panel,
+.panel.system-panel.service-module,
+.node-hub,
+.system-node-hub,
+.about-portal-hub,
+.node-card,
+.system-node-card,
+.about-portal-card,
+.home-hero,
+.home-portal,
+.home-manifest,
+.services-hero,
+.schedule-hero,
+.systems-closing,
+.schedule-request,
+.panel {
+  background: #000;
+  box-shadow: none;
+}
+
+.home-hero {
+  background-image: none;
+  border-top: 1px solid rgba(242,239,229,0.14);
+  border-bottom: 1px solid rgba(242,239,229,0.18);
+}
+
+.home-hero::before,
+.home-hero::after,
+.systems-hero::before,
+.system-panel::before,
+.node-card::after,
+.about-portal-card::after,
+.home-portal::before,
+body.about-page::before {
+  display: none;
+}
+
+.home-rail,
+.home-rail span,
+.home-kicker::before,
+.home-field-index div,
+.home-portal-strip,
+.home-portal,
+.node-map::before,
+.node-hub::before,
+.node-hub::after,
+.node-card::before,
+.service-module::after,
+.about-hero::after,
+.portal-arrow::after {
+  background: rgba(125,155,95,0.62);
+  border-color: rgba(125,155,95,0.42);
+}
+
+nav,
+.panel,
+.node-card,
+.node-hub,
+.system-panel,
+.system-node-card,
+.system-node-hub,
+.about-portal-card,
+.home-portal,
+.home-hero,
+.systems-hero {
+  border-color: rgba(242,239,229,0.16);
+}
+
+.site-mark,
+.home-cinematic .site-mark,
+.home-cinematic .nav-links a,
+.home-brand-code,
+.home-kicker,
+.eyebrow,
+.meta,
+.portal-arrow,
+.home-manifest em,
+.systems-page .eyebrow,
+.systems-page .meta {
+  color: var(--moss);
+}
+
+a,
+.home-cta,
+.cta {
+  color: #f2efe5;
+  border-color: rgba(125,155,95,0.55);
+}
+
+a:hover,
+a:focus-visible,
+.home-cta:hover,
+.home-cta:focus-visible,
+.cta:hover,
+button:hover {
+  color: #fff;
+  border-color: var(--moss);
+  opacity: 1;
+}
+
+.node-card:hover,
+.node-card:focus-visible,
+.system-node-card:hover,
+.system-node-card:focus-visible,
+.about-portal-card:hover,
+.about-portal-card:focus-visible,
+.home-portal:hover,
+.home-portal:focus-visible,
+.service-module:hover,
+.service-module:focus-within {
+  background: #030303;
+  box-shadow: none;
+  transform: translateY(-2px);
+}
+
+button {
+  background: #000;
+  color: #f2efe5;
+  border: 1px solid rgba(125,155,95,0.55);
+}
