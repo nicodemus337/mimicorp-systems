@@ -551,6 +551,13 @@ body.home-cinematic {
   font-weight: 600;
 }
 
+.home-brain-logo {
+  display: block;
+  width: min(180px, 40vw);
+  height: auto;
+  margin-bottom: 28px;
+}
+
 .home-kicker {
   position: relative;
   display: block;
@@ -1621,6 +1628,11 @@ button:hover,
 
   .home-brand-code {
     margin-bottom: 34px;
+  }
+
+  .home-brain-logo {
+    width: min(150px, 46vw);
+    margin-bottom: 22px;
   }
 
   .home-kicker {
