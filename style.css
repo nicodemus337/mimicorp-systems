@@ -539,8 +539,7 @@ body.home-cinematic {
 .home-brand-code,
 .home-kicker,
 .home-field-index,
-.home-portal .meta,
-.home-manifest span {
+.home-portal .meta {
   color: var(--moss);
   font-size: 12px;
   letter-spacing: 0.28em;
@@ -766,29 +765,6 @@ body.home-cinematic {
 
 .home-portal-contact {
   --portal-tint: #d6a45f;
-}
-
-.home-manifest {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 24px;
-  align-items: center;
-  margin-bottom: 0;
-  padding: 34px clamp(24px, 6vw, 70px) 48px;
-  background: #030302;
-}
-
-.home-manifest p {
-  max-width: 680px;
-  margin-bottom: 0;
-  color: rgba(239,232,214,0.82);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(22px, 3vw, 34px);
-  line-height: 1.35;
-}
-
-.home-manifest em {
-  color: var(--moss);
 }
 
 .about-hero {
@@ -1737,10 +1713,6 @@ button:hover,
     border-bottom: 1px solid rgba(214,164,95,0.24);
   }
 
-  .home-manifest {
-    grid-template-columns: 1fr;
-    padding: 30px 24px 42px;
-  }
 }
 
 button {
@@ -1843,7 +1815,6 @@ textarea,
 .home-brand-code,
 .home-kicker,
 .home-field-index,
-.home-manifest span,
 .portal-arrow,
 .cta,
 .site-watermark {
@@ -1891,7 +1862,6 @@ nav,
 .about-portal-card,
 .home-hero,
 .home-portal,
-.home-manifest,
 .services-hero,
 .schedule-hero,
 .systems-closing,
@@ -1957,7 +1927,6 @@ nav,
 .eyebrow,
 .meta,
 .portal-arrow,
-.home-manifest em,
 .systems-page .eyebrow,
 .systems-page .meta {
   color: var(--moss);
