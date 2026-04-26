@@ -334,6 +334,10 @@ section a {
   --node-color: #f0b35a;
 }
 
+.node-services {
+  --node-color: #66d7ff;
+}
+
 .node-about {
   --node-color: #8fa8ff;
 }
