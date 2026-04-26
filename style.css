@@ -831,6 +831,7 @@ body.home-cinematic {
 }
 
 .about-photo-wrap {
+  position: relative;
   width: 100%;
   margin: 0;
   overflow: hidden;
@@ -846,7 +847,7 @@ body.home-cinematic {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: 50% 38%;
+  object-position: 50% 50%;
   opacity: 0.88;
   filter: saturate(0.82) contrast(1.08);
   mix-blend-mode: luminosity;
@@ -862,26 +863,7 @@ body.home-cinematic {
     linear-gradient(180deg, rgba(22,36,58,0.18), rgba(125,155,95,0.1));
 }
 
-.about-image-plate {
-  position: absolute;
-  right: -10px;
-  bottom: -18px;
-  width: min(188px, 46%);
-  margin: 0;
-  border: 1px solid rgba(239,232,214,0.16);
-  background: rgba(5,4,3,0.78);
-  box-shadow: 0 18px 60px rgba(0,0,0,0.44);
-}
-
-.about-image-plate img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  filter: saturate(0.72) contrast(1.08) sepia(0.08);
-}
-
-.about-image-plate figcaption {
+.about-photo-wrap figcaption {
   padding: 10px 12px;
   color: rgba(239,232,214,0.58);
   font-size: 11px;
@@ -1630,14 +1612,6 @@ button:hover,
 
   .about-hero-visual {
     padding: 0;
-  }
-
-  .about-image-plate {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    width: 100%;
-    margin-top: 14px;
   }
 
   .about-photo-wrap::after {
