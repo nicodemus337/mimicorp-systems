@@ -45,15 +45,15 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 32px;
-  padding: 26px 50px 18px;
+  gap: 38px;
+  padding: 30px 50px 24px;
   background: linear-gradient(180deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.68) 72%, rgba(0,0,0,0) 100%);
 }
 
 .site-mark {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   min-width: max-content;
   color: #fff;
   text-decoration: none;
@@ -62,13 +62,13 @@ nav {
 
 .site-mark img {
   display: block;
-  width: 38px;
-  height: 38px;
-  filter: invert(1);
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
 }
 
 .site-mark span {
-  font-size: 13px;
+  font-size: 16px;
   letter-spacing: 0.11em;
   line-height: 1;
   text-transform: uppercase;
@@ -109,7 +109,7 @@ nav a:hover {
 main {
   max-width: 900px;
   margin: 0 auto;
-  padding: 140px 40px 80px;
+  padding: 170px 40px 80px;
 }
 
 .site-watermark {
@@ -368,9 +368,9 @@ section a {
 
 .hero-logo {
   display: block;
-  width: min(220px, 42vw);
+  width: min(300px, 52vw);
   margin-bottom: 24px;
-  filter: invert(1);
+  object-fit: contain;
 }
 
 .about-hero {
@@ -587,8 +587,8 @@ button:hover,
   }
 
   .site-mark img {
-    width: 34px;
-    height: 34px;
+    width: 52px;
+    height: 52px;
   }
 
   main {
