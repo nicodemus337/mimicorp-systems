@@ -1846,8 +1846,6 @@ body.about-page::before {
 .home-rail,
 .home-rail span,
 .home-kicker::before,
-.home-portal-strip,
-.home-portal,
 .node-map::before,
 .node-hub::before,
 .node-hub::after,
@@ -1923,4 +1921,316 @@ button {
   background: #000;
   color: #f2efe5;
   border: 1px solid rgba(125,155,95,0.55);
+}
+
+
+/* =========================
+   SCHEDULE-LIKE SITE CONVERGENCE
+========================= */
+body.home-cinematic,
+body.about-page,
+body.services-page {
+  background: #000;
+}
+
+.home-main,
+.about-main,
+.services-main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 170px 40px 80px;
+}
+
+.home-cinematic nav,
+.systems-page nav {
+  background: #000;
+  border-bottom: 1px solid rgba(242,239,229,0.12);
+}
+
+.home-cinematic .site-mark,
+.home-cinematic .nav-links a {
+  color: #f2efe5;
+}
+
+.home-cinematic .nav-links {
+  gap: clamp(14px, 2.1vw, 24px);
+}
+
+.home-cinematic .site-watermark {
+  max-width: 980px;
+  padding: 0 40px 36px;
+  color: rgba(242,239,229,0.42);
+}
+
+.home-hero,
+.about-hero,
+.services-hero {
+  min-height: 310px;
+  margin-bottom: 24px;
+  padding: clamp(28px, 5vw, 56px);
+  border: 1px solid rgba(242,239,229,0.16);
+  background: #000;
+  box-shadow: none;
+}
+
+.home-hero {
+  display: block;
+}
+
+.home-rail,
+.home-rail span,
+.home-kicker::before,
+.portal-emblem,
+.about-hero::before,
+.about-hero::after,
+.about-hero-visual::before,
+.about-photo-wrap::after,
+.node-map::before,
+.node-hub::before,
+.node-hub::after,
+.node-card::before,
+.service-module::after {
+  display: none;
+}
+
+.home-hero-copy {
+  max-width: 760px;
+  margin-left: 0;
+}
+
+.home-brand-code,
+.home-kicker,
+.home-title-row,
+.home-hero p {
+  max-width: 760px;
+}
+
+.home-brand-code,
+.home-kicker,
+.home-hero .home-brand-code,
+.home-hero .home-kicker {
+  margin: 0 0 18px;
+  color: rgba(242,239,229,0.72);
+  letter-spacing: 0.1em;
+}
+
+.home-title-row {
+  align-items: center;
+  gap: clamp(16px, 3vw, 28px);
+  margin: 0 0 22px;
+}
+
+.home-hero h1,
+.about-hero-copy h1,
+.services-hero h1 {
+  max-width: none;
+  margin-bottom: 0;
+  color: #f2efe5;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1.05;
+}
+
+.home-brain-logo {
+  width: clamp(64px, 8vw, 104px);
+  margin: 0;
+  filter: none;
+}
+
+.home-hero p,
+.about-hero-copy p,
+.services-hero p {
+  max-width: 720px;
+  color: rgba(242,239,229,0.78);
+}
+
+.home-cta,
+.cta {
+  display: inline-flex;
+  width: auto;
+  min-width: 0;
+  margin-top: 10px;
+  padding: 12px 16px;
+  border: 1px solid rgba(242,239,229,0.2);
+  color: #f2efe5;
+  background: #000;
+}
+
+.home-cta::after {
+  display: none;
+}
+
+.home-portal-strip,
+.services-module-grid,
+.split.schedule-brief-grid,
+.schedule-rate-grid {
+  gap: 18px;
+}
+
+.home-portal-strip {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0 0 42px;
+  border: 0;
+  background: transparent;
+}
+
+.home-portal,
+.panel,
+.system-panel,
+.panel.system-panel.service-module,
+.node-card,
+.system-node-card,
+.about-portal-card,
+.node-hub,
+.system-node-hub,
+.about-portal-hub {
+  border: 1px solid rgba(242,239,229,0.16);
+  background: #000;
+  box-shadow: none;
+}
+
+.home-portal {
+  min-height: 188px;
+  padding: 24px;
+  border-right: 1px solid rgba(242,239,229,0.16);
+  color: #f2efe5;
+}
+
+.home-portal:nth-child(4) {
+  border-right: 1px solid rgba(242,239,229,0.16);
+}
+
+.home-portal h2,
+.service-module h2,
+.system-node-card h2,
+.about-portal-card h2,
+.panel h2 {
+  color: #f2efe5;
+  font-size: 18px;
+  letter-spacing: 0.06em;
+}
+
+.home-portal p,
+.service-module p,
+.system-node-card p,
+.about-portal-card p,
+.panel p {
+  color: rgba(242,239,229,0.76);
+}
+
+.meta,
+.eyebrow,
+.systems-page .meta,
+.systems-page .eyebrow,
+.home-portal .meta,
+.service-module .meta,
+.about-portal-card .meta {
+  color: rgba(242,239,229,0.62);
+}
+
+.portal-arrow {
+  color: rgba(242,239,229,0.54);
+}
+
+.portal-arrow::after {
+  background: rgba(242,239,229,0.36);
+}
+
+.about-hero {
+  grid-template-columns: 0.76fr 1.24fr;
+  gap: clamp(24px, 5vw, 54px);
+}
+
+.about-photo-wrap {
+  border-color: rgba(242,239,229,0.16);
+  background: #000;
+  box-shadow: none;
+}
+
+.about-photo {
+  opacity: 0.9;
+  filter: grayscale(1) contrast(1.04);
+  mix-blend-mode: normal;
+}
+
+.about-photo-wrap figcaption {
+  color: rgba(242,239,229,0.56);
+}
+
+.about-hero-line {
+  border-color: rgba(242,239,229,0.18);
+  color: rgba(242,239,229,0.68);
+}
+
+.system-node-map,
+.about-portal-map {
+  margin-top: 18px;
+}
+
+.node-hub,
+.system-node-hub,
+.about-portal-hub {
+  color: rgba(242,239,229,0.72);
+}
+
+.service-module {
+  min-height: 260px;
+}
+
+.systems-closing,
+.schedule-request {
+  background: #000;
+}
+
+.home-portal:hover,
+.home-portal:focus-visible,
+.node-card:hover,
+.node-card:focus-visible,
+.system-node-card:hover,
+.system-node-card:focus-visible,
+.about-portal-card:hover,
+.about-portal-card:focus-visible,
+.service-module:hover,
+.service-module:focus-within,
+.schedule-panel:hover,
+.schedule-rate-card:hover,
+.home-cta:hover,
+.home-cta:focus-visible,
+.cta:hover,
+.cta:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(242,239,229,0.34);
+  background: #030303;
+  box-shadow: none;
+}
+
+@media (max-width: 760px) {
+  .home-main,
+  .about-main,
+  .services-main {
+    padding: 56px 20px 60px;
+  }
+
+  .home-cinematic .site-watermark {
+    padding: 0 20px 30px;
+  }
+
+  .home-hero,
+  .about-hero,
+  .services-hero {
+    min-height: auto;
+    padding: 24px;
+  }
+
+  .about-hero,
+  .home-portal-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .home-title-row {
+    align-items: flex-start;
+  }
+
+  .home-brain-logo {
+    width: clamp(56px, 18vw, 86px);
+  }
 }
