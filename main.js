@@ -27,7 +27,7 @@ if (siteContainer && !document.querySelector(".site-watermark")) {
   const watermark = document.createElement("footer");
   watermark.className = "site-watermark";
   watermark.setAttribute("aria-label", "Copyright");
-  watermark.innerHTML = "&copy; mimicorp labs, llc 2026";
+  watermark.innerHTML = "&copy; mimicorp labs, 2026, new iberia louisiana";
   siteContainer.appendChild(watermark);
 }
 
