@@ -2055,8 +2055,43 @@ body.services-page {
   background: #000;
 }
 
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.home-cta.secondary {
+  color: rgba(242,239,229,0.72);
+  border-color: rgba(242,239,229,0.16);
+}
+
 .home-cta::after {
   display: none;
+}
+
+.home-response-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: 24px;
+  align-items: start;
+  margin-bottom: 24px;
+  padding: 24px;
+  border: 1px solid rgba(242,239,229,0.16);
+  background: #000;
+}
+
+.home-response-panel h2 {
+  max-width: 420px;
+  color: #f2efe5;
+  font-size: 20px;
+  letter-spacing: 0.06em;
+}
+
+.home-response-panel p {
+  margin-bottom: 0;
+  color: rgba(242,239,229,0.78);
 }
 
 .home-portal-strip,
@@ -2179,6 +2214,14 @@ body.services-page {
   min-height: 260px;
 }
 
+.service-quick-read {
+  margin-bottom: 24px;
+}
+
+.service-quick-read ul {
+  margin-bottom: 18px;
+}
+
 .systems-closing,
 .schedule-request {
   background: #000;
@@ -2225,7 +2268,8 @@ body.services-page {
   }
 
   .about-hero,
-  .home-portal-strip {
+  .home-portal-strip,
+  .home-response-panel {
     grid-template-columns: 1fr;
   }
 
