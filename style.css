@@ -2043,6 +2043,10 @@ body.services-page {
   color: rgba(242,239,229,0.78);
 }
 
+.home-hero p {
+  text-transform: lowercase;
+}
+
 .home-cta,
 .cta {
   display: inline-flex;
