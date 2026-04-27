@@ -2284,4 +2284,28 @@ body.services-page {
   .home-brain-logo {
     width: clamp(56px, 18vw, 86px);
   }
+
+  nav,
+  .home-cinematic nav,
+  .systems-page nav {
+    gap: 16px;
+  }
+
+  .nav-links,
+  .home-cinematic .nav-links {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .nav-links a,
+  .home-cinematic .nav-links a {
+    display: flex;
+    min-height: 32px;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 4px 0;
+    text-align: left;
+  }
 }
