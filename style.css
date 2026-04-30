@@ -907,6 +907,7 @@ body.home-cinematic {
 
 .about-portal-grid {
   gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .about-portal-card {
@@ -963,6 +964,38 @@ body.home-cinematic {
   color: var(--portal-muted);
   opacity: 1;
   padding-right: 22px;
+}
+
+.about-branch-card {
+  justify-content: flex-start;
+}
+
+.about-branch-links {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.about-branch-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 8px 11px;
+  border: 1px solid rgba(239,232,214,0.18);
+  color: rgba(239,232,214,0.82);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.about-branch-links a:hover,
+.about-branch-links a:focus-visible {
+  border-color: rgba(239,232,214,0.38);
+  color: var(--portal-paper);
 }
 
 .portal-arrow {
