@@ -1,4 +1,4 @@
-import { books } from "@/data/books/my-feet-are-dirty";
+import { books } from "@/data/books/myFeetAreDirty";
 
 export function getAllBooks() {
   return books;

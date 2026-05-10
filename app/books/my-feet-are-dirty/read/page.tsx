@@ -1,5 +1,5 @@
 import { ReaderShell } from "@/components/books/ReaderShell";
-import { myFeetAreDirty } from "@/data/books/my-feet-are-dirty";
+import { myFeetAreDirty } from "@/data/books/myFeetAreDirty";
 
 export default function ReadMyFeetAreDirtyPage() {
   return <ReaderShell book={myFeetAreDirty} />;

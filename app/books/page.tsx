@@ -50,7 +50,7 @@ export default function BooksPage() {
                 </p>
                 <h3 className="mt-3 text-3xl font-semibold text-ink">{book.title}</h3>
                 <p className="mt-3 flex-1 text-base leading-7 text-ink/66">
-                  {book.deck}
+                  {book.description}
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Button href={`/books/${book.slug}/read`}>

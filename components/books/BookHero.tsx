@@ -22,7 +22,7 @@ export function BookHero({ book, mode = "landing" }: BookHeroProps) {
         <p className="mt-6 max-w-xl text-lg leading-8 text-ink/72 sm:text-xl">
           {mode === "landing"
             ? "Emotionally intelligent webbooks for children, caregivers, and sensitive nervous systems."
-            : book.deck}
+            : book.description}
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Button href={`/books/${book.slug}/read`}>
@@ -39,7 +39,7 @@ export function BookHero({ book, mode = "landing" }: BookHeroProps) {
         <div className="sensory-layer absolute -right-4 bottom-10 h-40 w-40 rounded-full bg-pond/28 blur-3xl" />
         <div className="contrast-surface relative overflow-hidden rounded-[2.5rem] border border-white/70 bg-white/72 p-4 shadow-soft">
           <Image
-            src={book.coverImage}
+            src={book.pages[0].image}
             alt={`${book.title} cover by ${book.author}`}
             width={720}
             height={900}
