@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import type { EmotionalPrompt } from "@/types/books";
 
 type InteractionPromptProps = {
-  prompt: EmotionalPrompt;
+  prompt: string;
+  options: string[];
 };
 
-export function InteractionPrompt({ prompt }: InteractionPromptProps) {
+export function InteractionPrompt({ prompt, options }: InteractionPromptProps) {
   const [selected, setSelected] = useState<string | null>(null);
 
   return (
@@ -15,26 +15,26 @@ export function InteractionPrompt({ prompt }: InteractionPromptProps) {
       <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-clay">
         Pause together
       </h3>
-      <p className="mt-2 text-lg font-semibold text-ink">{prompt.question}</p>
+      <p className="mt-2 text-xl font-semibold text-ink">{prompt}</p>
       <div className="mt-4 flex flex-wrap gap-2">
-        {prompt.options.map((option) => (
+        {options.map((option) => (
           <button
-            key={option.id}
+            key={option}
             type="button"
-            onClick={() => setSelected(option.id)}
+            onClick={() => setSelected(option)}
             className={`min-h-11 rounded-full border px-4 py-2 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pond ${
-              selected === option.id
+              selected === option
                 ? "border-ink bg-ink text-shell"
                 : "border-ink/12 bg-shell/84 text-ink/75 hover:border-ink/30"
             }`}
           >
-            {option.label}
+            {option}
           </button>
         ))}
       </div>
       {selected ? (
         <p className="mt-4 text-sm leading-6 text-ink/65" aria-live="polite">
-          {prompt.reflection}
+          You chose {selected.toLowerCase()}. That can be a real body feeling.
         </p>
       ) : null}
     </section>

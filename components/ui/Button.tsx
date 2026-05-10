@@ -43,7 +43,13 @@ export function Button(props: LinkButtonProps | NativeButtonProps) {
     );
   }
 
-  const { href: _href, ...buttonProps } = props as NativeButtonProps;
+  const {
+    href: _href,
+    children: _children,
+    variant: _variant,
+    className: _className,
+    ...buttonProps
+  } = props as NativeButtonProps;
 
   return (
     <button {...buttonProps} className={buttonClass(variant, className)}>

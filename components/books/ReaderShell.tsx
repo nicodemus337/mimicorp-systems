@@ -21,7 +21,7 @@ export function ReaderShell({ book }: ReaderShellProps) {
   const [settings, setSettings] = useState<ReaderSettings | null>(null);
   const systemReducedMotion = useReducedMotion();
   const touchStart = useRef<number | null>(null);
-  const total = book.storyPages.length;
+  const total = book.pages.length;
   const reduceMotion = Boolean(systemReducedMotion || settings?.reducedMotion);
 
   const goTo = useCallback(
@@ -110,14 +110,14 @@ export function ReaderShell({ book }: ReaderShellProps) {
         <section className="relative flex flex-1 items-center" aria-live="polite">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
-              key={book.storyPages[pageIndex].id}
+              key={book.pages[pageIndex].id}
               className="w-full"
               initial={reduceMotion ? { opacity: 1 } : { opacity: 0, x: 22 }}
               animate={{ opacity: 1, x: 0 }}
               exit={reduceMotion ? { opacity: 1 } : { opacity: 0, x: -22 }}
               transition={transition}
             >
-              <StoryPage page={book.storyPages[pageIndex]} />
+              <StoryPage book={book} page={book.pages[pageIndex]} />
             </motion.div>
           </AnimatePresence>
         </section>
