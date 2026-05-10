@@ -72,7 +72,7 @@ export default function MyFeetAreDirtyPage() {
               gentle script for noticing, naming, and helping.
             </p>
             <p className="mt-6 rounded-2xl bg-oat px-4 py-3 text-sm font-semibold leading-6 text-ink/72">
-              "I hear you. Your feet feel dirty. Towel or water first?"
+              &ldquo;I hear you. Your feet feel dirty. Towel or water first?&rdquo;
             </p>
           </Card>
 
