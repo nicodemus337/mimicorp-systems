@@ -79,3 +79,78 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 window.addEventListener("load", () => {
   document.body.classList.add("fade-in");
 });
+
+
+/* =========================
+   WEBBOOK READER
+========================= */
+
+document.querySelectorAll(".webbook-reader").forEach(reader => {
+  const pages = Array.from(reader.querySelectorAll(".webbook-page"));
+  const stage = reader.querySelector(".webbook-stage");
+  const count = reader.querySelector(".webbook-count");
+  const prev = reader.querySelector(".webbook-prev");
+  const next = reader.querySelector(".webbook-next");
+  let index = Math.max(0, pages.findIndex(page => page.classList.contains("is-active")));
+  let touchStartX = 0;
+
+  function renderPage() {
+    pages.forEach((page, pageIndex) => {
+      const active = pageIndex === index;
+      page.classList.toggle("is-active", active);
+      page.setAttribute("aria-hidden", active ? "false" : "true");
+    });
+
+    if (count) {
+      count.textContent = `${index + 1} / ${pages.length}`;
+    }
+
+    if (prev) {
+      prev.disabled = index === 0;
+    }
+
+    if (next) {
+      next.disabled = index === pages.length - 1;
+    }
+  }
+
+  function goToPage(nextIndex) {
+    index = Math.min(Math.max(nextIndex, 0), pages.length - 1);
+    renderPage();
+  }
+
+  if (!pages.length) {
+    return;
+  }
+
+  prev?.addEventListener("click", () => goToPage(index - 1));
+  next?.addEventListener("click", () => goToPage(index + 1));
+
+  stage?.addEventListener("keydown", event => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      goToPage(index - 1);
+    }
+
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      goToPage(index + 1);
+    }
+  });
+
+  stage?.addEventListener("touchstart", event => {
+    touchStartX = event.changedTouches[0].clientX;
+  }, { passive: true });
+
+  stage?.addEventListener("touchend", event => {
+    const distance = event.changedTouches[0].clientX - touchStartX;
+
+    if (Math.abs(distance) < 48) {
+      return;
+    }
+
+    goToPage(distance > 0 ? index - 1 : index + 1);
+  }, { passive: true });
+
+  renderPage();
+});
