@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import type { Book } from "@/types/books";
+import type { Book } from "@/types/book";
 import { Button } from "@/components/ui/Button";
 
 type BookHeroProps = {
@@ -21,7 +21,7 @@ export function BookHero({ book, mode = "landing" }: BookHeroProps) {
         </h1>
         <p className="mt-6 max-w-xl text-lg leading-8 text-ink/72 sm:text-xl">
           {mode === "landing"
-            ? "Emotionally intelligent webbooks for children, caregivers, and sensitive nervous systems."
+            ? "Emotionally intelligent digital stories for modern families."
             : book.description}
         </p>
         <div className="mt-8 flex flex-wrap gap-3">

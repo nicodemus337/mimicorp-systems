@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
-import type { Book, BookPage } from "@/types/books";
+import type { Book, BookPage } from "@/types/book";
 import { InteractionPrompt } from "@/components/books/InteractionPrompt";
 
 type StoryPageProps = {

@@ -1,4 +1,4 @@
-import type { Book } from "@/types/books";
+import type { Book } from "@/types/book";
 
 export const myFeetAreDirty: Book = {
   slug: "my-feet-are-dirty",
