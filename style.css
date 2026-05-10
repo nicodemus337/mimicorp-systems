@@ -1450,9 +1450,23 @@ body.home-cinematic {
   text-transform: uppercase;
 }
 
+.childrens-books-page .book-two-hero h2,
+.childrens-book-shelf-card h2 {
+  text-transform: none;
+}
+
 .book-release-line {
   color: rgba(242,239,229,0.62);
   text-transform: none;
+}
+
+.book-coming-soon {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 12px 18px;
+  border: 1px solid rgba(242,239,229,0.24);
+  color: rgba(242,239,229,0.72);
+  font-size: 13px;
 }
 
 .childrens-books-copy p {
@@ -1484,8 +1498,23 @@ body.home-cinematic {
   min-height: 280px;
 }
 
-.childrens-book-preview-card {
-  max-width: 760px;
+.book-two-hero {
+  margin-top: 60px;
+}
+
+.childrens-book-shelf {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.childrens-book-shelf-card {
+  min-height: 0;
+}
+
+.childrens-book-shelf-card img {
+  display: block;
+  width: min(100%, 260px);
+  margin-bottom: 20px;
+  border: 1px solid rgba(242,239,229,0.18);
 }
 
 .childrens-books-inquiry {
@@ -1506,7 +1535,8 @@ body.home-cinematic {
   }
 
   .childrens-books-hero,
-  .childrens-book-feature {
+  .childrens-book-feature,
+  .childrens-book-shelf {
     grid-template-columns: 1fr;
   }
 
