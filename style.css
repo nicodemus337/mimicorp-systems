@@ -1439,7 +1439,8 @@ body.home-cinematic {
   align-items: center;
 }
 
-.childrens-books-copy h1 {
+.childrens-books-copy h1,
+.childrens-books-copy h2 {
   max-width: 680px;
   color: #fff7e8;
   font-size: clamp(38px, 5vw, 58px);
@@ -1573,6 +1574,7 @@ body.home-cinematic {
   }
 
   .childrens-books-copy h1,
+  .childrens-books-copy h2,
   .book-detail-copy h1 {
     font-size: 36px;
   }
