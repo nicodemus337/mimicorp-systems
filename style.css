@@ -1450,8 +1450,7 @@ body.home-cinematic {
   text-transform: uppercase;
 }
 
-.childrens-books-page .book-two-hero h2,
-.childrens-book-shelf-card h2 {
+.childrens-books-page .book-two-hero h2 {
   text-transform: none;
 }
 
@@ -1490,6 +1489,58 @@ body.home-cinematic {
   object-fit: cover;
 }
 
+.book-detail-main {
+  max-width: 1060px;
+}
+
+.book-detail-hero {
+  display: grid;
+  min-height: 560px;
+  grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.68fr);
+  gap: clamp(28px, 5vw, 60px);
+  align-items: center;
+}
+
+.book-detail-copy h1 {
+  max-width: 680px;
+  color: #fff7e8;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1;
+}
+
+.book-detail-page h1:not(.book-title) {
+  text-transform: none;
+}
+
+.back-link {
+  margin: 0 0 18px;
+  border-bottom: 0;
+  color: rgba(242,239,229,0.58);
+}
+
+.book-detail-grid,
+.book-format-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.book-format-grid {
+  align-items: stretch;
+}
+
+.book-format-card {
+  min-height: 270px;
+}
+
+.book-format-card h2 {
+  color: #fff7e8;
+  font-size: 36px;
+}
+
+.bundle-card {
+  grid-column: 1 / -1;
+  max-width: 760px;
+}
+
 .childrens-book-feature {
   grid-template-columns: 1fr 1fr;
 }
@@ -1500,21 +1551,6 @@ body.home-cinematic {
 
 .book-two-hero {
   margin-top: 60px;
-}
-
-.childrens-book-shelf {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.childrens-book-shelf-card {
-  min-height: 0;
-}
-
-.childrens-book-shelf-card img {
-  display: block;
-  width: min(100%, 260px);
-  margin-bottom: 20px;
-  border: 1px solid rgba(242,239,229,0.18);
 }
 
 .childrens-books-inquiry {
@@ -1535,17 +1571,25 @@ body.home-cinematic {
   }
 
   .childrens-books-hero,
-  .childrens-book-feature,
-  .childrens-book-shelf {
+  .book-detail-hero,
+  .book-detail-grid,
+  .book-format-grid,
+  .childrens-book-feature {
     grid-template-columns: 1fr;
   }
 
-  .childrens-books-hero {
+  .childrens-books-hero,
+  .book-detail-hero {
     min-height: 0;
   }
 
-  .childrens-books-copy h1 {
+  .childrens-books-copy h1,
+  .book-detail-copy h1 {
     font-size: 36px;
+  }
+
+  .bundle-card {
+    grid-column: auto;
   }
 
   .book-cover-preview {
