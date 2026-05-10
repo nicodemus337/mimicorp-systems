@@ -12,26 +12,16 @@ import {
   Plus,
   Settings
 } from "lucide-react";
+import {
+  accessibilityStorageKey,
+  applyReaderSettings,
+  clampTextScale,
+  defaultReaderSettings,
+  type ReaderSettings
+} from "@/lib/accessibility";
+import { readJsonFromStorage, writeJsonToStorage } from "@/lib/storage";
 
-export type ReaderSettings = {
-  textScale: number;
-  dyslexiaFont: boolean;
-  highContrast: boolean;
-  reducedStimulation: boolean;
-  reducedMotion: boolean;
-  narration: boolean;
-};
-
-const defaultSettings: ReaderSettings = {
-  textScale: 1,
-  dyslexiaFont: false,
-  highContrast: false,
-  reducedStimulation: false,
-  reducedMotion: false,
-  narration: false
-};
-
-const storageKey = "mimicorp-books-accessibility";
+export type { ReaderSettings } from "@/lib/accessibility";
 
 type AccessibilityPanelProps = {
   onChange?: (settings: ReaderSettings) => void;
@@ -39,32 +29,15 @@ type AccessibilityPanelProps = {
 
 export function AccessibilityPanel({ onChange }: AccessibilityPanelProps) {
   const [open, setOpen] = useState(false);
-  const [settings, setSettings] = useState<ReaderSettings>(defaultSettings);
+  const [settings, setSettings] = useState<ReaderSettings>(defaultReaderSettings);
 
   useEffect(() => {
-    const stored = window.localStorage.getItem(storageKey);
-    if (!stored) return;
-
-    try {
-      setSettings({ ...defaultSettings, ...JSON.parse(stored) });
-    } catch {
-      setSettings(defaultSettings);
-    }
+    setSettings(readJsonFromStorage(accessibilityStorageKey, defaultReaderSettings));
   }, []);
 
   useEffect(() => {
-    document.documentElement.style.setProperty(
-      "--reader-text-scale",
-      String(settings.textScale)
-    );
-    document.body.classList.toggle("dyslexia-font", settings.dyslexiaFont);
-    document.body.classList.toggle("high-contrast", settings.highContrast);
-    document.body.classList.toggle(
-      "reduced-stimulation",
-      settings.reducedStimulation
-    );
-    document.body.classList.toggle("reader-reduced-motion", settings.reducedMotion);
-    window.localStorage.setItem(storageKey, JSON.stringify(settings));
+    applyReaderSettings(settings);
+    writeJsonToStorage(accessibilityStorageKey, settings);
     onChange?.(settings);
   }, [onChange, settings]);
 
@@ -107,7 +80,7 @@ export function AccessibilityPanel({ onChange }: AccessibilityPanelProps) {
                   type="button"
                   className="grid min-h-11 min-w-11 place-items-center rounded-full bg-ink/8"
                   onClick={() =>
-                    update("textScale", Math.max(0.9, settings.textScale - 0.1))
+                    update("textScale", clampTextScale(settings.textScale - 0.1))
                   }
                   aria-label="Decrease text size"
                 >
@@ -118,7 +91,7 @@ export function AccessibilityPanel({ onChange }: AccessibilityPanelProps) {
                   type="button"
                   className="grid min-h-11 min-w-11 place-items-center rounded-full bg-ink/8"
                   onClick={() =>
-                    update("textScale", Math.min(1.45, settings.textScale + 0.1))
+                    update("textScale", clampTextScale(settings.textScale + 0.1))
                   }
                   aria-label="Increase text size"
                 >
