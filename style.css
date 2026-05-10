@@ -1355,6 +1355,92 @@ body.home-cinematic {
     linear-gradient(145deg, rgba(239,232,214,0.045), rgba(5,4,3,0.78));
 }
 
+.connect-main {
+  max-width: 980px;
+}
+
+.connect-hero {
+  min-height: 340px;
+}
+
+.connect-hero h1 {
+  max-width: 820px;
+  color: #fff7e8;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1;
+}
+
+.connect-hero p {
+  max-width: 700px;
+}
+
+.connect-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.connect-card {
+  --connect-accent: var(--amber);
+  display: flex;
+  min-height: 230px;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--paper);
+  text-decoration: none;
+}
+
+.connect-card:hover,
+.connect-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--connect-accent) 54%, var(--paper) 18%);
+  opacity: 1;
+}
+
+.connect-card .meta {
+  color: color-mix(in srgb, var(--connect-accent) 62%, var(--paper) 28%);
+}
+
+.connect-card h2 {
+  font-size: 24px;
+}
+
+.connect-card .portal-arrow {
+  margin-top: 18px;
+}
+
+.connect-x {
+  --connect-accent: #79a7ff;
+}
+
+.connect-instagram {
+  --connect-accent: #ff8ca6;
+}
+
+.connect-youtube {
+  --connect-accent: #e65f5c;
+}
+
+.connect-work {
+  --connect-accent: #7d9b5f;
+}
+
+.connect-work a + a {
+  margin-left: 18px;
+}
+
+@media (max-width: 760px) {
+  .connect-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .connect-hero h1 {
+    font-size: 36px;
+  }
+
+  .connect-work a + a {
+    margin-left: 0;
+  }
+}
+
 
 /* =========================
    RESEARCH: NOTES SYSTEM
@@ -1777,7 +1863,8 @@ body,
 body.home-cinematic,
 .systems-page,
 .services-page,
-.schedule-page {
+.schedule-page,
+.connect-page {
   background: #000;
 }
 
