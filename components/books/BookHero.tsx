@@ -34,20 +34,44 @@ export function BookHero({ book, mode = "landing" }: BookHeroProps) {
         </div>
       </div>
 
-      <div className="relative mx-auto w-full max-w-[32rem]">
-        <div className="sensory-layer absolute -left-6 top-8 h-32 w-32 rounded-full bg-marigold/40 blur-3xl" />
-        <div className="sensory-layer absolute -right-4 bottom-10 h-40 w-40 rounded-full bg-pond/28 blur-3xl" />
-        <div className="contrast-surface relative overflow-hidden rounded-[2.5rem] border border-white/70 bg-white/72 p-4 shadow-soft">
-          <Image
-            src={book.pages[0].image}
-            alt={`${book.title} cover by ${book.author}`}
-            width={720}
-            height={900}
-            priority
-            className="aspect-square w-full rounded-[1.8rem] object-cover"
-          />
+      {mode === "landing" ? (
+        <div className="relative mx-auto w-full max-w-[32rem]">
+          <div className="sensory-layer absolute -left-6 top-8 h-32 w-32 rounded-full bg-marigold/40 blur-3xl" />
+          <div className="sensory-layer absolute -right-4 bottom-10 h-40 w-40 rounded-full bg-pond/28 blur-3xl" />
+          <div className="contrast-surface relative aspect-square overflow-hidden rounded-[2.5rem] border border-white/70 bg-white/72 p-8 shadow-soft">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_18%,rgba(244,196,75,0.38),transparent_18rem),radial-gradient(circle_at_78%_76%,rgba(111,168,220,0.26),transparent_16rem),linear-gradient(145deg,rgba(255,250,242,0.95),rgba(232,239,227,0.86))]" />
+            <div className="relative flex h-full flex-col justify-between rounded-[1.8rem] border border-ink/8 bg-shell/54 p-6 shadow-insetCalm">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-clay">
+                Digital story shelf
+              </p>
+              <div>
+                <p className="max-w-sm text-3xl font-semibold leading-tight text-ink sm:text-4xl">
+                  Calm stories for sensitive systems.
+                </p>
+                <p className="mt-4 text-base leading-7 text-ink/62">
+                  Built for reading together, pausing gently, and finding words
+                  for feelings.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="relative mx-auto w-full max-w-[32rem]">
+          <div className="sensory-layer absolute -left-6 top-8 h-32 w-32 rounded-full bg-marigold/40 blur-3xl" />
+          <div className="sensory-layer absolute -right-4 bottom-10 h-40 w-40 rounded-full bg-pond/28 blur-3xl" />
+          <div className="contrast-surface relative overflow-hidden rounded-[2.5rem] border border-white/70 bg-white/72 p-4 shadow-soft">
+            <Image
+              src={book.pages[0].image}
+              alt={`${book.title} cover by ${book.author}`}
+              width={720}
+              height={900}
+              priority
+              className="aspect-square w-full rounded-[1.8rem] object-cover"
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }
