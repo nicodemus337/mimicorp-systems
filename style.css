@@ -1490,6 +1490,27 @@ body.home-cinematic {
   object-fit: cover;
 }
 
+.book-edition-covers {
+  display: grid;
+  grid-template-columns: 1fr 0.82fr;
+  gap: 18px;
+  align-items: end;
+}
+
+.book-edition-covers img {
+  display: block;
+  width: 100%;
+  max-height: 520px;
+  object-fit: cover;
+  border: 1px solid rgba(242,239,229,0.22);
+  background: #0b0b08;
+  box-shadow: 0 24px 70px rgba(0,0,0,0.34);
+}
+
+.book-edition-covers img + img {
+  max-height: 430px;
+}
+
 .book-detail-main {
   max-width: 1060px;
 }
@@ -1585,6 +1606,15 @@ body.home-cinematic {
 
   .book-cover-preview {
     max-width: 420px;
+  }
+
+  .book-edition-covers {
+    max-width: 420px;
+    grid-template-columns: 1fr;
+  }
+
+  .book-edition-covers img + img {
+    max-height: 520px;
   }
 }
 
