@@ -22,7 +22,7 @@ export function ReaderControls({
         type="button"
         onClick={onPrevious}
         disabled={current === 0}
-        className="inline-flex min-h-14 items-center gap-2 rounded-full bg-white/78 px-5 text-sm font-semibold text-ink shadow-insetCalm backdrop-blur transition disabled:cursor-not-allowed disabled:opacity-36 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pond"
+        className="inline-flex min-h-14 items-center gap-2 rounded-full bg-white/78 px-5 text-sm font-semibold text-ink shadow-insetCalm backdrop-blur transition disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pond"
       >
         <ArrowLeft aria-hidden="true" size={18} />
         Back
@@ -37,7 +37,7 @@ export function ReaderControls({
         type="button"
         onClick={onNext}
         disabled={current === total - 1}
-        className="inline-flex min-h-14 items-center gap-2 rounded-full bg-ink px-5 text-sm font-semibold text-shell shadow-soft transition disabled:cursor-not-allowed disabled:opacity-36 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pond"
+        className="inline-flex min-h-14 items-center gap-2 rounded-full bg-ink px-5 text-sm font-semibold text-shell shadow-soft transition disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pond"
       >
         Next
         <ArrowRight aria-hidden="true" size={18} />

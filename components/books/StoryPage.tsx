@@ -176,8 +176,16 @@ function BeauScene({
       />
 
       <span className="absolute bottom-6 left-6 max-w-[calc(100%-3rem)] rounded-full bg-white/78 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-ink/58">
-        {quiet ? "caregiver support" : imagePath.split("/").at(-1)?.replace(".png", "")}
+        {quiet ? "Caregiver Support" : getIllustrationLabel(imagePath)}
       </span>
     </div>
   );
+}
+
+function getIllustrationLabel(imagePath: string) {
+  const fileName = imagePath.split("/").at(-1)?.replace(".png", "");
+  const pageNumber = fileName?.match(/\d+/)?.[0];
+
+  if (!pageNumber) return "Illustration Placeholder";
+  return `Page ${pageNumber} Illustration`;
 }

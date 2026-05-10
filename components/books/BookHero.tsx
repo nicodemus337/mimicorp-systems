@@ -29,7 +29,7 @@ export function BookHero({ book, mode = "landing" }: BookHeroProps) {
             Read Now <ArrowRight aria-hidden="true" size={18} />
           </Button>
           <Button href={`/books/${book.slug}`} variant="secondary">
-            About the Book
+            Learn More
           </Button>
         </div>
       </div>

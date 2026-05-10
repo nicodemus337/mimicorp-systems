@@ -35,6 +35,15 @@ export function ReaderShell({ book }: ReaderShellProps) {
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
+      const target = event.target as HTMLElement | null;
+      const isInteractiveTarget = target?.closest(
+        "button, a, input, textarea, select, [role='button']"
+      );
+
+      if (event.key === " " && isInteractiveTarget) {
+        return;
+      }
+
       if (event.key === "ArrowRight" || event.key === " ") {
         event.preventDefault();
         setPageIndex((current) => Math.min(total - 1, current + 1));
@@ -127,6 +136,9 @@ export function ReaderShell({ book }: ReaderShellProps) {
           onNext={next}
           onPrevious={previous}
         />
+        <p className="pb-4 text-center text-[0.62rem] uppercase tracking-[0.18em] text-ink/34">
+          © mimicorp labs, llc 2026
+        </p>
       </div>
 
       <AccessibilityPanel onChange={setSettings} />
