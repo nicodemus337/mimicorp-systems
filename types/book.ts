@@ -88,6 +88,11 @@ export type Book = {
   ageRange: string;
   theme: string;
   description: string;
+  emotionalGoals: string[];
+  caregiverNote: {
+    preview: string;
+    script?: string;
+  };
   accessibility: BookAccessibility;
   palette: BookPalette;
   protagonist: Protagonist;

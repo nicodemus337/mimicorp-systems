@@ -9,6 +9,17 @@ export const myFeetAreDirty: Book = {
   theme: "Sensory awareness, emotional regulation, self-advocacy",
   description:
     "A gentle interactive story about recognizing sensory discomfort, naming feelings, and asking for help.",
+  emotionalGoals: [
+    "Recognize sensory discomfort",
+    "Name body feelings with simple language",
+    "Practice asking a grown-up for help",
+    "Build self-advocacy without shame"
+  ],
+  caregiverNote: {
+    preview:
+      "Children sometimes experience sensory discomfort before they can explain what feels wrong. This story gives caregivers a shared, gentle script for noticing, naming, and helping.",
+    script: "I hear you. Your feet feel dirty. Towel or water first?"
+  },
   accessibility: {
     dyslexiaFriendly: true,
     reducedMotion: true,
@@ -179,5 +190,3 @@ export const myFeetAreDirty: Book = {
     }
   ]
 };
-
-export const books = [myFeetAreDirty] as const;

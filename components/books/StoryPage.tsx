@@ -81,7 +81,7 @@ function CoverPage({
           alt={`${page.title} cover by ${page.author}`}
           width={640}
           height={800}
-          className="aspect-[4/5] w-full rounded-[2rem] object-cover shadow-soft"
+          className="aspect-square w-full rounded-[2rem] object-cover shadow-soft"
           priority
         />
       </div>

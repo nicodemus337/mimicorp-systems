@@ -44,7 +44,7 @@ export function BookHero({ book, mode = "landing" }: BookHeroProps) {
             width={720}
             height={900}
             priority
-            className="aspect-[4/5] w-full rounded-[1.8rem] object-cover"
+            className="aspect-square w-full rounded-[1.8rem] object-cover"
           />
         </div>
       </div>

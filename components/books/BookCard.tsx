@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { ArrowRight, BookOpen, Sparkles } from "lucide-react";
 import type { Book } from "@/types/book";
 import { Button } from "@/components/ui/Button";
@@ -56,12 +57,19 @@ export function BookCard(props: BookCardProps) {
       transition={{ duration: 0.35 }}
     >
       <Card className="flex min-h-[24rem] flex-col">
-        <div className="mb-7 flex h-14 w-14 items-center justify-center rounded-2xl bg-marigold/30 text-ink">
-          <BookOpen aria-hidden="true" size={24} />
+        <div className="mb-7 overflow-hidden rounded-[1.5rem] bg-oat shadow-insetCalm">
+          <Image
+            src={book.pages[0].image}
+            alt={`${book.title} cover by ${book.author}`}
+            width={520}
+            height={520}
+            className="aspect-square w-full object-cover"
+          />
         </div>
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay">
-          {book.ageRange}
-        </p>
+        <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-clay">
+          <BookOpen aria-hidden="true" size={16} />
+          <span>{book.ageRange}</span>
+        </div>
         <h3 className="mt-3 text-3xl font-semibold text-ink">{book.title}</h3>
         <p className="mt-3 flex-1 text-base leading-7 text-ink/66">
           {book.description}
