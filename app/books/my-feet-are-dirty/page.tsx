@@ -3,7 +3,7 @@ import { ArrowRight, Check, Heart, ShieldCheck } from "lucide-react";
 import { FooterWatermark } from "@/components/books/FooterWatermark";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import { myFeetAreDirty } from "@/data/books/my-feet-are-dirty";
+import { myFeetAreDirty } from "@/data/books/myFeetAreDirty";
 
 export default function MyFeetAreDirtyPage() {
   const book = myFeetAreDirty;
@@ -21,7 +21,7 @@ export default function MyFeetAreDirtyPage() {
             </h1>
             <p className="mt-4 text-lg font-medium text-ink/58">by {book.author}</p>
             <p className="mt-7 max-w-2xl text-xl leading-9 text-ink/70">
-              {book.synopsis}
+              {book.description}
             </p>
             <div className="mt-8">
               <Button href={`/books/${book.slug}/read`}>
@@ -33,7 +33,7 @@ export default function MyFeetAreDirtyPage() {
           <div className="order-1 mx-auto w-full max-w-md lg:order-2">
             <div className="contrast-surface rounded-[2.5rem] border border-white/70 bg-white/72 p-4 shadow-soft">
               <Image
-                src={book.coverImage}
+                src={book.pages[0].image}
                 alt={`${book.title} cover by ${book.author}`}
                 width={720}
                 height={900}
@@ -49,7 +49,12 @@ export default function MyFeetAreDirtyPage() {
             <Heart aria-hidden="true" className="mb-5 text-clay" size={28} />
             <h2 className="text-2xl font-semibold text-ink">Emotional learning</h2>
             <ul className="mt-5 space-y-3">
-              {book.emotionalGoals.map((goal) => (
+              {[
+                "Recognize sensory discomfort",
+                "Name body feelings with simple language",
+                "Practice asking a grown-up for help",
+                "Build self-advocacy without shame"
+              ].map((goal) => (
                 <li key={goal} className="flex gap-3 text-ink/70">
                   <Check aria-hidden="true" className="mt-1 shrink-0 text-leaf" size={18} />
                   <span>{goal}</span>
@@ -61,7 +66,11 @@ export default function MyFeetAreDirtyPage() {
           <Card>
             <ShieldCheck aria-hidden="true" className="mb-5 text-pond" size={28} />
             <h2 className="text-2xl font-semibold text-ink">Caregiver note</h2>
-            <p className="mt-5 text-base leading-7 text-ink/68">{book.caregiverNote}</p>
+            <p className="mt-5 text-base leading-7 text-ink/68">
+              Children sometimes experience sensory discomfort before they can
+              explain what feels wrong. This story gives caregivers a shared,
+              gentle script for noticing, naming, and helping.
+            </p>
             <p className="mt-6 rounded-2xl bg-oat px-4 py-3 text-sm font-semibold leading-6 text-ink/72">
               "I hear you. Your feet feel dirty. Towel or water first?"
             </p>
@@ -70,19 +79,28 @@ export default function MyFeetAreDirtyPage() {
           <Card>
             <h2 className="text-2xl font-semibold text-ink">Accessibility features</h2>
             <div className="mt-5 space-y-4">
-              {book.accessibilityFeatures.map((feature) => (
-                <div key={feature.title}>
-                  <h3 className="font-semibold text-ink">{feature.title}</h3>
-                  <p className="mt-1 text-sm leading-6 text-ink/62">
-                    {feature.description}
-                  </p>
-                </div>
-              ))}
+              <Feature enabled={book.accessibility.dyslexiaFriendly} label="Dyslexia-friendly font" />
+              <Feature enabled={book.accessibility.reducedMotion} label="Reduced motion support" />
+              <Feature enabled={book.accessibility.highContrast} label="High contrast mode" />
+              <Feature enabled={book.accessibility.textResize} label="Text resize controls" />
+              <Feature enabled={book.accessibility.lowStimulationMode} label="Reduced stimulation mode" />
+              <Feature enabled={book.accessibility.narration} label="Narration" />
             </div>
           </Card>
         </section>
       </main>
       <FooterWatermark />
     </>
+  );
+}
+
+function Feature({ enabled, label }: { enabled: boolean; label: string }) {
+  return (
+    <div>
+      <h3 className="font-semibold text-ink">{label}</h3>
+      <p className="mt-1 text-sm leading-6 text-ink/62">
+        {enabled ? "Included in this MVP reader." : "Prepared as a future enhancement."}
+      </p>
+    </div>
   );
 }
