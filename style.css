@@ -1587,6 +1587,7 @@ body.home-cinematic {
 }
 
 .webbook-reader {
+  scroll-margin-top: 140px;
   margin-bottom: 24px;
   border: 1px solid rgba(242,239,229,0.16);
   background: #000;
@@ -1662,12 +1663,20 @@ body.home-cinematic {
 }
 
 .webbook-page p {
+  grid-column: 2;
   max-width: 620px;
   margin-bottom: 18px;
   color: rgba(242,239,229,0.86);
   font-size: clamp(18px, 2.4vw, 28px);
   line-height: 1.45;
   letter-spacing: 0.04em;
+}
+
+.webbook-page:not(:has(.page-art)):not(.cover-page):not(.note-page) p {
+  grid-column: 1 / -1;
+  max-width: 760px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .webbook-page p:last-child {
@@ -1903,6 +1912,7 @@ body.home-cinematic {
   }
 
   .webbook-page p {
+    grid-column: 1;
     font-size: 19px;
   }
 
