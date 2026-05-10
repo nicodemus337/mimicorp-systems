@@ -1419,6 +1419,10 @@ body.home-cinematic {
   --connect-accent: #e65f5c;
 }
 
+.connect-facebook {
+  --connect-accent: #8fb7ff;
+}
+
 .connect-work {
   --connect-accent: #7d9b5f;
 }
