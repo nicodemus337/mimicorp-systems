@@ -15,20 +15,20 @@ export function StoryPage({ book, page }: StoryPageProps) {
     case "story":
       return (
         <PageFrame
-          art={<BeauScene book={book} pageId={page.id} imagePath={page.image} />}
+          art={<IllustrationPlate book={book} pageId={page.id} imagePath={page.image} />}
           body={<StoryText text={page.text} />}
         />
       );
     case "dialogue":
       return (
         <PageFrame
-          art={<BeauScene book={book} pageId={page.id} imagePath={page.image} />}
+          art={<IllustrationPlate book={book} pageId={page.id} imagePath={page.image} />}
           body={
             <div>
-              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-clay">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-clay">
                 {page.speaker === "beau" ? book.protagonist.name : "Grown-up"}
               </p>
-              <div className="rounded-[2rem] bg-white/78 p-6 shadow-insetCalm">
+              <div className="rounded-[2rem] border border-ink/8 bg-shell/80 p-6 shadow-insetCalm sm:p-8">
                 <StoryText text={`"${page.text}"`} />
               </div>
             </div>
@@ -38,17 +38,17 @@ export function StoryPage({ book, page }: StoryPageProps) {
     case "interaction":
       return (
         <PageFrame
-          art={<BeauScene book={book} pageId={page.id} imagePath={page.image} />}
+          art={<IllustrationPlate book={book} pageId={page.id} imagePath={page.image} />}
           body={<InteractionPrompt prompt={page.prompt} options={page.options} />}
         />
       );
     case "caregiver-note":
       return (
         <PageFrame
-          art={<BeauScene book={book} pageId={page.id} imagePath={page.image} quiet />}
+          art={<IllustrationPlate book={book} pageId={page.id} imagePath={page.image} quiet />}
           body={
-            <section className="rounded-[2rem] border border-ink/10 bg-white/78 p-6 shadow-insetCalm">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-clay">
+            <section className="rounded-[2rem] border border-ink/10 bg-shell/82 p-6 shadow-insetCalm sm:p-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-clay">
                 Grown-up note
               </p>
               <h2 className="mt-3 text-3xl font-semibold text-ink">{page.title}</h2>
@@ -74,8 +74,8 @@ function CoverPage({
   page: Extract<BookPage, { type: "cover" }>;
 }) {
   return (
-    <article className="grid min-h-[68svh] w-full items-center gap-8 px-5 py-8 sm:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:px-12">
-      <div className="mx-auto w-full max-w-md">
+    <article className="mx-auto grid min-h-[min(68svh,46rem)] w-full max-w-6xl items-center gap-8 rounded-[2.25rem] border border-white/72 bg-white/58 p-4 shadow-soft backdrop-blur-xl sm:p-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10">
+      <div className="mx-auto w-full max-w-[28rem]">
         <Image
           src={page.image}
           alt={`${page.title} cover by ${page.author}`}
@@ -85,11 +85,11 @@ function CoverPage({
           priority
         />
       </div>
-      <div className="mx-auto w-full max-w-2xl">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-clay">
+      <div className="mx-auto w-full max-w-2xl rounded-[2rem] bg-shell/60 p-6 shadow-insetCalm sm:p-8">
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-clay">
           {book.ageRange}
         </p>
-        <h1 className="mt-4 text-balance text-5xl font-semibold leading-none text-ink sm:text-6xl">
+        <h1 className="mt-4 text-balance text-4xl font-semibold leading-none text-ink sm:text-6xl">
           {page.title}
         </h1>
         <p className="mt-5 text-xl text-ink/62">by {page.author}</p>
@@ -101,8 +101,8 @@ function CoverPage({
 
 function PageFrame({ art, body }: { art: ReactNode; body: ReactNode }) {
   return (
-    <article className="grid min-h-[68svh] w-full items-center gap-8 px-5 py-8 sm:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:px-12">
-      <div className="mx-auto w-full max-w-md">{art}</div>
+    <article className="mx-auto grid min-h-[min(68svh,46rem)] w-full max-w-6xl items-center gap-6 rounded-[2.25rem] border border-white/72 bg-white/58 p-4 shadow-soft backdrop-blur-xl sm:gap-8 sm:p-6 lg:grid-cols-[0.92fr_1.08fr] lg:gap-10">
+      <div className="mx-auto w-full max-w-[28rem]">{art}</div>
       <div className="mx-auto w-full max-w-2xl">{body}</div>
     </article>
   );
@@ -110,13 +110,15 @@ function PageFrame({ art, body }: { art: ReactNode; body: ReactNode }) {
 
 function StoryText({ text }: { text: string }) {
   return (
-    <p className="reader-text text-balance text-3xl font-semibold leading-[1.18] text-ink sm:text-4xl lg:text-5xl">
-      {text}
-    </p>
+    <div className="rounded-[2rem] border border-ink/8 bg-shell/82 p-6 shadow-insetCalm sm:p-8">
+      <p className="reader-text text-balance text-[clamp(2rem,4vw,3.75rem)] font-semibold leading-[1.12] text-ink">
+        {text}
+      </p>
+    </div>
   );
 }
 
-function BeauScene({
+function IllustrationPlate({
   book,
   imagePath,
   pageId,
@@ -128,55 +130,68 @@ function BeauScene({
   quiet?: boolean;
 }) {
   const palette = book.palette;
-  const mood =
-    pageId < 8 ? palette.warmth : pageId < 14 ? palette.primary : palette.secondary;
+  const isBookOne = book.slug === "my-feet-are-dirty";
+  const mood = pageId < 8 ? palette.warmth : pageId < 14 ? palette.primary : palette.secondary;
+  const label = quiet ? "Caregiver Support" : getIllustrationLabel(imagePath);
 
   return (
     <div
-      className="relative aspect-[4/5] overflow-hidden rounded-[2rem] shadow-soft"
+      className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/70 shadow-soft"
       style={{
-        background: `linear-gradient(180deg, ${palette.background} 0%, #f1eadb 100%)`
+        background: isBookOne
+          ? `linear-gradient(180deg, ${palette.background} 0%, #f4ead7 58%, #dde8d6 100%)`
+          : `linear-gradient(180deg, ${palette.background} 0%, #edf0f7 48%, #dce7ef 100%)`
       }}
     >
-      <div className="sensory-layer absolute inset-x-8 top-10 h-28 rounded-full bg-pond/18 blur-2xl" />
-      <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-leaf/24 to-transparent" />
+      <div className="sensory-layer absolute -left-12 top-8 h-40 w-40 rounded-full bg-marigold/28 blur-3xl" />
+      <div className="sensory-layer absolute -right-10 top-20 h-44 w-44 rounded-full bg-pond/18 blur-3xl" />
+      <div className="absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-leaf/24 to-transparent" />
+
+      <div className="absolute left-8 right-8 top-10 h-28 rounded-[2rem] border border-white/54 bg-white/34 shadow-insetCalm" />
       <div
-        className="absolute right-8 top-8 h-16 w-16 rounded-full opacity-55"
+        className="absolute right-10 top-12 h-16 w-16 rounded-full opacity-65 shadow-soft"
         style={{ backgroundColor: mood }}
       />
 
-      <div className="absolute left-1/2 top-[17%] h-40 w-40 -translate-x-1/2 rounded-full bg-[#9d6a4f] shadow-insetCalm">
-        <div className="absolute -left-3 top-3 h-10 w-10 rounded-full bg-[#5b3729]" />
-        <div className="absolute left-4 -top-3 h-12 w-12 rounded-full bg-[#5b3729]" />
-        <div className="absolute right-5 -top-4 h-11 w-11 rounded-full bg-[#5b3729]" />
-        <div className="absolute left-9 top-16 h-3 w-3 rounded-full bg-ink" />
-        <div className="absolute right-9 top-16 h-3 w-3 rounded-full bg-ink" />
-        <div className="absolute bottom-9 left-1/2 h-4 w-12 -translate-x-1/2 rounded-b-full border-b-4 border-ink/75" />
+      <div className="absolute left-1/2 top-[25%] h-24 w-24 -translate-x-1/2 rounded-full bg-[#9d6a4f] shadow-insetCalm sm:h-28 sm:w-28">
+        <div className="absolute -left-2 top-2 h-8 w-8 rounded-full bg-[#5b3729]" />
+        <div className="absolute left-4 -top-3 h-9 w-9 rounded-full bg-[#5b3729]" />
+        <div className="absolute right-3 -top-2 h-9 w-9 rounded-full bg-[#5b3729]" />
+        <div className="absolute left-7 top-11 h-2.5 w-2.5 rounded-full bg-ink" />
+        <div className="absolute right-7 top-11 h-2.5 w-2.5 rounded-full bg-ink" />
+        <div className="absolute bottom-6 left-1/2 h-3 w-8 -translate-x-1/2 rounded-b-full border-b-[3px] border-ink/75" />
       </div>
 
       <div
-        className="absolute left-1/2 top-[45%] h-32 w-44 -translate-x-1/2 rounded-[2rem] shadow-insetCalm"
+        className="absolute left-1/2 top-[45%] h-24 w-36 -translate-x-1/2 rounded-[1.7rem] shadow-insetCalm sm:h-28 sm:w-40"
         style={{ backgroundColor: palette.primary }}
       />
       <div
-        className="absolute left-[33%] top-[63%] h-32 w-12 rounded-full"
+        className="absolute left-[35%] top-[62%] h-24 w-9 rounded-full sm:h-28 sm:w-10"
         style={{ backgroundColor: palette.warmth }}
       />
       <div
-        className="absolute right-[33%] top-[63%] h-32 w-12 rounded-full"
+        className="absolute right-[35%] top-[62%] h-24 w-9 rounded-full sm:h-28 sm:w-10"
         style={{ backgroundColor: palette.warmth }}
       />
       <div
-        className="absolute bottom-10 left-[30%] h-10 w-20 rounded-full"
+        className="absolute bottom-12 left-[29%] h-8 w-16 rounded-full sm:h-9 sm:w-20"
         style={{ backgroundColor: palette.accent }}
       />
       <div
-        className="absolute bottom-10 right-[30%] h-10 w-20 rounded-full"
+        className="absolute bottom-12 right-[29%] h-8 w-16 rounded-full sm:h-9 sm:w-20"
         style={{ backgroundColor: palette.accent }}
       />
 
-      <span className="absolute bottom-6 left-6 max-w-[calc(100%-3rem)] rounded-full bg-white/78 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-ink/58">
-        {quiet ? "Caregiver Support" : getIllustrationLabel(imagePath)}
+      {isBookOne ? (
+        <div className="absolute bottom-[22%] left-8 right-8 h-10 rounded-full bg-[#9f7a4e]/16 shadow-insetCalm">
+          <div className="absolute left-[18%] top-3 h-2 w-12 rounded-full bg-[#9f7a4e]/28" />
+          <div className="absolute right-[24%] top-5 h-2 w-16 rounded-full bg-[#9f7a4e]/24" />
+        </div>
+      ) : null}
+
+      <span className="absolute bottom-6 left-6 max-w-[calc(100%-3rem)] rounded-full bg-white/82 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-ink/58 shadow-insetCalm">
+        {label}
       </span>
     </div>
   );
