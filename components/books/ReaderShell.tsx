@@ -74,7 +74,7 @@ export function ReaderShell({ book }: ReaderShellProps) {
 
   return (
     <main
-      className="min-h-svh overflow-hidden bg-[radial-gradient(circle_at_20%_0%,rgba(240,196,93,0.22),transparent_28rem),linear-gradient(135deg,#fffaf2_0%,#f5efe4_52%,#e7efe8_100%)]"
+      className="min-h-svh overflow-hidden bg-[radial-gradient(circle_at_18%_8%,rgba(244,211,94,0.24),transparent_24rem),radial-gradient(circle_at_86%_18%,rgba(111,168,220,0.18),transparent_26rem),linear-gradient(135deg,#fffaf2_0%,#f5efe4_48%,#e8efe5_100%)]"
       onTouchStart={(event) => {
         touchStart.current = event.touches[0]?.clientX ?? null;
       }}
@@ -89,33 +89,33 @@ export function ReaderShell({ book }: ReaderShellProps) {
       }}
     >
       <div className="flex min-h-svh flex-col">
-        <header className="z-10 mx-auto flex w-full max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-6">
+        <header className="z-10 mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-4 py-4 sm:px-6">
           <Link
             href="/books"
-            className="grid min-h-12 min-w-12 place-items-center rounded-full bg-white/76 text-ink shadow-insetCalm backdrop-blur focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pond"
+            className="grid min-h-12 min-w-12 place-items-center rounded-full bg-white/80 text-ink shadow-insetCalm backdrop-blur focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pond"
             aria-label="Back to Mimicorp Books"
           >
             <Home aria-hidden="true" size={20} />
           </Link>
-          <div className="min-w-0 text-center">
+          <div className="min-w-0 rounded-full bg-white/52 px-5 py-2 text-center shadow-insetCalm backdrop-blur">
             <p className="truncate text-sm font-semibold text-ink">{book.title}</p>
             <p className="text-xs text-ink/52">by {book.author}</p>
           </div>
           <button
             type="button"
             onClick={() => setPageIndex(0)}
-            className="grid min-h-12 min-w-12 place-items-center rounded-full bg-white/76 text-ink shadow-insetCalm backdrop-blur focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pond"
+            className="grid min-h-12 min-w-12 place-items-center rounded-full bg-white/80 text-ink shadow-insetCalm backdrop-blur focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pond"
             aria-label="Restart book"
           >
             <RotateCcw aria-hidden="true" size={20} />
           </button>
         </header>
 
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <ProgressIndicator current={pageIndex} total={total} />
         </div>
 
-        <section className="relative flex flex-1 items-center" aria-live="polite">
+        <section className="relative flex flex-1 items-center px-3 py-4 sm:px-6 sm:py-6" aria-live="polite">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={book.pages[pageIndex].id}
