@@ -4,7 +4,6 @@
 
 :root {
   --font-body: "Inter", "SF Pro Text", system-ui, sans-serif;
-  --reader-text-scale: 1;
 }
 
 * {
@@ -62,10 +61,6 @@ body.reduced-stimulation .sensory-layer,
 body.reduced-stimulation .decorative-gradient {
   opacity: 0.22;
   filter: saturate(0.72);
-}
-
-.reader-text {
-  font-size: calc(1rem * var(--reader-text-scale));
 }
 
 @media (prefers-reduced-motion: reduce) {
