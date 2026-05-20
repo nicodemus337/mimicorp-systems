@@ -1674,6 +1674,21 @@ article .date {
   max-width: 760px;
 }
 
+.article-subtitle {
+  font-size: 18px;
+  opacity: 0.72;
+}
+
+.longform h2 {
+  margin-top: 48px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.longform h2:first-child {
+  margin-top: 0;
+}
+
 .longform p {
   font-size: 16px;
   line-height: 1.8;
@@ -1703,6 +1718,28 @@ article .date {
 
 .longform td {
   opacity: 0.82;
+}
+
+.thesis-callout {
+  padding: 18px 20px;
+  border-left: 2px solid rgba(214,164,95,0.78);
+  background: rgba(255,255,255,0.04);
+}
+
+.longform .endnotes,
+.longform .bibliography {
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.longform .bibliography {
+  margin-left: 0;
+  list-style: none;
+}
+
+.longform .bibliography li {
+  padding-left: 28px;
+  text-indent: -28px;
 }
 
 .eyebrow {
