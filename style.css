@@ -1693,7 +1693,20 @@ article .date {
   background: rgba(255,255,255,0.035);
 }
 
+.plain-summary {
+  margin-bottom: 28px;
+  padding: 20px 22px;
+  border-left: 2px solid rgba(125,155,95,0.82);
+  background: rgba(125,155,95,0.08);
+}
+
 .abstract-block h2 {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.plain-summary h2 {
   margin-top: 0;
   padding-top: 0;
   border-top: 0;
