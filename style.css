@@ -1679,6 +1679,26 @@ article .date {
   opacity: 0.72;
 }
 
+.publication-meta,
+.keywords {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  opacity: 0.58;
+}
+
+.abstract-block {
+  margin-bottom: 42px;
+  padding: 22px 24px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.035);
+}
+
+.abstract-block h2 {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
 .longform h2 {
   margin-top: 48px;
   padding-top: 10px;
