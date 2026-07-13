@@ -2502,6 +2502,9 @@ body.services-page {
 
 .home-hero {
   display: block;
+  min-height: auto;
+  padding: 16px 0 58px;
+  border: 0;
 }
 
 .home-rail,
@@ -2521,7 +2524,7 @@ body.services-page {
 }
 
 .home-hero-copy {
-  max-width: 760px;
+  max-width: 690px;
   margin-left: 0;
 }
 
@@ -2544,7 +2547,7 @@ body.services-page {
 .home-title-row {
   align-items: center;
   gap: clamp(16px, 3vw, 28px);
-  margin: 0 0 22px;
+  margin: 0 0 24px;
 }
 
 .home-hero h1,
@@ -2566,7 +2569,7 @@ body.services-page {
 .home-hero p,
 .about-hero-copy p,
 .services-hero p {
-  max-width: 720px;
+  max-width: 560px;
   color: rgba(242,239,229,0.78);
 }
 
@@ -2575,67 +2578,7 @@ body.services-page {
 }
 
 .home-creative-position {
-  border-color: rgba(125,155,95,0.24);
-}
-
-.home-service-stack {
-  margin-bottom: 24px;
-  padding: 24px;
-  border: 1px solid rgba(242,239,229,0.16);
-  background: #000;
-}
-
-.home-service-intro {
-  display: grid;
-  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-  gap: 24px;
-  margin-bottom: 22px;
-}
-
-.home-service-intro h2 {
-  max-width: 620px;
-  color: #f2efe5;
-  font-size: clamp(22px, 3vw, 34px);
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  line-height: 1.15;
-}
-
-.home-service-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.home-service-card {
-  min-height: 188px;
-  padding: 22px;
-  border: 1px solid rgba(242,239,229,0.16);
-  background: #000;
-}
-
-.home-service-card-wide {
-  grid-column: 1 / -1;
-  min-height: 160px;
-}
-
-.home-service-card h3 {
-  color: #f2efe5;
-  font-size: 18px;
-  font-weight: 400;
-  letter-spacing: 0.06em;
-}
-
-.home-service-card p {
-  margin-bottom: 0;
-  color: rgba(242,239,229,0.76);
-}
-
-.home-service-card:hover,
-.home-service-card:focus-within {
-  transform: translateY(-1px);
-  border-color: rgba(125,155,95,0.42);
-  background: #030303;
+  border-color: rgba(242,239,229,0.14);
 }
 
 .home-cta,
@@ -2671,16 +2614,18 @@ body.services-page {
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
   gap: 24px;
   align-items: start;
-  margin-bottom: 24px;
-  padding: 24px;
-  border: 1px solid rgba(242,239,229,0.16);
+  margin-bottom: 36px;
+  padding: 24px 0;
+  border: 0;
+  border-top: 1px solid rgba(242,239,229,0.14);
+  border-bottom: 1px solid rgba(242,239,229,0.14);
   background: #000;
 }
 
 .home-response-panel h2 {
-  max-width: 420px;
+  max-width: 540px;
   color: #f2efe5;
-  font-size: 20px;
+  font-size: 18px;
   letter-spacing: 0.06em;
 }
 
@@ -2698,7 +2643,7 @@ body.services-page {
 
 .home-portal-strip {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin: 0 0 42px;
+  margin: 0 0 56px;
   border: 0;
   background: transparent;
 }
@@ -2719,14 +2664,15 @@ body.services-page {
 }
 
 .home-portal {
-  min-height: 188px;
-  padding: 24px;
-  border-right: 1px solid rgba(242,239,229,0.16);
+  min-height: 132px;
+  padding: 0 0 22px;
+  border: 0;
+  border-bottom: 1px solid rgba(242,239,229,0.14);
   color: #f2efe5;
 }
 
 .home-portal:nth-child(4) {
-  border-right: 1px solid rgba(242,239,229,0.16);
+  border-right: 0;
 }
 
 .home-portal h2,
@@ -2735,7 +2681,7 @@ body.services-page {
 .about-portal-card h2,
 .panel h2 {
   color: #f2efe5;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 0.06em;
 }
 
@@ -2832,8 +2778,6 @@ body.services-page {
 .about-portal-card:focus-visible,
 .service-module:hover,
 .service-module:focus-within,
-.home-service-card:hover,
-.home-service-card:focus-within,
 .schedule-panel:hover,
 .schedule-rate-card:hover,
 .home-cta:hover,
@@ -2866,23 +2810,8 @@ body.services-page {
 
   .about-hero,
   .home-portal-strip,
-  .home-response-panel,
-  .home-service-intro,
-  .home-service-grid {
+  .home-response-panel {
     grid-template-columns: 1fr;
-  }
-
-  .home-service-stack {
-    padding: 20px;
-  }
-
-  .home-service-card,
-  .home-service-card-wide {
-    min-height: 0;
-  }
-
-  .home-service-card-wide {
-    grid-column: auto;
   }
 
   .home-title-row {
