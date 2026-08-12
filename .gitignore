@@ -7,3 +7,9 @@ build/
 *.zip
 *.log
 .env
+
+# Temporary document generation and review artifacts
+.mppep-review-render/
+tmp/
+output/
+mppep-phase4-application-review-copy.docx
