@@ -44,6 +44,8 @@ const localitySelect = document.querySelector("#locality-select");
 const raceSelect = document.querySelector("#race-select");
 const search = document.querySelector("#search");
 let tableRows = [];
+let alaskaLiveLoaded = false;
+let alaskaMap = null;
 
 function option(value) { const item = document.createElement("option"); item.value = value; item.textContent = value; return item; }
 function fillSelect(element, values) { element.replaceChildren(...values.map(option)); }
@@ -57,7 +59,35 @@ function openResults() {
 }
 function closeResults() { resultsApp.hidden = true; landing.hidden = false; window.scrollTo({ top: 0, behavior: "smooth" }); }
 
-function updateState() {
+async function loadAlaskaLive() {
+  if (alaskaLiveLoaded) return;
+  try {
+    const response = await fetch("data/alaska.json", { cache: "no-store" });
+    if (!response.ok) throw new Error(`Alaska snapshot returned ${response.status}`);
+    const snapshot = await response.json();
+    const mapResponse = await fetch("data/alaska-map.json?v=2", { cache: "no-store" });
+    if (mapResponse.ok) alaskaMap = await mapResponse.json();
+    const races = {};
+    for (const race of snapshot.races) {
+      const reporting = race.precinctsTotal ? race.precinctsReporting / race.precinctsTotal * 100 : 0;
+      races[race.name] = {
+        type: "Official state results",
+        reporting,
+        rule: `Results reported by the Alaska Division of Elections. ${snapshot.certified ? "Certified" : "Unofficial"} snapshot.`,
+        candidates: race.candidates.map(candidate => [candidate.name, "Alaska ballot choice", candidate.votes, candidate.id]),
+        precincts: race.precincts,
+        source: snapshot
+      };
+    }
+    DATA.Alaska = { localLabel: "Precinct", localities: ["All precincts"], races, source: snapshot };
+    alaskaLiveLoaded = true;
+  } catch (error) {
+    console.warn("Official Alaska snapshot unavailable; retaining demo data.", error);
+  }
+}
+
+async function updateState() {
+  if (stateSelect.value === "Alaska") await loadAlaskaLive();
   const state = DATA[stateSelect.value];
   document.querySelector("#locality-label").firstChild.textContent = `${state.localLabel} `;
   fillSelect(localitySelect, state.localities);
@@ -73,14 +103,26 @@ function renderRace() {
   const race = state.races[raceSelect.value];
   const locality = localitySelect.value;
   const total = race.candidates.reduce((sum, candidate) => sum + candidate[2], 0);
-  const candidates = race.candidates.map((candidate, index) => ({ name: candidate[0], affiliation: candidate[1], votes: candidate[2], share: candidate[2] / total, color: COLORS[index] }));
+  const candidates = race.candidates.map((candidate, index) => ({ name: candidate[0], affiliation: candidate[1], votes: candidate[2], share: total ? candidate[2] / total : 0, color: COLORS[index % COLORS.length], id: candidate[3] }));
+  const notice = document.querySelector("#data-notice");
+  if (race.source) {
+    notice.classList.add("live-source");
+    notice.innerHTML = `<b>${race.source.certified ? "CERTIFIED" : "LIVE · UNOFFICIAL"}</b> — ${race.source.provider}. Updated ${race.source.sourceUpdatedAt}.`;
+    document.querySelector("#updated-time").textContent = race.source.sourceUpdatedAt;
+  } else {
+    notice.classList.remove("live-source");
+    notice.innerHTML = "<b>PRODUCT DEMO</b> — Fictional candidates and results. Not an official election source.";
+    document.querySelector("#updated-time").textContent = "9:14 PM CT";
+  }
   document.querySelector("#race-path").textContent = `${stateName} · ${locality} · ${race.type}`;
   document.querySelector("#race-name").textContent = raceSelect.value;
   document.querySelector("#race-rule").textContent = race.rule;
   document.querySelector("#reporting-value").textContent = `${race.reporting.toFixed(1)}%`;
   document.querySelector("#reporting-bar").style.width = `${race.reporting}%`;
   document.querySelector("#scoreboard").replaceChildren(...candidates.map((candidate, index) => candidateRow(candidate, index === 0)));
-  document.querySelector("#decision").textContent = `${candidates[0].name} leads reported votes by ${(candidates[0].votes - candidates[1].votes).toLocaleString("en-US")} votes. This is not a projection.`;
+  document.querySelector("#decision").textContent = candidates[1]
+    ? `${candidates[0].name} leads reported votes by ${(candidates[0].votes - candidates[1].votes).toLocaleString("en-US")} votes. This is not a projection.`
+    : `${candidates[0].name} is the only reported choice. This is not a projection.`;
   buildJurisdictions(stateName, state, candidates, race.reporting);
   renderTiles(candidates);
   renderTable();
@@ -97,6 +139,26 @@ function candidateRow(candidate, isLeader) {
 }
 
 function buildJurisdictions(stateName, state, candidates, reporting) {
+  const selectedRace = state.races[raceSelect.value];
+  if (selectedRace.precincts) {
+    const candidateById = new Map(candidates.map(candidate => [candidate.id, candidate]));
+    tableRows = selectedRace.precincts.map(precinct => {
+      const candidateResults = precinct.candidates
+        .map(result => ({ candidate: candidateById.get(result.id), votes: result.votes }))
+        .filter(result => result.candidate)
+        .sort((a, b) => b.votes - a.votes);
+      const leaderResult = candidateResults[0];
+      return {
+        name: precinct.name,
+        abbreviation: precinct.id.replace(/[^A-Za-z0-9]/g, "").slice(-3).toUpperCase(),
+        leader: leaderResult?.candidate || candidates[0],
+        votes: precinct.reported ? leaderResult?.votes ?? 0 : null,
+        reporting: precinct.reported ? "1/1" : "0/1",
+        status: precinct.reported ? "Reported" : "Not started"
+      };
+    });
+    return;
+  }
   const names = stateName === "Louisiana" ? parishNames : Array.from({ length: 36 }, (_, index) => `${state.localLabel} ${String(index + 1).padStart(2, "0")}`);
   tableRows = names.map((name, index) => {
     const seed = hashNumber(stateName + name + raceSelect.value);
@@ -109,6 +171,11 @@ function buildJurisdictions(stateName, state, candidates, reporting) {
 }
 
 function renderTiles(candidates) {
+  if (stateSelect.value === "Alaska" && alaskaMap) {
+    renderAlaskaMap();
+    return;
+  }
+  document.querySelector("#tile-map").classList.remove("geo-map");
   const tiles = tableRows.map(row => {
     const tile = document.createElement("div");
     tile.className = `tile${row.votes === null ? " no-report" : ""}`;
@@ -121,11 +188,49 @@ function renderTiles(candidates) {
   document.querySelector("#tile-map").replaceChildren(...tiles);
 }
 
+function renderAlaskaMap() {
+  const container = document.querySelector("#tile-map");
+  container.classList.add("geo-map");
+  const namespace = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(namespace, "svg");
+  svg.classList.add("precinct-map");
+  svg.setAttribute("viewBox", "0 0 1000 560");
+  svg.setAttribute("role", "img");
+  svg.setAttribute("aria-label", "Alaska precinct results. Select a precinct to filter the table.");
+  const { minLongitude, maxLongitude, minLatitude, maxLatitude } = alaskaMap.bounds;
+  const project = ([longitude, latitude]) => [
+    24 + ((longitude - minLongitude) / (maxLongitude - minLongitude)) * 952,
+    536 - ((latitude - minLatitude) / (maxLatitude - minLatitude)) * 512
+  ];
+  const rows = new Map(tableRows.map(row => [row.abbreviation, row]));
+  for (const region of alaskaMap.regions) {
+    const row = rows.get(region.id.replace(/[^A-Za-z0-9]/g, "").slice(-3).toUpperCase());
+    const path = document.createElementNS(namespace, "path");
+    const commands = region.polygons.flatMap(polygon => polygon.map(ring => ring.map((point, index) => `${index ? "L" : "M"}${project(point).map(value => value.toFixed(1)).join(" ")}`).join(" ") + " Z"));
+    path.setAttribute("d", commands.join(" "));
+    path.setAttribute("fill", row?.votes === null ? "#203846" : row?.leader.color || "#203846");
+    path.setAttribute("class", "precinct-shape");
+    path.setAttribute("tabindex", "0");
+    const label = `${row?.name || region.id}: ${row?.votes === null ? "not started" : `${row?.leader.name} leads; reported`}`;
+    path.setAttribute("aria-label", label);
+    const title = document.createElementNS(namespace, "title");
+    title.textContent = label;
+    path.append(title);
+    const select = () => { search.value = row?.name || region.id; renderTable(); document.querySelector("#results-table")?.scrollIntoView({ behavior: "smooth", block: "center" }); };
+    path.addEventListener("click", select);
+    path.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") select(); });
+    svg.append(path);
+  }
+  container.replaceChildren(svg);
+}
+
 function renderTable() {
   const query = search.value.trim().toLowerCase();
   const rows = tableRows.filter(row => row.name.toLowerCase().includes(query)).map(row => {
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${row.name}</td><td>${row.votes === null ? "—" : row.leader.name}</td><td>${row.votes === null ? "—" : row.votes.toLocaleString("en-US")}</td><td>${row.reporting}</td><td><span class="status">${row.status}</span></td>`;
+    const [reported, total] = row.reporting.split("/").map(Number);
+    const percent = total ? reported / total * 100 : 0;
+    tr.innerHTML = `<td>${row.name}</td><td>${row.votes === null ? "—" : row.leader.name}</td><td>${row.votes === null ? "—" : row.votes.toLocaleString("en-US")}</td><td><span class="row-progress"><span>${row.reporting}</span><span class="row-progress-track" aria-label="${percent.toFixed(0)} percent reporting"><i style="width:${percent}%"></i></span></span></td><td><span class="status">${row.status}</span></td>`;
     return tr;
   });
   document.querySelector("#results-table").replaceChildren(...rows);
