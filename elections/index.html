@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071522">
+  <meta name="description" content="A live, legible view of United States election results.">
+  <title>Countline — United States elections</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#results">Skip to results</a>
+  <main>
+    <section class="landing" id="landing" aria-labelledby="landing-title">
+      <header class="site-header">
+        <a class="brand" href="/" aria-label="Mimicorp Labs home">
+          <span class="brand-mark" aria-hidden="true">M</span>
+          <span>mimicorp labs</span>
+        </a>
+        <div class="live-clock" aria-label="Current election status">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span>U.S. ELECTION DAY</span>
+          <time id="clock">NOV 03 · 2026</time>
+        </div>
+      </header>
+
+      <div class="landing-copy">
+        <p class="eyebrow">COUNTLINE / LIVE RETURNS</p>
+        <h1 id="landing-title">The world votes.<br>Today, watch America.</h1>
+        <p class="lede">One clear path from the national picture to the race in your community.</p>
+      </div>
+
+      <div class="globe-stage" aria-label="Interactive globe showing countries with elections today">
+        <button class="globe" id="us-globe" type="button" aria-label="Open United States election results">
+          <span class="globe-shine" aria-hidden="true"></span>
+          <svg viewBox="0 0 500 500" role="img" aria-labelledby="globe-title globe-desc">
+            <title id="globe-title">Election-day globe</title>
+            <desc id="globe-desc">The United States is highlighted as the active election country.</desc>
+            <defs>
+              <clipPath id="sphere"><circle cx="250" cy="250" r="224"/></clipPath>
+              <filter id="glow"><feGaussianBlur stdDeviation="7" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <circle class="ocean" cx="250" cy="250" r="224"/>
+            <g clip-path="url(#sphere)" class="grid" aria-hidden="true">
+              <ellipse cx="250" cy="250" rx="224" ry="76"/>
+              <ellipse cx="250" cy="250" rx="224" ry="148"/>
+              <ellipse cx="250" cy="250" rx="84" ry="224"/>
+              <ellipse cx="250" cy="250" rx="166" ry="224"/>
+              <path d="M26 250h448"/>
+            </g>
+            <g clip-path="url(#sphere)" class="land" aria-hidden="true">
+              <path d="M42 141l33-49 62-35 60 5 34 26-19 32-51 8-25 32-31 7-29 37-31-17z"/>
+              <path d="M143 218l36 13 32 41-5 46-23 42-13 54-31-27-4-56-21-41 8-48z"/>
+              <path d="M286 94l52-29 73 14 52 52-17 37-43 10-28 33-50-10-22-44-39-16z"/>
+              <path d="M303 203l51 8 29 49-13 77-38 76-31-42-10-77-22-49z"/>
+              <path d="M397 351l49 13 20 35-31 25-49-19z"/>
+            </g>
+            <g class="usa-active" filter="url(#glow)">
+              <path d="M83 128l33-13 39 5 27 16-8 18-25 4-14 22-31 1-27-19z"/>
+              <circle cx="96" cy="154" r="5"/>
+            </g>
+          </svg>
+          <span class="country-callout">
+            <span class="flag" aria-hidden="true">US</span>
+            <span><b>United States</b><small>Federal, state & local elections</small></span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </span>
+        </button>
+        <p class="globe-help">Select the highlighted country to enter live results</p>
+      </div>
+    </section>
+
+    <section class="results-app" id="results" aria-labelledby="results-title" hidden>
+      <header class="results-header">
+        <button class="back-button" id="back-to-globe" type="button">← Globe</button>
+        <div>
+          <p class="eyebrow">UNITED STATES / LIVE RETURNS</p>
+          <h2 id="results-title">Election Center</h2>
+        </div>
+        <div class="updated"><span class="live-dot" aria-hidden="true"></span> Updated <time>9:14 PM CT</time></div>
+      </header>
+
+      <div class="demo-notice" role="note"><b>PRODUCT DEMO</b> — Fictional candidates and results. Not an official election source.</div>
+
+      <section class="control-deck" aria-label="Choose an election">
+        <label>State
+          <select id="state-select"></select>
+        </label>
+        <label id="locality-label">County or equivalent
+          <select id="locality-select"></select>
+        </label>
+        <label>Race
+          <select id="race-select"></select>
+        </label>
+      </section>
+
+      <section class="race-heading">
+        <div>
+          <p class="race-path" id="race-path"></p>
+          <h3 id="race-name"></h3>
+          <p id="race-rule"></p>
+        </div>
+        <div class="reporting-block">
+          <strong id="reporting-value"></strong>
+          <span>PRECINCTS REPORTING</span>
+          <div class="progress-track" aria-hidden="true"><div id="reporting-bar"></div></div>
+        </div>
+      </section>
+
+      <div class="results-grid">
+        <section class="scoreboard-panel" aria-labelledby="scoreboard-title">
+          <div class="panel-title"><h4 id="scoreboard-title">Live scoreboard</h4><span>VOTES</span></div>
+          <div id="scoreboard" aria-live="polite"></div>
+          <p class="decision" id="decision"></p>
+        </section>
+
+        <section class="map-panel" aria-labelledby="map-title">
+          <div class="panel-title"><h4 id="map-title">Local reporting map</h4><span id="map-label">PARISHES</span></div>
+          <div class="tile-map" id="tile-map" aria-label="Local results tile map"></div>
+          <div class="legend" id="legend"></div>
+        </section>
+      </div>
+
+      <section class="table-panel" aria-labelledby="table-title">
+        <div class="table-tools">
+          <h4 id="table-title">Reporting jurisdictions</h4>
+          <label class="search"><span class="sr-only">Search jurisdictions</span><input id="search" type="search" placeholder="Search"></label>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th scope="col">Jurisdiction</th><th scope="col">Reported leader</th><th scope="col">Votes</th><th scope="col">Reporting</th><th scope="col">Status</th></tr></thead>
+            <tbody id="results-table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <p class="method-note">Reported totals and calculated standings are displayed separately. “Leading” is not a projection or certification.</p>
+    </section>
+  </main>
+
+  <footer>© mimicorp labs, llc 2026</footer>
+  <script src="app.js"></script>
+</body>
+</html>
