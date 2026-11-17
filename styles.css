@@ -75,7 +75,7 @@ nav a:not(.nav-cta):hover { color: var(--copper); }
 
 .studio { background: var(--paper-dark); color: var(--ink); }
 .studio-heading { display: grid; grid-template-columns: 1.25fr .6fr; gap: 10vw; align-items: end; margin-bottom: 90px; }
-.studio-cards { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.studio-cards { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
 .studio-card { min-height: 340px; padding: 26px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; position: relative; transition: color .25s, background .25s; }
 .studio-card:hover { background: var(--ink); color: #fff; box-shadow: inset 5px 0 0 var(--moss), inset -5px 0 0 var(--copper); }
 .studio-card h3 { margin: 0 0 12px; font: 500 31px/1.05 var(--sans); letter-spacing: -.04em; }
