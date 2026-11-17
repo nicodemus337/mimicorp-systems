@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Start a project conversation with Mimi Corp.">
+  <meta name="theme-color" content="#050505">
+  <title>Start a Project — Mimi Corp</title>
+  <link rel="icon" href="/assets/brand/fruitful-brain.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="start-page">
+  <header class="site-header">
+    <a class="wordmark" href="/" aria-label="Mimi Corp home"><img class="brand-symbol" src="/assets/brand/fruitful-brain.svg" alt=""><span>mimi corp</span></a>
+    <a class="start-close" href="/">Close <span>×</span></a>
+  </header>
+
+  <main class="start-main">
+    <section class="start-intro">
+      <p class="services-label">Project intake / 5 short questions</p>
+      <h1>Tell us what is<br><span>happening.</span></h1>
+      <p>You do not need a polished brief. Start with the real situation. This conversation will turn your answers into a useful project summary.</p>
+    </section>
+
+    <section class="intake-shell" aria-labelledby="intake-title">
+      <div class="intake-status"><span id="step-label">Question 1 of 5</span><span id="progress-label">20%</span></div>
+      <div class="intake-progress" aria-hidden="true"><span id="progress-bar"></span></div>
+      <div class="intake-chat" id="intake-chat" aria-live="polite">
+        <div class="chat-message chat-mimi"><span>Mimi Corp</span><p id="intake-title">What kind of help are you looking for?</p></div>
+      </div>
+
+      <form class="intake-form" id="intake-form">
+        <fieldset class="intake-options" id="service-options">
+          <legend class="sr-only">Select a service</legend>
+          <button type="button" data-value="Websites & public presence">Websites</button>
+          <button type="button" data-value="Software & working tools">Software</button>
+          <button type="button" data-value="Research, language & grants">Grants & research</button>
+          <button type="button" data-value="Media & documentation">Media</button>
+          <button type="button" data-value="Project systems">Systems</button>
+          <button type="button" data-value="Not sure yet">Not sure yet</button>
+        </fieldset>
+        <div class="intake-entry" id="text-entry" hidden>
+          <label class="sr-only" for="intake-answer">Your answer</label>
+          <textarea id="intake-answer" rows="3" placeholder="Type your answer…"></textarea>
+          <button class="intake-send" type="submit">Send <span>↗</span></button>
+        </div>
+      </form>
+
+      <div class="intake-complete" id="intake-complete" hidden>
+        <p class="service-detail-kicker">Your project brief is ready</p>
+        <h2>Good. This is enough to begin.</h2>
+        <pre id="project-summary"></pre>
+        <div class="intake-actions">
+          <a class="button button-primary" id="email-brief" href="#">Email this brief <span>↗</span></a>
+          <button class="text-link copy-brief" id="copy-brief" type="button">Copy brief</button>
+        </div>
+        <p class="intake-note">Nothing is sent automatically. “Email this brief” opens a ready-to-send message in your email app.</p>
+      </div>
+    </section>
+  </main>
+  <script src="/start/start.js"></script>
+</body>
+</html>
