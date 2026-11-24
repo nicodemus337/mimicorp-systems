@@ -1,0 +1,35 @@
+name: Update Louisiana election results
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: louisiana-results-update
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Fetch and normalize official Louisiana results
+        run: node scripts/update-louisiana-results.mjs
+      - name: Commit changed snapshot
+        run: |
+          if git diff --quiet -- elections/data/louisiana.json; then
+            echo "No result changes."
+            exit 0
+          fi
+          git config user.name "mimicorp results bot"
+          git config user.email "results-bot@mimicorp.systems"
+          git add elections/data/louisiana.json
+          git commit -m "update Louisiana election results"
+          git push

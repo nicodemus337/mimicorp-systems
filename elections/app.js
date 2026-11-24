@@ -46,6 +46,8 @@ const search = document.querySelector("#search");
 let tableRows = [];
 let alaskaLiveLoaded = false;
 let alaskaMap = null;
+let louisianaLiveLoaded = false;
+let louisianaMap = null;
 
 function option(value) { const item = document.createElement("option"); item.value = value; item.textContent = value; return item; }
 function fillSelect(element, values) { element.replaceChildren(...values.map(option)); }
@@ -86,8 +88,38 @@ async function loadAlaskaLive() {
   }
 }
 
+async function loadLouisianaLive() {
+  if (louisianaLiveLoaded) return;
+  try {
+    const [resultsResponse, mapResponse] = await Promise.all([
+      fetch("data/louisiana.json", { cache: "no-store" }),
+      fetch("data/louisiana-map.json?v=1", { cache: "no-store" })
+    ]);
+    if (!resultsResponse.ok) throw new Error(`Louisiana snapshot returned ${resultsResponse.status}`);
+    const snapshot = await resultsResponse.json();
+    if (mapResponse.ok) louisianaMap = await mapResponse.json();
+    const races = {};
+    for (const race of snapshot.races) {
+      const reporting = race.precinctsTotal ? race.precinctsReporting / race.precinctsTotal * 100 : 0;
+      races[race.name] = {
+        type: race.type,
+        reporting,
+        rule: race.rule,
+        candidates: race.candidates.map(candidate => [candidate.name, candidate.party || "No party listed", candidate.votes, candidate.id]),
+        parishes: race.parishes,
+        source: snapshot
+      };
+    }
+    DATA.Louisiana = { localLabel: "Parish", localities: ["All parishes", ...parishNames], races, source: snapshot };
+    louisianaLiveLoaded = true;
+  } catch (error) {
+    console.warn("Official Louisiana snapshot unavailable; retaining demo data.", error);
+  }
+}
+
 async function updateState() {
   if (stateSelect.value === "Alaska") await loadAlaskaLive();
+  if (stateSelect.value === "Louisiana") await loadLouisianaLive();
   const state = DATA[stateSelect.value];
   document.querySelector("#locality-label").firstChild.textContent = `${state.localLabel} `;
   fillSelect(localitySelect, state.localities);
@@ -102,12 +134,24 @@ function renderRace() {
   const state = DATA[stateName];
   const race = state.races[raceSelect.value];
   const locality = localitySelect.value;
-  const total = race.candidates.reduce((sum, candidate) => sum + candidate[2], 0);
-  const candidates = race.candidates.map((candidate, index) => ({ name: candidate[0], affiliation: candidate[1], votes: candidate[2], share: total ? candidate[2] / total : 0, color: COLORS[index % COLORS.length], id: candidate[3] }));
+  let candidateRows = race.candidates;
+  let reporting = race.reporting;
+  let hasResults = candidateRows.some(candidate => candidate[2] > 0);
+  if (race.parishes && locality !== "All parishes") {
+    const parish = race.parishes.find(item => item.name === locality);
+    const votesById = new Map((parish?.candidates || []).map(candidate => [candidate.id, candidate.votes]));
+    candidateRows = race.candidates.map(candidate => [candidate[0], candidate[1], votesById.get(candidate[3]) ?? 0, candidate[3]]);
+    reporting = parish?.precinctsTotal ? parish.precinctsReporting / parish.precinctsTotal * 100 : 0;
+    hasResults = Boolean(parish?.reported);
+  }
+  const total = candidateRows.reduce((sum, candidate) => sum + candidate[2], 0);
+  const candidates = candidateRows.map((candidate, index) => ({ name: candidate[0], affiliation: candidate[1], votes: candidate[2], share: total ? candidate[2] / total : 0, color: COLORS[index % COLORS.length], id: candidate[3] }));
+  if (hasResults) candidates.sort((a, b) => b.votes - a.votes);
   const notice = document.querySelector("#data-notice");
   if (race.source) {
     notice.classList.add("live-source");
-    notice.innerHTML = `<b>${race.source.certified ? "CERTIFIED" : "LIVE · UNOFFICIAL"}</b> — ${race.source.provider}. Updated ${race.source.sourceUpdatedAt}.`;
+    const sourceStatus = race.source.certified ? "CERTIFIED" : hasResults ? "LIVE · UNOFFICIAL" : "OFFICIAL SOURCE · NOT STARTED";
+    notice.innerHTML = `<b>${sourceStatus}</b> — <a href="${race.source.sourceUrl}" target="_blank" rel="noopener">${race.source.provider}</a>. Updated ${race.source.sourceUpdatedAt}.`;
     document.querySelector("#updated-time").textContent = race.source.sourceUpdatedAt;
   } else {
     notice.classList.remove("live-source");
@@ -117,13 +161,15 @@ function renderRace() {
   document.querySelector("#race-path").textContent = `${stateName} · ${locality} · ${race.type}`;
   document.querySelector("#race-name").textContent = raceSelect.value;
   document.querySelector("#race-rule").textContent = race.rule;
-  document.querySelector("#reporting-value").textContent = `${race.reporting.toFixed(1)}%`;
-  document.querySelector("#reporting-bar").style.width = `${race.reporting}%`;
-  document.querySelector("#scoreboard").replaceChildren(...candidates.map((candidate, index) => candidateRow(candidate, index === 0)));
-  document.querySelector("#decision").textContent = candidates[1]
+  document.querySelector("#reporting-value").textContent = `${reporting.toFixed(1)}%`;
+  document.querySelector("#reporting-bar").style.width = `${reporting}%`;
+  document.querySelector("#scoreboard").replaceChildren(...candidates.map((candidate, index) => candidateRow(candidate, hasResults && index === 0, hasResults)));
+  document.querySelector("#decision").textContent = !hasResults
+    ? `No results have been reported for ${locality}. Missing returns are not counted as zero votes.`
+    : candidates[1]
     ? `${candidates[0].name} leads reported votes by ${(candidates[0].votes - candidates[1].votes).toLocaleString("en-US")} votes. This is not a projection.`
     : `${candidates[0].name} is the only reported choice. This is not a projection.`;
-  buildJurisdictions(stateName, state, candidates, race.reporting);
+  buildJurisdictions(stateName, state, candidates, reporting);
   renderTiles(candidates);
   renderTable();
   document.querySelector("#legend").replaceChildren(...candidates.map(candidate => {
@@ -131,30 +177,31 @@ function renderRace() {
   }));
 }
 
-function candidateRow(candidate, isLeader) {
+function candidateRow(candidate, isLeader, hasResults = true) {
   const row = document.createElement("div");
   row.className = "candidate-row";
-  row.innerHTML = `<span class="candidate-swatch" style="background:${candidate.color}"></span><span><span class="candidate-name">${candidate.name}</span><span class="candidate-detail">${candidate.affiliation}${isLeader ? " · LEADS" : ""}</span></span><span class="candidate-total"><strong>${candidate.votes.toLocaleString("en-US")}</strong><small>${(candidate.share * 100).toFixed(1)}%</small></span>`;
+  row.innerHTML = `<span class="candidate-swatch" style="background:${candidate.color}"></span><span><span class="candidate-name">${candidate.name}</span><span class="candidate-detail">${candidate.affiliation}${isLeader ? " · LEADS" : ""}</span></span><span class="candidate-total"><strong>${hasResults ? candidate.votes.toLocaleString("en-US") : "—"}</strong><small>${hasResults ? `${(candidate.share * 100).toFixed(1)}%` : "Awaiting returns"}</small></span>`;
   return row;
 }
 
 function buildJurisdictions(stateName, state, candidates, reporting) {
   const selectedRace = state.races[raceSelect.value];
-  if (selectedRace.precincts) {
+  const officialAreas = selectedRace.parishes || selectedRace.precincts;
+  if (officialAreas) {
     const candidateById = new Map(candidates.map(candidate => [candidate.id, candidate]));
-    tableRows = selectedRace.precincts.map(precinct => {
-      const candidateResults = precinct.candidates
+    tableRows = officialAreas.map(area => {
+      const candidateResults = area.candidates
         .map(result => ({ candidate: candidateById.get(result.id), votes: result.votes }))
         .filter(result => result.candidate)
         .sort((a, b) => b.votes - a.votes);
       const leaderResult = candidateResults[0];
       return {
-        name: precinct.name,
-        abbreviation: precinct.id.replace(/[^A-Za-z0-9]/g, "").slice(-3).toUpperCase(),
+        name: area.name,
+        abbreviation: area.id.replace(/[^A-Za-z0-9]/g, "").slice(-3).toUpperCase(),
         leader: leaderResult?.candidate || candidates[0],
-        votes: precinct.reported ? leaderResult?.votes ?? 0 : null,
-        reporting: precinct.reported ? "1/1" : "0/1",
-        status: precinct.reported ? "Reported" : "Not started"
+        votes: area.reported ? leaderResult?.votes ?? 0 : null,
+        reporting: area.precinctsTotal !== undefined ? `${area.precinctsReporting}/${area.precinctsTotal}` : area.reported ? "1/1" : "0/1",
+        status: !area.reported ? "Not started" : area.precinctsReporting === area.precinctsTotal && area.absenteeReporting === area.absenteeTotal ? "Complete" : "Reporting"
       };
     });
     return;
@@ -171,8 +218,9 @@ function buildJurisdictions(stateName, state, candidates, reporting) {
 }
 
 function renderTiles(candidates) {
-  if (stateSelect.value === "Alaska" && alaskaMap) {
-    renderAlaskaMap();
+  const stateMap = stateSelect.value === "Alaska" ? alaskaMap : stateSelect.value === "Louisiana" ? louisianaMap : null;
+  if (stateMap) {
+    renderGeoMap(stateMap, stateSelect.value === "Louisiana" ? "parish" : "precinct");
     return;
   }
   document.querySelector("#tile-map").classList.remove("geo-map");
@@ -188,7 +236,7 @@ function renderTiles(candidates) {
   document.querySelector("#tile-map").replaceChildren(...tiles);
 }
 
-function renderAlaskaMap() {
+function renderGeoMap(mapData, areaLabel) {
   const container = document.querySelector("#tile-map");
   container.classList.add("geo-map");
   const namespace = "http://www.w3.org/2000/svg";
@@ -196,14 +244,14 @@ function renderAlaskaMap() {
   svg.classList.add("precinct-map");
   svg.setAttribute("viewBox", "0 0 1000 560");
   svg.setAttribute("role", "img");
-  svg.setAttribute("aria-label", "Alaska precinct results. Select a precinct to filter the table.");
-  const { minLongitude, maxLongitude, minLatitude, maxLatitude } = alaskaMap.bounds;
+  svg.setAttribute("aria-label", `${stateSelect.value} ${areaLabel} results. Select an area to filter the table.`);
+  const { minLongitude, maxLongitude, minLatitude, maxLatitude } = mapData.bounds;
   const project = ([longitude, latitude]) => [
     24 + ((longitude - minLongitude) / (maxLongitude - minLongitude)) * 952,
     536 - ((latitude - minLatitude) / (maxLatitude - minLatitude)) * 512
   ];
   const rows = new Map(tableRows.map(row => [row.abbreviation, row]));
-  for (const region of alaskaMap.regions) {
+  for (const region of mapData.regions) {
     const row = rows.get(region.id.replace(/[^A-Za-z0-9]/g, "").slice(-3).toUpperCase());
     const path = document.createElementNS(namespace, "path");
     const commands = region.polygons.flatMap(polygon => polygon.map(ring => ring.map((point, index) => `${index ? "L" : "M"}${project(point).map(value => value.toFixed(1)).join(" ")}`).join(" ") + " Z"));
@@ -241,6 +289,9 @@ updateState();
 document.querySelector("#us-globe").addEventListener("click", openResults);
 document.querySelector("#back-to-globe").addEventListener("click", closeResults);
 stateSelect.addEventListener("change", updateState);
-localitySelect.addEventListener("change", renderRace);
+localitySelect.addEventListener("change", () => {
+  search.value = localitySelect.value.startsWith("All ") ? "" : localitySelect.value;
+  renderRace();
+});
 raceSelect.addEventListener("change", renderRace);
 search.addEventListener("input", renderTable);

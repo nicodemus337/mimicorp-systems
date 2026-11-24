@@ -1,122 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:image" content="/assets/images/fruitfulbrain.png">
-  <meta property="og:image:type" content="image/png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="/assets/images/fruitfulbrain.png">
-  <title>About — mimicorp labs</title>
-  <link rel="icon" href="/assets/images/mimicorp_logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="About Amelia Cronan and Mimi Corp: research, ecology, media, and systems for real work.">
+  <meta name="theme-color" content="#050505">
+  <title>About — Mimi Corp</title>
+  <link rel="icon" href="/assets/brand/fruitful-brain.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
 </head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="/" aria-label="Mimi Corp home">
+      <img class="brand-symbol" src="/assets/brand/fruitful-brain.svg" alt="">
+      <span>mimi corp</span>
+    </a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" aria-label="Primary navigation">
+      <a href="/services/">Services</a>
+      <a href="/portfolio/">Portfolio</a>
+      <a href="/#work">The work</a>
+      <a href="/about/" aria-current="page">About</a>
+      <a class="nav-cta" href="/start/">Start a project</a>
+    </nav>
+  </header>
 
-<body class="systems-page about-page">
-
-<div id="nav"></div>
-
-<main class="systems-main about-main">
-  <section class="about-hero">
-    <div class="about-hero-visual" aria-label="Visual field notes">
-      <figure class="about-photo-wrap">
-        <img
-          src="/assets/images/about-drawing.jpg"
-          alt="Pencil portrait with botanical detail in the hair"
-          class="about-photo"
-        >
-        <figcaption>portrait study</figcaption>
+  <main>
+    <section class="about-hero-new">
+      <div class="about-label">About / Amelia Cronan</div>
+      <div class="about-title-wrap">
+        <h1>Researcher.<br>Writer. <span>Systems builder.</span></h1>
+        <p>Mimi Corp is the working studio of Amelia Cronan—a social scientist, writer, and systems builder whose practice moves between political theory, ecological observation, public media, and practical infrastructure.</p>
+      </div>
+      <figure class="about-portrait">
+        <img src="/assets/images/about-drawing.jpg" alt="Pencil portrait with botanical detail in the hair">
+        <figcaption>Portrait study / field archive</figcaption>
       </figure>
-    </div>
+    </section>
 
-    <div class="about-hero-copy">
-      <span class="eyebrow">Profile</span>
-      <h1>About mimi</h1>
-      <p class="about-hero-line">
-        research / ecology / media / systems
-      </p>
-      <p>
-        Amelia Cronan is a social scientist, writer, and systems builder whose
-        work moves between political theory, ecological observation, public
-        media, and practical infrastructure. mimicorp labs is the home base for
-        that work: a place to gather research, field notes, publishing projects,
-        web systems, and experiments in public language.
-      </p>
-      <p>
-        Her interests begin with land, governance, memory, and the ordinary
-        systems people rely on. From there they branch into dissertation writing,
-        articles, ecological record-keeping, audio conversation, and tools that
-        help complicated work become easier to see and share.
-      </p>
-    </div>
-  </section>
-
-  <section class="node-map compact about-portal-map" aria-label="About interest branches">
-    <div class="node-hub about-portal-hub">branches</div>
-    <div class="node-grid about-portal-grid">
-      <div class="node-card node-research about-portal-card about-branch-card">
-        <span class="meta">Research</span>
-        <h2>Dissertation and Articles</h2>
-        <p>
-          Long-form work on governance, land, time, institutions, and public
-          life, with related essays and working fragments alongside it.
-        </p>
-        <div class="about-branch-links" aria-label="Research links">
-          <a href="/research/staging-the-state.html">Dissertation</a>
-          <a href="/research/notes.html">Articles</a>
-        </div>
+    <section class="about-statement">
+      <p class="section-label light">The common thread</p>
+      <p class="about-big-copy">I pay attention to the systems people inherit, the ones they build, and the places where those systems stop making sense.</p>
+      <div class="about-columns">
+        <p>My interests begin with land, governance, memory, and the ordinary structures people rely on. From there they branch into research, ecological record-keeping, audio conversation, websites, software, and public language.</p>
+        <p>Mimi Corp brings those forms together. The aim is not to make complicated work look simple. It is to make the real structure visible enough that people can understand it, trust it, and use it.</p>
       </div>
+    </section>
 
-      <div class="node-card node-about about-portal-card about-branch-card">
-        <span class="meta">Books</span>
-        <h2>Mimicorp Books</h2>
-        <p>
-          Children's books and publishing projects about sensory experience,
-          feelings, comfort, and learning how to name what a body needs.
-        </p>
-        <div class="about-branch-links" aria-label="Book links">
-          <a href="/childrens-books/">Children's Books</a>
-          <a href="/book/">Book Consultation</a>
-        </div>
+    <section class="about-practice">
+      <div class="section-label">The practice</div>
+      <div class="practice-grid">
+        <article><span>01</span><h2>Research</h2><p>Governance, land, time, institutions, ecological data, and public life.</p><a href="/research/">Enter the research ↗</a></article>
+        <article><span>02</span><h2>Field &amp; media</h2><p>Observation, audio, video, and public records that stay close to place and practical knowledge.</p><a href="/media/">Explore media ↗</a></article>
+        <article><span>03</span><h2>Systems</h2><p>Websites, tools, language, and project structures that help real work move.</p><a href="/services/">See what Mimi Corp offers ↗</a></article>
       </div>
+    </section>
 
-      <a class="node-card node-ecology about-portal-card" href="http://www.ecologicalarchive.org" target="_blank" rel="noreferrer">
-        <span class="meta">Archive</span>
-        <h2>The Ecological Archive</h2>
-        <p>Field observation, ecological memory, landscape records, and public notes from the ground.</p>
-        <span class="portal-arrow" aria-hidden="true">Open</span>
-      </a>
+    <section class="about-contact">
+      <p>Have a project, question, or collaboration in mind?</p>
+      <h2>Start with what is happening.</h2>
+      <a class="button button-light" href="mailto:amelia.cronan@gmail.com?subject=Start%20a%20conversation%20with%20Mimi%20Corp">Email Amelia <span>↗</span></a>
+    </section>
+  </main>
 
-      <a class="node-card node-media about-portal-card" href="/media/second-cutting.html">
-        <span class="meta">Audio</span>
-        <h2>Second Cutting</h2>
-        <p>Conversations about stewardship, labor, weather, memory, and practical life in the field.</p>
-        <span class="portal-arrow" aria-hidden="true">Open</span>
-      </a>
-
-      <a class="node-card node-field about-portal-card" href="/childrens-books/">
-        <span class="meta">Books</span>
-        <h2>Children's Books</h2>
-        <p>Picture books about feelings, sensory overwhelm, comfort, and learning how to name what a body needs.</p>
-        <span class="portal-arrow" aria-hidden="true">Open</span>
-      </a>
-    </div>
-  </section>
-
-  <section>
-    <h2>Contact</h2>
-    <ul class="contact-list">
-      <li>Email: <a href="mailto:amelia@mimicorp.systems">amelia@mimicorp.systems</a></li>
-      <li>Booking and collaboration requests: <a href="/schedule/">open the schedule page</a></li>
-      <li>Research archive: <a href="/research/">enter research</a></li>
-      <li>Books: <a href="/childrens-books/">open Mimicorp Books</a></li>
-    </ul>
-  </section>
-</main>
-
-<footer class="site-watermark">&copy; mimicorp labs, llc 2026</footer>
-
-<script src="/main.js"></script>
-
+  <footer>
+    <a class="wordmark footer-mark" href="/"><img class="brand-symbol" src="/assets/brand/fruitful-brain.svg" alt=""><span>mimi corp</span></a>
+    <p>Systems for real work.<br>Based in Louisiana; working where the project leads.</p>
+    <div class="footer-links"><a href="mailto:amelia.cronan@gmail.com">amelia.cronan@gmail.com</a><a href="https://mimi-corp.com">mimi-corp.com</a></div>
+    <small>© mimicorp labs, llc 2026</small>
+  </footer>
+  <script src="/site.js"></script>
 </body>
 </html>
