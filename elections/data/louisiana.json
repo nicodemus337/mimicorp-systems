@@ -4,7 +4,7 @@
   "state": "LA",
   "electionDate": "20261103",
   "electionName": "November 3, 2026 Louisiana Election",
-  "sourceUpdatedAt": "2026-11-24T05:01:04.247",
+  "sourceUpdatedAt": "2026-11-24T21:09:30.790",
   "certified": true,
   "sourceUrl": "https://voterportal.sos.la.gov/graphical",
   "races": [
@@ -20155,6 +20155,6 @@
       ]
     }
   ],
-  "fingerprint": "9ce876328b654c77159fea4f9a3425b9fe78ac183f9b7a1716490637c31e4e02",
-  "retrievedAt": "2026-11-25T01:08:29.489Z"
+  "fingerprint": "1da061226ecc792f40f56ee62e039cc9b7f9347573dc618e7844f5d39cd6e077",
+  "retrievedAt": "2026-11-25T09:47:02.675Z"
 }
